@@ -3,6 +3,5 @@
 
 @section('content')
 
-Aqui va el contenido...
 
 @endsection
