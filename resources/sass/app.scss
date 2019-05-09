@@ -7,6 +7,7 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import 'node_modules/bootstrap-vue/src/index.scss';
 
 .navbar-laravel {
   background-color: #fff;
@@ -20,5 +21,9 @@
 
 .bigIcons {
 	font-size:1.7rem;
+}
+
+.darkGray {
+  color:black !important;
 }
 

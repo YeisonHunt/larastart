@@ -1,144 +1,270 @@
 <template>
-   
+  <div class="row">
+    <div class="col-lg-10 col-sm-6 col-md-8">
 
-
-        <div class="row">
-            <div class="col-lg-12 col-sm-12 col-md-12">
-
-               <!--   <button  class="btn btn-primary float-right mb-2" @click="modalCreateUser"  > Add Idea &nbsp; <i class="flaticon-add-circular-button"></i> </button>-->
-
-                  <router-link to="/ideaCreation" class="btn btn-primary float-right mb-2" >Add Idea &nbsp; <i class="flaticon-add-circular-button"></i></router-link>
-
-                    
-        <!--begin::Modal-->
-            <div class="modal fade" id="userCreationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalTitle" >Creating new idea</h5>
-                            <button type="button" id="closeBtnModal" class="close" data-dismiss="modal" aria-label="Close">
-                            </button>
-                        </div>
-                        <div class="modal-body">
-
-                            <form class="kt-form" @submit.prevent="editMode ? editIdea() : createUser() " @keydown="form.onKeydown($event)">
-                                <div class="kt-portlet__body">
-                                    <div class="form-group form-group-last">
-                                        <div class="alert alert-secondary" role="alert">
-                                            <div class="alert-icon"><i class="flaticon-add-circular-button kt-font-brand" id="iconBrand" ></i></div>
-                                            <div class="alert-text" id="modalSubtitle">
-                                                This VueJS component creates an awesome user idea a flash!
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Idea </label>
-                                        <input  v-model="form.ideatxt" :class="{'is-invalid': form.errors.has('ideatxt')}" id="ideatxt"  type="text" class="form-control" name="ideatxt" aria-describedby="emailHelp" placeholder="Short idea title">
-                                        <has-error :form="form" field="ideatxt"></has-error>
-                                    </div>
-
-                                     <div class="form-group">
-                                        <label>Description</label>
-                                        <input  v-model="form.bugorfeaturetxt" :class="{'is-invalid': form.errors.has('bugorfeaturetxt')}"  type="text" class="form-control" name="bugorfeaturetxt"   aria-describedby="emailHelp" placeholder="Idea body...">
-                                        <has-error :form="form" field="bugorfeaturetxt" ></has-error>
-
-                                        <span class="form-text text-muted">We'll never share your idea with anyone else.</span>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Img URL </label>
-                                        <input  v-model="form.img" :class="{'is-invalid': form.errors.has('img')}" id="img"  type="text" class="form-control" name="img"  placeholder="Image URL...">
-                                        <has-error :form="form" field="img"></has-error>
-                                    </div>
-                                    
-                                    
-                                </div>
-                                <div class="kt-portlet__foot float-right">
-                                    <div class="kt-form__actions">
-                                        <button type="submit" :disabled="form.busy" id="modalBtn"   class="btn btn-primary">Save Idea</button>
-                                        <button type="reset" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-
-                                        <!-- i can use v-show="editMode" -->
-                                    </div>
-                                </div>
-                            </form>
+      <div class="mb-3" style="margin-bottom:10px !important;">
+      <b-dropdown id="dropdown-1" text="Filter by Category" class="m-mb-2 float-right" variant="primary">
+        <b-dropdown-item  v-on:click="filterIdeas('all')">All categories</b-dropdown-item>
+           
+        <b-dropdown-item class="darkGray" v-on:click="filterIdeas('improvethis')" >Improve Asakaa.com</b-dropdown-item>
+        <b-dropdown-item class="darkGray" v-on:click="filterIdeas('sustainability')">Sustainability</b-dropdown-item>
+        <b-dropdown-item class="darkGray" v-on:click="filterIdeas('lifeandhealth')">Life & Health</b-dropdown-item>
+        <b-dropdown-item class="darkGray" v-on:click="filterIdeas('artandculture')">Art & Culture</b-dropdown-item>
+        <b-dropdown-item class="darkGray" v-on:click="filterIdeas('beautyandfaashion')">Beauty & Fashion</b-dropdown-item>
+        <b-dropdown-item class="darkGray" v-on:click="filterIdeas('homeandpets')">Home & Pets</b-dropdown-item>
+        <b-dropdown-item class="darkGray" v-on:click="filterIdeas('scienceandtechnology')">Science & Technology</b-dropdown-item>
+        <b-dropdown-item class="darkGray" v-on:click="filterIdeas('tourismandtravel')">Tourism & Travel</b-dropdown-item>
+        <b-dropdown-item class="darkGray" v-on:click="filterIdeas('transport')">Transport</b-dropdown-item>
+        <b-dropdown-item class="darkGray" v-on:click="filterIdeas('food')">Food</b-dropdown-item>
+        <b-dropdown-item class="darkGray" v-on:click="filterIdeas('politicsandsociety')">Politics & Society</b-dropdown-item>
+        <b-dropdown-item class="darkGray" v-on:click="filterIdeas('sportsandentertainment')">Sports & Entertainment</b-dropdown-item>
+        <b-dropdown-item class="darkGray" v-on:click="filterIdeas('businessandconsumer')">Business & Consumer</b-dropdown-item>
         
+        
+      </b-dropdown>
+    </div>
 
 
-                        </div>
-                        
+    </div>
+
+    <div class="col-lg-2 col-sm-6 col-md-4 mb-3">
+      <router-link to="/ideaCreation" class="btn btn-primary float-right">
+        Add Idea &nbsp;
+        <i class="flaticon-add-circular-button"></i>
+      </router-link>
+    </div>
+    <!-- end first column 12 -->
+
+    <!--begin::Modal-->
+    <div
+      class="modal fade"
+      id="userCreationModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTitle">Creating new idea</h5>
+            <button
+              type="button"
+              id="closeBtnModal"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form
+              class="kt-form"
+              @submit.prevent="editMode ? editIdea() : createUser() "
+              @keydown="form.onKeydown($event)"
+            >
+              <div class="kt-portlet__body">
+                <div class="form-group form-group-last">
+                  <div class="alert alert-secondary" role="alert">
+                    <div class="alert-icon">
+                      <i class="flaticon-add-circular-button kt-font-brand" id="iconBrand"></i>
                     </div>
+                    <div
+                      class="alert-text"
+                      id="modalSubtitle"
+                    >This VueJS component creates an awesome user idea a flash!</div>
+                  </div>
                 </div>
-            </div>
-            <!--end::Modal-->          
-    
+                <div class="form-group">
+                  <label>Idea</label>
+                  <input
+                    v-model="form.ideatxt"
+                    :class="{'is-invalid': form.errors.has('ideatxt')}"
+                    id="ideatxt"
+                    type="text"
+                    class="form-control"
+                    name="ideatxt"
+                    aria-describedby="emailHelp"
+                    placeholder="Short idea title"
+                  >
+                  <has-error :form="form" field="ideatxt"></has-error>
+                </div>
 
-            </div><!-- end first column 12 -->
+                <div class="form-group">
+                  <label>Description</label>
+                  <input
+                    v-model="form.bugorfeaturetxt"
+                    :class="{'is-invalid': form.errors.has('bugorfeaturetxt')}"
+                    type="text"
+                    class="form-control"
+                    name="bugorfeaturetxt"
+                    aria-describedby="emailHelp"
+                    placeholder="Idea body..."
+                  >
+                  <has-error :form="form" field="bugorfeaturetxt"></has-error>
 
+                  <span class="form-text text-muted">We'll never share your idea with anyone else.</span>
+                </div>
 
-            <!-- Begin Ideas loop -->
-
-            <div class="col-lg-3 col-md-4 col-sm-12" v-for="idea in ideas" :key="ideas.id" style="margin-top:30px !important;" >
-                 <div class="container">
-              <!-- Normal Demo-->
-              <div class="column">
-            
-                <!-- Post-->
-                <div class="post-module">
-                  <!-- Thumbnail-->
-                  <div class="thumbnail">
-                    <div class="date">
-                      <div class="day">{{idea.created_at | dayDate}}</div>
-                      <div class="month">{{idea.created_at | monthDate}}</div>
-                    </div><img :src="idea.img"/>
-                  </div>
-                  <!-- Post Content-->
-                  <div class="post-content">
-                    <div class="category">NEW</div>
-                    <h1 class="title" >{{idea.title | shortText | uppercaseFirst}}</h1>
-                 
-                    <h4 class="sub_title"> # {{idea.category | toCategory| mediumText |uppercaseFirst}}</h4>
-                    
-                    <router-link   class="biggerText" v-bind:to="'/innovations/'+idea.id">Read full idea...</router-link>
-
-                    <div class="post-meta"><a href=""><span class="timestamp"><i class="flaticon-like"></i> 12 likes </span></a><span class="comments"><i class="fa fa-comments"></i><a href=""> 39 comments</a></span></div>
-                  </div>
-
-
+                <div class="form-group">
+                  <label>Img URL</label>
+                  <input
+                    v-model="form.img"
+                    :class="{'is-invalid': form.errors.has('img')}"
+                    id="img"
+                    type="text"
+                    class="form-control"
+                    name="img"
+                    placeholder="Image URL..."
+                  >
+                  <has-error :form="form" field="img"></has-error>
                 </div>
               </div>
-    
+              <div class="kt-portlet__foot float-right">
+                <div class="kt-form__actions">
+                  <button
+                    type="submit"
+                    :disabled="form.busy"
+                    id="modalBtn"
+                    class="btn btn-primary"
+                  >Save Idea</button>
+                  <button type="reset" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+                  <!-- i can use v-show="editMode" -->
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end::Modal-->
+
+    <!-- Begin Ideas loop -->
+
+    <!--<div
+      class="col-lg-3 col-md-4 col-sm-12"
+      v-for="idea in filteredIdeas "
+      :key="ideas.id"
+      style="margin-top:30px !important;"
+    >
+      <div class="container">
+      
+        <div class="column">
+          
+          <div class="post-module">
+           
+            <div class="thumbnail">
+              <div class="date">
+                <div class="day">{{idea.created_at | dayDate}}</div>
+                <div class="month">{{idea.created_at | monthDate}}</div>
+              </div>
+              <img :src="idea.img">
             </div>
-            </div><!-- end col-lg-4 -->
-
-           
-
             
+            <div class="post-content">
+              <div class="category">NEW</div>
+              <h1 class="title">{{idea.title | shortText | uppercaseFirst}}</h1>
 
-        
-              
-           
+              <h4 class="sub_title"># {{idea.category | toCategory| mediumText |uppercaseFirst}}</h4>
 
-            <!-- End Ideas loop -->
+              <router-link class="biggerText" v-bind:to="'/innovations/'+idea.id">Read full idea...</router-link>
+
+              <div class="post-meta">
+                <a href>
+                  <span class="timestamp">
+                    <i class="flaticon-like"></i> 12 likes
+                  </span>
+                </a>
+                <span class="comments">
+                  <i class="fa fa-comments"></i>
+                  <a href>39 comments</a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- end col-lg-4 -->
+
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12"  v-for="idea in filteredIdeas "
+      :key="ideas.id">
+
+      <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+										<div class="kt-portlet__body kt-portlet__body--fit">
+											<div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides imageCard" v-bind:style='{ backgroundImage: "url(" + idea.img + ")", }'>
+												<h3 class="kt-widget19__title kt-font-light">
+													{{idea.title | shortText | uppercaseFirst}}
+												</h3>
+												<div class="kt-widget19__shadow"></div>
+												<div class="kt-widget19__labels">
+													<a href="#" class="btn btn-label-light-o2 btn-bold btn-sm ">Recent</a>
+												</div>
+											</div>
+										</div>
+										<div class="kt-portlet__body">
+											<div class="kt-widget19__wrapper">
+												<div class="kt-widget19__content">
+													<div class="kt-widget19__userpic">
+														<img src="https://www.placecage.com/g/140/100" height="50" width="50">
+													</div>
+													<div class="kt-widget19__info">
+														<a href="#" class="kt-widget19__username">
+															{{idea.author | uppercaseFirst}}
+														</a>
+														<span class="kt-widget19__time">
+															UX/UI Designer, Google
+														</span>
+													</div>
+													<div class="kt-widget19__stats">
+														<span class="kt-widget19__number kt-font-brand">
+															
+                              <router-link class="" v-bind:to="'/innovations/'+idea.id">18</router-link>
+														</span>
+														
+                          <router-link class="kt-widget19__comment" v-bind:to="'/innovations/'+idea.id">Comments</router-link>
+                            
+													</div>
+												</div>
+												<div class="kt-widget19__text">
+													<b>Category: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
+                           <b>Date: </b>{{idea.created_at |humanDate}}
+												</div>
+											</div>
+
+											<div class="kt-widget19__action">
+												
+
+                         <router-link class="btn btn-sm btn-label-brand btn-bold " v-bind:to="'/innovations/'+idea.id">Read full idea...</router-link>
+											</div>
+
+                     
+
+										</div>
+									</div>
+    </div>
 
     
-       
- </div><!-- end row -->  
+
+    <!-- End Ideas loop -->
+  </div>
+  <!-- end row -->
 </template>
 
 <style type="text/css">
 
+.imageCard {
+  min-height: 300px;
+}
 .biggerText {
   font-size: 1.2rem;
 }
-    
-    .toast-title {
-        color: #fff !important;
-    }
 
+.toast-title {
+  color: #fff !important;
+}
 
 body {
- 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -146,7 +272,7 @@ body {
   position: relative;
   z-index: 1;
   display: block;
-  background: #FFFFFF;
+  background: #ffffff;
   min-width: 270px;
   height: 470px;
   -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
@@ -188,7 +314,7 @@ body {
   -webkit-border-radius: 100%;
   -moz-border-radius: 100%;
   border-radius: 100%;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 700;
   text-align: center;
   -webkti-box-sizing: border-box;
@@ -205,7 +331,7 @@ body {
 .post-module .thumbnail img {
   display: block;
   width: 120%;
-  
+
   -webkit-transition: all 0.3s linear 0s;
   -moz-transition: all 0.3s linear 0s;
   -ms-transition: all 0.3s linear 0s;
@@ -215,7 +341,7 @@ body {
 .post-module .post-content {
   position: absolute;
   bottom: 0;
-  background: #FFFFFF;
+  background: #ffffff;
   width: 100%;
   height: 250px !important;
   padding: 20px;
@@ -234,7 +360,7 @@ body {
   left: 0;
   background: #e74c3c;
   padding: 10px 15px;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
@@ -285,7 +411,7 @@ body {
 }
 .container:before,
 .container:after {
-  content: '';
+  content: "";
   display: block;
   clear: both;
 }
@@ -327,196 +453,209 @@ body {
 .container .info span .fa {
   color: #e74c3c;
 }
-
-
-
 </style>
 
 <script>
+export default {
+  data() {
+    return {
+      editMode: false,
+      ideas: {},
+      filterValue:"all",
+      minHeight: '300px',
 
+      form: new Form({
+        id: "",
+        ideatxt: "",
+        bugorfeaturetxt: "",
+        img: ""
+      })
+    };
+  },
 
-    export default {
+  computed:{
+    filteredIdeas: function() {
 
-        data() {
-            return  {
-                editMode:false,
-                ideas:{},
+      if(this.filterValue=='all'){
 
-                form: new Form({
-                    id:'',
-                    ideatxt: '',
-                    bugorfeaturetxt   : '',
-                    img:''
-                }) 
-            }
-        },
+        return this.ideas;
+      }else{
 
-        methods: {
+        return this.ideas.filter((idea)=>{
 
-        modalEditUser(idea){
-
-            this.form.ideatxt = idea.ideatxt;
-            this.form.bugorfeaturetxt = idea.bugorfeaturetxt;
-            this.form.id = idea.id;
-
-            this.editMode = true;
-
-            $("#modalTitle").text('Edit idea');
-            $("#modalSubtitle").text('This VueJS component edits an awesome user idea a flash!');
-            $("#modalBtn").text("Update idea");
-
-            $("#iconBrand").attr( "class", "flaticon-edit kt-font-brand");
-
-
-
-            $('#userCreationModal').modal('show');
-
-            $( "#ideatxt" ).focus();
-
-
-            
-
-
-
-        },
-
-        modalCreateUser(){
-
-            this.form.reset();
-            this.editMode=false;
-
-            $("#modalTitle").text('New idea');
-            $("#modalSubtitle").text('This VueJS component creates an awesome user idea a flash!');
-            $("#modalBtn").text("Save idea");
-            $("#iconBrand").attr( "class", "flaticon-add-circular-button kt-font-brand");
-
-            $('#userCreationModal').modal('show');
-            $( "#ideatxt" ).focus();
-
-
-        },
-
-        editIdea(){
-
-                console.log('ID'+ this.form.id);
-                this.$Progress.start();
-              // Submit the form via a POST request
-                 this.form.put('/editIdea/'+ this.form.id)
-                .then(({ data }) => { 
-
-                    this.loadUsers()
-                    
-                    //form.ideatxt=''
-                    //form.bugorfeaturetxt=''
-                    toastr.success('Awesome!','Idea has been evolved.')
-                    $("#closeBtnModal").click()
-                    $('.modal-backdrop').remove() 
-
-                 }).catch(()=>{
-                    toastr.error('Oops!','Something goes wrong')
-                    this.$Progress.fail();    
-                 })
-
-                //$('#userCreationModal').modal('hide');
-                 
-
-                this.$Progress.finish();
-
-                
-               // Fire.$emit('AfterCreate');
-
-
-        },
-
-
-        deleteIdea(id){
-
-            Swal.fire({
-              title: 'Are you sure?',
-              text: "You won't be able to revert this!",
-              type: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-              if (result.value) {
-
-
-                //send the request
-                this.form.delete('/deleteIdea/'+id).then(({data})=>{
-
-                      toastr.success('Done!','The idea has been deleted.')
-                  
-                    this.loadUsers()
-
-                }).catch(()=>{
-
-                      toastr.error('Oops!','Something went wrong.') 
-                });
-                
-
-                
-
-
-
-              }
-            })
-        },
-
-
-        createUser () {
-
-                this.$Progress.start();
-              // Submit the form via a POST request
-                 this.form.post('/saveIdea')
-                .then(({ data }) => { 
-
-                    this.loadUsers()
-                    $("#closeBtnModal").click()
-                    $('.modal-backdrop').remove()  
-                    toastr.success('Awesome!','New idea has appeared.')
-
-                    
-                    //form.ideatxt=''
-                    //form.bugorfeaturetxt=''
-
-
-                 }).catch(()=>{
-                    toastr.error('Oops!','Something goes wrong')    
-                 })
-
-                //$('#userCreationModal').modal('hide');
-                
-                this.$Progress.finish();
-
-               
-                Fire.$emit('AfterCreate');
-
-                
-            },
-
-        testFunction(){
-            alert('Emitiendo evento');
-        },
-
-        loadUsers(){
-            // podemos usar this.form.get but we are gonna use axios
-            
-            axios.get('/getInnovations').then(({data})=>(this.ideas=data.data));
-
-            Fire.$on("AfterCreate",()=>{
-
-                
-            })
+        if(idea.category==this.filterValue){
+          return true;
+        }else {
+          return false;
         }
+      } );
+
+      }
+
+      
 
 
-        },
 
-        mounted() {
-            console.log('Users component mounted')
-            this.loadUsers()
-        }
+
     }
+  },
+
+  methods: {
+
+    filterIdeas(category){
+
+      this.filterValue=category ;
+
+      console.log(category);
+     //Vue.set(app,'filterValue', category);
+  
+
+    },
+
+    modalEditUser(idea) {
+      this.form.ideatxt = idea.ideatxt;
+      this.form.bugorfeaturetxt = idea.bugorfeaturetxt;
+      this.form.id = idea.id;
+
+      this.editMode = true;
+
+      $("#modalTitle").text("Edit idea");
+      $("#modalSubtitle").text(
+        "This VueJS component edits an awesome user idea a flash!"
+      );
+      $("#modalBtn").text("Update idea");
+
+      $("#iconBrand").attr("class", "flaticon-edit kt-font-brand");
+
+      $("#userCreationModal").modal("show");
+
+      $("#ideatxt").focus();
+    },
+
+    modalCreateUser() {
+      this.form.reset();
+      this.editMode = false;
+
+      $("#modalTitle").text("New idea");
+      $("#modalSubtitle").text(
+        "This VueJS component creates an awesome user idea a flash!"
+      );
+      $("#modalBtn").text("Save idea");
+      $("#iconBrand").attr(
+        "class",
+        "flaticon-add-circular-button kt-font-brand"
+      );
+
+      $("#userCreationModal").modal("show");
+      $("#ideatxt").focus();
+    },
+
+    editIdea() {
+      console.log("ID" + this.form.id);
+      this.$Progress.start();
+      // Submit the form via a POST request
+      this.form
+        .put("/editIdea/" + this.form.id)
+        .then(({ data }) => {
+          this.loadUsers();
+
+          //form.ideatxt=''
+          //form.bugorfeaturetxt=''
+          toastr.success("Awesome!", "Idea has been evolved.");
+          $("#closeBtnModal").click();
+          $(".modal-backdrop").remove();
+        })
+        .catch(() => {
+          toastr.error("Oops!", "Something goes wrong");
+          this.$Progress.fail();
+        });
+
+      //$('#userCreationModal').modal('hide');
+
+      this.$Progress.finish();
+
+      // Fire.$emit('AfterCreate');
+    },
+
+    deleteIdea(id) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(result => {
+        if (result.value) {
+          //send the request
+          this.form
+            .delete("/deleteIdea/" + id)
+            .then(({ data }) => {
+              toastr.success("Done!", "The idea has been deleted.");
+
+              this.loadUsers();
+            })
+            .catch(() => {
+              toastr.error("Oops!", "Something went wrong.");
+            });
+        }
+      });
+    },
+
+    createUser() {
+      this.$Progress.start();
+      // Submit the form via a POST request
+      this.form
+        .post("/saveIdea")
+        .then(({ data }) => {
+          this.loadUsers();
+          $("#closeBtnModal").click();
+          $(".modal-backdrop").remove();
+          toastr.success("Awesome!", "New idea has appeared.");
+
+          //form.ideatxt=''
+          //form.bugorfeaturetxt=''
+        })
+        .catch(() => {
+          toastr.error("Oops!", "Something goes wrong");
+        });
+
+      //$('#userCreationModal').modal('hide');
+
+      this.$Progress.finish();
+
+      Fire.$emit("AfterCreate");
+    },
+
+    testFunction() {
+      alert("Emitiendo evento");
+    },
+
+    loadUsers() {
+      // podemos usar this.form.get but we are gonna use axios
+
+      axios.get("/getInnovations").then(({ data }) => (
+        
+        this.ideas = data.data
+        
+        
+        
+        ));
+
+        
+
+
+      
+
+      Fire.$on("AfterCreate", () => {});
+    }
+  },
+
+  mounted() {
+    console.log("Users component mounted");
+    this.loadUsers();
+    $('.dropdown-toggle').dropdown();
+  }
+};
 </script>

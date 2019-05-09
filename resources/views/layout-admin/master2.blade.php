@@ -20,8 +20,8 @@
             });
         </script>
 
-			
-            <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+            
 
             <!--end::Fonts -->
 		
@@ -62,6 +62,8 @@
             <meta name="csrf-token" content="{{ csrf_token() }}">
 
 			<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+
+			
 			
 			
     		
@@ -72,7 +74,9 @@
 	<!-- end::Head -->
 
 	<!-- begin::Body -->
-	<body class="kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
+	<body class="kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading
+	kt-aside--minimize
+	">
 
 	<div id="app">
 
@@ -83,8 +87,10 @@
 		<!-- begin:: Header Mobile -->
 		<div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
 			<div class="kt-header-mobile__logo">
-				<a href="../../index.html">
-					<img alt="Logo" src="../../assets/media/logos/logo-light.png" />
+				<router-link to="/admin">
+					<a href="{{route('admin')}}">
+						<img alt="Logo" src="{{asset('assets/media/logos/logo-light-asakaa.svg')}}" height="100%" width="100%" />
+					</router-link>
 				</a>
 			</div>
 			<div class="kt-header-mobile__toolbar">
@@ -105,9 +111,9 @@
 					<!-- begin:: Aside -->
 					<div class="kt-aside__brand kt-grid__item " id="kt_aside_brand">
 						<div class="kt-aside__brand-logo">
-								<a href="{{route('admin')}}">
+							<router-link to="/admin">
 										<img alt="Logo" src="{{asset('assets/media/logos/logo-light-asakaa.svg')}}" height="100%" width="100%" />
-									</a>
+							</router-link>
 						</div>
 						<div class="kt-aside__brand-tools">
 							<button class="kt-aside__brand-aside-toggler" id="kt_aside_toggler">
@@ -1337,7 +1343,7 @@
 				$("#content").summernote();
 				$('.dropdown-toggle').dropdown();
 
-				
+				$("#kt_aside_toggler").click();
 			
 				
 				

@@ -14,6 +14,7 @@ import { Form, HasError, AlertError } from 'vform'
 import moment from 'moment'
 import VueProgressBar from 'vue-progressbar'
 import Swal from 'sweetalert2'
+import BootstrapVue from 'bootstrap-vue'
 
 
 window.Form = Form; // Ahora en cualquier lugar de nuestra aplicacion tenemos acceso a esa variable
@@ -24,6 +25,7 @@ Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 
 Vue.use(VueRouter)
+Vue.use(BootstrapVue)
 
 let routes = [
 	{ path: '/admin', component: require('./components/Dashboard1Component.vue').default },
@@ -48,7 +50,7 @@ Vue.filter(
 	'humanDate',
 	function (txtDate) {
 
-		return moment(txtDate).format('MMMM Do YYYY, h:mm:ss a');
+		return moment(txtDate).format('MMMM Do YYYY');
 	}
 
 );
@@ -83,9 +85,9 @@ Vue.filter(
 	function (text) {
 
 		let t = text.toString();
-		if (t.length > 25) {
+		if (t.length > 30) {
 
-			let t2 = t.slice(0, 23).concat('...');
+			let t2 = t.slice(0, 27).concat('...');
 			return t2;
 
 		} else {
@@ -142,6 +144,9 @@ Vue.filter(
 	}
 
 );
+
+
+
 
 Vue.filter(
 
