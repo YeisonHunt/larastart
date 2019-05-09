@@ -3021,6 +3021,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -90353,721 +90357,775 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [
-    _c("div", { staticClass: "col-lg-12" }, [
-      _c(
-        "div",
-        {
-          staticClass:
-            "kt-portlet kt-portlet--last kt-portlet--head-lg kt-portlet--responsive-mobile myForm ",
-          attrs: { id: "kt_page_portlet" }
-        },
-        [
-          _c(
-            "form",
-            {
-              staticClass: "kt-form",
-              attrs: { id: "kt_form" },
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.createUser($event)
-                },
-                keydown: function($event) {
-                  return _vm.form.onKeydown($event)
+  return _c("div", { staticClass: "container-fluid" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-1" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-10 col-sm-12 col-md-10" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "kt-portlet kt-portlet--last kt-portlet--head-lg kt-portlet--responsive-mobile myForm ",
+            attrs: { id: "kt_page_portlet" }
+          },
+          [
+            _c(
+              "form",
+              {
+                staticClass: "kt-form",
+                attrs: { id: "kt_form" },
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.createUser($event)
+                  },
+                  keydown: function($event) {
+                    return _vm.form.onKeydown($event)
+                  }
                 }
-              }
-            },
-            [
-              _c(
-                "div",
-                { staticClass: "kt-portlet__head kt-portlet__head--lg" },
-                [
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "kt-portlet__head-toolbar" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "btn btn-clean kt-margin-r-10",
-                          attrs: { to: "/innovations" }
-                        },
-                        [
-                          _c("i", { staticClass: "la la-arrow-left" }),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "kt-hidden-mobile" }, [
-                            _vm._v("Back")
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "btn-group" }, [
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "kt-portlet__head kt-portlet__head--lg" },
+                  [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "kt-portlet__head-toolbar" },
+                      [
                         _c(
-                          "button",
+                          "router-link",
                           {
-                            staticClass: "btn btn-brand",
-                            attrs: { type: "submit", disabled: _vm.form.busy }
+                            staticClass: "btn btn-clean kt-margin-r-10",
+                            attrs: { to: "/innovations" }
                           },
                           [
-                            _c("i", { staticClass: "la la-check" }),
+                            _c("i", { staticClass: "la la-arrow-left" }),
                             _vm._v(" "),
                             _c("span", { staticClass: "kt-hidden-mobile" }, [
-                              _vm._v("Save")
+                              _vm._v("Back")
                             ])
                           ]
                         ),
                         _vm._v(" "),
-                        _c("button", {
-                          staticClass:
-                            "btn btn-brand dropdown-toggle dropdown-toggle-split",
-                          attrs: {
-                            type: "button",
-                            "data-toggle": "dropdown",
-                            "aria-haspopup": "true",
-                            "aria-expanded": "false"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _vm._m(1)
-                      ])
-                    ],
-                    1
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "kt-portlet__body blocked" }, [
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-xl-2" }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-xl-8" }, [
-                    _c("div", { staticClass: "kt-section kt-section--first" }, [
-                      _c("div", { staticClass: "kt-section__body" }, [
-                        _c(
-                          "h3",
-                          {
-                            staticClass:
-                              "kt-section__title kt-section__title-lg"
-                          },
-                          [_vm._v("Idea details")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group row" }, [
-                          _c("label", { staticClass: "col-3 col-form-label" }, [
-                            _vm._v("Title")
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-9" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.title,
-                                  expression: "form.title"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                name: "title",
-                                type: "text",
-                                placeholder: "Short idea title..."
-                              },
-                              domProps: { value: _vm.form.title },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.form,
-                                    "title",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group row" }, [
-                          _c("label", { staticClass: "col-3 col-form-label" }, [
-                            _vm._v("Description")
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-9" }, [
-                            _c("textarea", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.editordata,
-                                  expression: "form.editordata"
-                                }
-                              ],
-                              staticClass: "summernote richtext",
-                              attrs: {
-                                id: "kt_summernote_1",
-                                name: "editordata"
-                              },
-                              domProps: { value: _vm.form.editordata },
-                              on: {
-                                change: _vm.updateRichText,
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.form,
-                                    "editordata",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "span",
-                              { staticClass: "form-text text-muted" },
-                              [
-                                _vm._v(
-                                  "If you want to increase your idea rating and apreciation. Please use our below rich text editor. "
-                                )
-                              ]
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group row" }, [
-                          _c("label", { staticClass: "col-3 col-form-label" }, [
-                            _vm._v("Main Image")
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-9" }, [
-                            _c("div", { staticClass: "input-group" }, [
-                              _vm._m(2),
+                        _c("div", { staticClass: "btn-group" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-brand",
+                              attrs: { type: "submit", disabled: _vm.form.busy }
+                            },
+                            [
+                              _c("i", { staticClass: "la la-check" }),
                               _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form.img,
-                                    expression: "form.img"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  name: "img",
-                                  placeholder:
-                                    "https://wwwmyawesomeideaimg.com/myimage.jpg",
-                                  "aria-describedby": "basic-addon1"
-                                },
-                                domProps: { value: _vm.form.img },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.form,
-                                      "img",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
+                              _c("span", { staticClass: "kt-hidden-mobile" }, [
+                                _vm._v("Save")
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("button", {
+                            staticClass:
+                              "btn btn-brand dropdown-toggle dropdown-toggle-split",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "dropdown",
+                              "aria-haspopup": "true",
+                              "aria-expanded": "false"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm._m(1)
+                        ])
+                      ],
+                      1
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "kt-portlet__body blocked " }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-xl-1" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-xl-11" }, [
+                      _c(
+                        "div",
+                        { staticClass: "kt-section kt-section--first" },
+                        [
+                          _c("div", { staticClass: "kt-section__body" }, [
                             _c(
-                              "span",
-                              { staticClass: "form-text text-muted" },
-                              [
-                                _vm._v(
-                                  "Choose an awesome image to get more likes for your idea."
-                                )
-                              ]
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "form-group form-group-last row" },
-                          [
-                            _c(
-                              "label",
-                              { staticClass: "col-3 col-form-label" },
-                              [_vm._v("Category")]
+                              "h3",
+                              {
+                                staticClass:
+                                  "kt-section__title kt-section__title-lg "
+                              },
+                              [_vm._v("Idea details")]
                             ),
                             _vm._v(" "),
-                            _c("div", { staticClass: "col-9" }, [
-                              _c("div", { staticClass: "input-group" }, [
-                                _c(
-                                  "select",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.category,
-                                        expression: "form.category"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "kt-selectpicker form-control ",
-                                    attrs: {
-                                      "data-live-search": "true",
-                                      "data-container": "body",
-                                      "data-size": "6",
-                                      name: "category",
-                                      id: "kt-selectpicker1",
-                                      required: ""
-                                    },
-                                    on: {
-                                      change: function($event) {
-                                        var $$selectedVal = Array.prototype.filter
-                                          .call($event.target.options, function(
-                                            o
-                                          ) {
-                                            return o.selected
-                                          })
-                                          .map(function(o) {
-                                            var val =
-                                              "_value" in o ? o._value : o.value
-                                            return val
-                                          })
-                                        _vm.$set(
-                                          _vm.form,
-                                          "category",
-                                          $event.target.multiple
-                                            ? $$selectedVal
-                                            : $$selectedVal[0]
-                                        )
-                                      }
+                            _c("div", { staticClass: "form-group row" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-3 col-form-label  " },
+                                [_vm._v("Title")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-9" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.title,
+                                      expression: "form.title"
                                     }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    name: "title",
+                                    type: "text",
+                                    placeholder: "Short idea title..."
                                   },
+                                  domProps: { value: _vm.form.title },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form,
+                                        "title",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group row" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-3 col-form-label" },
+                                [_vm._v("Description")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-9" }, [
+                                _c("textarea", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.editordata,
+                                      expression: "form.editordata"
+                                    }
+                                  ],
+                                  staticClass: "summernote richtext",
+                                  attrs: {
+                                    id: "kt_summernote_1",
+                                    name: "editordata"
+                                  },
+                                  domProps: { value: _vm.form.editordata },
+                                  on: {
+                                    change: _vm.updateRichText,
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form,
+                                        "editordata",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  { staticClass: "form-text text-muted" },
                                   [
-                                    _c(
-                                      "option",
-                                      {
-                                        attrs: {
-                                          value: "improvethis",
-                                          selected: ""
-                                        }
-                                      },
-                                      [_vm._v("Improve Asakaa.com")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "option",
-                                      { attrs: { value: "sustainability" } },
-                                      [_vm._v("Sustainability")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "option",
-                                      { attrs: { value: "lifeandhealth" } },
-                                      [_vm._v("Life & Health ")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "option",
-                                      { attrs: { value: "artandculture" } },
-                                      [_vm._v("Art & Culture")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "option",
-                                      { attrs: { value: "beautyandfaashion" } },
-                                      [_vm._v("Beauty & Fashion")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "option",
-                                      { attrs: { value: "homeandpets" } },
-                                      [_vm._v("Home & Pets")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "option",
-                                      {
-                                        attrs: { value: "scienceandtechnology" }
-                                      },
-                                      [_vm._v("Science & Technology")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "option",
-                                      { attrs: { value: "tourismandtravel" } },
-                                      [_vm._v("Tourism & Travel")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "option",
-                                      { attrs: { value: "transport" } },
-                                      [_vm._v("Transport")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("option", { attrs: { value: "food" } }, [
-                                      _vm._v("Food")
-                                    ]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "option",
-                                      {
-                                        attrs: { value: "politicsandsociety" }
-                                      },
-                                      [_vm._v("Politics & Society")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "option",
-                                      {
-                                        attrs: {
-                                          value: "sportsandentertainment"
-                                        }
-                                      },
-                                      [_vm._v("Sports & Entertainment")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "option",
-                                      {
-                                        attrs: { value: "businessandconsumer" }
-                                      },
-                                      [_vm._v("Business & Consumer")]
+                                    _vm._v(
+                                      "If you want to increase your idea rating and apreciation. Please use our below rich text editor. "
                                     )
                                   ]
                                 )
                               ])
-                            ])
-                          ]
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "kt-section" }, [
-                      _c("div", { staticClass: "kt-section__body" }, [
-                        _c("div", { staticClass: "form-group row" }, [
-                          _c("label", { staticClass: "col-3 col-form-label" }, [
-                            _vm._v("Language")
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-9" }, [
-                            _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form.language,
-                                    expression: "form.language"
-                                  }
-                                ],
-                                staticClass: "kt-selectpicker form-control ",
-                                attrs: {
-                                  name: "language",
-                                  id: "kt-selectpicker2",
-                                  required: ""
-                                },
-                                on: {
-                                  change: function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.$set(
-                                      _vm.form,
-                                      "language",
-                                      $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    )
-                                  }
-                                }
-                              },
-                              [
-                                _c("option", { attrs: { value: "de" } }, [
-                                  _vm._v("Deutsch - German")
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group row" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-3 col-form-label" },
+                                [_vm._v("Main Image")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-9" }, [
+                                _c("div", { staticClass: "input-group" }, [
+                                  _vm._m(2),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.img,
+                                        expression: "form.img"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      type: "text",
+                                      name: "img",
+                                      placeholder:
+                                        "https://wwwmyawesomeideaimg.com/myimage.jpg",
+                                      "aria-describedby": "basic-addon1"
+                                    },
+                                    domProps: { value: _vm.form.img },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "img",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
                                 ]),
                                 _vm._v(" "),
                                 _c(
-                                  "option",
-                                  { attrs: { value: "en", selected: "" } },
-                                  [_vm._v("English")]
+                                  "span",
+                                  { staticClass: "form-text text-muted" },
+                                  [
+                                    _vm._v(
+                                      "Choose an awesome image to get more likes for your idea."
+                                    )
+                                  ]
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "form-group form-group-last row" },
+                              [
+                                _c(
+                                  "label",
+                                  { staticClass: "col-3 col-form-label" },
+                                  [_vm._v("Category")]
                                 ),
                                 _vm._v(" "),
-                                _c("option", { attrs: { value: "en-gb" } }, [
-                                  _vm._v("English UK - British English")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "es" } }, [
-                                  _vm._v("Español - Spanish")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "eu" } }, [
-                                  _vm._v("Euskara - Basque (beta)")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "fil" } }, [
-                                  _vm._v("Filipino")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "fr" } }, [
-                                  _vm._v("Français - French")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "ga" } }, [
-                                  _vm._v("Gaeilge - Irish (beta)")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "gl" } }, [
-                                  _vm._v("Galego - Galician (beta)")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "hr" } }, [
-                                  _vm._v("Hrvatski - Croatian")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "it" } }, [
-                                  _vm._v("Italiano - Italian")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "hu" } }, [
-                                  _vm._v("Magyar - Hungarian")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "nl" } }, [
-                                  _vm._v("Nederlands - Dutch")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "no" } }, [
-                                  _vm._v("Norsk - Norwegian")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "pl" } }, [
-                                  _vm._v("Polski - Polish")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "pt" } }, [
-                                  _vm._v("Português - Portuguese")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "ro" } }, [
-                                  _vm._v("Română - Romanian")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "sk" } }, [
-                                  _vm._v("Slovenčina - Slovak")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "fi" } }, [
-                                  _vm._v("Suomi - Finnish")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "sv" } }, [
-                                  _vm._v("Svenska - Swedish")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "vi" } }, [
-                                  _vm._v("Tiếng Việt - Vietnamese")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "tr" } }, [
-                                  _vm._v("Türkçe - Turkish")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "el" } }, [
-                                  _vm._v("Ελληνικά - Greek")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "bg" } }, [
-                                  _vm._v("Български език - Bulgarian")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "ru" } }, [
-                                  _vm._v("Русский - Russian")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "sr" } }, [
-                                  _vm._v("Српски - Serbian")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "uk" } }, [
-                                  _vm._v("Українська мова - Ukrainian")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "he" } }, [
-                                  _vm._v("עִבְרִית - Hebrew")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "ur" } }, [
-                                  _vm._v("اردو - Urdu (beta)")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "ar" } }, [
-                                  _vm._v("العربية - Arabic")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "fa" } }, [
-                                  _vm._v("فارسی - Persian")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "mr" } }, [
-                                  _vm._v("मराठी - Marathi")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "hi" } }, [
-                                  _vm._v("हिन्दी - Hindi")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "bn" } }, [
-                                  _vm._v("বাংলা - Bangla")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "gu" } }, [
-                                  _vm._v("ગુજરાતી - Gujarati")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "ta" } }, [
-                                  _vm._v("தமிழ் - Tamil")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "kn" } }, [
-                                  _vm._v("ಕನ್ನಡ - Kannada")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "th" } }, [
-                                  _vm._v("ภาษาไทย - Thai")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "ko" } }, [
-                                  _vm._v("한국어 - Korean")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "ja" } }, [
-                                  _vm._v("日本語 - Japanese")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "zh-cn" } }, [
-                                  _vm._v("简体中文 - Simplified Chinese")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "zh-tw" } }, [
-                                  _vm._v("繁體中文 - Traditional Chinese")
+                                _c("div", { staticClass: "col-9" }, [
+                                  _c("div", { staticClass: "input-group" }, [
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.form.category,
+                                            expression: "form.category"
+                                          }
+                                        ],
+                                        staticClass:
+                                          "kt-selectpicker form-control ",
+                                        attrs: {
+                                          "data-live-search": "true",
+                                          "data-container": "body",
+                                          "data-size": "6",
+                                          name: "category",
+                                          id: "kt-selectpicker1",
+                                          required: ""
+                                        },
+                                        on: {
+                                          change: function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.$set(
+                                              _vm.form,
+                                              "category",
+                                              $event.target.multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "option",
+                                          {
+                                            attrs: {
+                                              value: "improvethis",
+                                              selected: ""
+                                            }
+                                          },
+                                          [_vm._v("Improve Asakaa.com")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          {
+                                            attrs: { value: "sustainability" }
+                                          },
+                                          [_vm._v("Sustainability")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "lifeandhealth" } },
+                                          [_vm._v("Life & Health ")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "artandculture" } },
+                                          [_vm._v("Art & Culture")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          {
+                                            attrs: {
+                                              value: "beautyandfaashion"
+                                            }
+                                          },
+                                          [_vm._v("Beauty & Fashion")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "homeandpets" } },
+                                          [_vm._v("Home & Pets")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          {
+                                            attrs: {
+                                              value: "scienceandtechnology"
+                                            }
+                                          },
+                                          [_vm._v("Science & Technology")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          {
+                                            attrs: { value: "tourismandtravel" }
+                                          },
+                                          [_vm._v("Tourism & Travel")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "transport" } },
+                                          [_vm._v("Transport")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "food" } },
+                                          [_vm._v("Food")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          {
+                                            attrs: {
+                                              value: "politicsandsociety"
+                                            }
+                                          },
+                                          [_vm._v("Politics & Society")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          {
+                                            attrs: {
+                                              value: "sportsandentertainment"
+                                            }
+                                          },
+                                          [_vm._v("Sports & Entertainment")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          {
+                                            attrs: {
+                                              value: "businessandconsumer"
+                                            }
+                                          },
+                                          [_vm._v("Business & Consumer")]
+                                        )
+                                      ]
+                                    )
+                                  ])
                                 ])
                               ]
                             )
                           ])
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "form-group form-group-last row" },
-                          [
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "kt-section" }, [
+                        _c("div", { staticClass: "kt-section__body" }, [
+                          _c("div", { staticClass: "form-group row" }, [
                             _c(
                               "label",
                               { staticClass: "col-3 col-form-label" },
-                              [_vm._v("Author")]
+                              [_vm._v("Language")]
                             ),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-9" }, [
-                              _c("div", { staticClass: "kt-checkbox-inline" }, [
-                                _c("label", { staticClass: "kt-checkbox" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.author,
-                                        expression: "form.author"
-                                      }
-                                    ],
-                                    attrs: {
-                                      type: "radio",
-                                      value: "showme",
-                                      checked: "true",
-                                      name: "author"
-                                    },
-                                    domProps: {
-                                      checked: _vm._q(_vm.form.author, "showme")
-                                    },
-                                    on: {
-                                      change: function($event) {
-                                        return _vm.$set(
-                                          _vm.form,
-                                          "author",
-                                          "showme"
-                                        )
-                                      }
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.language,
+                                      expression: "form.language"
                                     }
-                                  }),
-                                  _vm._v(
-                                    " Show my username\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                                  ),
-                                  _c("span")
-                                ]),
-                                _vm._v(" "),
-                                _c("label", { staticClass: "kt-checkbox" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.author,
-                                        expression: "form.author"
-                                      }
-                                    ],
-                                    attrs: {
-                                      type: "radio",
-                                      value: "anonymous",
-                                      name: "author"
-                                    },
-                                    domProps: {
-                                      checked: _vm._q(
-                                        _vm.form.author,
-                                        "anonymous"
+                                  ],
+                                  staticClass: "kt-selectpicker form-control ",
+                                  attrs: {
+                                    name: "language",
+                                    id: "kt-selectpicker2",
+                                    required: ""
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.form,
+                                        "language",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
                                       )
-                                    },
-                                    on: {
-                                      change: function($event) {
-                                        return _vm.$set(
-                                          _vm.form,
-                                          "author",
-                                          "anonymous"
-                                        )
-                                      }
                                     }
-                                  }),
-                                  _vm._v(
-                                    " Anonymous\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                  }
+                                },
+                                [
+                                  _c("option", { attrs: { value: "de" } }, [
+                                    _vm._v("Deutsch - German")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "option",
+                                    { attrs: { value: "en", selected: "" } },
+                                    [_vm._v("English")]
                                   ),
-                                  _c("span")
-                                ])
-                              ])
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "en-gb" } }, [
+                                    _vm._v("English UK - British English")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "es" } }, [
+                                    _vm._v("Español - Spanish")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "eu" } }, [
+                                    _vm._v("Euskara - Basque (beta)")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "fil" } }, [
+                                    _vm._v("Filipino")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "fr" } }, [
+                                    _vm._v("Français - French")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "ga" } }, [
+                                    _vm._v("Gaeilge - Irish (beta)")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "gl" } }, [
+                                    _vm._v("Galego - Galician (beta)")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "hr" } }, [
+                                    _vm._v("Hrvatski - Croatian")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "it" } }, [
+                                    _vm._v("Italiano - Italian")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "hu" } }, [
+                                    _vm._v("Magyar - Hungarian")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "nl" } }, [
+                                    _vm._v("Nederlands - Dutch")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "no" } }, [
+                                    _vm._v("Norsk - Norwegian")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "pl" } }, [
+                                    _vm._v("Polski - Polish")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "pt" } }, [
+                                    _vm._v("Português - Portuguese")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "ro" } }, [
+                                    _vm._v("Română - Romanian")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "sk" } }, [
+                                    _vm._v("Slovenčina - Slovak")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "fi" } }, [
+                                    _vm._v("Suomi - Finnish")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "sv" } }, [
+                                    _vm._v("Svenska - Swedish")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "vi" } }, [
+                                    _vm._v("Tiếng Việt - Vietnamese")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "tr" } }, [
+                                    _vm._v("Türkçe - Turkish")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "el" } }, [
+                                    _vm._v("Ελληνικά - Greek")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "bg" } }, [
+                                    _vm._v("Български език - Bulgarian")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "ru" } }, [
+                                    _vm._v("Русский - Russian")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "sr" } }, [
+                                    _vm._v("Српски - Serbian")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "uk" } }, [
+                                    _vm._v("Українська мова - Ukrainian")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "he" } }, [
+                                    _vm._v("עִבְרִית - Hebrew")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "ur" } }, [
+                                    _vm._v("اردو - Urdu (beta)")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "ar" } }, [
+                                    _vm._v("العربية - Arabic")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "fa" } }, [
+                                    _vm._v("فارسی - Persian")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "mr" } }, [
+                                    _vm._v("मराठी - Marathi")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "hi" } }, [
+                                    _vm._v("हिन्दी - Hindi")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "bn" } }, [
+                                    _vm._v("বাংলা - Bangla")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "gu" } }, [
+                                    _vm._v("ગુજરાતી - Gujarati")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "ta" } }, [
+                                    _vm._v("தமிழ் - Tamil")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "kn" } }, [
+                                    _vm._v("ಕನ್ನಡ - Kannada")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "th" } }, [
+                                    _vm._v("ภาษาไทย - Thai")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "ko" } }, [
+                                    _vm._v("한국어 - Korean")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "ja" } }, [
+                                    _vm._v("日本語 - Japanese")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "zh-cn" } }, [
+                                    _vm._v("简体中文 - Simplified Chinese")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "zh-tw" } }, [
+                                    _vm._v("繁體中文 - Traditional Chinese")
+                                  ])
+                                ]
+                              )
                             ])
-                          ]
-                        )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "form-group form-group-last row" },
+                            [
+                              _c(
+                                "label",
+                                { staticClass: "col-3 col-form-label" },
+                                [_vm._v("Author")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-9" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "kt-checkbox-inline" },
+                                  [
+                                    _c(
+                                      "label",
+                                      { staticClass: "kt-checkbox" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.form.author,
+                                              expression: "form.author"
+                                            }
+                                          ],
+                                          attrs: {
+                                            type: "radio",
+                                            value: "showme",
+                                            checked: "true",
+                                            name: "author"
+                                          },
+                                          domProps: {
+                                            checked: _vm._q(
+                                              _vm.form.author,
+                                              "showme"
+                                            )
+                                          },
+                                          on: {
+                                            change: function($event) {
+                                              return _vm.$set(
+                                                _vm.form,
+                                                "author",
+                                                "showme"
+                                              )
+                                            }
+                                          }
+                                        }),
+                                        _vm._v(
+                                          " Show my username\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                        ),
+                                        _c("span")
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "label",
+                                      { staticClass: "kt-checkbox" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.form.author,
+                                              expression: "form.author"
+                                            }
+                                          ],
+                                          attrs: {
+                                            type: "radio",
+                                            value: "anonymous",
+                                            name: "author"
+                                          },
+                                          domProps: {
+                                            checked: _vm._q(
+                                              _vm.form.author,
+                                              "anonymous"
+                                            )
+                                          },
+                                          on: {
+                                            change: function($event) {
+                                              return _vm.$set(
+                                                _vm.form,
+                                                "author",
+                                                "anonymous"
+                                              )
+                                            }
+                                          }
+                                        }),
+                                        _vm._v(
+                                          " Anonymous\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                        ),
+                                        _c("span")
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ])
+                            ]
+                          )
+                        ])
                       ])
                     ])
                   ])
                 ])
-              ])
-            ]
-          )
-        ]
-      )
+              ]
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-1" })
     ])
   ])
 }

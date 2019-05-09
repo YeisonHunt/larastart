@@ -11748,3 +11748,10 @@ input[type=color].form-control:disabled {
   color: black !important;
 }
 
+.myFondo {
+  background: #1e1e2d;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #1e1e2d), color-stop(100%, #1065c7));
+  background: linear-gradient(to right, #1e1e2d 0%, #1065c7 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#1e1e2d", endColorstr="#1065c7", GradientType=1 );
+}
+

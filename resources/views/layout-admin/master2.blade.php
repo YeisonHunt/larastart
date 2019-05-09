@@ -1226,7 +1226,7 @@
 					<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
 
 
-						<div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
+						<div class="kt-content  kt-grid__item kt-grid__item--fluid myFondo" id="kt_content"> 
 
                             
 							@yield('content')
@@ -1247,7 +1247,7 @@
 					</div>
 
 							<!-- begin:: Footer -->
-							<div class="kt-footer kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop">
+							<div class="kt-footer kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" style="background-color:#1E1E2D !important;">
 									<div class="kt-footer__copyright">
 										2019&nbsp;&copy;&nbsp;<a href="#"  class="kt-link">Asakaa</a>
 									</div>

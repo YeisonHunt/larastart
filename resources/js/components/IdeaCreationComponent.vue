@@ -1,10 +1,12 @@
 
 <template>
     
+
+				<div class="container-fluid">
 	
     					<div class="row" >
-
-								<div class="col-lg-12">
+								<div class="col-lg-1"></div>
+								<div class="col-lg-10 col-sm-12 col-md-10">
 
 									<!--begin::Portlet-->
 									<div class="kt-portlet kt-portlet--last kt-portlet--head-lg kt-portlet--responsive-mobile myForm " id="kt_page_portlet">
@@ -46,16 +48,16 @@
 												</div>
 											</div>
 										</div>
-										<div class="kt-portlet__body blocked">
+										<div class="kt-portlet__body blocked ">
 											
 												<div class="row">
-													<div class="col-xl-2"></div>
-													<div class="col-xl-8">
+													<div class="col-xl-1"></div>
+													<div class="col-xl-11">
 														<div class="kt-section kt-section--first">
 															<div class="kt-section__body">
-																<h3 class="kt-section__title kt-section__title-lg">Idea details</h3>
+																<h3 class="kt-section__title kt-section__title-lg ">Idea details</h3>
 																<div class="form-group row">
-																	<label class="col-3 col-form-label">Title</label>
+																	<label class="col-3 col-form-label  ">Title</label>
 																	<div class="col-9">
 																		<input class="form-control" v-model="form.title" name="title" type="text" placeholder="Short idea title...">
 																	</div>
@@ -199,11 +201,13 @@
 									<!--end::Portlet-->
 								</div>
 
+								<div class="col-lg-1"></div>
+
 							
 							</div>
 
 							
-    
+    </div>
 
 </template>
 
