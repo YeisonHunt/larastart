@@ -70,7 +70,7 @@
             <!--end::Modal-->          
                   
 
-        <table class=" table table-striped  table-hover ">
+        <table class=" table table-dark table-hover ">
           <thead class="thead-dark">
             <tr>
               <th scope="col">#</th>

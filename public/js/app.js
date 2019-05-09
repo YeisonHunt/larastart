@@ -92606,7 +92606,7 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("table", { staticClass: " table table-striped  table-hover " }, [
+      _c("table", { staticClass: " table table-dark table-hover " }, [
         _vm._m(2),
         _vm._v(" "),
         _c(
