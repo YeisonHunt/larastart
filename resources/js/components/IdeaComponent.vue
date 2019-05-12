@@ -192,7 +192,9 @@
 
       <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
 										<div class="kt-portlet__body kt-portlet__body--fit">
-											<div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides imageCard" v-bind:style='{ backgroundImage: "url(" + idea.img + ")", }'>
+											<div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides imageCard " 
+
+                                    v-bind:style='{ backgroundImage: "url(" + idea.img + ")", }'  >
 												<h3 class="kt-widget19__title kt-font-light">
 													{{idea.title | shortText | uppercaseFirst}}
 												</h3>
@@ -223,12 +225,16 @@
 														</span>
 														
                           <router-link class="kt-widget19__comment" v-bind:to="'/innovations/'+idea.id">Comments</router-link>
+
+                          
                             
 													</div>
 												</div>
 												<div class="kt-widget19__text">
 													<b>Category: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
-                           <b>Date: </b>{{idea.created_at |humanDate}}
+                           <b>Date: </b>{{idea.created_at |humanDate}} <br>
+                          {{idea.description | mediumText}}
+
 												</div>
 											</div>
 
@@ -252,6 +258,63 @@
 </template>
 
 <style type="text/css">
+
+
+.imageOnly {
+
+  background-color: #ccc;
+  background-image: linear-gradient(90deg, #F4F4F4 0px, rgba(229, 229, 229, 0.8) 40px, #ccc 80px);
+  animation: shine-lines 2s normal ease-out;
+}
+
+.post .avatar {
+  float: left;
+  width: 52px;
+  height: 52px;
+  background-color: #ccc;
+  border-radius: 25%;
+  margin: 8px;
+  background-image: linear-gradient(90deg, #F4F4F4 0px, rgba(229, 229, 229, 0.8) 40px, #F4F4F4 80px);
+  background-size: 600px;
+  animation: shine-avatar 2s infinite ease-out;
+}
+.post .line {
+  float: left;
+  width: 140px;
+  height: 16px;
+  margin-top: 12px;
+  border-radius: 7px;
+  background-image: linear-gradient(90deg, #F4F4F4 0px, rgba(229, 229, 229, 0.8) 40px, #F4F4F4 80px);
+  background-size: 600px;
+  animation: shine-lines 2s infinite ease-out;
+}
+.post .avatar + .line {
+  margin-top: 11px;
+  width: 100px;
+}
+.post .line ~ .line {
+  background-color: #ddd;
+}
+
+@keyframes shine-lines {
+  0% {
+    background-position: -100px;
+  }
+  40%, 100% {
+    background-position: 340px;
+  }
+}
+@keyframes shine-avatar {
+  0% {
+    background-position: -32px;
+  }
+  40%, 100% {
+    background-position: 208px;
+  }
+}
+
+
+
 
 .imageCard {
   min-height: 300px;
@@ -653,7 +716,7 @@ export default {
   },
 
   mounted() {
-    console.log("Users component mounted");
+    console.log("Ideas component mounted");
     this.loadUsers();
     $('.dropdown-toggle').dropdown();
   }

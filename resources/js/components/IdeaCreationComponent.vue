@@ -56,18 +56,32 @@
 														<div class="kt-section kt-section--first">
 															<div class="kt-section__body">
 																<h3 class="kt-section__title kt-section__title-lg ">Idea details</h3>
+
 																<div class="form-group row">
 																	<label class="col-3 col-form-label  ">Title</label>
 																	<div class="col-9">
-																		<input class="form-control" v-model="form.title" name="title" type="text" placeholder="Short idea title...">
+																		<input class="form-control" :class="{'is-invalid': form.errors.has('title')}" v-model="form.title" name="title" type="text" placeholder="Short idea title..." required>
+																	</div>
+
+																	 <has-error :form="form" field="title" ></has-error>
+																</div>
+
+																<div class="form-group row">
+																	<label class="col-3 col-form-label  ">Description</label>
+																	<div class="col-9">
+																		<textarea class="form-control" :class="{'is-invalid': form.errors.has('description')}" v-model="form.description" name="description" type="text" placeholder="Short idea description..." rows="2" required></textarea>
+																		<has-error :form="form" field="description" ></has-error>
 																	</div>
 																</div>
 															
 																<div class="form-group row">
-																	<label class="col-3 col-form-label">Description</label>
-																	<div class="col-9">
-																		 <textarea id="kt_summernote_1" @change="updateRichText" v-model="form.editordata"  name="editordata" class="summernote richtext" ></textarea>
+																	
+																	<label for="" style="margin-left:10px;">Body</label>
+																	<div class="col-12">
+																		
+																		 <textarea id="kt_summernote_1"  :class="{'is-invalid': form.errors.has('editordata')}"      @change="updateRichText" v-model="form.editordata"  name="editordata" class="summernote richtext" ></textarea>
 
+																		<has-error :form="form" field="body" ></has-error>
                                                                          
 																		<span class="form-text text-muted">If you want to increase your idea rating and apreciation. Please use our below rich text editor. </span>
 																	</div>
@@ -77,7 +91,9 @@
 																	<div class="col-9">
 																		<div class="input-group">
 																			<div class="input-group-prepend"><span class="input-group-text"><i class="flaticon-photo-camera"></i></span></div>
-																			<input type="text" v-model="form.img" name="img" class="form-control"  placeholder="https://wwwmyawesomeideaimg.com/myimage.jpg" aria-describedby="basic-addon1">
+																			<input type="text" v-model="form.img" name="img" class="form-control"   :class="{'is-invalid': form.errors.has('img')}"   placeholder="https://wwwmyawesomeideaimg.com/myimage.jpg" aria-describedby="basic-addon1" required>
+
+																			<has-error :form="form" field="img" ></has-error>
 																		</div>
 																		<span class="form-text text-muted">Choose an awesome image to get more likes for your idea.</span>
 																	</div>
@@ -89,7 +105,7 @@
 																		<div class="input-group">
 																			
 
-																			<select class="kt-selectpicker form-control " data-live-search="true"   data-container="body" data-size="6" name="category" id="kt-selectpicker1" v-model="form.category"  required>
+																			<select class="kt-selectpicker form-control "  :class="{'is-invalid': form.errors.has('category')}"        data-container="body"  name="category" id="kt-selectpicker1" v-model="form.category"  required>
 																				<option value="improvethis" selected >Improve Asakaa.com</option>
 																				<option value="sustainability">Sustainability</option>
 																				<option value="lifeandhealth">Life & Health </option>
@@ -104,7 +120,7 @@
 																				<option value="sportsandentertainment">Sports & Entertainment</option>
 																				<option value="businessandconsumer">Business & Consumer</option>
 																			</select>
-
+																			<has-error :form="form" field="category" ></has-error>
 
 
 
@@ -121,52 +137,17 @@
 																<div class="form-group row">
 																	<label class="col-3 col-form-label">Language</label>
 																	<div class="col-9">
-																		<select class="kt-selectpicker form-control "  name="language" id="kt-selectpicker2" v-model="form.language" required>
+																		<select class="kt-selectpicker form-control " :class="{'is-invalid': form.errors.has('language')}"  name="language" id="kt-selectpicker2" v-model="form.language" required>
 																			
 																			
-																			<option value="de">Deutsch - German</option>
+																			
 																			<option value="en" selected >English</option>
-																			<option value="en-gb">English UK - British English</option>
+																		
 																			<option value="es">Español - Spanish</option>
-																			<option value="eu">Euskara - Basque (beta)</option>
-																			<option value="fil">Filipino</option>
-																			<option value="fr">Français - French</option>
-																			<option value="ga">Gaeilge - Irish (beta)</option>
-																			<option value="gl">Galego - Galician (beta)</option>
-																			<option value="hr">Hrvatski - Croatian</option>
-																			<option value="it">Italiano - Italian</option>
-																			<option value="hu">Magyar - Hungarian</option>
-																			<option value="nl">Nederlands - Dutch</option>
-																			<option value="no">Norsk - Norwegian</option>
-																			<option value="pl">Polski - Polish</option>
-																			<option value="pt">Português - Portuguese</option>
-																			<option value="ro">Română - Romanian</option>
-																			<option value="sk">Slovenčina - Slovak</option>
-																			<option value="fi">Suomi - Finnish</option>
-																			<option value="sv">Svenska - Swedish</option>
-																			<option value="vi">Tiếng Việt - Vietnamese</option>
-																			<option value="tr">Türkçe - Turkish</option>
-																			<option value="el">Ελληνικά - Greek</option>
-																			<option value="bg">Български език - Bulgarian</option>
-																			<option value="ru">Русский - Russian</option>
-																			<option value="sr">Српски - Serbian</option>
-																			<option value="uk">Українська мова - Ukrainian</option>
-																			<option value="he">עִבְרִית - Hebrew</option>
-																			<option value="ur">اردو - Urdu (beta)</option>
-																			<option value="ar">العربية - Arabic</option>
-																			<option value="fa">فارسی - Persian</option>
-																			<option value="mr">मराठी - Marathi</option>
-																			<option value="hi">हिन्दी - Hindi</option>
-																			<option value="bn">বাংলা - Bangla</option>
-																			<option value="gu">ગુજરાતી - Gujarati</option>
-																			<option value="ta">தமிழ் - Tamil</option>
-																			<option value="kn">ಕನ್ನಡ - Kannada</option>
-																			<option value="th">ภาษาไทย - Thai</option>
-																			<option value="ko">한국어 - Korean</option>
-																			<option value="ja">日本語 - Japanese</option>
-																			<option value="zh-cn">简体中文 - Simplified Chinese</option>
-																			<option value="zh-tw">繁體中文 - Traditional Chinese</option>
+																			
 																		</select>
+
+																		<has-error :form="form" field="language" ></has-error>
 																	</div>
 																</div>
 																
@@ -175,14 +156,14 @@
 																	<div class="col-9">
 																		<div class="kt-checkbox-inline">
 																			<label class="kt-checkbox">
-																				<input type="radio" value="showme" 	checked="true" name="author" v-model="form.author" > Show my username
+																				<input type="radio" value="showme"  :class="{'is-invalid': form.errors.has('author')}"	 name="author" v-model="form.author" > Show my username
 																				<span></span>
 																			</label>
 																			<label class="kt-checkbox">
-																				<input type="radio" value="anonymous" name="author" v-model="form.author" > Anonymous
+																				<input type="radio" value="anonymous" :class="{'is-invalid': form.errors.has('author')}" name="author" v-model="form.author" > Anonymous
 																				<span></span>
 																			</label>
-																		
+																		<has-error :form="form" field="author" ></has-error>
 																		</div>
 																	</div>
 																</div>
@@ -194,6 +175,27 @@
 												</div>
 											
 										</div>
+
+											<center>
+
+												<div class="kt-portlet__head-toolbar">
+												<router-link to="/innovations" class="btn btn-clean kt-margin-r-10">
+													<i class="la la-arrow-left"></i>
+													<span class="kt-hidden-mobile">Back</span>
+												</router-link>
+												<div class="btn-group">
+													<button  class="btn btn-brand" type="submit" :disabled="form.busy">
+														<i class="la la-check"></i>
+														<span class="kt-hidden-mobile">Save</span>
+													</button>
+												
+												</div>
+											</div>
+											</center>
+
+											<br>
+
+											
 
 										</form>
 									</div>
@@ -244,11 +246,12 @@ export default {
                 form: new Form({
                     id:'',
                     title: '',
+					description:'',
 					editordata   : '',
 					img:'',
 					category :'',
 					language:'',
-					author:''
+					author:'anonymous'
 
                 }) 
             }

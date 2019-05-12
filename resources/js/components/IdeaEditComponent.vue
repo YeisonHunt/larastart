@@ -15,34 +15,17 @@
 												<h3 class="kt-portlet__head-title">Create awesome ideas  <small>to improve your company functions</small></h3>
 											</div>
 											<div class="kt-portlet__head-toolbar">
-												<router-link to="/innovations" class="btn btn-clean kt-margin-r-10">
+												<button type="button" class="btn btn-clean kt-margin-r-10" @click="$router.go(-1)">
 													<i class="la la-arrow-left"></i>
 													<span class="kt-hidden-mobile">Back</span>
-												</router-link>
+												</button>
 												<div class="btn-group">
 													<button  class="btn btn-brand" type="submit" :disabled="form.busy">
 														<i class="la la-check"></i>
-														<span class="kt-hidden-mobile">Save</span>
+														<span class="kt-hidden-mobile">Update</span>
 													</button>
-													<button type="button" class="btn btn-brand dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-													</button>
-													<div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(123px, 38px, 0px);">
-														<ul class="kt-nav">
-															<li class="kt-nav__item">
-																<a href="#" class="kt-nav__link">
-																	<i class="kt-nav__link-icon flaticon2-reload"></i>
-																	<span class="kt-nav__link-text">Save &amp; continue</span>
-																</a>
-															</li>
-															
-															<li class="kt-nav__item">
-																<a href="#" class="kt-nav__link">
-																	<i class="kt-nav__link-icon flaticon2-add-1"></i>
-																	<span class="kt-nav__link-text">Save &amp; add new</span>
-																</a>
-															</li>
-														</ul>
-													</div>
+													
+													
 												</div>
 											</div>
 										</div>
@@ -54,18 +37,30 @@
 														<div class="kt-section kt-section--first">
 															<div class="kt-section__body">
 																<h3 class="kt-section__title kt-section__title-lg">Idea details</h3>
+
 																<div class="form-group row">
 																	<label class="col-3 col-form-label">Title</label>
 																	<div class="col-9">
-																		<input class="form-control" v-model="form.title"  name="title" type="text" placeholder="Short idea title...">
+																		<input class="form-control" v-model="form.title"  
+																		name="title" type="text" placeholder="Short idea title..." required>
+																	</div>
+																</div>
+
+																<div class="form-group row">
+																	<label class="col-3 col-form-label">Description</label>
+																	<div class="col-9">
+																		<textarea class="form-control" v-model="form.description"  
+																		name="description" rows="2" placeholder="Short idea description..." required></textarea>
 																	</div>
 																</div>
 															
 																<div class="form-group row">
-																	<label class="col-3 col-form-label">Description</label>
-																	<div class="col-9">
-																		 <textarea id="kt_summernote_1" @change="updateRichText" v-model="form.editordata"  name="editordata" class="summernote richtext" ></textarea>
+																	<label for="" style="margin-left:10px;">Body</label>
+																	<div class="col-12">
+																		<!-- <textarea id="kt_summernote_1" @change="updateRichText" v-model="form.editordata"  name="editordata" class="summernote richtext" ></textarea>-->
 
+																		 <html-editor height="300" :model.sync="form.editordata"></html-editor>
+																			
                                                                          
 																		<span class="form-text text-muted">If you want to increase your idea rating and apreciation. Please use our below rich text editor. </span>
 																	</div>
@@ -75,7 +70,7 @@
 																	<div class="col-9">
 																		<div class="input-group">
 																			<div class="input-group-prepend"><span class="input-group-text"><i class="flaticon-photo-camera"></i></span></div>
-																			<input type="text" v-model="form.img" name="img" class="form-control"  placeholder="https://wwwmyawesomeideaimg.com/myimage.jpg" aria-describedby="basic-addon1">
+																			<input type="text" v-model="form.img" name="img" class="form-control"  placeholder="https://wwwmyawesomeideaimg.com/myimage.jpg" aria-describedby="basic-addon1" required>
 																		</div>
 																		<span class="form-text text-muted">Choose an awesome image to get more likes for your idea.</span>
 																	</div>
@@ -122,48 +117,11 @@
 																		<select class="kt-selectpicker form-control "  name="language" id="kt-selectpicker2" v-model="form.language" required>
 																			
 																			
-																			<option value="de">Deutsch - German</option>
+																			
 																			<option value="en" selected >English</option>
-																			<option value="en-gb">English UK - British English</option>
+																			
 																			<option value="es">Español - Spanish</option>
-																			<option value="eu">Euskara - Basque (beta)</option>
-																			<option value="fil">Filipino</option>
-																			<option value="fr">Français - French</option>
-																			<option value="ga">Gaeilge - Irish (beta)</option>
-																			<option value="gl">Galego - Galician (beta)</option>
-																			<option value="hr">Hrvatski - Croatian</option>
-																			<option value="it">Italiano - Italian</option>
-																			<option value="hu">Magyar - Hungarian</option>
-																			<option value="nl">Nederlands - Dutch</option>
-																			<option value="no">Norsk - Norwegian</option>
-																			<option value="pl">Polski - Polish</option>
-																			<option value="pt">Português - Portuguese</option>
-																			<option value="ro">Română - Romanian</option>
-																			<option value="sk">Slovenčina - Slovak</option>
-																			<option value="fi">Suomi - Finnish</option>
-																			<option value="sv">Svenska - Swedish</option>
-																			<option value="vi">Tiếng Việt - Vietnamese</option>
-																			<option value="tr">Türkçe - Turkish</option>
-																			<option value="el">Ελληνικά - Greek</option>
-																			<option value="bg">Български език - Bulgarian</option>
-																			<option value="ru">Русский - Russian</option>
-																			<option value="sr">Српски - Serbian</option>
-																			<option value="uk">Українська мова - Ukrainian</option>
-																			<option value="he">עִבְרִית - Hebrew</option>
-																			<option value="ur">اردو - Urdu (beta)</option>
-																			<option value="ar">العربية - Arabic</option>
-																			<option value="fa">فارسی - Persian</option>
-																			<option value="mr">मराठी - Marathi</option>
-																			<option value="hi">हिन्दी - Hindi</option>
-																			<option value="bn">বাংলা - Bangla</option>
-																			<option value="gu">ગુજરાતી - Gujarati</option>
-																			<option value="ta">தமிழ் - Tamil</option>
-																			<option value="kn">ಕನ್ನಡ - Kannada</option>
-																			<option value="th">ภาษาไทย - Thai</option>
-																			<option value="ko">한국어 - Korean</option>
-																			<option value="ja">日本語 - Japanese</option>
-																			<option value="zh-cn">简体中文 - Simplified Chinese</option>
-																			<option value="zh-tw">繁體中文 - Traditional Chinese</option>
+																			
 																		</select>
 																	</div>
 																</div>
@@ -192,6 +150,25 @@
 												</div>
 											
 										</div>
+
+											<center>
+
+												<div class="kt-portlet__head-toolbar">
+												<button type="button" class="btn btn-clean kt-margin-r-10" @click="$router.go(-1)">
+													<i class="la la-arrow-left"></i>
+													<span class="kt-hidden-mobile">Back</span>
+												</button>
+												<div class="btn-group">
+													<button  class="btn btn-brand" type="submit" :disabled="form.busy">
+														<i class="la la-check"></i>
+														<span class="kt-hidden-mobile">Update</span>
+													</button>
+												
+												</div>
+											</div>
+											</center>
+
+											<br>
 
 										</form>
 									</div>
@@ -232,16 +209,23 @@
 
 <script>
 
+import htmlEditor from './html-editor.vue'
+
 export default {
+
+		 components: {
+			htmlEditor
+		},
 
 	  data() {
             return  {
 
                 id:this.$route.params.id,
-                idea:{},
+                idea:null,
                 form: new Form({
                     id:'',
-                    title: '',
+					title: '',
+					description:'',
 					editordata   : '',
 					img:'',
 					category :'',
@@ -251,23 +235,63 @@ export default {
                 }) 
             }
 		},
-		
-	methods: {
 
-		loadIdea(){
+	computed: {
 
-				axios.get('/getInnovation/'+this.id).then(({data})=>(this.idea=data));
 
-				   this.form.title = this.idea.title;
+		/*refreshIdea: function()	{
+
+			       this.form.title = this.idea.title;
 				   this.form.editordata = this.idea.editordata;
 
-				   //$('#kt_summernote_1').summernote('code', this.idea.editordata);
+				  
 
 				   this.form.img = this.idea.img;
 				   this.form.category = this.idea.category;
 				   this.form.language = this.idea.language;
 				   this.form.author = this.idea.author;
 
+				Vue.$set(this.form,'title',this.idea.title);
+				return this.form;
+		}*/
+
+	},
+		
+	methods: {
+
+		loadIdea(){
+
+			console.log('Montado edit component');
+
+				//axios.get('/getInnovation/'+this.id).then(({data})=>(
+					
+					//this.form.title=data.title
+					
+					
+					//));
+
+					 axios
+						.get('/getInnovation/'+this.id)
+						.then(response => {
+							this.form.title = response.data.title
+							this.form.description=response.data.description
+							this.form.img=response.data.img
+							this.form.category = response.data.category;
+				  		    this.form.language = response.data.language;
+							 this.form.author = response.data.author;
+
+							 this.form.editordata = response.data.body;
+							 
+							$('#mySummer').summernote('code', response.data.body);
+
+						})
+						.catch(error => {
+							console.log(error)
+							
+						})
+						
+
+				 
 		},
 		
 		createUser(){
@@ -275,13 +299,13 @@ export default {
 			 this.$Progress.start();
 			  // Submit the form via a POST request
 			  
-			  	 this.form.editordata =  $('#kt_summernote_1').summernote('code');
-                 this.form.post('/saveIdea2')
+			  	 //this.form.editordata =  $('#kt_summernote_1').summernote('code');
+                 this.form.post('/updateIdea/'+this.id)
                 .then(({ data }) => { 
 
 				 
-					this.$router.push('innovations');
-                    toastr.success('Awesome!','New idea has appeared.')
+					this.$router.push({ path: '/innovations' });
+                    toastr.success('Awesome!','Idea updated successfully.')
 					this.form.reset();
                     
 
@@ -310,7 +334,10 @@ export default {
 		
 		this.loadIdea();
 		
-		var KTSummernoteDemo={init:function(){
+		var KTSummernoteDemo={
+			
+			
+			init:function(){
 			
 			$("#kt_summernote_1").summernote(
 				{height:300
@@ -325,7 +352,6 @@ export default {
 			$("#content").summernote();
 		    $('.dropdown-toggle').dropdown();
 
-
 		
 
 			
@@ -333,6 +359,7 @@ export default {
 		}};jQuery(document).ready(function()
 		
 		{
+			console.log('jQuery cargado');
 			
 			KTSummernoteDemo.init();
 			
@@ -344,7 +371,7 @@ export default {
 		
 		}
 
-		,
+		
 	
 }
 

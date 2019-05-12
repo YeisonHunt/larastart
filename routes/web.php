@@ -35,6 +35,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/getInnovation/{id}','IdeasController@show');
 
+Route::post('/updateIdea/{id}','IdeasController@update');
+
 
 
 

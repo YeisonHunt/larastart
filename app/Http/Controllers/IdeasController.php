@@ -28,7 +28,7 @@ class IdeasController extends Controller
     public function index()
     {
         
-        return Ideas::latest()->paginate(10);
+        return Ideas::latest()->paginate(20);
     }
 
     /**
@@ -73,7 +73,8 @@ class IdeasController extends Controller
 
         return Innovation::create([
 
-            'title'=>$request->title,
+             'title'=>$request->title,
+             'description'=>$request->description,
              'body'=>$request->editordata,
              'img'=>$request->img,
              'category'=>$request->category,
@@ -121,15 +122,23 @@ class IdeasController extends Controller
      * @param  \App\Ideas  $ideas
      * @return \Illuminate\Http\Response
      */
-    public function update(IdeasRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $idea = Ideas::findOrFail($id);
+        $idea = Innovation::findOrFail($id);
 
 
-        $idea->fill($request->all());
+        $idea->title = $request->title;
+        $idea->description = $request->description;
+        $idea->body = $request->editordata;
+        $idea->img = $request->img;
+        $idea->language = $request->language;
+        $idea->category = $request->category;
+        $idea->author = $request->author;
+
+
         $idea->save();
         
-        return ['message'=>'Idea was updated'];
+        return $idea;
     }
 
     /**

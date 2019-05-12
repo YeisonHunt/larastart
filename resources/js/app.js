@@ -17,6 +17,8 @@ import Swal from 'sweetalert2'
 import BootstrapVue from 'bootstrap-vue'
 
 
+
+
 window.Form = Form; // Ahora en cualquier lugar de nuestra aplicacion tenemos acceso a esa variable
 
 
@@ -31,7 +33,7 @@ let routes = [
 	{ path: '/admin', component: require('./components/Dashboard1Component.vue').default },
 	{ path: '/dashboard2', component: require('./components/Dashboard2Component.vue').default },
 	{ path: '/users', component: require('./components/UserComponent.vue').default },
-	{ path: '/innovations', component: require('./components/IdeaComponent.vue').default },
+	{ path: '/innovations', name:'ideaList', component: require('./components/IdeaComponent.vue').default },
 	{ path: '/ideaCreation', name: 'innovations', component: require('./components/IdeaCreationComponent.vue').default },
 
 	{ path: '/innovations/:id', component: require('./components/IdeaViewComponent.vue').default },
