@@ -3666,6 +3666,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3674,10 +3685,10 @@ __webpack_require__.r(__webpack_exports__);
       editMode: false,
       ideas: {},
       form: new Form({
-        id: '',
-        ideatxt: '',
-        bugorfeaturetxt: '',
-        img: ''
+        id: "",
+        ideatxt: "",
+        bugorfeaturetxt: "",
+        img: ""
       })
     };
   },
@@ -3686,18 +3697,18 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       // podemos usar this.form.get but we are gonna use axios
-      axios.get('/getInnovation/' + this.id).then(function (_ref) {
+      axios.get("/getInnovation/" + this.id).then(function (_ref) {
         var data = _ref.data;
         return _this.idea = data;
       });
     }
   },
   created: function created() {
-    console.log('Visor de ideas individuales mounted');
+    console.log("Visor de ideas individuales mounted");
     this.loadUsers();
   },
   mounted: function mounted() {
-    document.getElementById('ideaBody').innerHTML = this.idea.body;
+    document.getElementById("ideaBody").innerHTML = this.idea.body;
   }
 });
 
@@ -35578,7 +35589,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.comment-wrapper .panel-body {\n    max-height:650px;\n    overflow:auto;\n}\n.comment-wrapper .media-list .media img {\n    width:64px;\n    height:64px;\n    border:2px solid #e5e7e8;\n}\n.comment-wrapper .media-list .media {\n    border-bottom:1px dashed #efefef;\n    margin-bottom:25px;\n}\n      \n\n", ""]);
+exports.push([module.i, "\n.allHeight {\r\n  height: 100vh !important;\n}\n.comment-wrapper .panel-body {\r\n  max-height: 650px;\n}\n.comment-wrapper .media-list .media img {\r\n  width: 64px;\r\n  height: 64px;\r\n  border: 2px solid #e5e7e8;\n}\n.comment-wrapper .media-list .media {\r\n  border-bottom: 1px dashed #efefef;\r\n  margin-bottom: 25px;\n}\r\n", ""]);
 
 // exports
 
@@ -92095,79 +92106,71 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
-        _c("div", { staticClass: "kt-portlet" }, [
-          _c("div", { staticClass: "kt-portlet__head" }, [
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-12" }, [
+      _c("div", { staticClass: "kt-portlet mobilePortlet" }, [
+        _c("div", { staticClass: "kt-portlet__head" }, [
+          _c(
+            "div",
+            { staticClass: "kt-portlet__head-label" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "btn btn-clean kt-margin-r-10",
+                  attrs: { to: "/innovations" }
+                },
+                [
+                  _c("i", { staticClass: "la la-arrow-left" }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "kt-hidden-mobile" }, [
+                    _vm._v("Back")
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c("h3", { staticClass: "kt-portlet__head-title" }, [
+                _vm._v(_vm._s(_vm.idea.title))
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "kt-portlet__head-toolbar" }, [
             _c(
               "div",
-              { staticClass: "kt-portlet__head-label" },
+              { staticClass: "kt-portlet__head-actions" },
               [
+                _vm._m(1),
+                _vm._v(" "),
                 _c(
                   "router-link",
                   {
-                    staticClass: "btn btn-clean kt-margin-r-10",
-                    attrs: { to: "/innovations" }
+                    staticClass:
+                      "btn btn-outline-danger btn-sm btn-icon btn-icon-md",
+                    attrs: { to: "/innovationsEdit/" + this.id }
                   },
-                  [
-                    _c("i", { staticClass: "la la-arrow-left" }),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "kt-hidden-mobile" }, [
-                      _vm._v("Back")
-                    ])
-                  ]
+                  [_c("i", { staticClass: "flaticon2-gear" })]
                 ),
                 _vm._v(" "),
-                _vm._m(0),
-                _vm._v(" "),
-                _c("h3", { staticClass: "kt-portlet__head-title" }, [
-                  _vm._v(
-                    "\n\t\t\t\t\t\t\t\t\t\t\t\t\t" +
-                      _vm._s(_vm.idea.title) +
-                      "\n\t\t\t\t\t\t\t\t\t\t\t\t"
-                  )
-                ])
+                _vm._m(2)
               ],
               1
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "kt-portlet__head-toolbar" }, [
-              _c(
-                "div",
-                { staticClass: "kt-portlet__head-actions" },
-                [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass:
-                        "btn btn-outline-danger btn-sm btn-icon btn-icon-md",
-                      attrs: { to: "/innovationsEdit/" + this.id }
-                    },
-                    [_c("i", { staticClass: "flaticon2-gear" })]
-                  ),
-                  _vm._v(" "),
-                  _vm._m(2)
-                ],
-                1
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", {
-            staticClass: "kt-portlet__body",
-            attrs: { id: "ideaBody" },
-            domProps: { innerHTML: _vm._s(_vm.idea.body) }
-          }),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _vm._m(3),
-          _vm._v(" "),
-          _vm._m(4)
-        ])
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "kt-portlet__body",
+          attrs: { id: "ideaBody" },
+          domProps: { innerHTML: _vm._s(_vm.idea.body) }
+        }),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _vm._m(3)
       ])
     ])
   ])
@@ -92213,7 +92216,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "user-section" }, [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-xl-12" }, [
+        _c("div", { staticClass: "col-12" }, [
           _c(
             "div",
             {
@@ -92258,17 +92261,11 @@ var staticRenderFns = [
                                 staticClass: "kt-widget4__username",
                                 attrs: { href: "#" }
                               },
-                              [
-                                _vm._v(
-                                  "\n                                                                                    Dave Strong\n                                                                                "
-                                )
-                              ]
+                              [_vm._v("Dave Strong")]
                             ),
                             _vm._v(" "),
                             _c("p", { staticClass: "kt-widget4__text" }, [
-                              _vm._v(
-                                "\n                                                                                    Visual Designer, Google Inc\n                                                                                "
-                              )
+                              _vm._v("Visual Designer, Google Inc")
                             ])
                           ]),
                           _vm._v(" "),
@@ -92288,161 +92285,175 @@ var staticRenderFns = [
                 ])
               ])
             ]
-          )
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "comments-section container" }, [
-      _c("div", { staticClass: "row bootstrap snippets" }, [
-        _c(
-          "div",
-          { staticClass: "col-md-12 col-md-offset-2 col-sm-12 col-lg-12" },
-          [
-            _c("div", { staticClass: "comment-wrapper" }, [
-              _c("div", { staticClass: "panel panel-info" }, [
-                _c("div", { staticClass: "panel-body" }, [
-                  _c("textarea", {
-                    staticClass: "form-control",
-                    attrs: { placeholder: "Write a comment...", rows: "3" }
-                  }),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-info pull-right",
-                      attrs: { type: "button" }
-                    },
-                    [_vm._v("Post")]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "clearfix" }),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("ul", { staticClass: "media-list" }, [
-                    _c("li", { staticClass: "media" }, [
-                      _c(
-                        "a",
-                        { staticClass: "pull-left", attrs: { href: "#" } },
-                        [
-                          _c("img", {
-                            staticClass: "img-circle",
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "comments-section" }, [
+            _c("div", { staticClass: "row bootstrap snippets" }, [
+              _c("div", { staticClass: "col-12" }, [
+                _c("div", { staticClass: "comment-wrapper" }, [
+                  _c("div", { staticClass: "panel panel-info" }, [
+                    _c("div", { staticClass: "panel-body" }, [
+                      _c("form", [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("textarea", {
+                            staticClass: "form-control",
+                            staticStyle: { width: "85vw", margin: "10px" },
                             attrs: {
-                              src: "https://bootdey.com/img/Content/user_1.jpg",
-                              alt: ""
+                              placeholder: "Write a comment...",
+                              rows: "2"
                             }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "media-body" }, [
-                        _c("span", { staticClass: "text-muted pull-right" }, [
-                          _c("small", { staticClass: "text-muted" }, [
-                            _vm._v("30 min ago")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("strong", { staticClass: "text-success" }, [
-                          _vm._v(" @MartinoMont")
-                        ]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            " \n                                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n                                                                                Lorem ipsum dolor sit amet, "
-                          ),
-                          _c("a", { attrs: { href: "#" } }, [
-                            _vm._v(" #consecteturadipiscing ")
-                          ]),
-                          _vm._v(
-                            ".\n                                                                            "
+                          }),
+                          _vm._v(" "),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-info pull-right",
+                              staticStyle: { "margin-right": "10px" },
+                              attrs: { type: "button" }
+                            },
+                            [_vm._v("Post")]
                           )
                         ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "media" }, [
-                      _c(
-                        "a",
-                        { staticClass: "pull-left", attrs: { href: "#" } },
-                        [
-                          _c("img", {
-                            staticClass: "img-circle",
-                            attrs: {
-                              src: "https://bootdey.com/img/Content/user_2.jpg",
-                              alt: ""
-                            }
-                          })
-                        ]
-                      ),
+                      ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "media-body" }, [
-                        _c("span", { staticClass: "text-muted pull-right" }, [
-                          _c("small", { staticClass: "text-muted" }, [
-                            _vm._v("30 min ago")
+                      _c("div", { staticClass: "clearfix" }),
+                      _vm._v(" "),
+                      _c("hr"),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "media-list" }, [
+                        _c("li", { staticClass: "media" }, [
+                          _c(
+                            "a",
+                            { staticClass: "pull-left", attrs: { href: "#" } },
+                            [
+                              _c("img", {
+                                staticClass: "img-circle",
+                                attrs: {
+                                  src:
+                                    "https://bootdey.com/img/Content/user_1.jpg",
+                                  alt: ""
+                                }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "media-body" }, [
+                            _c(
+                              "span",
+                              { staticClass: "text-muted pull-right" },
+                              [
+                                _c("small", { staticClass: "text-muted" }, [
+                                  _vm._v("30 min ago")
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("strong", { staticClass: "text-success" }, [
+                              _vm._v(" @MartinoMont")
+                            ]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(
+                                "\n                                 \n                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n                                Lorem ipsum dolor sit amet,\n                                "
+                              ),
+                              _c("a", { attrs: { href: "#" } }, [
+                                _vm._v(" #consecteturadipiscing")
+                              ]),
+                              _vm._v(".\n                              ")
+                            ])
                           ])
                         ]),
                         _vm._v(" "),
-                        _c("strong", { staticClass: "text-success" }, [
-                          _vm._v(" @LaurenceCorreil")
-                        ]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            " \n                                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n                                                                                Lorem ipsum dolor "
+                        _c("li", { staticClass: "media" }, [
+                          _c(
+                            "a",
+                            { staticClass: "pull-left", attrs: { href: "#" } },
+                            [
+                              _c("img", {
+                                staticClass: "img-circle",
+                                attrs: {
+                                  src:
+                                    "https://bootdey.com/img/Content/user_2.jpg",
+                                  alt: ""
+                                }
+                              })
+                            ]
                           ),
-                          _c("a", { attrs: { href: "#" } }, [
-                            _vm._v(" #ipsumdolor ")
-                          ]),
-                          _vm._v(
-                            "adipiscing/\n                                                                            "
-                          )
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "media" }, [
-                      _c(
-                        "a",
-                        { staticClass: "pull-left", attrs: { href: "#" } },
-                        [
-                          _c("img", {
-                            staticClass: "img-circle",
-                            attrs: {
-                              src: "https://bootdey.com/img/Content/user_3.jpg",
-                              alt: ""
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "media-body" }, [
-                        _c("span", { staticClass: "text-muted pull-right" }, [
-                          _c("small", { staticClass: "text-muted" }, [
-                            _vm._v("30 min ago")
+                          _vm._v(" "),
+                          _c("div", { staticClass: "media-body" }, [
+                            _c(
+                              "span",
+                              { staticClass: "text-muted pull-right" },
+                              [
+                                _c("small", { staticClass: "text-muted" }, [
+                                  _vm._v("30 min ago")
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("strong", { staticClass: "text-success" }, [
+                              _vm._v(" @LaurenceCorreil")
+                            ]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(
+                                "\n                                 \n                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n                                Lorem ipsum dolor\n                                "
+                              ),
+                              _c("a", { attrs: { href: "#" } }, [
+                                _vm._v(" #ipsumdolor")
+                              ]),
+                              _vm._v(
+                                "adipiscing/\n                              "
+                              )
+                            ])
                           ])
                         ]),
                         _vm._v(" "),
-                        _c("strong", { staticClass: "text-success" }, [
-                          _vm._v(" @JohnNida")
-                        ]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            " \n                                                                                Lorem ipsum dolor "
+                        _c("li", { staticClass: "media" }, [
+                          _c(
+                            "a",
+                            { staticClass: "pull-left", attrs: { href: "#" } },
+                            [
+                              _c("img", {
+                                staticClass: "img-circle",
+                                attrs: {
+                                  src:
+                                    "https://bootdey.com/img/Content/user_3.jpg",
+                                  alt: ""
+                                }
+                              })
+                            ]
                           ),
-                          _c("a", { attrs: { href: "#" } }, [
-                            _vm._v(" #sitamet")
-                          ]),
-                          _vm._v(
-                            " sit amet, consectetur adipiscing elit.\n                                                                            "
-                          )
+                          _vm._v(" "),
+                          _c("div", { staticClass: "media-body" }, [
+                            _c(
+                              "span",
+                              { staticClass: "text-muted pull-right" },
+                              [
+                                _c("small", { staticClass: "text-muted" }, [
+                                  _vm._v("30 min ago")
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("strong", { staticClass: "text-success" }, [
+                              _vm._v(" @JohnNida")
+                            ]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(
+                                "\n                                 \n                                Lorem ipsum dolor\n                                "
+                              ),
+                              _c("a", { attrs: { href: "#" } }, [
+                                _vm._v(" #sitamet")
+                              ]),
+                              _vm._v(
+                                " sit amet, consectetur adipiscing elit.\n                              "
+                              )
+                            ])
+                          ])
                         ])
                       ])
                     ])
@@ -92450,8 +92461,8 @@ var staticRenderFns = [
                 ])
               ])
             ])
-          ]
-        )
+          ])
+        ])
       ])
     ])
   }
