@@ -30,14 +30,20 @@ Vue.use(VueRouter)
 Vue.use(BootstrapVue)
 
 let routes = [
-	{ path: '/admin', component: require('./components/Dashboard1Component.vue').default },
-	{ path: '/dashboard2', component: require('./components/Dashboard2Component.vue').default },
-	{ path: '/users', component: require('./components/UserComponent.vue').default },
+	{ path: '/dashboard', component: require('./components/DashboardComponent.vue').default },
+	{ path: '/projects', component: require('./components/ProjectComponent.vue').default },
 	{ path: '/innovations', name:'ideaList', component: require('./components/IdeaComponent.vue').default },
 	{ path: '/ideaCreation', name: 'innovations', component: require('./components/IdeaCreationComponent.vue').default },
-
 	{ path: '/innovations/:id', component: require('./components/IdeaViewComponent.vue').default },
 	{ path: '/innovationsEdit/:id', component: require('./components/IdeaEditComponent.vue').default },
+
+	{ path: '/projects', component: require('./components/ProjectComponent.vue').default },
+	{ path: '/timesheets', component: require('./components/TimesheetComponent.vue').default },
+	{ path: '/reports', component: require('./components/ReportComponent.vue').default },
+	{ path: '/goals', component: require('./components/GoalComponent.vue').default },
+	{ path: '/business', component: require('./components/BusinessComponent.vue').default },
+
+
 
 ]
 

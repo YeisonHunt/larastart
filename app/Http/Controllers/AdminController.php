@@ -18,11 +18,7 @@ class AdminController extends Controller
     Function used to test not necessary reloading
      */
     
-    public function dashboard2(Request $request){
-
-    	return view('admin.dashboard2');
-    }
-
+   
     public function users(Request $request){
 
     	return view('admin.users');

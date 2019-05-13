@@ -64,12 +64,8 @@
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
 
-              <!--end:: Widgets/New Users-->
-
-              <div class="comments-section">
+                      <div class="comments-section">
                 <div class="row bootstrap snippets">
                   <div class="col-12">
                     <div class="comment-wrapper">
@@ -161,6 +157,13 @@
                 </div>
               </div>
               <!-- end comments-section -->
+
+                </div>
+              </div>
+
+              <!--end:: Widgets/New Users-->
+
+            
             </div>
           </div>
         </div>

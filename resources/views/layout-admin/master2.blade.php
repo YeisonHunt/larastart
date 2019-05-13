@@ -152,7 +152,7 @@
                                     <li class="kt-menu__item " aria-haspopup="true">
                                         
     
-                                        <router-link to="/admin" class="kt-menu__link " active-class="activeSubLink" ><i class="kt-menu__link-icon flaticon-home"><span></span></i>
+                                        <router-link to="/dashboard" class="kt-menu__link " active-class="activeSubLink" ><i class="kt-menu__link-icon flaticon-home"><span></span></i>
                                             <span class="kt-menu__link-text">Dashboard</span></router-link>
     
     
@@ -161,7 +161,7 @@
                                     <li class="kt-menu__item " aria-haspopup="true">
                                         
     
-                                        <router-link to="/users" class="kt-menu__link " active-class="activeSubLink" ><i class="kt-menu__link-icon flaticon-users"><span></span></i><span class="kt-menu__link-text">Users</span></router-link>
+                                        <router-link to="/projects" class="kt-menu__link " active-class="activeSubLink" ><i class="kt-menu__link-icon flaticon-paper-plane"><span></span></i><span class="kt-menu__link-text">Projects</span></router-link>
     
     
                                     </li>
@@ -170,7 +170,39 @@
                                     <li class="kt-menu__item " aria-haspopup="true">
                                         
     
-                                        <router-link to="/innovations" class="kt-menu__link " active-class="activeSubLink" ><i class="kt-menu__link-icon flaticon-light"><span></span></i><span class="kt-menu__link-text">Ideas</span></router-link>
+                                        <router-link to="/innovations" class="kt-menu__link " active-class="activeSubLink" ><i class="kt-menu__link-icon flaticon-light"><span></span></i><span class="kt-menu__link-text">Innovations</span></router-link>
+    
+    
+									</li>
+									
+									<li class="kt-menu__item " aria-haspopup="true">
+                                        
+    
+                                        <router-link to="/timesheets" class="kt-menu__link " active-class="activeSubLink" ><i class="kt-menu__link-icon flaticon-stopwatch"><span></span></i><span class="kt-menu__link-text">Timesheets</span></router-link>
+    
+    
+									</li>
+									
+									<li class="kt-menu__item " aria-haspopup="true">
+                                        
+    
+                                        <router-link to="/reports" class="kt-menu__link " active-class="activeSubLink" ><i class="kt-menu__link-icon flaticon-diagram"><span></span></i><span class="kt-menu__link-text">Reports</span></router-link>
+    
+    
+									</li>
+									
+									<li class="kt-menu__item " aria-haspopup="true">
+                                        
+    
+                                        <router-link to="/goals" class="kt-menu__link " active-class="activeSubLink" ><i class="kt-menu__link-icon flaticon-interface-5"><span></span></i><span class="kt-menu__link-text">Goals</span></router-link>
+    
+    
+									</li>
+									
+									<li class="kt-menu__item " aria-haspopup="true">
+                                        
+    
+                                        <router-link to="/business" class="kt-menu__link " active-class="activeSubLink" ><i class="kt-menu__link-icon flaticon-app"><span></span></i><span class="kt-menu__link-text">Admin</span></router-link>
     
     
                                     </li>
@@ -1128,7 +1160,7 @@
 								<div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="0px,0px">
 									<div class="kt-header__topbar-user">
 										<span class="kt-header__topbar-welcome kt-hidden-mobile">Hi,</span>
-										<span class="kt-header__topbar-username kt-hidden-mobile">Sean</span>
+										<span class="kt-header__topbar-username kt-hidden-mobile">Yesid</span>
 										<img class="kt-hidden" alt="Pic" src="../../assets/media/users/300_25.jpg" />
 
 										<!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
