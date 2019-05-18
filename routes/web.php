@@ -37,10 +37,16 @@ Route::get('/getInnovation/{id}','IdeasController@show');
 
 Route::post('/updateIdea/{id}','IdeasController@update');
 
+Route::post('/addComment','DiscussionController@store');
+
+//Route::get('/innovations/{id}','AdminController@index');
 
 
 
-Route::get('{path}',"AdminController@users")->where( 'path', '([A-z\d-\/_.]+)?' );
+
+
+Route::get('/{any}', 'AdminController@users')->where('any', '.*');
+//Route::get('{path}',"AdminController@users")->where( 'path', '([A-z\d-\/_.]+)?' );
 
 
 //Route::resource('innovations', 'InnovationController');

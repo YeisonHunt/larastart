@@ -1,5 +1,7 @@
 <template>
-  <div class="row">
+
+  <div class="container">
+      <div class="row">
     <div class="col-12">
       <div class="kt-portlet mobilePortlet">
         <div class="kt-portlet__head">
@@ -46,6 +48,7 @@
                     <div class="tab-pane active" id="kt_widget4_tab1_content">
                       <div class="kt-widget4">
                         <div class="kt-widget4__item">
+
                           <div class="kt-widget4__pic kt-widget4__pic--pic">
                             <img
                               src="https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png"
@@ -54,16 +57,39 @@
                               alt
                             >
                           </div>
-                          <div class="kt-widget4__info">
-                            <a href="#" class="kt-widget4__username">Dave Strong</a>
-                            <p class="kt-widget4__text">Visual Designer, Google Inc</p>
-                          </div>
 
-                          <a href="#" class="btn btn-sm btn-label-brand btn-bold">Contact user</a>
+                       
+
+                              <div class="kt-widget4__info" v-if="idea.author=='showme'">
+                                <a href="#" class="kt-widget4__username">{{userIdea.name}}</a>
+                                <p class="kt-widget4__text">{{userIdea.email}}</p>
+                              </div>
+
+                             <a href="#" class="btn btn-sm btn-label-brand "  v-if="idea.author=='showme'">Contact user</a>
+
+                          
+                               <div class="kt-widget4__info" v-if="idea.author=='anonymous'">
+                                <a href="#" class="kt-widget4__username">Anonymous User</a>
+                                <p class="kt-widget4__text">Visual Designer, Google Inc</p>
+                              </div>
+
+                             <a href="#" class="btn btn-sm btn-label-brand "  v-if="idea.author=='anonymous'">Contact user</a>
+
+
+
+
+                        
+
+
+
                         </div>
                       </div>
                     </div>
                   </div>
+
+                  <br>
+                  
+                  
 
                       <div class="comments-section">
                 <div class="row bootstrap snippets">
@@ -71,92 +97,171 @@
                     <div class="comment-wrapper">
                       <div class="panel panel-info">
                         <div class="panel-body">
-                          <form>
+
+                          <h5 class="ml-3">Comments Section</h5>
+
+                     
+                              <form  @submit.prevent="goLastComment" @keydown="form.onKeydown($event)" class="form-inline" >
+
+                           
+
                             <div class="form-group">
-                              <textarea
-                                class="form-control"
-                                style="width:85vw; margin:10px;"
+                              <textarea v-model="form.body"
+                                class="form-control fit-width-input"
+                                style=" margin:10px; overflow:hidden;  "
                                 placeholder="Write a comment..."
-                                rows="2"
+                                rows="2" required
                               ></textarea>
-                              <br>
-                              <button type="button" class="btn btn-info pull-right" style="margin-right:10px;">Post</button>
+
+                             
+                              
                             </div>
+
+                            <div class="form-group">
+                               
+                                <button type="submit" class="btn btn-primary form-control" :disabled="form.busy">Comment <i class="flaticon-paper-plane"></i></button>
+                              
+                            </div>
+
                           </form>
 
-                          <div class="clearfix"></div>
-                          <hr>
+
+                         
+
+                        
+
+
+                         
+                         <br>
                           <ul class="media-list">
-                            <li class="media">
+
+
+                            <li class="media" v-for="d in discussionsFinal" :key="discussionsFinal.id" v-bind:id="'padre'+d.discussions.id" >
                               <a href="#" class="pull-left">
                                 <img
-                                  src="https://bootdey.com/img/Content/user_1.jpg"
+                                  :src=" 'https://picsum.photos/100?random=' + d.id"
                                   alt
-                                  class="img-circle"
+                                  class="imgCircle"
                                 >
                               </a>
                               <div class="media-body">
-                                <span class="text-muted pull-right">
-                                  <small class="text-muted">30 min ago</small>
+                                <span class="text-muted pull-right mr-5" >
+                                  <h6 class="text-muted">{{d.discussions.created_at |humanDate2}}</h6>
                                 </span>
-                                <strong class="text-success">&nbsp;@MartinoMont</strong>
-                                <p>
+                                <strong class="text-success">&nbsp;{{d.discussions.name}}</strong>
+                                <p class="biggerFont">
                                   &nbsp;
-                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                  Lorem ipsum dolor sit amet,
-                                  <a href="#">&nbsp;#consecteturadipiscing</a>.
+                                  {{d.discussions.body}}
+                                  
                                 </p>
+
+                                <div class="icons">
+                                 <a href=""> <span><i class="flaticon-like normalFont">  12 likes</i></span></a> 
+
+                                 &nbsp; &nbsp;  
+                                 <a @click="addChild(d.discussions.id)"> <span><i class="flaticon-reply normalFont links"> 13 comments</i></span></a> 
+                                </div>
+
+
+
                               </div>
-                            </li>
-                            <li class="media">
-                              <a href="#" class="pull-left">
+
+                              <br>
+                              <br>
+                              <div class="media sub" v-for="sub in d.childs" :key="sub.id">
+                                    <a href="#" class="pull-left">
+
+                                      <!--v-bind:src="baseUrl +'/'+ sub.avatar" -->
                                 <img
-                                  src="https://bootdey.com/img/Content/user_2.jpg"
+                                  :src=" 'https://picsum.photos/110?random=' + sub.id"
                                   alt
-                                  class="img-circle"
+                                  class="imgCircle"
                                 >
                               </a>
                               <div class="media-body">
-                                <span class="text-muted pull-right">
-                                  <small class="text-muted">30 min ago</small>
+                                <span class="text-muted pull-right mr-5" >
+                                  <h6 class="text-muted">{{sub.created_at |humanDate2}}</h6>
                                 </span>
-                                <strong class="text-success">&nbsp;@LaurenceCorreil</strong>
-                                <p>
+                                <strong class="text-success">&nbsp;{{sub.name}}</strong>
+                                <p class="biggerFont">
                                   &nbsp;
-                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                  Lorem ipsum dolor
-                                  <a href="#">&nbsp;#ipsumdolor</a>adipiscing/
+                                  {{sub.body}}
+                                  
                                 </p>
+
+                                <div class="icons">
+                                 <a href=""> <span><i class="flaticon-like normalFont">  12 likes</i></span></a> 
+
+                                 &nbsp; &nbsp;  
+                                 <a href=""> <span><i class="flaticon-reply normalFont"> 13 comments</i></span></a> 
+                                </div>
+
+                                
+
                               </div>
-                            </li>
-                            <li class="media">
-                              <a href="#" class="pull-left">
-                                <img
-                                  src="https://bootdey.com/img/Content/user_3.jpg"
-                                  alt
-                                  class="img-circle"
-                                >
-                              </a>
-                              <div class="media-body">
-                                <span class="text-muted pull-right">
-                                  <small class="text-muted">30 min ago</small>
-                                </span>
-                                <strong class="text-success">&nbsp;@JohnNida</strong>
-                                <p>
-                                  &nbsp;
-                                  Lorem ipsum dolor
-                                  <a href="#">&nbsp;#sitamet</a> sit amet, consectetur adipiscing elit.
-                                </p>
                               </div>
+
+                              <div class="childComment" v-if="checkChilds(d) && 1==2">
+
+                                <form   @submit.prevent="sendChildComment(d.discussions.id)" @keydown="formChild.onKeydown($event)" class="form">
+
+                                  <div class="form-group">
+                                    <input type="text" class="form-control child-response-input"  v-model="formChild.body"  placeholder="Write a reply... Enter key to send">
+                                    
+                                  </div>
+
+
+                                  
+
+                              
+
+
+                                </form>
+
+                              </div>
+
+                              <div class="childComment"   style="display:none;" :id="d.discussions.id">
+
+                                <form   @submit.prevent="sendChild2Comment(d.discussions.id)" @keydown="formChild2.onKeydown($event)" class="form">
+
+                                  <div class="form-group">
+                                    <input type="text" :id="'texto'+d.discussions.id" class="form-control child-response-input"  v-model="formChild2.body"  placeholder="Write a reply... Enter key to send">
+                                    
+                                  </div>
+
+                                </form>
+
+                              </div>
+
+
+
                             </li>
+                         
+                            
+                          <br>
+                          <br>
+                          <br>
+                         
+
+
                           </ul>
+
+                          
+
+                          
                         </div>
+
+                      
+
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               <!-- end comments-section -->
+
+           
+
 
                 </div>
               </div>
@@ -172,16 +277,76 @@
     </div>
   </div>
   <!-- end row -->
+
+  </div>
+
+  
 </template>
 
 <style type="text/css">
+
+
+.media-list {
+  padding-left:0;
+}
+
+.links {
+  cursor: pointer;
+}
+
+.center {
+  margin-right:10px !important;
+}
+
+.fit-width-input{
+
+  width:30vw !important;
+}
+
+
+
+.child-response-input {
+  margin-left:70px;
+  position: relative;
+  width: 70% !important;
+}
+
+.biggerFont {
+  font-size:1.1em;
+}
+
+.biggerFont2 {
+  font-size:1.1em;
+}
+
+.normalFont {
+  font-style: normal !important;
+  font-size: 1.05em;
+  color: grey;
+}
+
+.normalFont:hover {
+   color: #4286f4;
+}
+
+.sub {
+  padding-left:70px;
+}
+
+.imgCircle {
+  border-radius:30px;
+
+}
+
+.media {
+  display:block;
+}
+
 .allHeight {
   height: 100vh !important;
 }
 
-.comment-wrapper .panel-body {
-  max-height: 650px;
-}
+
 
 .comment-wrapper .media-list .media img {
   width: 64px;
@@ -203,24 +368,219 @@ export default {
       idea: {},
       editMode: false,
       ideas: {},
+      userIdea: {},
+      user: window.user,
+      discussionsFinal: {},
+      baseUrl: window.baseUrl,
+      randomNumber: Math.floor(Math.random() * 100),
+      lastCommentId:'',     
 
       form: new Form({
-        id: "",
-        ideatxt: "",
-        bugorfeaturetxt: "",
-        img: ""
-      })
+        user_id: window.user.id,
+        idea_id:this.$route.params.id,
+        body: "",
+        discussion_parent_id:0
+        
+      }),
+
+      formChild: new Form({
+        user_id: window.user.id,
+        idea_id:this.$route.params.id,
+        body: "",
+        discussion_parent_id:''
+        
+      }),
+
+      formChild2: new Form({
+        user_id: window.user.id,
+        idea_id:this.$route.params.id,
+        body: "",
+        discussion_parent_id:''
+        
+      }),
+
+
     };
   },
 
+  watch: {
+    lastCommentId(newValue, oldValue){
+
+      //document.getElementById('padre'+this.lastCommentId).focus();
+
+    }
+
+
+  },
+
+  computed: {
+
+    updatedLastIdComment: function(){
+
+        //console.log('Termino de enviar comentario. Ir a padre'+this.lastCommentId);
+        //document.getElementById('padre'+this.lastCommentId).focus();
+        //console.log('Se marmat');
+    }
+
+  },
+
   methods: {
+
+    addChild(idPadre){
+
+      $('#'+idPadre).attr('style','display:block');
+      document.getElementById('texto'+idPadre).focus();
+
+      
+    },
+
+    
+
+    checkChilds(padre){
+
+      
+
+        if(padre.childs.length >0 ){
+          return true;
+        }else{
+          return false;
+        }
+    },
+
     loadUsers() {
       // podemos usar this.form.get but we are gonna use axios
 
       axios
         .get("/getInnovation/" + this.id)
-        .then(({ data }) => (this.idea = data));
-    }
+        .then(response => {
+
+          this.idea = response.data.idea;
+          this.userIdea= response.data.user;
+          this.discussionsFinal= response.data.discussions;
+
+         
+
+          //console.log(response);
+
+        } ).catch(error => {
+							console.log(error)
+							
+						});
+    },
+
+    sendComment() {
+
+      this.$Progress.start();
+			  // Submit the form via a POST request
+			  
+			  	 //this.form.editordata =  $('#kt_summernote_1').summernote('code');
+                 this.form.post('/addComment')
+                .then(response=> { 
+
+				 
+
+                        toastr.success('Awesome!','Comment added successfully.')
+                        this.form.reset();
+                       
+                        this.discussionsFinal= response.data.discussions;
+
+                        this.lastCommentId = response.data.lastCommentId;
+
+
+                    
+
+
+                 }).catch((error)=>{
+                    console.log(error);
+                    toastr.error('Oops!','Something goes wrong')    
+                 })
+
+                //$('#userCreationModal').modal('hide');
+               
+                
+                
+                this.$Progress.finish();
+
+    },
+
+    goLastComment(){
+
+      this.sendComment();
+      
+    },
+
+    sendChildComment(idComment) {
+
+      
+
+       this.$Progress.start();
+			  // Submit the form via a POST request
+			  
+        //this.form.editordata =  $('#kt_summernote_1').summernote('code');
+        
+        this.formChild.discussion_parent_id= idComment;
+
+                 this.formChild.post('/addComment')
+                .then(response=> { 
+
+                        toastr.success('Awesome!','Comment added successfully.')
+                        this.formChild.reset();
+                       
+                        this.discussionsFinal= response.data.discussions;
+
+
+                    
+
+
+                 }).catch(()=>{
+                    toastr.error('Oops!','Something goes wrong')    
+                 })
+
+                //$('#userCreationModal').modal('hide');
+                
+                this.$Progress.finish();
+      
+    },
+      sendChild2Comment(idComment) {
+
+      
+
+       this.$Progress.start();
+			  // Submit the form via a POST request
+			  
+        //this.form.editordata =  $('#kt_summernote_1').summernote('code');
+        
+        this.formChild2.discussion_parent_id= idComment;
+
+                 this.formChild2.post('/addComment')
+                .then(response=> { 
+
+                        toastr.success('Awesome!','Comment added successfully.')
+                        this.formChild2.reset();
+                        
+                       $('#'+idComment).attr('style','display:none');
+                       
+                        this.discussionsFinal= response.data.discussions;
+
+                       // document.getElementById('padre'+response.data.lastCommentId).focus();
+
+
+                    
+
+
+                 }).catch((error)=>{
+                    console.log(error);
+                    toastr.error('Oops!','Something goes wrong')    
+                 })
+
+                //$('#userCreationModal').modal('hide');
+                
+                this.$Progress.finish();
+      
+    },
+
+
+
   },
   created() {
     console.log("Visor de ideas individuales mounted");

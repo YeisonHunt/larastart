@@ -1386,6 +1386,20 @@
 			
 		</script>
 
+		<script>
+
+			window.baseUrl = '<?php echo (env('APP_URL')); ?>';
+
+			@auth
+			window.Permissions = {!! json_encode(Auth::user()->allPermissions, true) !!};
+			window.user = {!! json_encode(Auth::user(),true)  !!};
+
+			@else
+			window.Permissions = [];
+			window.User =[];
+			@endauth
+		</script>
+
 		<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
 
 		

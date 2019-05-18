@@ -156,7 +156,7 @@
 																	<div class="col-9">
 																		<div class="kt-checkbox-inline">
 																			<label class="kt-checkbox">
-																				<input type="radio" value="showme"  :class="{'is-invalid': form.errors.has('author')}"	 name="author" v-model="form.author" > Show my username
+																				<input type="radio"  value="showme"  :class="{'is-invalid': form.errors.has('author')}"	 name="author" v-model="form.author" > Show my username
 																				<span></span>
 																			</label>
 																			<label class="kt-checkbox">
@@ -243,6 +243,7 @@ export default {
 	  data() {
             return  {
                
+			    user: window.User,
                 form: new Form({
                     id:'',
                     title: '',

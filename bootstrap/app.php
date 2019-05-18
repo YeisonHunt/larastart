@@ -41,6 +41,11 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+/* Laravel Spatie Permissions and roles */
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application

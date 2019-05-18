@@ -7,11 +7,20 @@ use Log;
 use Illuminate\Http\Request;
 use App\Http\Requests\IdeasRequest;
 use App\Innovation;
+use Auth;
+use App\User;
+use App\Discussion;
+use DB;
 
 
 class IdeasController extends Controller
 {
 
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index2(){
 
@@ -70,6 +79,9 @@ class IdeasController extends Controller
         
        //Log::info('Request recibida:'.$request);
 
+        $user = Auth::user();
+
+       
 
         return Innovation::create([
 
@@ -79,7 +91,8 @@ class IdeasController extends Controller
              'img'=>$request->img,
              'category'=>$request->category,
              'language'=>$request->language,
-             'author'=>$request->author
+             'author'=>$author,
+             'created_by'=>$user->id
         ]);
 
         Log::info('Idea2 creada correctamente');
@@ -99,7 +112,68 @@ class IdeasController extends Controller
 
         $idea = Innovation::find($id);
 
-        return $idea;
+        if($idea->author=='showme'){
+
+                $user = User::find($idea->created_by);
+        }else{
+                $user= '';
+        }
+
+        $comments = DB::table('discussions')->where('idea_id',$id)->where('discussion_parent_id',0)
+        ->join('users','discussions.user_id','=','users.id')
+        ->select('discussions.*','users.name','users.email','users.avatar') 
+        ->orderBy('discussions.id','ASC')->get();
+
+        $discussions= array(); 
+        
+        $childs= array();
+          
+        if(!empty($comments)){
+            foreach($comments as $comment){
+
+             $disscussion_child= DB::table('discussions')->where('idea_id',0)->where('discussion_parent_id',$comment->id)
+             ->join('users','discussions.user_id','=','users.id')
+             ->select('discussions.*','users.name','users.email','users.avatar')  
+             ->orderBy('discussions.id','ASC')->get();
+
+             if(!empty($disscussion_child)){
+                
+
+                foreach($disscussion_child as $child){
+
+                    array_push($childs, $child);
+
+                }
+
+
+
+                
+
+             }else{
+
+                
+             }
+
+             $discussions[] = [
+                'discussions'=>$comment,
+                'childs'=>$childs
+            ];
+
+            $childs=array();
+             
+            }
+        }else{
+            $discussions='';
+        }
+        
+
+        return response()->json([
+            'idea' => $idea,
+            'user' => $user,
+            'discussions'=>$discussions
+        ]);
+
+        //return $idea;
 
 
     }

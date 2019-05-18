@@ -273,16 +273,16 @@ export default {
 					 axios
 						.get('/getInnovation/'+this.id)
 						.then(response => {
-							this.form.title = response.data.title
-							this.form.description=response.data.description
-							this.form.img=response.data.img
-							this.form.category = response.data.category;
-				  		    this.form.language = response.data.language;
-							 this.form.author = response.data.author;
+							this.form.title = response.data.idea.title
+							this.form.description=response.data.idea.description
+							this.form.img=response.data.idea.img
+							this.form.category = response.data.idea.category;
+				  		    this.form.language = response.data.idea.language;
+							 this.form.author = response.data.idea.author;
 
-							 this.form.editordata = response.data.body;
+							 this.form.editordata = response.data.idea.body;
 							 
-							$('#mySummer').summernote('code', response.data.body);
+							$('#mySummer').summernote('code', response.data.idea.body);
 
 						})
 						.catch(error => {

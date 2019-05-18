@@ -16,6 +16,11 @@ import VueProgressBar from 'vue-progressbar'
 import Swal from 'sweetalert2'
 import BootstrapVue from 'bootstrap-vue'
 
+import Permissions from './mixins/Permissions';
+
+
+Vue.mixin(Permissions);
+
 
 
 
@@ -52,6 +57,33 @@ const router = new VueRouter({
 	routes, // short for `routes: routes`
 
 })
+
+Vue.directive('focus', {
+	// When the bound element is inserted into the DOM...
+	inserted: function (el) {
+	  // Focus the element
+	  el.focus()
+	}
+  })
+
+Vue.filter(
+
+	'humanDate2',
+	function (txtDate) {
+
+		var date = moment(txtDate);
+		var now = moment();
+
+		if (now > date) {
+		
+			return date.fromNow();
+		} else {
+			return date.startOf('day').fromNow();    
+		}
+		
+	}
+
+);
 
 Vue.filter(
 

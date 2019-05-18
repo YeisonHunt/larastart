@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use App\User;;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        //Aqui vamos a probar los roles
+       // $role = Role::create(['name'=>'business user']);
+       // $permission = Permission::create(['name'=>'edit ideas']);
+
+        //$role= Role::findById(1);
+        //$permission= Permission::findById(1);
+
+        //$permission->assignRole($role);
+
+
+        $user =User::find(17);
+
+        //$user->givePermissionTo('edit ideas');
+
+
+
+        return $user->getAllPermissions();
     }
 }

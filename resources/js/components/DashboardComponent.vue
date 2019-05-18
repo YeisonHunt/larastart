@@ -9,7 +9,7 @@
 									<div class="kt-portlet kt-portlet--height-fluid">
 										<div class="kt-widget14">
 											<div class="kt-widget14__header kt-margin-b-30">
-												<h3 class="kt-widget14__title">
+												<h3 class="kt-widget14__title" v-if="$can('edit ideas')">
 													Daily Tasks
 												</h3>
 												<span class="kt-widget14__desc">
@@ -17,7 +17,7 @@
 												</span>
 											</div>
 											<div class="kt-widget14__chart" style="height:120px;"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-												<canvas id="kt_chart_daily_sales" style="display: block; height: 120px; width: 342px;" width="427" height="150" class="chartjs-render-monitor"></canvas>
+												<canvas id="kt_chart_daily_sales" style=" height: 120px; width: 342px;" width="427" height="150" class="chartjs-render-monitor"></canvas>
 											</div>
 										</div>
 									</div>
@@ -1631,7 +1631,12 @@
 
 <script>
 export default {
-    
+	
+	data() {
+		return {
+			privilegios : window.Permissions
+		}
+	}
 }
 </script>
 
