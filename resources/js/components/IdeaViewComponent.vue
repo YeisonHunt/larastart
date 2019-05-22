@@ -136,10 +136,10 @@
                           <ul class="media-list">
 
 
-                            <li class="media" v-for="d in discussionsFinal" :key="discussionsFinal.id" v-bind:id="'padre'+d.discussions.id" >
-                              <a href="#" class="pull-left">
+                            <li class="media"  v-for="d in discussionsFinal" :key="discussionsFinal.id" v-bind:id="'padre'+d.discussions.id" >
+                              <a href="#" class="pull-left" >
                                 <img
-                                  :src=" 'https://picsum.photos/100?random=' + d.id"
+                                  :src=" 'https://picsum.photos/100?random=' + d.discussions.id"
                                   alt
                                   class="imgCircle"
                                 >
@@ -150,16 +150,45 @@
                                 </span>
                                 <strong class="text-success">&nbsp;{{d.discussions.name}}</strong>
                                 <p class="biggerFont">
-                                  &nbsp;
+                                  
                                   {{d.discussions.body}}
                                   
                                 </p>
 
                                 <div class="icons">
-                                 <a href=""> <span><i class="flaticon-like normalFont">  12 likes</i></span></a> 
+                                 <a @click="likeComment(d.discussions.id)" class="animated bounce "  > <i class="normalFont links biggerIcons" style="display:inline;">
+
+                                 
+
+                                  <vue-star v-if="checkLiked(d.discussions.likes)" animate="animated  normalFont links" color="#ccc">
+                                        <a slot="icon" class="fas fa-thumbs-up"  style="color:#4285F4;" >
+
+                                        </a>
+                                    </vue-star>
+
+                                      <vue-star v-else  animate="animated bounce normalFont links" color="#4285F4">
+                                        <a slot="icon" class="fas fa-thumbs-up"
+                                        style="color:gray;"
+                                            >
+
+                                        </a>
+                                    </vue-star>
+
+                                   
+                                 </i>
+
+                                    
+                                           &nbsp; &nbsp; &nbsp; 
+                                   {{d.discussions.likes.length}} likes
+                                    
+                                    
+                                    
+                                    </a> 
+
+                                 
 
                                  &nbsp; &nbsp;  
-                                 <a @click="addChild(d.discussions.id)"> <span><i class="flaticon-reply normalFont links"> 13 comments</i></span></a> 
+                                 <a @click="addChild(d.discussions.id)"> <span><i class="flaticon-reply normalFont links"> {{d.childs.length}} comments</i></span></a> 
                                 </div>
 
 
@@ -169,7 +198,7 @@
                               <br>
                               <br>
                               <div class="media sub" v-for="sub in d.childs" :key="sub.id">
-                                    <a href="#" class="pull-left">
+                                    <a  class="pull-left">
 
                                       <!--v-bind:src="baseUrl +'/'+ sub.avatar" -->
                                 <img
@@ -184,16 +213,49 @@
                                 </span>
                                 <strong class="text-success">&nbsp;{{sub.name}}</strong>
                                 <p class="biggerFont">
-                                  &nbsp;
+                                  
                                   {{sub.body}}
                                   
                                 </p>
 
                                 <div class="icons">
-                                 <a href=""> <span><i class="flaticon-like normalFont">  12 likes</i></span></a> 
+                         
+                                   <a @click="likeComment(sub.id)" class="animated bounce " > <i class="normalFont links biggerIcons" style="display:inline;">
+
+                                 
+
+                                  <vue-star v-if="checkLiked(sub.likes)" animate="animated  normalFont links" color="#ccc">
+                                        <a slot="icon" class="fas fa-thumbs-up"  style="color:#4285F4;" >
+
+                                        </a>
+                                    </vue-star>
+
+                                      <vue-star v-else  animate="animated bounce normalFont links" color="#4285F4">
+                                        <a slot="icon" class="fas fa-thumbs-up"
+                                        style="color:gray;"
+                                           >
+
+                                        </a>
+                                    </vue-star>
+
+                                   
+                                 </i>
+
+                                    
+                                           &nbsp; &nbsp; &nbsp; 
+                                   {{sub.likes.length}} likes
+                                    
+                                    
+                                    
+                                    </a> 
+
+                                 
+
+
+                                 
 
                                  &nbsp; &nbsp;  
-                                 <a href=""> <span><i class="flaticon-reply normalFont"> 13 comments</i></span></a> 
+                                 <a  @click="addChild(d.discussions.id)"> <span><i class="flaticon-reply normalFont links"> </i></span></a> 
                                 </div>
 
                                 
@@ -285,6 +347,32 @@
 
 <style type="text/css">
 
+.biggerIcons {
+  font-size: 1.5em !important;;
+}
+
+.VueStar__icon {
+  
+    position:static !important;
+    z-index: 0;
+    height: 30px;
+    width: 20px;
+    
+    
+    }
+
+
+.VueStar__ground {
+    width: 1px;
+    height: 1px;
+    margin-left:60px;
+    margin-top:10px;
+    
+    
+    }
+.icons {
+  margin-left:10px;
+}
 
 .media-list {
   padding-left:0;
@@ -313,6 +401,9 @@
 
 .biggerFont {
   font-size:1.1em;
+  padding-left:30px !important;
+  margin-left:40px !important;
+
 }
 
 .biggerFont2 {
@@ -362,6 +453,8 @@
 
 <script>
 export default {
+  
+  
   data() {
     return {
       id: this.$route.params.id,
@@ -369,11 +462,16 @@ export default {
       editMode: false,
       ideas: {},
       userIdea: {},
+      liked:'',
       user: window.user,
       discussionsFinal: {},
+      like:{
+
+      },
       baseUrl: window.baseUrl,
       randomNumber: Math.floor(Math.random() * 100),
-      lastCommentId:'',     
+      lastCommentId:'',
+      id_idea_general: this.$route.params.id,     
 
       form: new Form({
         user_id: window.user.id,
@@ -399,19 +497,18 @@ export default {
         
       }),
 
+      formLike: new Form({
+        user_id: window.user.id,
+        comment_id:'',
+        idea_id:this.$route.params.id
+        
+      }),
+
 
     };
   },
 
-  watch: {
-    lastCommentId(newValue, oldValue){
 
-      //document.getElementById('padre'+this.lastCommentId).focus();
-
-    }
-
-
-  },
 
   computed: {
 
@@ -420,16 +517,101 @@ export default {
         //console.log('Termino de enviar comentario. Ir a padre'+this.lastCommentId);
         //document.getElementById('padre'+this.lastCommentId).focus();
         //console.log('Se marmat');
+    },
+
+    randomNumber2: function(){
+
+      return Math.floor(Math.random() * 100);
     }
 
   },
 
   methods: {
 
+    checkLiked(likeObject){
+
+      //if(likeObject.)
+
+      if(likeObject.length !=0){
+
+        var scoped = this;
+
+        let found = false;
+        try {
+        likeObject.forEach(function(elements) {
+            if(elements.user_id==window.user.id){
+              
+              console.log('Usuario que dio like:'+elements.user_id);
+              found = true;
+              
+
+            }
+        })} catch (e) { 
+
+
+        }
+
+        return found;
+
+
+        
+      }else {
+        this.liked=false;
+        return false;
+      }
+
+
+    },
+
+    likeComment(idComment){
+
+      console.log(idComment);
+
+      this.formLike.comment_id= idComment;
+      this.formLike.idea_id=this.id_idea_general;
+
+       this.$Progress.start();
+			  // Submit the form via a POST request
+			  
+			  	 //this.form.editordata =  $('#kt_summernote_1').summernote('code');
+                 this.formLike.post('/saveLike')
+                .then(response=> { 
+
+				 
+
+                       toastr.success('Keep innovating','Thanks for the feedback.')
+                        this.formLike.comment_id='';
+                        this.formLike.idea_id='';
+                        this.discussionsFinal= response.data.discussions;
+
+                       
+
+
+                    
+
+
+                 }).catch((error)=>{
+                    console.log(error);
+                    this.formLike.comment_id='';
+                    this.formLike.idea_id='';
+                    toastr.error('Oops!','Something goes wrong')    
+                 })
+
+                //$('#userCreationModal').modal('hide');
+               
+                
+                
+                this.$Progress.finish();
+
+      //this.discussionsFinal.discussions.push();
+    },
+
     addChild(idPadre){
 
       $('#'+idPadre).attr('style','display:block');
       document.getElementById('texto'+idPadre).focus();
+
+      
 
       
     },

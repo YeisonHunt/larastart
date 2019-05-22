@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-05-2019 a las 17:47:16
+-- Tiempo de generación: 22-05-2019 a las 17:00:19
 -- Versión del servidor: 10.1.29-MariaDB
 -- Versión de PHP: 7.2.0
 
@@ -328,43 +328,10 @@ CREATE TABLE `discussions` (
 --
 
 INSERT INTO `discussions` (`id`, `idea_id`, `discussion_parent_id`, `user_id`, `body`, `created_at`, `updated_at`) VALUES
-(1, 5, 0, 17, 'Este es el comentario PADRE', '2019-05-16 21:46:53', '2019-05-16 21:46:53'),
-(2, 0, 1, 1, 'Este es el comentario HIJO', '2019-05-16 21:46:53', '2019-05-16 21:46:53'),
-(3, 0, 1, 15, 'Otro comentario HIJO', '2019-05-16 21:50:14', '2019-05-16 21:50:14'),
-(4, 5, 0, 17, 'Otro comentario PADRE', '2019-05-16 21:50:14', '2019-05-16 21:50:14'),
-(5, 5, 0, 17, 'Nuevo comentario', '2019-05-17 05:23:00', '2019-05-17 05:23:00'),
-(6, 5, 0, 17, 'Otro comentario mas', '2019-05-17 05:23:13', '2019-05-17 05:23:13'),
-(7, 5, 0, 17, 'Yo pienso que esta idea es genial!', '2019-05-17 05:23:28', '2019-05-17 05:23:28'),
-(8, 4, 0, 17, 'Me parece que la idea de arriba se puede mejorar haciendo uso del software Asakaa.com.', '2019-05-17 05:24:52', '2019-05-17 05:24:52'),
-(9, 5, 0, 17, 'Another one', '2019-05-17 21:55:02', '2019-05-17 21:55:02'),
-(10, 0, 1, 17, 'Otro comentario hijo', '2019-05-18 02:05:58', '2019-05-18 02:05:58'),
-(11, 0, 1, 17, 'Otro comentario hijo mas', '2019-05-18 02:06:09', '2019-05-18 02:06:09'),
-(12, 0, 9, 17, 'Comentario de ultimo padre', '2019-05-18 02:59:41', '2019-05-18 02:59:41'),
-(13, 0, 7, 17, 'Comentario al penultimo comentario', '2019-05-18 03:01:10', '2019-05-18 03:01:10'),
-(14, 0, 1, 17, 'creo que es por los hijos que se baja', '2019-05-18 03:07:20', '2019-05-18 03:07:20'),
-(15, 0, 1, 17, 'pareciera', '2019-05-18 03:07:31', '2019-05-18 03:07:31'),
-(16, 0, 4, 17, 'O no es asi?', '2019-05-18 03:07:39', '2019-05-18 03:07:39'),
-(17, 0, 7, 17, 'quien sabe', '2019-05-18 03:07:50', '2019-05-18 03:07:50'),
-(18, 4, 0, 17, 'Otro comentario padre', '2019-05-18 03:12:09', '2019-05-18 03:12:09'),
-(19, 5, 0, 17, 'Cuando cumple anos una persona', '2019-05-18 05:45:16', '2019-05-18 05:45:16'),
-(20, 5, 0, 17, 'Nuevo comentario inscrito', '2019-05-18 06:21:45', '2019-05-18 06:21:45'),
-(21, 5, 0, 17, 'Nuevo comentario perros', '2019-05-18 06:24:27', '2019-05-18 06:24:27'),
-(22, 5, 0, 17, 'Otro comentario mas', '2019-05-18 06:24:51', '2019-05-18 06:24:51'),
-(23, 5, 0, 17, 'eee', '2019-05-18 06:25:50', '2019-05-18 06:25:50'),
-(24, 5, 0, 17, 'Miremos a ver si funciona este', '2019-05-18 06:34:52', '2019-05-18 06:34:52'),
-(25, 5, 0, 17, 'Otro comentariooooo', '2019-05-18 06:35:13', '2019-05-18 06:35:13'),
-(26, 5, 0, 17, 'Este creo que es como el 26', '2019-05-18 06:44:24', '2019-05-18 06:44:24'),
-(27, 5, 0, 17, 'salir de deudas', '2019-05-18 06:50:45', '2019-05-18 06:50:45'),
-(28, 5, 0, 17, 'menfistores', '2019-05-18 06:56:02', '2019-05-18 06:56:02'),
-(29, 5, 0, 17, 'diabetes', '2019-05-18 07:16:36', '2019-05-18 07:16:36'),
-(30, 5, 0, 17, 'Habia una vez', '2019-05-18 07:19:05', '2019-05-18 07:19:05'),
-(31, 5, 0, 17, 'Otro comentario mas', '2019-05-18 07:26:39', '2019-05-18 07:26:39'),
-(32, 0, 1, 17, 'Respuesa a comentario padre', '2019-05-18 08:22:27', '2019-05-18 08:22:27'),
-(33, 0, 1, 17, 'dream of californication', '2019-05-18 08:25:12', '2019-05-18 08:25:12'),
-(34, 5, 0, 17, 'hay otro que no', '2019-05-18 08:25:24', '2019-05-18 08:25:24'),
-(35, 4, 0, 17, 'Not so easy', '2019-05-18 20:42:36', '2019-05-18 20:42:36'),
-(36, 4, 0, 17, 'Another comment', '2019-05-18 20:42:43', '2019-05-18 20:42:43'),
-(37, 0, 8, 17, 'Comentario hijo', '2019-05-18 20:42:48', '2019-05-18 20:42:48');
+(74, 5, 0, 17, 'Nuevo comentario padre', '2019-05-22 19:28:09', '2019-05-22 19:28:09'),
+(75, 0, 74, 17, 'Nuevo comentario hijo', '2019-05-22 19:28:19', '2019-05-22 19:28:19'),
+(76, 5, 0, 17, 'Comentario hermano', '2019-05-22 19:53:07', '2019-05-22 19:53:07'),
+(77, 5, 0, 17, 'Otro comentario', '2019-05-22 19:55:32', '2019-05-22 19:55:32');
 
 -- --------------------------------------------------------
 
@@ -443,6 +410,28 @@ INSERT INTO `innovations` (`id`, `title`, `description`, `body`, `img`, `categor
 (3, 'Idea excelente creada con VueJS', 'Idea de prueba de VueJS', '<p class=\"contenido\" id=\"p362514-m297-296-298\" style=\"margin-right: auto; margin-bottom: 0px; margin-left: auto; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-height: 27px; font-family: roboto_slab_regular; font-size: 16px; vertical-align: baseline; color: rgb(57, 57, 57); -webkit-font-smoothing: antialiased; overflow-wrap: break-word;\">Si bien la tormenta que desató la no extradición de \'Jesús Santrich\' opacó la captura del magistrado Gustavo Malo y la acusación formal contra el expresidente de la Corte Suprema<b style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;\">&nbsp;<a href=\"https://www.eltiempo.com/noticias/leonidas-bustos\" style=\"margin: 0px; padding: 0px 2px 1px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-size: 1rem; vertical-align: baseline; -webkit-font-smoothing: antialiased; color: inherit; display: inline; position: relative; transition: background 0.125s ease-in-out 0s; background-image: linear-gradient(to right, rgb(3, 201, 234) 0px, rgb(3, 201, 234) 100%); background-position: 0px 100%; background-size: 100% 3px; background-repeat: repeat-x; background-attachment: initial; background-origin: initial; background-clip: initial;\">Leonidas Bustos</a></b>, \'por el llamado&nbsp;<a href=\"https://www.eltiempo.com/noticias/cartel-de-la-toga\" target=\"_blank\" style=\"margin: 0px; padding: 0px 2px 1px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-size: 1rem; vertical-align: baseline; -webkit-font-smoothing: antialiased; color: inherit; display: inline; position: relative; transition: background 0.125s ease-in-out 0s; background-image: linear-gradient(to right, rgb(3, 201, 234) 0px, rgb(3, 201, 234) 100%); background-position: 0px 100%; background-size: 100% 3px; background-repeat: repeat-x; background-attachment: initial; background-origin: initial; background-clip: initial;\"><b style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 16px; vertical-align: baseline;\">cartel de la toga\',&nbsp;</b></a>ambos casos avanza a buen ritmo.<br><br>Además de la acusación, la Comisión de Acusación de la Cámara ordenó<b style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;\">&nbsp;que se le congelaran todos los bienes a Bustos, incluido un lujoso apartamento que tiene a la venta en el exclusivo sector de La Cabrera, en Bogotá.</b></p><p class=\"contenido\" id=\"p362514-m341-2-342\" style=\"margin: 40px 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-height: 27px; font-family: roboto_slab_regular; font-size: 16px; vertical-align: baseline; color: rgb(57, 57, 57); -webkit-font-smoothing: antialiased; overflow-wrap: break-word;\">Si bien en la investigación se estableció que el dinero que le habrían cobrado a varios políticos, a manera de soborno, se usó para adquirir bienes, varios estarían a nombre de testaferros, que hoy están siendo rastreados.<br><br><a href=\"https://www.eltiempo.com/noticias/cartel-de-la-toga\" style=\"margin: 0px; padding: 0px 2px 1px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-size: 1rem; vertical-align: baseline; -webkit-font-smoothing: antialiased; color: inherit; display: inline; position: relative; transition: background 0.125s ease-in-out 0s; background-image: linear-gradient(to right, rgb(3, 201, 234) 0px, rgb(3, 201, 234) 100%); background-position: 0px 100%; background-size: 100% 3px; background-repeat: repeat-x; background-attachment: initial; background-origin: initial; background-clip: initial;\"><b style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 16px; vertical-align: baseline;\">(Lea todo el cubrimiento al escándalo del Cartel de la Toga)</b></a><br><br>Sin embargo, el apartamento, de 388 metros, ubicado en un tercer nivel,&nbsp;<b style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;\">está a nombre de Bustos quien, tal como lo reveló EL TIEMPO, salió desde finales de 2018 hacia Canadá.</b></p>', 'https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80', 'improvethis', NULL, 'en', NULL, 'showme', 17, '2019-05-01 04:03:28', '2019-05-18 20:47:01'),
 (4, 'Vamos de nuevo', '\'Awesome idea description...\'', '<h1>Meet DHTMLX Rich Text Editor!</h1><p>This demo will show you the main features of our highly customizable JavaScript rich text editor.</p><p>Type in any text here, apply text formatting and use the controls below to change the editor\'s look and feel and convert your text into HTML, markdown or plain text.</p><p><strong>To learn more, read our </strong><a href=\"https://docs.dhtmlx.com/richtext/index.html\" title=\"documentation\"><strong>documentation</strong></a><strong> and check the </strong><a href=\"https://docs.dhtmlx.com/richtext/samples/\" title=\"samples\"><strong>samples</strong></a></p><blockquote><p>It\'s extremely easy and fast to build a fully working nice-looking application that normally would take weeks or months to build.</p></blockquote><p style=\"text-align: right;\"><a href=\"https://www.g2crowd.com/products/dhtmlxsuite/reviews\" title=\"G2Crowd\">G2Crowd</a></p>', 'https://images.unsplash.com/photo-1507668077129-56e32842fceb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', 'improvethis', NULL, 'en', NULL, 'showme', 17, '2019-05-01 04:15:53', '2019-05-16 21:16:39'),
 (5, 'Another idea', 'Esta idea podria servir para mejorar el mundo que conocemos', '<p>Awesome music <b>Hold on</b></p><p><span style=\"color: rgb(33, 37, 41); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;\"><br></span></p><p><span style=\"color: rgb(33, 37, 41); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;\">The&nbsp;</span><a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/:lang\" style=\"color: rgb(0, 123, 255); background-color: rgb(255, 255, 255); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;\"><code class=\"highlighter-rouge\" style=\"font-size: 14px;\">:lang()</code>&nbsp;pseudo-class</a><span style=\"color: rgb(33, 37, 41); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;\">&nbsp;is used to allow for translation of the “Browse” text into other languages. Override or add entries to the&nbsp;</span><code class=\"highlighter-rouge\" style=\"font-size: 14px; background-color: rgb(255, 255, 255);\">$custom-file-text</code><span style=\"color: rgb(33, 37, 41); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;\">&nbsp;Sass variable with the relevant&nbsp;</span><a href=\"https://en.wikipedia.org/wiki/IETF_language_tag\" style=\"color: rgb(0, 123, 255); background-color: rgb(255, 255, 255); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;\">language tag</a><span style=\"color: rgb(33, 37, 41); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;\">&nbsp;and localized strings. The English strings can be customized the same way. For example, here’s how one might add a Spanish translation (Spanish’s language code is&nbsp;</span><code class=\"highlighter-rouge\" style=\"font-size: 14px; background-color: rgb(255, 255, 255);\">es</code><span style=\"color: rgb(33, 37, 41); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;\">):</span><br></p>', 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80', 'beautyandfaashion', NULL, 'es', NULL, 'anonymous', 17, '2019-05-09 05:25:46', '2019-05-12 08:58:49');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `likes`
+--
+
+CREATE TABLE `likes` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `comment_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `likes`
+--
+
+INSERT INTO `likes` (`id`, `user_id`, `comment_id`, `created_at`, `updated_at`) VALUES
+(62, 17, 75, '2019-05-22 19:44:04', '2019-05-22 19:44:04'),
+(66, 17, 74, '2019-05-22 19:53:16', '2019-05-22 19:53:16');
 
 -- --------------------------------------------------------
 
@@ -4719,6 +4708,12 @@ ALTER TABLE `innovations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `likes`
+--
+ALTER TABLE `likes`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `links`
 --
 ALTER TABLE `links`
@@ -4950,7 +4945,7 @@ ALTER TABLE `data_types`
 -- AUTO_INCREMENT de la tabla `discussions`
 --
 ALTER TABLE `discussions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT de la tabla `extras`
@@ -4969,6 +4964,12 @@ ALTER TABLE `hours`
 --
 ALTER TABLE `innovations`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `likes`
+--
+ALTER TABLE `likes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT de la tabla `links`

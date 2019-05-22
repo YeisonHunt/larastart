@@ -38,6 +38,7 @@ Route::get('/getInnovation/{id}','IdeasController@show');
 Route::post('/updateIdea/{id}','IdeasController@update');
 
 Route::post('/addComment','DiscussionController@store');
+Route::post('/saveLike','DiscussionController@storeLike');
 
 //Route::get('/innovations/{id}','AdminController@index');
 

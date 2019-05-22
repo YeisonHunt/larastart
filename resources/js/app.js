@@ -16,7 +16,14 @@ import VueProgressBar from 'vue-progressbar'
 import Swal from 'sweetalert2'
 import BootstrapVue from 'bootstrap-vue'
 
-import Permissions from './mixins/Permissions';
+import Permissions from './mixins/Permissions'
+
+import VueStar from 'vue-star'
+import vueRandomPic from 'vue-random-pic'
+
+
+Vue.use(vueRandomPic, 'https://unsplash.it');
+
 
 
 Vue.mixin(Permissions);
@@ -30,6 +37,7 @@ window.Form = Form; // Ahora en cualquier lugar de nuestra aplicacion tenemos ac
 
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
+Vue.component('VueStar', VueStar)
 
 Vue.use(VueRouter)
 Vue.use(BootstrapVue)
@@ -60,7 +68,7 @@ const router = new VueRouter({
 
 Vue.directive('focus', {
 	// When the bound element is inserted into the DOM...
-	inserted: function (el) {
+	componentUpdated: function (el) {
 	  // Focus the element
 	  el.focus()
 	}
