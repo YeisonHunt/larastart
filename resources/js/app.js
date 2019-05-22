@@ -15,18 +15,23 @@ import moment from 'moment'
 import VueProgressBar from 'vue-progressbar'
 import Swal from 'sweetalert2'
 import BootstrapVue from 'bootstrap-vue'
-
 import Permissions from './mixins/Permissions'
-
 import VueStar from 'vue-star'
 import vueRandomPic from 'vue-random-pic'
+import VueMq from 'vue-mq'
 
 
 Vue.use(vueRandomPic, 'https://unsplash.it');
-
-
+Vue.use(VueMq, {
+	breakpoints: {
+	  sm: 450,
+	  md: 1250,
+	  lg: Infinity,
+	}
+  })
 
 Vue.mixin(Permissions);
+
 
 
 

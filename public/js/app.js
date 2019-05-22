@@ -5437,17 +5437,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5456,13 +5445,15 @@ __webpack_require__.r(__webpack_exports__);
       editMode: false,
       ideas: {},
       userIdea: {},
-      liked: '',
+      liked: "",
       user: window.user,
       discussionsFinal: {},
       like: {},
+      containter: "",
+      containerFluid: "",
       baseUrl: window.baseUrl,
       randomNumber: Math.floor(Math.random() * 100),
-      lastCommentId: '',
+      lastCommentId: "",
       id_idea_general: this.$route.params.id,
       form: new Form({
         user_id: window.user.id,
@@ -5474,17 +5465,17 @@ __webpack_require__.r(__webpack_exports__);
         user_id: window.user.id,
         idea_id: this.$route.params.id,
         body: "",
-        discussion_parent_id: ''
+        discussion_parent_id: ""
       }),
       formChild2: new Form({
         user_id: window.user.id,
         idea_id: this.$route.params.id,
         body: "",
-        discussion_parent_id: ''
+        discussion_parent_id: ""
       }),
       formLike: new Form({
         user_id: window.user.id,
-        comment_id: '',
+        comment_id: "",
         idea_id: this.$route.params.id
       })
     };
@@ -5496,6 +5487,29 @@ __webpack_require__.r(__webpack_exports__);
     },
     randomNumber2: function randomNumber2() {
       return Math.floor(Math.random() * 100);
+    },
+    mobile: function mobile() {
+      if (this.$mq == "sm") {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    large: function large() {
+      if (this.$mq == "md" || this.$mq == "lg") {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    likesText: function likesText() {
+      if (this.$mq == 'sm') {
+        return '';
+      } else if (this.$mq == 'md' || this.$mq == 'lg') {
+        return 'likes';
+      } else {
+        return 'likes';
+      }
     }
   },
   methods: {
@@ -5508,7 +5522,7 @@ __webpack_require__.r(__webpack_exports__);
         try {
           likeObject.forEach(function (elements) {
             if (elements.user_id == window.user.id) {
-              console.log('Usuario que dio like:' + elements.user_id);
+              console.log("Usuario que dio like:" + elements.user_id);
               found = true;
             }
           });
@@ -5529,23 +5543,23 @@ __webpack_require__.r(__webpack_exports__);
       this.$Progress.start(); // Submit the form via a POST request
       //this.form.editordata =  $('#kt_summernote_1').summernote('code');
 
-      this.formLike.post('/saveLike').then(function (response) {
-        toastr.success('Keep innovating', 'Thanks for the feedback.');
-        _this.formLike.comment_id = '';
-        _this.formLike.idea_id = '';
+      this.formLike.post("/saveLike").then(function (response) {
+        toastr.success("Keep innovating", "Thanks for the feedback.");
+        _this.formLike.comment_id = "";
+        _this.formLike.idea_id = "";
         _this.discussionsFinal = response.data.discussions;
       })["catch"](function (error) {
         console.log(error);
-        _this.formLike.comment_id = '';
-        _this.formLike.idea_id = '';
-        toastr.error('Oops!', 'Something goes wrong');
+        _this.formLike.comment_id = "";
+        _this.formLike.idea_id = "";
+        toastr.error("Oops!", "Something goes wrong");
       }); //$('#userCreationModal').modal('hide');
 
       this.$Progress.finish(); //this.discussionsFinal.discussions.push();
     },
     addChild: function addChild(idPadre) {
-      $('#' + idPadre).attr('style', 'display:block');
-      document.getElementById('texto' + idPadre).focus();
+      $("#" + idPadre).attr("style", "display:block");
+      document.getElementById("texto" + idPadre).focus();
     },
     checkChilds: function checkChilds(padre) {
       if (padre.childs.length > 0) {
@@ -5572,8 +5586,8 @@ __webpack_require__.r(__webpack_exports__);
       this.$Progress.start(); // Submit the form via a POST request
       //this.form.editordata =  $('#kt_summernote_1').summernote('code');
 
-      this.form.post('/addComment').then(function (response) {
-        toastr.success('Awesome!', 'Comment added successfully.');
+      this.form.post("/addComment").then(function (response) {
+        toastr.success("Awesome!", "Comment added successfully.");
 
         _this3.form.reset();
 
@@ -5581,7 +5595,7 @@ __webpack_require__.r(__webpack_exports__);
         _this3.lastCommentId = response.data.lastCommentId;
       })["catch"](function (error) {
         console.log(error);
-        toastr.error('Oops!', 'Something goes wrong');
+        toastr.error("Oops!", "Something goes wrong");
       }); //$('#userCreationModal').modal('hide');
 
       this.$Progress.finish();
@@ -5596,14 +5610,14 @@ __webpack_require__.r(__webpack_exports__);
       //this.form.editordata =  $('#kt_summernote_1').summernote('code');
 
       this.formChild.discussion_parent_id = idComment;
-      this.formChild.post('/addComment').then(function (response) {
-        toastr.success('Awesome!', 'Comment added successfully.');
+      this.formChild.post("/addComment").then(function (response) {
+        toastr.success("Awesome!", "Comment added successfully.");
 
         _this4.formChild.reset();
 
         _this4.discussionsFinal = response.data.discussions;
       })["catch"](function () {
-        toastr.error('Oops!', 'Something goes wrong');
+        toastr.error("Oops!", "Something goes wrong");
       }); //$('#userCreationModal').modal('hide');
 
       this.$Progress.finish();
@@ -5615,16 +5629,16 @@ __webpack_require__.r(__webpack_exports__);
       //this.form.editordata =  $('#kt_summernote_1').summernote('code');
 
       this.formChild2.discussion_parent_id = idComment;
-      this.formChild2.post('/addComment').then(function (response) {
-        toastr.success('Awesome!', 'Comment added successfully.');
+      this.formChild2.post("/addComment").then(function (response) {
+        toastr.success("Awesome!", "Comment added successfully.");
 
         _this5.formChild2.reset();
 
-        $('#' + idComment).attr('style', 'display:none');
+        $("#" + idComment).attr("style", "display:none");
         _this5.discussionsFinal = response.data.discussions; // document.getElementById('padre'+response.data.lastCommentId).focus();
       })["catch"](function (error) {
         console.log(error);
-        toastr.error('Oops!', 'Something goes wrong');
+        toastr.error("Oops!", "Something goes wrong");
       }); //$('#userCreationModal').modal('hide');
 
       this.$Progress.finish();
@@ -37616,7 +37630,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.VueStar__decoration {\r\n    width: 50px;\r\n    height: 50px;\r\n    position: absolute;\n}\n.biggerIcons {\r\n  font-size: 1.5em !important;\n}\n.VueStar__icon {\r\n  \r\n    position:static !important;\r\n    z-index: 0;\r\n    height: 30px;\r\n    width: 20px;\n}\n.VueStar__ground {\r\n    width: 1px;\r\n    height: 1px;\r\n    margin-left:60px;\r\n    margin-top:10px;\n}\n.icons {\r\n  margin-left:10px;\n}\n.media-list {\r\n  padding-left:0;\n}\n.links {\r\n  cursor: pointer;\n}\n.center {\r\n  margin-right:10px !important;\n}\n.fit-width-input{\r\n\r\n  width:30vw !important;\n}\n.child-response-input {\r\n  margin-left:70px;\r\n  position: relative;\r\n  width: 70% !important;\n}\n.biggerFont {\r\n  font-size:1.1em;\r\n  padding-left:30px !important;\r\n  margin-left:40px !important;\n}\n.biggerFont2 {\r\n  font-size:1.1em;\n}\n.normalFont {\r\n  font-style: normal !important;\r\n  font-size: 1.05em;\r\n  color: grey;\n}\n.normalFont:hover {\r\n   color: #4286f4;\n}\n.sub {\r\n  padding-left:70px;\n}\n.imgCircle {\r\n  border-radius:30px;\n}\n.media {\r\n  display:block;\n}\n.allHeight {\r\n  height: 100vh !important;\n}\n.comment-wrapper .media-list .media img {\r\n  width: 64px;\r\n  height: 64px;\r\n  border: 2px solid #e5e7e8;\n}\n.comment-wrapper .media-list .media {\r\n  border-bottom: 1px dashed #efefef;\r\n  margin-bottom: 25px;\n}\r\n", ""]);
+exports.push([module.i, "\n.wrapText {\r\n  word-wrap: break-word !important;\n}\n.VueStar__decoration {\r\n  width: 50px;\r\n  height: 50px;\r\n  position: absolute;\n}\n.biggerIcons {\r\n  font-size: 1.5em !important;\n}\n.VueStar__icon {\r\n  position: static !important;\r\n  z-index: 0;\r\n  height: 30px;\r\n  width: 20px;\n}\n.VueStar__ground {\r\n  width: 1px;\r\n  height: 1px;\r\n  margin-left: 60px;\r\n  margin-top: 10px;\n}\n@media (max-width: 600px) {\n.VueStar__ground {\r\n      \r\n      margin-left: 10px;\r\n      margin-top: 10px;\n}\n}\n.auxiliarVueStar {\r\n   margin-left: 5px;\n}\n.icons {\r\n  margin-left: 10px;\n}\n.media-list {\r\n  padding-left: 0;\n}\n.links {\r\n  cursor: pointer;\n}\n.center {\r\n  margin-right: 10px !important;\n}\n.fit-width-input {\r\n  width: 30vw !important;\n}\n.child-response-input {\r\n  margin-left: 70px;\r\n  position: relative;\r\n  width: 70% !important;\n}\n.biggerFont {\r\n  font-size: 1.1em;\r\n  padding-left: 30px !important;\r\n  margin-left: 40px !important;\n}\n.biggerFont2 {\r\n  font-size: 1.1em;\n}\n.normalFont {\r\n  font-style: normal !important;\r\n  font-size: 1.05em;\r\n  color: grey;\n}\n.normalFont:hover {\r\n  color: #4286f4;\n}\n.sub {\r\n  padding-left: 70px;\n}\n.imgCircle {\r\n  border-radius: 30px;\n}\n.media {\r\n  display: block;\n}\n.allHeight {\r\n  height: 100vh !important;\n}\n.comment-wrapper .media-list .media img {\r\n  width: 64px;\r\n  height: 64px;\r\n  border: 2px solid #e5e7e8;\n}\n.comment-wrapper .media-list .media {\r\n  border-bottom: 1px dashed #efefef;\r\n  margin-bottom: 25px;\n}\r\n", ""]);
 
 // exports
 
@@ -48377,6 +48391,67 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
+
+/***/ }),
+
+/***/ "./node_modules/json2mq/index.js":
+/*!***************************************!*\
+  !*** ./node_modules/json2mq/index.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var camel2hyphen = __webpack_require__(/*! string-convert/camel2hyphen */ "./node_modules/string-convert/camel2hyphen.js");
+
+var isDimension = function (feature) {
+  var re = /[height|width]$/;
+  return re.test(feature);
+};
+
+var obj2mq = function (obj) {
+  var mq = '';
+  var features = Object.keys(obj);
+  features.forEach(function (feature, index) {
+    var value = obj[feature];
+    feature = camel2hyphen(feature);
+    // Add px to dimension features
+    if (isDimension(feature) && typeof value === 'number') {
+      value = value + 'px';
+    }
+    if (value === true) {
+      mq += feature;
+    } else if (value === false) {
+      mq += 'not ' + feature;
+    } else {
+      mq += '(' + feature + ': ' + value + ')';
+    }
+    if (index < features.length-1) {
+      mq += ' and '
+    }
+  });
+  return mq;
+};
+
+var json2mq = function (query) {
+  var mq = '';
+  if (typeof query === 'string') {
+    return query;
+  }
+  // Handling array of media queries
+  if (query instanceof Array) {
+    query.forEach(function (q, index) {
+      mq += obj2mq(q);
+      if (index < query.length-1) {
+        mq += ', '
+      }
+    });
+    return mq;
+  }
+  // Handling single media query
+  return obj2mq(query);
+};
+
+module.exports = json2mq;
 
 /***/ }),
 
@@ -86735,6 +86810,25 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/string-convert/camel2hyphen.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/string-convert/camel2hyphen.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var camel2hyphen = function (str) {
+  return str
+          .replace(/[A-Z]/g, function (match) {
+            return '-' + match.toLowerCase();
+          })
+          .toLowerCase();
+};
+
+module.exports = camel2hyphen;
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BusinessComponent.vue?vue&type=style&index=0&lang=css&":
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/BusinessComponent.vue?vue&type=style&index=0&lang=css& ***!
@@ -99850,945 +99944,984 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _c("div", { staticClass: "kt-portlet mobilePortlet" }, [
-          _c("div", { staticClass: "kt-portlet__head" }, [
-            _c(
-              "div",
-              { staticClass: "kt-portlet__head-label" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "btn btn-clean kt-margin-r-10",
-                    attrs: { to: "/innovations" }
-                  },
-                  [
-                    _c("i", { staticClass: "la la-arrow-left" }),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "kt-hidden-mobile" }, [
-                      _vm._v("Back")
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _vm._m(0),
-                _vm._v(" "),
-                _c("h3", { staticClass: "kt-portlet__head-title" }, [
-                  _vm._v(_vm._s(_vm.idea.title))
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "kt-portlet__head-toolbar" }, [
+  return _c(
+    "div",
+    { class: { "container-fluid": _vm.mobile, container: _vm.large } },
+    [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-lg-12 col-sm-12 col-md-12" }, [
+          _c("div", { staticClass: "kt-portlet mobilePortlet" }, [
+            _c("div", { staticClass: "kt-portlet__head" }, [
               _c(
                 "div",
-                { staticClass: "kt-portlet__head-actions" },
+                { staticClass: "kt-portlet__head-label" },
                 [
-                  _vm._m(1),
-                  _vm._v(" "),
                   _c(
                     "router-link",
                     {
-                      staticClass:
-                        "btn btn-outline-danger btn-sm btn-icon btn-icon-md",
-                      attrs: { to: "/innovationsEdit/" + this.id }
+                      staticClass: "btn btn-clean kt-margin-r-10",
+                      attrs: { to: "/innovations" }
                     },
-                    [_c("i", { staticClass: "flaticon2-gear" })]
+                    [
+                      _c("i", { staticClass: "la la-arrow-left" }),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "kt-hidden-mobile" }, [
+                        _vm._v("Back")
+                      ])
+                    ]
                   ),
                   _vm._v(" "),
-                  _vm._m(2)
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c("h3", { staticClass: "kt-portlet__head-title" }, [
+                    _vm._v(_vm._s(_vm.idea.title))
+                  ])
                 ],
                 1
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", {
-            staticClass: "kt-portlet__body",
-            attrs: { id: "ideaBody" },
-            domProps: { innerHTML: _vm._s(_vm.idea.body) }
-          }),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("div", { staticClass: "user-section" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-12" }, [
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "kt-portlet__head-toolbar" }, [
                 _c(
                   "div",
-                  {
-                    staticClass:
-                      "kt-portlet kt-portlet--tabs kt-portlet--height-fluid"
-                  },
+                  { staticClass: "kt-portlet__head-actions" },
                   [
-                    _c("div", { staticClass: "kt-portlet__body" }, [
-                      _c("div", { staticClass: "tab-content" }, [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "tab-pane active",
-                            attrs: { id: "kt_widget4_tab1_content" }
-                          },
-                          [
-                            _c("div", { staticClass: "kt-widget4" }, [
-                              _c("div", { staticClass: "kt-widget4__item" }, [
-                                _vm._m(3),
-                                _vm._v(" "),
-                                _vm.idea.author == "showme"
-                                  ? _c(
-                                      "div",
-                                      { staticClass: "kt-widget4__info" },
-                                      [
-                                        _c(
-                                          "a",
-                                          {
-                                            staticClass: "kt-widget4__username",
-                                            attrs: { href: "#" }
-                                          },
-                                          [_vm._v(_vm._s(_vm.userIdea.name))]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "p",
-                                          { staticClass: "kt-widget4__text" },
-                                          [_vm._v(_vm._s(_vm.userIdea.email))]
-                                        )
-                                      ]
-                                    )
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                _vm.idea.author == "showme"
-                                  ? _c(
-                                      "a",
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass:
+                          "btn btn-outline-danger btn-sm btn-icon btn-icon-md",
+                        attrs: { to: "/innovationsEdit/" + this.id }
+                      },
+                      [_c("i", { staticClass: "flaticon2-gear" })]
+                    ),
+                    _vm._v(" "),
+                    _vm._m(2)
+                  ],
+                  1
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", {
+              staticClass: "kt-portlet__body wrapText",
+              attrs: { id: "ideaBody" },
+              domProps: { innerHTML: _vm._s(_vm.idea.body) }
+            }),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "user-section" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-12" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "kt-portlet kt-portlet--tabs kt-portlet--height-fluid"
+                    },
+                    [
+                      _c("div", { staticClass: "kt-portlet__body" }, [
+                        _c("div", { staticClass: "tab-content" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "tab-pane active",
+                              attrs: { id: "kt_widget4_tab1_content" }
+                            },
+                            [
+                              _c("div", { staticClass: "kt-widget4" }, [
+                                _c("div", { staticClass: "kt-widget4__item" }, [
+                                  _vm._m(3),
+                                  _vm._v(" "),
+                                  _vm.idea.author == "showme"
+                                    ? _c(
+                                        "div",
+                                        { staticClass: "kt-widget4__info" },
+                                        [
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass:
+                                                "kt-widget4__username",
+                                              attrs: { href: "#" }
+                                            },
+                                            [_vm._v(_vm._s(_vm.userIdea.name))]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "p",
+                                            { staticClass: "kt-widget4__text" },
+                                            [_vm._v(_vm._s(_vm.userIdea.email))]
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.idea.author == "showme"
+                                    ? _c(
+                                        "a",
+                                        {
+                                          staticClass:
+                                            "btn btn-sm btn-label-brand",
+                                          attrs: { href: "#" }
+                                        },
+                                        [_vm._v("Contact user")]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.idea.author == "anonymous"
+                                    ? _c(
+                                        "div",
+                                        { staticClass: "kt-widget4__info" },
+                                        [
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass:
+                                                "kt-widget4__username",
+                                              attrs: { href: "#" }
+                                            },
+                                            [_vm._v("Anonymous User")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "p",
+                                            { staticClass: "kt-widget4__text" },
+                                            [
+                                              _vm._v(
+                                                "Visual Designer, Google Inc"
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.idea.author == "anonymous"
+                                    ? _c(
+                                        "a",
+                                        {
+                                          staticClass:
+                                            "btn btn-sm btn-label-brand",
+                                          attrs: { href: "#" }
+                                        },
+                                        [_vm._v("Contact user")]
+                                      )
+                                    : _vm._e()
+                                ])
+                              ])
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "comments-section" }, [
+                          _c("div", { staticClass: "row bootstrap snippets" }, [
+                            _c("div", { staticClass: "col-12" }, [
+                              _c("div", { staticClass: "comment-wrapper" }, [
+                                _c("div", { staticClass: "panel panel-info" }, [
+                                  _c("div", { staticClass: "panel-body" }, [
+                                    _c("h5", { staticClass: "ml-3" }, [
+                                      _vm._v("Comments Section")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "form",
                                       {
-                                        staticClass:
-                                          "btn btn-sm btn-label-brand ",
-                                        attrs: { href: "#" }
+                                        staticClass: "form-inline",
+                                        on: {
+                                          submit: function($event) {
+                                            $event.preventDefault()
+                                            return _vm.goLastComment($event)
+                                          },
+                                          keydown: function($event) {
+                                            return _vm.form.onKeydown($event)
+                                          }
+                                        }
                                       },
-                                      [_vm._v("Contact user")]
-                                    )
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                _vm.idea.author == "anonymous"
-                                  ? _c(
-                                      "div",
-                                      { staticClass: "kt-widget4__info" },
                                       [
                                         _c(
-                                          "a",
-                                          {
-                                            staticClass: "kt-widget4__username",
-                                            attrs: { href: "#" }
-                                          },
-                                          [_vm._v("Anonymous User")]
+                                          "div",
+                                          { staticClass: "form-group" },
+                                          [
+                                            _c("textarea", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.form.body,
+                                                  expression: "form.body"
+                                                }
+                                              ],
+                                              staticClass:
+                                                "form-control fit-width-input",
+                                              staticStyle: {
+                                                margin: "10px",
+                                                overflow: "hidden"
+                                              },
+                                              attrs: {
+                                                placeholder:
+                                                  "Write a comment...",
+                                                rows: "2",
+                                                required: ""
+                                              },
+                                              domProps: {
+                                                value: _vm.form.body
+                                              },
+                                              on: {
+                                                input: function($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "body",
+                                                    $event.target.value
+                                                  )
+                                                }
+                                              }
+                                            })
+                                          ]
                                         ),
                                         _vm._v(" "),
                                         _c(
-                                          "p",
-                                          { staticClass: "kt-widget4__text" },
+                                          "div",
+                                          { staticClass: "form-group" },
                                           [
-                                            _vm._v(
-                                              "Visual Designer, Google Inc"
+                                            _c(
+                                              "button",
+                                              {
+                                                staticClass:
+                                                  "btn btn-primary form-control",
+                                                attrs: {
+                                                  type: "submit",
+                                                  disabled: _vm.form.busy
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                    Comment\n                                    "
+                                                ),
+                                                _c("i", {
+                                                  staticClass:
+                                                    "flaticon-paper-plane"
+                                                })
+                                              ]
                                             )
                                           ]
                                         )
                                       ]
-                                    )
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                _vm.idea.author == "anonymous"
-                                  ? _c(
-                                      "a",
-                                      {
-                                        staticClass:
-                                          "btn btn-sm btn-label-brand ",
-                                        attrs: { href: "#" }
-                                      },
-                                      [_vm._v("Contact user")]
-                                    )
-                                  : _vm._e()
-                              ])
-                            ])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "comments-section" }, [
-                        _c("div", { staticClass: "row bootstrap snippets" }, [
-                          _c("div", { staticClass: "col-12" }, [
-                            _c("div", { staticClass: "comment-wrapper" }, [
-                              _c("div", { staticClass: "panel panel-info" }, [
-                                _c("div", { staticClass: "panel-body" }, [
-                                  _c("h5", { staticClass: "ml-3" }, [
-                                    _vm._v("Comments Section")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "form",
-                                    {
-                                      staticClass: "form-inline",
-                                      on: {
-                                        submit: function($event) {
-                                          $event.preventDefault()
-                                          return _vm.goLastComment($event)
-                                        },
-                                        keydown: function($event) {
-                                          return _vm.form.onKeydown($event)
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c("div", { staticClass: "form-group" }, [
-                                        _c("textarea", {
-                                          directives: [
+                                    ),
+                                    _vm._v(" "),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _c(
+                                      "ul",
+                                      { staticClass: "media-list" },
+                                      [
+                                        _vm._l(_vm.discussionsFinal, function(
+                                          d
+                                        ) {
+                                          return _c(
+                                            "li",
                                             {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: _vm.form.body,
-                                              expression: "form.body"
-                                            }
-                                          ],
-                                          staticClass:
-                                            "form-control fit-width-input",
-                                          staticStyle: {
-                                            margin: "10px",
-                                            overflow: "hidden"
-                                          },
-                                          attrs: {
-                                            placeholder: "Write a comment...",
-                                            rows: "2",
-                                            required: ""
-                                          },
-                                          domProps: { value: _vm.form.body },
-                                          on: {
-                                            input: function($event) {
-                                              if ($event.target.composing) {
-                                                return
+                                              key: _vm.discussionsFinal.id,
+                                              staticClass: "media",
+                                              attrs: {
+                                                id: "padre" + d.discussions.id
                                               }
-                                              _vm.$set(
-                                                _vm.form,
-                                                "body",
-                                                $event.target.value
-                                              )
-                                            }
-                                          }
-                                        })
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "form-group" }, [
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "btn btn-primary form-control",
-                                            attrs: {
-                                              type: "submit",
-                                              disabled: _vm.form.busy
-                                            }
-                                          },
-                                          [
-                                            _vm._v("Comment "),
-                                            _c("i", {
-                                              staticClass:
-                                                "flaticon-paper-plane"
-                                            })
-                                          ]
-                                        )
-                                      ])
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  _c(
-                                    "ul",
-                                    { staticClass: "media-list" },
-                                    [
-                                      _vm._l(_vm.discussionsFinal, function(d) {
-                                        return _c(
-                                          "li",
-                                          {
-                                            key: _vm.discussionsFinal.id,
-                                            staticClass: "media",
-                                            attrs: {
-                                              id: "padre" + d.discussions.id
-                                            }
-                                          },
-                                          [
-                                            _c(
-                                              "a",
-                                              {
-                                                staticClass: "pull-left",
-                                                attrs: { href: "#" }
-                                              },
-                                              [
-                                                _c("img", {
-                                                  staticClass: "imgCircle",
-                                                  attrs: {
-                                                    src:
-                                                      "https://picsum.photos/100?random=" +
-                                                      d.discussions.id,
-                                                    alt: ""
-                                                  }
-                                                })
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "div",
-                                              { staticClass: "media-body" },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass:
-                                                      "text-muted pull-right mr-5"
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "h6",
-                                                      {
-                                                        staticClass:
-                                                          "text-muted"
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            _vm._f(
-                                                              "humanDate2"
-                                                            )(
-                                                              d.discussions
-                                                                .created_at
-                                                            )
-                                                          )
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "strong",
-                                                  {
-                                                    staticClass: "text-success"
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      " " +
-                                                        _vm._s(
-                                                          d.discussions.name
-                                                        )
-                                                    )
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "p",
-                                                  { staticClass: "biggerFont" },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                                \n                                " +
-                                                        _vm._s(
-                                                          d.discussions.body
-                                                        ) +
-                                                        "\n                                \n                              "
-                                                    )
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  { staticClass: "icons" },
-                                                  [
-                                                    _c(
-                                                      "a",
-                                                      {
-                                                        staticClass:
-                                                          "animated bounce ",
-                                                        on: {
-                                                          click: function(
-                                                            $event
-                                                          ) {
-                                                            return _vm.likeComment(
-                                                              d.discussions.id
-                                                            )
-                                                          }
-                                                        }
-                                                      },
-                                                      [
-                                                        _c(
-                                                          "i",
-                                                          {
-                                                            staticClass:
-                                                              "normalFont links biggerIcons",
-                                                            staticStyle: {
-                                                              display: "inline"
-                                                            }
-                                                          },
-                                                          [
-                                                            _vm.checkLiked(
-                                                              d.discussions
-                                                                .likes
-                                                            )
-                                                              ? _c(
-                                                                  "vue-star",
-                                                                  {
-                                                                    attrs: {
-                                                                      animate:
-                                                                        "animated  normalFont links",
-                                                                      color:
-                                                                        "#ccc"
-                                                                    }
-                                                                  },
-                                                                  [
-                                                                    _c("a", {
-                                                                      staticClass:
-                                                                        "fas fa-thumbs-up",
-                                                                      staticStyle: {
-                                                                        color:
-                                                                          "#4285F4"
-                                                                      },
-                                                                      attrs: {
-                                                                        slot:
-                                                                          "icon"
-                                                                      },
-                                                                      slot:
-                                                                        "icon"
-                                                                    })
-                                                                  ]
-                                                                )
-                                                              : _c(
-                                                                  "vue-star",
-                                                                  {
-                                                                    attrs: {
-                                                                      animate:
-                                                                        "animated bounce normalFont links",
-                                                                      color:
-                                                                        "#4285F4"
-                                                                    }
-                                                                  },
-                                                                  [
-                                                                    _c("a", {
-                                                                      staticClass:
-                                                                        "fas fa-thumbs-up",
-                                                                      staticStyle: {
-                                                                        color:
-                                                                          "gray"
-                                                                      },
-                                                                      attrs: {
-                                                                        slot:
-                                                                          "icon"
-                                                                      },
-                                                                      slot:
-                                                                        "icon"
-                                                                    })
-                                                                  ]
-                                                                )
-                                                          ],
-                                                          1
-                                                        ),
-                                                        _vm._v(
-                                                          "\n\n                                  \n                                               \n                                 " +
-                                                            _vm._s(
-                                                              d.discussions
-                                                                .likes.length
-                                                            ) +
-                                                            " likes\n                                  \n                                  \n                                  \n                                  "
-                                                        )
-                                                      ]
-                                                    ),
-                                                    _vm._v(
-                                                      " \n\n                               \n\n                                    \n                               "
-                                                    ),
-                                                    _c(
-                                                      "a",
-                                                      {
-                                                        on: {
-                                                          click: function(
-                                                            $event
-                                                          ) {
-                                                            return _vm.addChild(
-                                                              d.discussions.id
-                                                            )
-                                                          }
-                                                        }
-                                                      },
-                                                      [
-                                                        _c("span", [
-                                                          _c(
-                                                            "i",
-                                                            {
-                                                              staticClass:
-                                                                "flaticon-reply normalFont links"
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                " " +
-                                                                  _vm._s(
-                                                                    d.childs
-                                                                      .length
-                                                                  ) +
-                                                                  " comments"
-                                                              )
-                                                            ]
-                                                          )
-                                                        ])
-                                                      ]
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c("br"),
-                                            _vm._v(" "),
-                                            _c("br"),
-                                            _vm._v(" "),
-                                            _vm._l(d.childs, function(sub) {
-                                              return _c(
-                                                "div",
+                                            },
+                                            [
+                                              _c(
+                                                "a",
                                                 {
-                                                  key: sub.id,
-                                                  staticClass: "media sub"
+                                                  staticClass: "pull-left",
+                                                  attrs: { href: "#" }
                                                 },
                                                 [
+                                                  _c("img", {
+                                                    staticClass: "imgCircle",
+                                                    attrs: {
+                                                      src:
+                                                        "https://picsum.photos/100?random=" +
+                                                        d.discussions.id,
+                                                      alt: ""
+                                                    }
+                                                  })
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "media-body" },
+                                                [
                                                   _c(
-                                                    "a",
+                                                    "span",
                                                     {
-                                                      staticClass: "pull-left"
+                                                      staticClass:
+                                                        "text-muted pull-right mr-5"
                                                     },
                                                     [
-                                                      _c("img", {
-                                                        staticClass:
-                                                          "imgCircle",
-                                                        attrs: {
-                                                          src:
-                                                            "https://picsum.photos/110?random=" +
-                                                            sub.id,
-                                                          alt: ""
-                                                        }
-                                                      })
+                                                      _c(
+                                                        "h6",
+                                                        {
+                                                          staticClass:
+                                                            "text-muted"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              _vm._f(
+                                                                "humanDate2"
+                                                              )(
+                                                                d.discussions
+                                                                  .created_at
+                                                              )
+                                                            )
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "strong",
+                                                    {
+                                                      staticClass:
+                                                        "text-success"
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        " " +
+                                                          _vm._s(
+                                                            d.discussions.name
+                                                          )
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "p",
+                                                    {
+                                                      staticClass: "biggerFont"
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          d.discussions.body
+                                                        )
+                                                      )
                                                     ]
                                                   ),
                                                   _vm._v(" "),
                                                   _c(
                                                     "div",
-                                                    {
-                                                      staticClass: "media-body"
-                                                    },
+                                                    { staticClass: "icons" },
                                                     [
                                                       _c(
-                                                        "span",
+                                                        "a",
                                                         {
                                                           staticClass:
-                                                            "text-muted pull-right mr-5"
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "h6",
-                                                            {
-                                                              staticClass:
-                                                                "text-muted"
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  _vm._f(
-                                                                    "humanDate2"
-                                                                  )(
-                                                                    sub.created_at
-                                                                  )
-                                                                )
+                                                            "animated bounce",
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              return _vm.likeComment(
+                                                                d.discussions.id
                                                               )
-                                                            ]
-                                                          )
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "strong",
-                                                        {
-                                                          staticClass:
-                                                            "text-success"
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            " " +
-                                                              _vm._s(sub.name)
-                                                          )
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "p",
-                                                        {
-                                                          staticClass:
-                                                            "biggerFont"
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                \n                                " +
-                                                              _vm._s(sub.body) +
-                                                              "\n                                \n                              "
-                                                          )
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass: "icons"
+                                                            }
+                                                          }
                                                         },
                                                         [
                                                           _c(
-                                                            "a",
+                                                            "i",
                                                             {
                                                               staticClass:
-                                                                "animated bounce ",
-                                                              on: {
-                                                                click: function(
-                                                                  $event
-                                                                ) {
-                                                                  return _vm.likeComment(
-                                                                    sub.id
-                                                                  )
-                                                                }
+                                                                "normalFont links biggerIcons",
+                                                              staticStyle: {
+                                                                display:
+                                                                  "inline"
                                                               }
                                                             },
                                                             [
-                                                              _c(
-                                                                "i",
-                                                                {
-                                                                  staticClass:
-                                                                    "normalFont links biggerIcons",
-                                                                  staticStyle: {
-                                                                    display:
-                                                                      "inline"
-                                                                  }
-                                                                },
-                                                                [
-                                                                  _vm.checkLiked(
-                                                                    sub.likes
+                                                              _vm.checkLiked(
+                                                                d.discussions
+                                                                  .likes
+                                                              )
+                                                                ? _c(
+                                                                    "vue-star",
+                                                                    {
+                                                                      attrs: {
+                                                                        animate:
+                                                                          "animated  normalFont links",
+                                                                        color:
+                                                                          "#ccc"
+                                                                      }
+                                                                    },
+                                                                    [
+                                                                      _c("a", {
+                                                                        staticClass:
+                                                                          "fas fa-thumbs-up",
+                                                                        staticStyle: {
+                                                                          color:
+                                                                            "#4285F4"
+                                                                        },
+                                                                        attrs: {
+                                                                          slot:
+                                                                            "icon"
+                                                                        },
+                                                                        slot:
+                                                                          "icon"
+                                                                      })
+                                                                    ]
                                                                   )
-                                                                    ? _c(
-                                                                        "vue-star",
-                                                                        {
-                                                                          attrs: {
-                                                                            animate:
-                                                                              "animated  normalFont links",
-                                                                            color:
-                                                                              "#ccc"
-                                                                          }
+                                                                : _c(
+                                                                    "vue-star",
+                                                                    {
+                                                                      attrs: {
+                                                                        animate:
+                                                                          "animated bounce normalFont links",
+                                                                        color:
+                                                                          "#4285F4"
+                                                                      }
+                                                                    },
+                                                                    [
+                                                                      _c("a", {
+                                                                        staticClass:
+                                                                          "fas fa-thumbs-up",
+                                                                        staticStyle: {
+                                                                          color:
+                                                                            "gray"
                                                                         },
-                                                                        [
-                                                                          _c(
-                                                                            "a",
-                                                                            {
-                                                                              staticClass:
-                                                                                "fas fa-thumbs-up",
-                                                                              staticStyle: {
-                                                                                color:
-                                                                                  "#4285F4"
-                                                                              },
-                                                                              attrs: {
-                                                                                slot:
-                                                                                  "icon"
-                                                                              },
-                                                                              slot:
-                                                                                "icon"
-                                                                            }
-                                                                          )
-                                                                        ]
-                                                                      )
-                                                                    : _c(
-                                                                        "vue-star",
-                                                                        {
-                                                                          attrs: {
-                                                                            animate:
-                                                                              "animated bounce normalFont links",
-                                                                            color:
-                                                                              "#4285F4"
-                                                                          }
+                                                                        attrs: {
+                                                                          slot:
+                                                                            "icon"
                                                                         },
-                                                                        [
-                                                                          _c(
-                                                                            "a",
-                                                                            {
-                                                                              staticClass:
-                                                                                "fas fa-thumbs-up",
-                                                                              staticStyle: {
-                                                                                color:
-                                                                                  "gray"
-                                                                              },
-                                                                              attrs: {
-                                                                                slot:
-                                                                                  "icon"
-                                                                              },
-                                                                              slot:
-                                                                                "icon"
-                                                                            }
-                                                                          )
-                                                                        ]
-                                                                      )
-                                                                ],
-                                                                1
-                                                              ),
-                                                              _vm._v(
-                                                                "\n\n                                  \n                                               \n                                 " +
+                                                                        slot:
+                                                                          "icon"
+                                                                      })
+                                                                    ]
+                                                                  )
+                                                            ],
+                                                            1
+                                                          ),
+                                                          _vm._v(
+                                                            "\n                                               \n  \n                                        " +
+                                                              _vm._s(
+                                                                " " +
+                                                                  d.discussions
+                                                                    .likes
+                                                                    .length
+                                                              ) +
+                                                              " " +
+                                                              _vm._s(
+                                                                _vm.likesText
+                                                              ) +
+                                                              "\n                                      "
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(
+                                                        "\n                                         \n                                      "
+                                                      ),
+                                                      _c(
+                                                        "a",
+                                                        {
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              return _vm.addChild(
+                                                                d.discussions.id
+                                                              )
+                                                            }
+                                                          }
+                                                        },
+                                                        [
+                                                          _c("span", [
+                                                            _c(
+                                                              "i",
+                                                              {
+                                                                staticClass:
+                                                                  "flaticon-reply normalFont links"
+                                                              },
+                                                              [
+                                                                _vm._v(
                                                                   _vm._s(
-                                                                    sub.likes
+                                                                    d.childs
                                                                       .length
                                                                   ) +
-                                                                  " likes\n                                  \n                                  \n                                  \n                                  "
-                                                              )
-                                                            ]
-                                                          ),
-                                                          _vm._v(
-                                                            " \n\n                               \n\n\n                               \n\n                                    \n                               "
-                                                          ),
-                                                          _c(
-                                                            "a",
-                                                            {
-                                                              on: {
-                                                                click: function(
-                                                                  $event
-                                                                ) {
-                                                                  return _vm.addChild(
-                                                                    d
-                                                                      .discussions
-                                                                      .id
-                                                                  )
-                                                                }
-                                                              }
-                                                            },
-                                                            [_vm._m(4, true)]
-                                                          )
+                                                                    " comments"
+                                                                )
+                                                              ]
+                                                            )
+                                                          ])
                                                         ]
                                                       )
                                                     ]
                                                   )
                                                 ]
-                                              )
-                                            }),
-                                            _vm._v(" "),
-                                            _vm.checkChilds(d) && 1 == 2
-                                              ? _c(
+                                              ),
+                                              _vm._v(" "),
+                                              _c("br"),
+                                              _vm._v(" "),
+                                              _c("br"),
+                                              _vm._v(" "),
+                                              _vm._l(d.childs, function(sub) {
+                                                return _c(
                                                   "div",
                                                   {
-                                                    staticClass: "childComment"
+                                                    key: sub.id,
+                                                    staticClass: "media sub"
                                                   },
                                                   [
                                                     _c(
-                                                      "form",
+                                                      "a",
                                                       {
-                                                        staticClass: "form",
-                                                        on: {
-                                                          submit: function(
-                                                            $event
-                                                          ) {
-                                                            $event.preventDefault()
-                                                            return _vm.sendChildComment(
-                                                              d.discussions.id
-                                                            )
-                                                          },
-                                                          keydown: function(
-                                                            $event
-                                                          ) {
-                                                            return _vm.formChild.onKeydown(
-                                                              $event
-                                                            )
+                                                        staticClass: "pull-left"
+                                                      },
+                                                      [
+                                                        _c("img", {
+                                                          staticClass:
+                                                            "imgCircle",
+                                                          attrs: {
+                                                            src:
+                                                              "https://picsum.photos/110?random=" +
+                                                              sub.id,
+                                                            alt: ""
                                                           }
-                                                        }
+                                                        })
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "media-body"
                                                       },
                                                       [
                                                         _c(
-                                                          "div",
+                                                          "span",
                                                           {
                                                             staticClass:
-                                                              "form-group"
+                                                              "text-muted pull-right mr-5"
                                                           },
                                                           [
-                                                            _c("input", {
-                                                              directives: [
-                                                                {
-                                                                  name: "model",
-                                                                  rawName:
-                                                                    "v-model",
-                                                                  value:
-                                                                    _vm
-                                                                      .formChild
-                                                                      .body,
-                                                                  expression:
-                                                                    "formChild.body"
-                                                                }
-                                                              ],
-                                                              staticClass:
-                                                                "form-control child-response-input",
-                                                              attrs: {
-                                                                type: "text",
-                                                                placeholder:
-                                                                  "Write a reply... Enter key to send"
+                                                            _c(
+                                                              "h6",
+                                                              {
+                                                                staticClass:
+                                                                  "text-muted"
                                                               },
-                                                              domProps: {
-                                                                value:
-                                                                  _vm.formChild
-                                                                    .body
-                                                              },
-                                                              on: {
-                                                                input: function(
-                                                                  $event
-                                                                ) {
-                                                                  if (
-                                                                    $event
-                                                                      .target
-                                                                      .composing
-                                                                  ) {
-                                                                    return
-                                                                  }
-                                                                  _vm.$set(
-                                                                    _vm.formChild,
-                                                                    "body",
-                                                                    $event
-                                                                      .target
-                                                                      .value
+                                                              [
+                                                                _vm._v(
+                                                                  _vm._s(
+                                                                    _vm._f(
+                                                                      "humanDate2"
+                                                                    )(
+                                                                      sub.created_at
+                                                                    )
                                                                   )
+                                                                )
+                                                              ]
+                                                            )
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "strong",
+                                                          {
+                                                            staticClass:
+                                                              "text-success"
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              " " +
+                                                                _vm._s(sub.name)
+                                                            )
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "p",
+                                                          {
+                                                            staticClass:
+                                                              "biggerFont"
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              _vm._s(sub.body)
+                                                            )
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass: "icons"
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "a",
+                                                              {
+                                                                staticClass:
+                                                                  "animated bounce",
+                                                                on: {
+                                                                  click: function(
+                                                                    $event
+                                                                  ) {
+                                                                    return _vm.likeComment(
+                                                                      sub.id
+                                                                    )
+                                                                  }
                                                                 }
-                                                              }
-                                                            })
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "i",
+                                                                  {
+                                                                    staticClass:
+                                                                      "normalFont links biggerIcons",
+                                                                    staticStyle: {
+                                                                      display:
+                                                                        "inline"
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm.checkLiked(
+                                                                      sub.likes
+                                                                    )
+                                                                      ? _c(
+                                                                          "vue-star",
+                                                                          {
+                                                                            attrs: {
+                                                                              animate:
+                                                                                "animated  normalFont links",
+                                                                              color:
+                                                                                "#ccc"
+                                                                            }
+                                                                          },
+                                                                          [
+                                                                            _c(
+                                                                              "a",
+                                                                              {
+                                                                                staticClass:
+                                                                                  "fas fa-thumbs-up",
+                                                                                staticStyle: {
+                                                                                  color:
+                                                                                    "#4285F4"
+                                                                                },
+                                                                                attrs: {
+                                                                                  slot:
+                                                                                    "icon"
+                                                                                },
+                                                                                slot:
+                                                                                  "icon"
+                                                                              }
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                      : _c(
+                                                                          "vue-star",
+                                                                          {
+                                                                            attrs: {
+                                                                              animate:
+                                                                                "animated bounce normalFont links",
+                                                                              color:
+                                                                                "#4285F4"
+                                                                            }
+                                                                          },
+                                                                          [
+                                                                            _c(
+                                                                              "a",
+                                                                              {
+                                                                                staticClass:
+                                                                                  "fas fa-thumbs-up",
+                                                                                staticStyle: {
+                                                                                  color:
+                                                                                    "gray"
+                                                                                },
+                                                                                attrs: {
+                                                                                  slot:
+                                                                                    "icon"
+                                                                                },
+                                                                                slot:
+                                                                                  "icon"
+                                                                              }
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                  ],
+                                                                  1
+                                                                ),
+                                                                _vm._v(
+                                                                  "\n                                                 \n                                          " +
+                                                                    _vm._s(
+                                                                      " " +
+                                                                        sub
+                                                                          .likes
+                                                                          .length
+                                                                    ) +
+                                                                    " " +
+                                                                    _vm._s(
+                                                                      _vm.likesText
+                                                                    ) +
+                                                                    "\n                                        "
+                                                                )
+                                                              ]
+                                                            ),
+                                                            _vm._v(
+                                                              "\n                                           \n                                        "
+                                                            ),
+                                                            _c(
+                                                              "a",
+                                                              {
+                                                                on: {
+                                                                  click: function(
+                                                                    $event
+                                                                  ) {
+                                                                    return _vm.addChild(
+                                                                      d
+                                                                        .discussions
+                                                                        .id
+                                                                    )
+                                                                  }
+                                                                }
+                                                              },
+                                                              [_vm._m(4, true)]
+                                                            )
                                                           ]
                                                         )
                                                       ]
                                                     )
                                                   ]
                                                 )
-                                              : _vm._e(),
-                                            _vm._v(" "),
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass: "childComment",
-                                                staticStyle: {
-                                                  display: "none"
-                                                },
-                                                attrs: { id: d.discussions.id }
-                                              },
-                                              [
-                                                _c(
-                                                  "form",
-                                                  {
-                                                    staticClass: "form",
-                                                    on: {
-                                                      submit: function($event) {
-                                                        $event.preventDefault()
-                                                        return _vm.sendChild2Comment(
-                                                          d.discussions.id
-                                                        )
-                                                      },
-                                                      keydown: function(
-                                                        $event
-                                                      ) {
-                                                        return _vm.formChild2.onKeydown(
-                                                          $event
-                                                        )
-                                                      }
-                                                    }
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "form-group"
-                                                      },
-                                                      [
-                                                        _c("input", {
-                                                          directives: [
-                                                            {
-                                                              name: "model",
-                                                              rawName:
-                                                                "v-model",
-                                                              value:
-                                                                _vm.formChild2
-                                                                  .body,
-                                                              expression:
-                                                                "formChild2.body"
-                                                            }
-                                                          ],
-                                                          staticClass:
-                                                            "form-control child-response-input",
-                                                          attrs: {
-                                                            type: "text",
-                                                            id:
-                                                              "texto" +
-                                                              d.discussions.id,
-                                                            placeholder:
-                                                              "Write a reply... Enter key to send"
-                                                          },
-                                                          domProps: {
-                                                            value:
-                                                              _vm.formChild2
-                                                                .body
-                                                          },
+                                              }),
+                                              _vm._v(" "),
+                                              _vm.checkChilds(d) && 1 == 2
+                                                ? _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "childComment"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "form",
+                                                        {
+                                                          staticClass: "form",
                                                           on: {
-                                                            input: function(
+                                                            submit: function(
                                                               $event
                                                             ) {
-                                                              if (
-                                                                $event.target
-                                                                  .composing
-                                                              ) {
-                                                                return
-                                                              }
-                                                              _vm.$set(
-                                                                _vm.formChild2,
-                                                                "body",
-                                                                $event.target
-                                                                  .value
+                                                              $event.preventDefault()
+                                                              return _vm.sendChildComment(
+                                                                d.discussions.id
+                                                              )
+                                                            },
+                                                            keydown: function(
+                                                              $event
+                                                            ) {
+                                                              return _vm.formChild.onKeydown(
+                                                                $event
                                                               )
                                                             }
                                                           }
-                                                        })
-                                                      ]
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            )
-                                          ],
-                                          2
-                                        )
-                                      }),
-                                      _vm._v(" "),
-                                      _c("br"),
-                                      _vm._v(" "),
-                                      _c("br"),
-                                      _vm._v(" "),
-                                      _c("br")
-                                    ],
-                                    2
-                                  )
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "form-group"
+                                                            },
+                                                            [
+                                                              _c("input", {
+                                                                directives: [
+                                                                  {
+                                                                    name:
+                                                                      "model",
+                                                                    rawName:
+                                                                      "v-model",
+                                                                    value:
+                                                                      _vm
+                                                                        .formChild
+                                                                        .body,
+                                                                    expression:
+                                                                      "formChild.body"
+                                                                  }
+                                                                ],
+                                                                staticClass:
+                                                                  "form-control child-response-input",
+                                                                attrs: {
+                                                                  type: "text",
+                                                                  placeholder:
+                                                                    "Write a reply... Enter key to send"
+                                                                },
+                                                                domProps: {
+                                                                  value:
+                                                                    _vm
+                                                                      .formChild
+                                                                      .body
+                                                                },
+                                                                on: {
+                                                                  input: function(
+                                                                    $event
+                                                                  ) {
+                                                                    if (
+                                                                      $event
+                                                                        .target
+                                                                        .composing
+                                                                    ) {
+                                                                      return
+                                                                    }
+                                                                    _vm.$set(
+                                                                      _vm.formChild,
+                                                                      "body",
+                                                                      $event
+                                                                        .target
+                                                                        .value
+                                                                    )
+                                                                  }
+                                                                }
+                                                              })
+                                                            ]
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                : _vm._e(),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "childComment",
+                                                  staticStyle: {
+                                                    display: "none"
+                                                  },
+                                                  attrs: {
+                                                    id: d.discussions.id
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "form",
+                                                    {
+                                                      staticClass: "form",
+                                                      on: {
+                                                        submit: function(
+                                                          $event
+                                                        ) {
+                                                          $event.preventDefault()
+                                                          return _vm.sendChild2Comment(
+                                                            d.discussions.id
+                                                          )
+                                                        },
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          return _vm.formChild2.onKeydown(
+                                                            $event
+                                                          )
+                                                        }
+                                                      }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "form-group"
+                                                        },
+                                                        [
+                                                          _c("input", {
+                                                            directives: [
+                                                              {
+                                                                name: "model",
+                                                                rawName:
+                                                                  "v-model",
+                                                                value:
+                                                                  _vm.formChild2
+                                                                    .body,
+                                                                expression:
+                                                                  "formChild2.body"
+                                                              }
+                                                            ],
+                                                            staticClass:
+                                                              "form-control child-response-input",
+                                                            attrs: {
+                                                              type: "text",
+                                                              id:
+                                                                "texto" +
+                                                                d.discussions
+                                                                  .id,
+                                                              placeholder:
+                                                                "Write a reply... Enter key to send"
+                                                            },
+                                                            domProps: {
+                                                              value:
+                                                                _vm.formChild2
+                                                                  .body
+                                                            },
+                                                            on: {
+                                                              input: function(
+                                                                $event
+                                                              ) {
+                                                                if (
+                                                                  $event.target
+                                                                    .composing
+                                                                ) {
+                                                                  return
+                                                                }
+                                                                _vm.$set(
+                                                                  _vm.formChild2,
+                                                                  "body",
+                                                                  $event.target
+                                                                    .value
+                                                                )
+                                                              }
+                                                            }
+                                                          })
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ],
+                                            2
+                                          )
+                                        }),
+                                        _vm._v(" "),
+                                        _c("br"),
+                                        _vm._v(" "),
+                                        _c("br"),
+                                        _vm._v(" "),
+                                        _c("br")
+                                      ],
+                                      2
+                                    )
+                                  ])
                                 ])
                               ])
                             ])
                           ])
                         ])
                       ])
-                    ])
-                  ]
-                )
+                    ]
+                  )
+                ])
               ])
             ])
           ])
         ])
       ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -101437,6 +101570,192 @@ function normalizeComponent (
     options: options
   }
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-mq/dist/vue-mq.es.js":
+/*!***********************************************!*\
+  !*** ./node_modules/vue-mq/dist/vue-mq.es.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var json2mq__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! json2mq */ "./node_modules/json2mq/index.js");
+/* harmony import */ var json2mq__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(json2mq__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function _toConsumableArray(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+    return arr2;
+  } else {
+    return Array.from(arr);
+  }
+}
+
+function convertBreakpointsToMediaQueries(breakpoints) {
+  var keys = Object.keys(breakpoints);
+  var values = keys.map(function (key) {
+    return breakpoints[key];
+  });
+  var breakpointValues = [0].concat(_toConsumableArray(values.slice(0, -1)));
+  var mediaQueries = breakpointValues.reduce(function (sum, value, index) {
+    var options = Object.assign({
+      minWidth: value
+    }, index < keys.length - 1 ? {
+      maxWidth: breakpointValues[index + 1] - 1
+    } : {});
+    var mediaQuery = json2mq__WEBPACK_IMPORTED_MODULE_0___default()(options);
+    return Object.assign(sum, _defineProperty({}, keys[index], mediaQuery));
+  }, {});
+  return mediaQueries;
+}
+function transformValuesFromBreakpoints(breakpoints, values, currentBreakpoint) {
+  var findClosestValue = function findClosestValue(currentBreakpoint) {
+    if (values[currentBreakpoint] !== undefined) return values[currentBreakpoint];
+    var index = breakpoints.findIndex(function (b) {
+      return b === currentBreakpoint;
+    });
+    var newBreakpoint = index !== -1 || index !== 0 ? breakpoints[index - 1] : null;
+    if (!newBreakpoint) return values[index];
+    return values[newBreakpoint] !== undefined ? values[newBreakpoint] : findClosestValue(newBreakpoint);
+  };
+
+  return findClosestValue(currentBreakpoint);
+}
+function selectBreakpoints(breakpoints, currentBreakpoint) {
+  var index = breakpoints.findIndex(function (b) {
+    return b === currentBreakpoint;
+  });
+  return breakpoints.slice(index);
+}
+function subscribeToMediaQuery(mediaQuery, enter) {
+  var mql = window.matchMedia(mediaQuery);
+
+  var cb = function cb(_ref) {
+    var matches = _ref.matches;
+    if (matches) enter();
+  };
+
+  mql.addListener(cb); //subscribing
+
+  cb(mql); //initial trigger
+}
+
+function isArray(arg) {
+  return Object.prototype.toString.call(arg) === '[object Array]';
+}
+
+// USAGE
+// mq-layout(mq="lg")
+//   p I’m lg
+var component = {
+  props: {
+    mq: {
+      required: true,
+      type: [String, Array]
+    }
+  },
+  computed: {
+    plusModifier: function plusModifier() {
+      return !isArray(this.mq) && this.mq.slice(-1) === '+';
+    },
+    activeBreakpoints: function activeBreakpoints() {
+      var breakpoints = Object.keys(this.$mqAvailableBreakpoints);
+      var mq = this.plusModifier ? this.mq.slice(0, -1) : isArray(this.mq) ? this.mq : [this.mq];
+      return this.plusModifier ? selectBreakpoints(breakpoints, mq) : mq;
+    }
+  },
+  render: function render(h, props) {
+    var shouldRenderChildren = this.activeBreakpoints.includes(this.$mq);
+    return shouldRenderChildren ? h('div', this.$slots.default) : h();
+  }
+};
+
+var DEFAULT_BREAKPOINT = {
+  sm: 450,
+  md: 1250,
+  lg: Infinity
+};
+
+var install = function install(Vue) {
+  var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+      _ref$breakpoints = _ref.breakpoints,
+      breakpoints = _ref$breakpoints === void 0 ? DEFAULT_BREAKPOINT : _ref$breakpoints,
+      _ref$defaultBreakpoin = _ref.defaultBreakpoint,
+      defaultBreakpoint = _ref$defaultBreakpoin === void 0 ? 'sm' : _ref$defaultBreakpoin;
+
+  var hasSetupListeners = false; // Init reactive component
+
+  var reactorComponent = new Vue({
+    data: function data() {
+      return {
+        currentBreakpoint: defaultBreakpoint
+      };
+    }
+  });
+  Vue.filter('mq', function (currentBreakpoint, values) {
+    return transformValuesFromBreakpoints(Object.keys(breakpoints), values, currentBreakpoint);
+  });
+  Vue.mixin({
+    computed: {
+      $mq: function $mq() {
+        return reactorComponent.currentBreakpoint;
+      }
+    },
+    created: function created() {
+      if (this.$isServer) reactorComponent.currentBreakpoint = defaultBreakpoint;
+    },
+    mounted: function mounted() {
+      if (!hasSetupListeners) {
+        var mediaQueries = convertBreakpointsToMediaQueries(breakpoints); // setup listeners
+
+        var _loop = function _loop(key) {
+          var mediaQuery = mediaQueries[key];
+
+          var enter = function enter() {
+            reactorComponent.currentBreakpoint = key;
+          };
+
+          subscribeToMediaQuery(mediaQuery, enter);
+        };
+
+        for (var key in mediaQueries) {
+          _loop(key);
+        }
+
+        hasSetupListeners = true;
+      }
+    }
+  });
+  Vue.prototype.$mqAvailableBreakpoints = breakpoints;
+  Vue.component('MqLayout', component);
+};
+
+var index = {
+  install: install
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (index);
 
 
 /***/ }),
@@ -116228,6 +116547,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_star__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vue_star__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var vue_random_pic__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-random-pic */ "./node_modules/vue-random-pic/index.js");
 /* harmony import */ var vue_random_pic__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(vue_random_pic__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var vue_mq__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-mq */ "./node_modules/vue-mq/dist/vue-mq.es.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -116245,7 +116565,15 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
+
 Vue.use(vue_random_pic__WEBPACK_IMPORTED_MODULE_8___default.a, 'https://unsplash.it');
+Vue.use(vue_mq__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  breakpoints: {
+    sm: 450,
+    md: 1250,
+    lg: Infinity
+  }
+});
 Vue.mixin(_mixins_Permissions__WEBPACK_IMPORTED_MODULE_6__["default"]);
 window.Form = vform__WEBPACK_IMPORTED_MODULE_1__["Form"]; // Ahora en cualquier lugar de nuestra aplicacion tenemos acceso a esa variable
 
