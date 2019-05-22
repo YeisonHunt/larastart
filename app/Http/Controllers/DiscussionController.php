@@ -261,12 +261,16 @@ class DiscussionController extends Controller
 
             $temp = 0;
 
-            $checkLikesPadre = DB::table('likes')->join('discussions','likes.comment_id','=','discussions.id')->where('discussions.id',$idCommentTemp)->where('discussions.discussion_parent_id','=',0)->get();
+            $checkLikesPadre = DB::table('likes')->join('discussions','likes.comment_id','=','discussions.id')->where('discussions.id',$idCommentTemp)
+            ->where('discussions.discussion_parent_id','=',0)
+            ->select('likes.*')
+            ->get();
 
             $checkLikesHijo = DB::table('likes')
             ->join('discussions','likes.comment_id','=','discussions.id')
             ->where('discussions.id',$idCommentTemp)
             ->where('discussions.discussion_parent_id','!=',0)
+            ->select('likes.*')
             ->get();   
 
          $disscussion_child= DB::table('discussions')->where('idea_id',0)->where('discussion_parent_id',$comment->id)
@@ -279,6 +283,13 @@ class DiscussionController extends Controller
 
             foreach($disscussion_child as $child){
 
+                $checkLikesHijo2 = DB::table('likes')
+                        ->join('discussions','likes.comment_id','=','discussions.id')
+                        ->where('discussions.id',$child->id)
+                        ->where('discussions.discussion_parent_id','!=',0)
+                        ->select('likes.*')
+                        ->get(); 
+
                 $childLike=array(
                     'id'=>$child->id,
                     'idea_id'=>$child->idea_id,
@@ -290,7 +301,7 @@ class DiscussionController extends Controller
                     'name'=>$child->name,
                     'email'=>$child->email,
                     'avatar'=>$child->avatar,
-                    'likes'=>$checkLikesHijo
+                    'likes'=>$checkLikesHijo2
     
     
                 );
@@ -302,6 +313,7 @@ class DiscussionController extends Controller
             }
 
 
+            Log::info($childs);
 
             
 
@@ -327,7 +339,7 @@ class DiscussionController extends Controller
 
 
             );
-         }elseif(count($checkLikesHijo)){
+         }elseif(count($checkLikesHijo)!=0){
 
             $commentsFinal=array(
                 'id'=>$comment->id,
@@ -372,6 +384,8 @@ class DiscussionController extends Controller
         ];
 
         $childs=array();
+
+            
          
         }
     }else{
