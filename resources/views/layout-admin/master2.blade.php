@@ -21,6 +21,7 @@
         </script>
 
 			<link rel="stylesheet" href="{{ asset('css/animate.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/hover-min.css') }}">
 			<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
 			<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
