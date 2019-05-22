@@ -347,6 +347,12 @@
 
 <style type="text/css">
 
+.VueStar__decoration {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+}
+
 .biggerIcons {
   font-size: 1.5em !important;;
 }

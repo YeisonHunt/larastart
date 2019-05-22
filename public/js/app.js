@@ -5274,6 +5274,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -37423,7 +37429,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.biggerIcons {\r\n  font-size: 1.5em !important;\n}\n.VueStar__icon {\r\n  \r\n    position:static !important;\r\n    z-index: 0;\r\n    height: 30px;\r\n    width: 20px;\n}\n.VueStar__ground {\r\n    width: 1px;\r\n    height: 1px;\r\n    margin-left:60px;\r\n    margin-top:10px;\n}\n.icons {\r\n  margin-left:10px;\n}\n.media-list {\r\n  padding-left:0;\n}\n.links {\r\n  cursor: pointer;\n}\n.center {\r\n  margin-right:10px !important;\n}\n.fit-width-input{\r\n\r\n  width:30vw !important;\n}\n.child-response-input {\r\n  margin-left:70px;\r\n  position: relative;\r\n  width: 70% !important;\n}\n.biggerFont {\r\n  font-size:1.1em;\r\n  padding-left:30px !important;\r\n  margin-left:40px !important;\n}\n.biggerFont2 {\r\n  font-size:1.1em;\n}\n.normalFont {\r\n  font-style: normal !important;\r\n  font-size: 1.05em;\r\n  color: grey;\n}\n.normalFont:hover {\r\n   color: #4286f4;\n}\n.sub {\r\n  padding-left:70px;\n}\n.imgCircle {\r\n  border-radius:30px;\n}\n.media {\r\n  display:block;\n}\n.allHeight {\r\n  height: 100vh !important;\n}\n.comment-wrapper .media-list .media img {\r\n  width: 64px;\r\n  height: 64px;\r\n  border: 2px solid #e5e7e8;\n}\n.comment-wrapper .media-list .media {\r\n  border-bottom: 1px dashed #efefef;\r\n  margin-bottom: 25px;\n}\r\n", ""]);
+exports.push([module.i, "\n.VueStar__decoration {\r\n    width: 50px;\r\n    height: 50px;\r\n    position: absolute;\n}\n.biggerIcons {\r\n  font-size: 1.5em !important;\n}\n.VueStar__icon {\r\n  \r\n    position:static !important;\r\n    z-index: 0;\r\n    height: 30px;\r\n    width: 20px;\n}\n.VueStar__ground {\r\n    width: 1px;\r\n    height: 1px;\r\n    margin-left:60px;\r\n    margin-top:10px;\n}\n.icons {\r\n  margin-left:10px;\n}\n.media-list {\r\n  padding-left:0;\n}\n.links {\r\n  cursor: pointer;\n}\n.center {\r\n  margin-right:10px !important;\n}\n.fit-width-input{\r\n\r\n  width:30vw !important;\n}\n.child-response-input {\r\n  margin-left:70px;\r\n  position: relative;\r\n  width: 70% !important;\n}\n.biggerFont {\r\n  font-size:1.1em;\r\n  padding-left:30px !important;\r\n  margin-left:40px !important;\n}\n.biggerFont2 {\r\n  font-size:1.1em;\n}\n.normalFont {\r\n  font-style: normal !important;\r\n  font-size: 1.05em;\r\n  color: grey;\n}\n.normalFont:hover {\r\n   color: #4286f4;\n}\n.sub {\r\n  padding-left:70px;\n}\n.imgCircle {\r\n  border-radius:30px;\n}\n.media {\r\n  display:block;\n}\n.allHeight {\r\n  height: 100vh !important;\n}\n.comment-wrapper .media-list .media img {\r\n  width: 64px;\r\n  height: 64px;\r\n  border: 2px solid #e5e7e8;\n}\n.comment-wrapper .media-list .media {\r\n  border-bottom: 1px dashed #efefef;\r\n  margin-bottom: 25px;\n}\r\n", ""]);
 
 // exports
 
