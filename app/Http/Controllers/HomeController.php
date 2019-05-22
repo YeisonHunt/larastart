@@ -43,6 +43,6 @@ class HomeController extends Controller
 
 
 
-        return $user->getAllPermissions();
+        return redirect()->route('admin');
     }
 }
