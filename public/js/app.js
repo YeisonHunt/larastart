@@ -4196,6 +4196,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4316,7 +4324,7 @@ __webpack_require__.r(__webpack_exports__);
 
         $("#closeBtnModal").click();
         $(".modal-backdrop").remove();
-        toastr.success("Awesome!", "New idea has appeared."); //form.ideatxt=''
+        toastr.success("Awesome!", "New innovation has appeared."); //form.ideatxt=''
         //form.bugorfeaturetxt=''
       })["catch"](function () {
         toastr.error("Oops!", "Something goes wrong");
@@ -4332,9 +4340,11 @@ __webpack_require__.r(__webpack_exports__);
       var _this5 = this;
 
       // podemos usar this.form.get but we are gonna use axios
-      axios.get("/getInnovations").then(function (_ref4) {
-        var data = _ref4.data;
-        return _this5.ideas = data.data;
+      axios.get("/getInnovations").then(function (response) {
+        _this5.ideas = response.data.ideas;
+      })["catch"](function (error) {
+        console.log(error);
+        toastr.error("Oops!", "Something goes wrong");
       });
       Fire.$on("AfterCreate", function () {});
     }
@@ -4942,9 +4952,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form.post('/updateIdea/' + this.id).then(function (_ref) {
         var data = _ref.data;
 
-        _this2.$router.push({
-          path: '/innovations'
-        });
+        _this2.$router.go(-1);
 
         toastr.success('Awesome!', 'Idea updated successfully.');
 
@@ -5437,6 +5445,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5451,6 +5502,8 @@ __webpack_require__.r(__webpack_exports__);
       like: {},
       containter: "",
       containerFluid: "",
+      likesPerIdea: {},
+      foundLiked: false,
       baseUrl: window.baseUrl,
       randomNumber: Math.floor(Math.random() * 100),
       lastCommentId: "",
@@ -5477,6 +5530,10 @@ __webpack_require__.r(__webpack_exports__);
         user_id: window.user.id,
         comment_id: "",
         idea_id: this.$route.params.id
+      }),
+      formDesired: new Form({
+        innovation_id: this.$route.params.id,
+        user_id: window.user.id
       })
     };
   },
@@ -5510,9 +5567,62 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         return 'likes';
       }
+    },
+    voteText: function voteText() {
+      if (this.$mq == 'sm') {
+        return '';
+      } else if (this.$mq == 'md' || this.$mq == 'lg') {
+        return 'Vote idea';
+      } else {
+        return 'Vote idea';
+      }
+    },
+    likedText: function likedText() {
+      if (this.$mq == 'sm') {
+        return '';
+      } else if (this.$mq == 'md' || this.$mq == 'lg') {
+        return 'Liked!';
+      } else {
+        return 'Liked!';
+      }
     }
   },
   methods: {
+    alreadyLiked: function alreadyLiked(idea) {
+      if (this.likesPerIdea.length != 0) {
+        var foundLiked2 = false;
+
+        try {
+          this.likesPerIdea.forEach(function (el) {
+            if (el.user_id == window.user.id) {
+              foundLiked2 = true;
+            }
+          });
+        } catch (e) {}
+
+        this.foundLiked = foundLiked2;
+        return foundLiked2;
+      } else {
+        this.foundLiked = false;
+        return false;
+      }
+    },
+    likeIdea: function likeIdea() {
+      var _this = this;
+
+      this.$Progress.start(); // Submit the form via a POST request
+      //this.form.editordata =  $('#kt_summernote_1').summernote('code');
+
+      this.formDesired.post("/saveDesired").then(function (response) {
+        toastr.success("Keep rating", "Innovation liked!.");
+        _this.likesPerIdea = response.data.desired;
+      })["catch"](function (error) {
+        console.log(error);
+        toastr.error("Oops!", "Something goes wrong");
+      }); //$('#userCreationModal').modal('hide');
+
+      this.$Progress.finish();
+    },
     checkLiked: function checkLiked(likeObject) {
       //if(likeObject.)
       if (likeObject.length != 0) {
@@ -5522,7 +5632,6 @@ __webpack_require__.r(__webpack_exports__);
         try {
           likeObject.forEach(function (elements) {
             if (elements.user_id == window.user.id) {
-              console.log("Usuario que dio like:" + elements.user_id);
               found = true;
             }
           });
@@ -5535,9 +5644,8 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     likeComment: function likeComment(idComment) {
-      var _this = this;
+      var _this2 = this;
 
-      console.log(idComment);
       this.formLike.comment_id = idComment;
       this.formLike.idea_id = this.id_idea_general;
       this.$Progress.start(); // Submit the form via a POST request
@@ -5545,13 +5653,13 @@ __webpack_require__.r(__webpack_exports__);
 
       this.formLike.post("/saveLike").then(function (response) {
         toastr.success("Keep innovating", "Thanks for the feedback.");
-        _this.formLike.comment_id = "";
-        _this.formLike.idea_id = "";
-        _this.discussionsFinal = response.data.discussions;
+        _this2.formLike.comment_id = "";
+        _this2.formLike.idea_id = "";
+        _this2.discussionsFinal = response.data.discussions;
       })["catch"](function (error) {
         console.log(error);
-        _this.formLike.comment_id = "";
-        _this.formLike.idea_id = "";
+        _this2.formLike.comment_id = "";
+        _this2.formLike.idea_id = "";
         toastr.error("Oops!", "Something goes wrong");
       }); //$('#userCreationModal').modal('hide');
 
@@ -5569,19 +5677,20 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     loadUsers: function loadUsers() {
-      var _this2 = this;
+      var _this3 = this;
 
       // podemos usar this.form.get but we are gonna use axios
       axios.get("/getInnovation/" + this.id).then(function (response) {
-        _this2.idea = response.data.idea;
-        _this2.userIdea = response.data.user;
-        _this2.discussionsFinal = response.data.discussions; //console.log(response);
+        _this3.idea = response.data.idea;
+        _this3.userIdea = response.data.user;
+        _this3.discussionsFinal = response.data.discussions;
+        _this3.likesPerIdea = response.data.desired; //console.log(response);
       })["catch"](function (error) {
         console.log(error);
       });
     },
     sendComment: function sendComment() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.$Progress.start(); // Submit the form via a POST request
       //this.form.editordata =  $('#kt_summernote_1').summernote('code');
@@ -5589,10 +5698,11 @@ __webpack_require__.r(__webpack_exports__);
       this.form.post("/addComment").then(function (response) {
         toastr.success("Awesome!", "Comment added successfully.");
 
-        _this3.form.reset();
+        _this4.form.reset();
 
-        _this3.discussionsFinal = response.data.discussions;
-        _this3.lastCommentId = response.data.lastCommentId;
+        _this4.discussionsFinal = response.data.discussions; //this.lastCommentId = response.data.lastCommentId;
+
+        _this4.likesPerIdea = response.data.desired;
       })["catch"](function (error) {
         console.log(error);
         toastr.error("Oops!", "Something goes wrong");
@@ -5604,7 +5714,7 @@ __webpack_require__.r(__webpack_exports__);
       this.sendComment();
     },
     sendChildComment: function sendChildComment(idComment) {
-      var _this4 = this;
+      var _this5 = this;
 
       this.$Progress.start(); // Submit the form via a POST request
       //this.form.editordata =  $('#kt_summernote_1').summernote('code');
@@ -5613,9 +5723,10 @@ __webpack_require__.r(__webpack_exports__);
       this.formChild.post("/addComment").then(function (response) {
         toastr.success("Awesome!", "Comment added successfully.");
 
-        _this4.formChild.reset();
+        _this5.formChild.reset();
 
-        _this4.discussionsFinal = response.data.discussions;
+        _this5.discussionsFinal = response.data.discussions;
+        _this5.likesPerIdea = response.data.desired;
       })["catch"](function () {
         toastr.error("Oops!", "Something goes wrong");
       }); //$('#userCreationModal').modal('hide');
@@ -5623,7 +5734,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$Progress.finish();
     },
     sendChild2Comment: function sendChild2Comment(idComment) {
-      var _this5 = this;
+      var _this6 = this;
 
       this.$Progress.start(); // Submit the form via a POST request
       //this.form.editordata =  $('#kt_summernote_1').summernote('code');
@@ -5632,10 +5743,11 @@ __webpack_require__.r(__webpack_exports__);
       this.formChild2.post("/addComment").then(function (response) {
         toastr.success("Awesome!", "Comment added successfully.");
 
-        _this5.formChild2.reset();
+        _this6.formChild2.reset();
 
         $("#" + idComment).attr("style", "display:none");
-        _this5.discussionsFinal = response.data.discussions; // document.getElementById('padre'+response.data.lastCommentId).focus();
+        _this6.discussionsFinal = response.data.discussions;
+        _this6.likesPerIdea = response.data.desired; // document.getElementById('padre'+response.data.lastCommentId).focus();
       })["catch"](function (error) {
         console.log(error);
         toastr.error("Oops!", "Something goes wrong");
@@ -37630,7 +37742,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.wrapText {\r\n  word-wrap: break-word !important;\n}\n.VueStar__decoration {\r\n  width: 50px;\r\n  height: 50px;\r\n  position: absolute;\n}\n.biggerIcons {\r\n  font-size: 1.5em !important;\n}\n.VueStar__icon {\r\n  position: static !important;\r\n  z-index: 0;\r\n  height: 30px;\r\n  width: 20px;\n}\n.VueStar__ground {\r\n  width: 1px;\r\n  height: 1px;\r\n  margin-left: 60px;\r\n  margin-top: 10px;\n}\n@media (max-width: 600px) {\n.VueStar__ground {\r\n      \r\n      margin-left: 10px;\r\n      margin-top: 10px;\n}\n}\n.auxiliarVueStar {\r\n   margin-left: 5px;\n}\n.icons {\r\n  margin-left: 10px;\n}\n.media-list {\r\n  padding-left: 0;\n}\n.links {\r\n  cursor: pointer;\n}\n.center {\r\n  margin-right: 10px !important;\n}\n.fit-width-input {\r\n  width: 30vw !important;\n}\n.child-response-input {\r\n  margin-left: 70px;\r\n  position: relative;\r\n  width: 70% !important;\n}\n.biggerFont {\r\n  font-size: 1.1em;\r\n  padding-left: 30px !important;\r\n  margin-left: 40px !important;\n}\n.biggerFont2 {\r\n  font-size: 1.1em;\n}\n.normalFont {\r\n  font-style: normal !important;\r\n  font-size: 1.05em;\r\n  color: grey;\n}\n.normalFont:hover {\r\n  color: #4286f4;\n}\n.sub {\r\n  padding-left: 70px;\n}\n.imgCircle {\r\n  border-radius: 30px;\n}\n.media {\r\n  display: block;\n}\n.allHeight {\r\n  height: 100vh !important;\n}\n.comment-wrapper .media-list .media img {\r\n  width: 64px;\r\n  height: 64px;\r\n  border: 2px solid #e5e7e8;\n}\n.comment-wrapper .media-list .media {\r\n  border-bottom: 1px dashed #efefef;\r\n  margin-bottom: 25px;\n}\r\n", ""]);
+exports.push([module.i, "\n.largeBtn {\r\n  width:100px !important;\n}\n.pulse {\r\n  --color: #1164c5;\r\n  --hover: #1164c5;\n}\n.pulse:hover,\r\n.pulse:focus {\r\n  -webkit-animation: pulse 3s infinite;\r\n          animation: pulse 3s infinite;\r\n  box-shadow: 0 0 0 2em rgba(255, 255, 255, 0);\n}\n@-webkit-keyframes pulse {\n0% {\r\n    box-shadow: 0 0 0 0 var(--hover);\n}\n}\n@keyframes pulse {\n0% {\r\n    box-shadow: 0 0 0 0 var(--hover);\n}\n}\n.wrapText {\r\n  word-wrap: break-word !important;\n}\n.VueStar__decoration {\r\n  width: 50px;\r\n  height: 50px;\r\n  position: absolute;\n}\n.biggerIcons {\r\n  font-size: 1.5em !important;\n}\n.VueStar__icon {\r\n  position: static !important;\r\n  z-index: 0;\r\n  height: 30px;\r\n  width: 20px;\n}\n.VueStar__ground {\r\n  width: 1px;\r\n  height: 1px;\r\n  margin-left: 60px;\r\n  margin-top: 10px;\n}\n@media (max-width: 600px) {\n.VueStar__ground {\r\n      \r\n      margin-left: 10px;\r\n      margin-top: 10px;\n}\n}\n.auxiliarVueStar {\r\n   margin-left: 5px;\n}\n.icons {\r\n  margin-left: 10px;\n}\n.media-list {\r\n  padding-left: 0;\n}\n.links {\r\n  cursor: pointer;\n}\n.center {\r\n  margin-right: 10px !important;\n}\n.fit-width-input {\r\n  width: 30vw !important;\n}\n.child-response-input {\r\n  margin-left: 70px;\r\n  position: relative;\r\n  width: 70% !important;\n}\n.biggerFont {\r\n  font-size: 1.1em;\r\n  padding-left: 30px !important;\r\n  margin-left: 40px !important;\n}\n.biggerFont2 {\r\n  font-size: 1.1em;\n}\n.normalFont {\r\n  font-style: normal !important;\r\n  font-size: 1.05em;\r\n  color: grey;\n}\n.normalFont:hover {\r\n  color: #4286f4;\n}\n.sub {\r\n  padding-left: 70px;\n}\n.imgCircle {\r\n  border-radius: 30px;\n}\n.media {\r\n  display: block;\n}\n.allHeight {\r\n  height: 100vh !important;\n}\n.comment-wrapper .media-list .media img {\r\n  width: 64px;\r\n  height: 64px;\r\n  border: 2px solid #e5e7e8;\n}\n.comment-wrapper .media-list .media {\r\n  border-bottom: 1px dashed #efefef;\r\n  margin-bottom: 25px;\n}\r\n", ""]);
 
 // exports
 
@@ -98207,7 +98319,7 @@ var render = function() {
                               _c(
                                 "router-link",
                                 { attrs: { to: "/innovations/" + idea.id } },
-                                [_vm._v("18")]
+                                [_vm._v(_vm._s(idea.likes.length))]
                               )
                             ],
                             1
@@ -98219,7 +98331,7 @@ var render = function() {
                               staticClass: "kt-widget19__comment",
                               attrs: { to: "/innovations/" + idea.id }
                             },
-                            [_vm._v("Comments")]
+                            [_vm._v("Votes")]
                           )
                         ],
                         1
@@ -98265,6 +98377,16 @@ var render = function() {
                           attrs: { to: "/innovations/" + idea.id }
                         },
                         [_vm._v("Read full idea...")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass:
+                            "btn btn-sm  btn-label-danger btn-bold pull-right ",
+                          attrs: { to: "/innovations/" + idea.id }
+                        },
+                        [_vm._v("Vote \n                         ")]
                       )
                     ],
                     1
@@ -99985,7 +100107,45 @@ var render = function() {
                   "div",
                   { staticClass: "kt-portlet__head-actions" },
                   [
-                    _vm._m(1),
+                    !_vm.alreadyLiked(_vm.idea)
+                      ? _c(
+                          "button",
+                          {
+                            staticClass:
+                              "btn btn-outline-primary btn-sm btn-icon pulse btn-icon-md ",
+                            class: { largeBtn: _vm.large },
+                            on: { click: _vm.likeIdea }
+                          },
+                          [
+                            _c("i", { staticClass: "flaticon-like " }),
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(_vm.voteText) +
+                                "\n              "
+                            )
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.alreadyLiked(_vm.idea)
+                      ? _c(
+                          "button",
+                          {
+                            staticClass:
+                              "btn btn-primary btn-sm btn-icon pulse btn-icon-md ",
+                            class: { largeBtn: _vm.large },
+                            on: { click: _vm.likeIdea }
+                          },
+                          [
+                            _c("i", { staticClass: "flaticon-like " }),
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(_vm.likedText) +
+                                "\n               "
+                            )
+                          ]
+                        )
+                      : _vm._e(),
                     _vm._v(" "),
                     _c(
                       "router-link",
@@ -99994,10 +100154,10 @@ var render = function() {
                           "btn btn-outline-danger btn-sm btn-icon btn-icon-md",
                         attrs: { to: "/innovationsEdit/" + this.id }
                       },
-                      [_c("i", { staticClass: "flaticon2-gear" })]
+                      [_c("i", { staticClass: "flaticon-edit" })]
                     ),
                     _vm._v(" "),
-                    _vm._m(2)
+                    _vm._m(1)
                   ],
                   1
                 )
@@ -100033,7 +100193,7 @@ var render = function() {
                             [
                               _c("div", { staticClass: "kt-widget4" }, [
                                 _c("div", { staticClass: "kt-widget4__item" }, [
-                                  _vm._m(3),
+                                  _vm._m(2),
                                   _vm._v(" "),
                                   _vm.idea.author == "showme"
                                     ? _c(
@@ -100115,6 +100275,8 @@ var render = function() {
                             ]
                           )
                         ]),
+                        _vm._v(" "),
+                        _c("br"),
                         _vm._v(" "),
                         _c("div", { staticClass: "comments-section" }, [
                           _c("div", { staticClass: "row bootstrap snippets" }, [
@@ -100691,7 +100853,7 @@ var render = function() {
                                                                   }
                                                                 }
                                                               },
-                                                              [_vm._m(4, true)]
+                                                              [_vm._m(3, true)]
                                                             )
                                                           ]
                                                         )
@@ -100942,20 +101104,7 @@ var staticRenderFns = [
         staticClass: "btn btn-outline-success btn-sm btn-icon btn-icon-md",
         attrs: { href: "#" }
       },
-      [_c("i", { staticClass: "flaticon2-search-1" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "btn btn-outline-brand btn-sm btn-icon btn-icon-md",
-        attrs: { href: "#" }
-      },
-      [_c("i", { staticClass: "flaticon2-calendar-5" })]
+      [_c("i", { staticClass: "la la-star-o" })]
     )
   },
   function() {

@@ -18,24 +18,36 @@
             </div>
             <div class="kt-portlet__head-toolbar">
               <div class="kt-portlet__head-actions">
-                <a href="#" class="btn btn-outline-success btn-sm btn-icon btn-icon-md">
-                  <i class="flaticon2-search-1"></i>
-                </a>
+
+                <button  v-if="!alreadyLiked(idea)"   @click="likeIdea"  class="btn btn-outline-primary btn-sm btn-icon pulse btn-icon-md " :class="{'largeBtn':large}">
+                  <i class="flaticon-like " ></i>
+                  &nbsp; {{voteText}}
+                </button>
+
+
+                 <button  v-if="alreadyLiked(idea)"  @click="likeIdea" class="btn btn-primary btn-sm btn-icon pulse btn-icon-md " :class="{'largeBtn':large}">
+                  <i class="flaticon-like "  ></i>
+                  &nbsp; {{likedText}}
+                 </button>
+
+
+
+
                 <router-link
                   v-bind:to="'/innovationsEdit/'+this.id"
                   class="btn btn-outline-danger btn-sm btn-icon btn-icon-md"
                 >
-                  <i class="flaticon2-gear"></i>
+                  <i class="flaticon-edit"></i>
                 </router-link>
-                <a href="#" class="btn btn-outline-brand btn-sm btn-icon btn-icon-md">
-                  <i class="flaticon2-calendar-5"></i>
+                <a href="#" class="btn btn-outline-success btn-sm btn-icon btn-icon-md">
+                  <i class="la la-star-o"></i>
                 </a>
               </div>
             </div>
           </div>
           <!-- end portlet head-->
 
-          <div class="kt-portlet__body wrapText" id="ideaBody" v-html="idea.body"></div>
+          <div class="kt-portlet__body wrapText" id="ideaBody"  v-html="idea.body"></div>
 
           <br>
 
@@ -83,6 +95,7 @@
                         </div>
                       </div>
                     </div>
+                    <br>
                     <!-- Start comments-section -->
                     <div class="comments-section">
                       <div class="row bootstrap snippets">
@@ -332,6 +345,36 @@
 </template>
 
 <style type="text/css">
+
+.largeBtn {
+  width:100px !important;
+}
+
+.pulse {
+  --color: #1164c5;
+  --hover: #1164c5;
+}
+
+
+.pulse:hover,
+.pulse:focus {
+  -webkit-animation: pulse 3s infinite;
+          animation: pulse 3s infinite;
+  box-shadow: 0 0 0 2em rgba(255, 255, 255, 0);
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--hover);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--hover);
+  }
+}
+
 .wrapText {
   word-wrap: break-word !important;
 }
@@ -461,6 +504,8 @@ export default {
       like: {},
       containter: "",
       containerFluid: "",
+      likesPerIdea:{},
+      foundLiked:false,
       baseUrl: window.baseUrl,
       randomNumber: Math.floor(Math.random() * 100),
       lastCommentId: "",
@@ -491,11 +536,20 @@ export default {
         user_id: window.user.id,
         comment_id: "",
         idea_id: this.$route.params.id
+      }),
+
+      formDesired:new Form({
+        innovation_id: this.$route.params.id,
+        user_id: window.user.id
       })
+
     };
   },
 
   computed: {
+
+
+
     updatedLastIdComment: function() {
       //console.log('Termino de enviar comentario. Ir a padre'+this.lastCommentId);
       //document.getElementById('padre'+this.lastCommentId).focus();
@@ -530,10 +584,90 @@ export default {
       }else {
         return 'likes'
       }
-    }
+    },
+
+     voteText: function(){
+      if(this.$mq=='sm'){
+        return '';
+      }else if(this.$mq=='md' || this.$mq=='lg'){
+        return 'Vote idea'
+      }else {
+        return 'Vote idea'
+      }
+
+    },
+
+    likedText: function(){
+      if(this.$mq=='sm'){
+        return '';
+      }else if(this.$mq=='md' || this.$mq=='lg'){
+        return 'Liked!'
+      }else {
+        return 'Liked!'
+      }
+
+    },
+
+
   },
 
   methods: {
+
+    
+    alreadyLiked(idea){
+
+      
+
+        if (this.likesPerIdea.length != 0) {
+        
+
+        let foundLiked2 = false;
+        try {
+          this.likesPerIdea.forEach(function(el) {
+            if (el.user_id == window.user.id) {
+              
+              foundLiked2 = true;
+              
+            }
+          });
+        } catch (e) {}
+
+        this.foundLiked = foundLiked2;
+        return foundLiked2;
+      } else {
+        
+        this.foundLiked=false;
+
+        return false;
+      }
+    },
+
+    likeIdea(){
+
+   
+
+      this.$Progress.start();
+      // Submit the form via a POST request
+
+      //this.form.editordata =  $('#kt_summernote_1').summernote('code');
+      this.formDesired
+        .post("/saveDesired")
+        .then(response => {
+          toastr.success("Keep rating", "Innovation liked!.");
+         
+          this.likesPerIdea = response.data.desired;
+        })
+        .catch(error => {
+          console.log(error);
+        
+          toastr.error("Oops!", "Something goes wrong");
+        });
+
+      //$('#userCreationModal').modal('hide');
+
+      this.$Progress.finish();
+    },
+
     checkLiked(likeObject) {
       //if(likeObject.)
 
@@ -544,7 +678,7 @@ export default {
         try {
           likeObject.forEach(function(elements) {
             if (elements.user_id == window.user.id) {
-              console.log("Usuario que dio like:" + elements.user_id);
+            
               found = true;
             }
           });
@@ -558,7 +692,7 @@ export default {
     },
 
     likeComment(idComment) {
-      console.log(idComment);
+    
 
       this.formLike.comment_id = idComment;
       this.formLike.idea_id = this.id_idea_general;
@@ -611,6 +745,7 @@ export default {
           this.idea = response.data.idea;
           this.userIdea = response.data.user;
           this.discussionsFinal = response.data.discussions;
+          this.likesPerIdea = response.data.desired;
 
           //console.log(response);
         })
@@ -632,7 +767,8 @@ export default {
 
           this.discussionsFinal = response.data.discussions;
 
-          this.lastCommentId = response.data.lastCommentId;
+          //this.lastCommentId = response.data.lastCommentId;
+          this.likesPerIdea = response.data.desired;
         })
         .catch(error => {
           console.log(error);
@@ -663,6 +799,7 @@ export default {
           this.formChild.reset();
 
           this.discussionsFinal = response.data.discussions;
+          this.likesPerIdea = response.data.desired;
         })
         .catch(() => {
           toastr.error("Oops!", "Something goes wrong");
@@ -689,6 +826,7 @@ export default {
           $("#" + idComment).attr("style", "display:none");
 
           this.discussionsFinal = response.data.discussions;
+          this.likesPerIdea = response.data.desired;
 
           // document.getElementById('padre'+response.data.lastCommentId).focus();
         })

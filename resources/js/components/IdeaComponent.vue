@@ -221,10 +221,10 @@
 													<div class="kt-widget19__stats">
 														<span class="kt-widget19__number kt-font-brand">
 															
-                              <router-link class="" v-bind:to="'/innovations/'+idea.id">18</router-link>
+                              <router-link class="" v-bind:to="'/innovations/'+idea.id">{{idea.likes.length}}</router-link>
 														</span>
 														
-                          <router-link class="kt-widget19__comment" v-bind:to="'/innovations/'+idea.id">Comments</router-link>
+                          <router-link class="kt-widget19__comment" v-bind:to="'/innovations/'+idea.id">Votes</router-link>
 
                           
                             
@@ -241,7 +241,15 @@
 											<div class="kt-widget19__action">
 												
 
-                         <router-link class="btn btn-sm btn-label-brand btn-bold " v-bind:to="'/innovations/'+idea.id">Read full idea...</router-link>
+                         <router-link class="btn btn-sm btn-label-brand btn-bold " 
+                         v-bind:to="'/innovations/'+idea.id">Read full idea...</router-link>
+
+                          	
+
+                         <router-link v-bind:to="'/innovations/'+idea.id" class="btn btn-sm  btn-label-danger btn-bold pull-right ">Vote 
+                         </router-link>
+
+                         
 											</div>
 
                      
@@ -675,7 +683,7 @@ export default {
           this.loadUsers();
           $("#closeBtnModal").click();
           $(".modal-backdrop").remove();
-          toastr.success("Awesome!", "New idea has appeared.");
+          toastr.success("Awesome!", "New innovation has appeared.");
 
           //form.ideatxt=''
           //form.bugorfeaturetxt=''
@@ -698,13 +706,15 @@ export default {
     loadUsers() {
       // podemos usar this.form.get but we are gonna use axios
 
-      axios.get("/getInnovations").then(({ data }) => (
-        
-        this.ideas = data.data
-        
-        
-        
-        ));
+      axios.get("/getInnovations").then(response => {
+
+          this.ideas = response.data.ideas;
+        })
+        .catch(error => {
+          console.log(error);
+         
+          toastr.error("Oops!", "Something goes wrong");
+        });
 
         
 

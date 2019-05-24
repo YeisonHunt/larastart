@@ -8,6 +8,8 @@ use App\Discussion;
 use DB;
 use App\Like;
 use Log;
+use App\User;
+use App\Desired;
 
 class DiscussionController extends Controller
 {
@@ -117,7 +119,6 @@ class DiscussionController extends Controller
                 }
 
 
-                Log::info($childs);
 
                 
 
@@ -196,13 +197,16 @@ class DiscussionController extends Controller
             $discussions='';
         }
 
-        Log::info('El like se guardo normal perros');
+        
+        $desired = DB::table('desireds')->where('innovation_id',$id)->get();
+
         
 
         return response()->json([
             'idea' => $idea,
             'user' => $user,
-            'discussions'=>$discussions
+            'discussions'=>$discussions,
+            'desired'=>$desired
         ]);
 
 
@@ -313,7 +317,7 @@ class DiscussionController extends Controller
             }
 
 
-            Log::info($childs);
+           
 
             
 
@@ -394,12 +398,13 @@ class DiscussionController extends Controller
 
 
         
-        
+    $desired = DB::table('desireds')->where('innovation_id',$id)->get();
 
     
         return response()->json([
             'discussions'=>$discussions,
-            'lastCommentId'=>$lastComment->id
+            'lastCommentId'=>$lastComment->id,
+            'desired'=>$desired
         ]);
 
 

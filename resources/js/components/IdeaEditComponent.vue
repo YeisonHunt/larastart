@@ -304,7 +304,7 @@ export default {
                 .then(({ data }) => { 
 
 				 
-					this.$router.push({ path: '/innovations' });
+					this.$router.go(-1);
                     toastr.success('Awesome!','Idea updated successfully.')
 					this.form.reset();
                     

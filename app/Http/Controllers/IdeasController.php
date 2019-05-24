@@ -11,6 +11,7 @@ use Auth;
 use App\User;
 use App\Discussion;
 use DB;
+use App\Desired;
 
 
 class IdeasController extends Controller
@@ -24,10 +25,119 @@ class IdeasController extends Controller
 
     public function index2(){
 
-        return Innovation::latest()->paginate(10);
+        $ideas= DB::table('innovations')->orderBy('id','DESC')->get();
+
+        $likesIdea = array();
+
+        $ideasAll = array();
+
+        if (!empty($ideas)) {
+            foreach($ideas as $idea){
+
+                $checkLikesIdea = DB::table('desireds')->where('innovation_id',$idea->id)->get();
+
+                if(count($checkLikesIdea)!=0) {
+
+                    $tempIdea=array(
+
+                        'id'=>$idea->id,
+                        'title'=>$idea->title,
+                        'description'=>$idea->description,
+                        'body'=>$idea->body,
+                        'img'=>$idea->img,
+                        'category'=>$idea->category,
+                        'language'=>$idea->language,
+                        'tags'=>$idea->tags,
+                        'author'=>$idea->author,
+                        'created_by'=>$idea->created_by,
+                        'created_at'=>$idea->created_at,
+                        'likes'=>$checkLikesIdea
+        
+        
+                    );
+
+                    array_push($ideasAll, $tempIdea);
+
+                    $tempIdea=array();
+                }else{
+                    $tempIdea=array(
+
+                        'id'=>$idea->id,
+                        'title'=>$idea->title,
+                        'description'=>$idea->description,
+                        'body'=>$idea->body,
+                        'img'=>$idea->img,
+                        'category'=>$idea->category,
+                        'language'=>$idea->language,
+                        'tags'=>$idea->tags,
+                        'author'=>$idea->author,
+                        'created_by'=>$idea->created_by,
+                        'created_at'=>$idea->created_at,
+                        'likes'=>$likesIdea
+        
+        
+                    );
+
+                    array_push($ideasAll, $tempIdea);
+
+                    $tempIdea=array();
+                    
+                }
+
+                
+    
+            }
+    
+        }else {
+            $ideasAll=array();
+           
+        }
+
+        
+
+        return response()->json([
+
+            'ideas'=>$ideasAll,
+            
+        ]);
     }
 
+    /*
+    This function stores votes for an innovation.
+    */
 
+    public function vote(Request $request){
+
+
+        $finder = DB::table('desireds')->where('user_id',$request->user_id)
+        ->where('innovation_id',$request->innovation_id)->first();
+
+            if(!empty($finder)){
+
+            $like= Desired::find($finder->id);
+            $like->delete();
+
+            }else{
+
+                $like = new Desired();
+                $like->innovation_id = $request->innovation_id;
+                $like->user_id    = $request->user_id;
+                $like->save();
+            }
+
+            
+            $desired = DB::table('desireds')->where('innovation_id',$request->innovation_id)->get();
+
+            Log::info('Que se dice');
+
+
+            
+           return response()->json([
+
+                'desired'=>$desired
+            ]);
+
+    }
 
     /**
      * Display a listing of the resource.
@@ -264,10 +374,17 @@ class IdeasController extends Controller
         }
         
 
+        
+        $desired = DB::table('desireds')->where('innovation_id',$id)->get();
+
+        
+
+       
         return response()->json([
             'idea' => $idea,
             'user' => $user,
-            'discussions'=>$discussions
+            'discussions'=>$discussions,
+            'desired'=>$desired
         ]);
 
         //return $idea;
