@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Asakaa Group">
     <meta name="keywords" content="innovation,dedicated,cloud,hosting,hosting template,whmcs, hosting whmcs,whmcs template">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('innovation/favicon.png')}}">
     <!-- Page title -->
     <title>Asakaa | Innovation</title>
     <!-- CSS FILES -->
@@ -134,7 +134,7 @@
                   
 
 
-                    <li><a href="#">Inspiration<span class="badge-link">New</span></a></li>
+                    <li><a href="https://wepresent.wetransfer.com/">Inspiration<span class="badge-link">New</span></a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div>
