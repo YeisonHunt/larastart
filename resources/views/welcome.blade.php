@@ -13,15 +13,15 @@
     <!-- Page title -->
     <title>Asakaa | Innovation</title>
     <!-- CSS FILES -->
-    <link rel="stylesheet" href="{{assets('innovation/css/fontawesome-icons/css/all.min.css')}}">
-    <link rel="stylesheet" href="{{assets('innovation/css/bootsnav.css')}}">
-    <link rel="stylesheet" href="{{assets('innovation/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{assets('innovation/style/other/aos.css')}}">
-    <link rel="stylesheet" href="{{assets('innovation/style/other/animate.css')}}">
+    <link rel="stylesheet" href="{{asset('innovation/css/fontawesome-icons/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{asset('innovation/css/bootsnav.css')}}">
+    <link rel="stylesheet" href="{{asset('innovation/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('innovation/style/other/aos.css')}}">
+    <link rel="stylesheet" href="{{asset('innovation/style/other/animate.css')}}">
     <!-- Main css style -->
-    <link rel="stylesheet" href="{{assets('innovation/style/style.css')}}">
+    <link rel="stylesheet" href="{{asset('innovation/style/style.css')}}">
     <!-- main responsive css file -->
-    <link rel="stylesheet" href="{{assets('innovation/style/responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('innovation/style/responsive.css')}}">
     <!-- CSS FILES end -->
 </head>
 
@@ -779,19 +779,19 @@
     <!-- under footer section ends here-->
 
     <!-- JAVASCRIPT FILES -->
-    <script src="{{assets('innovation/js/jquery.js')}}"></script>
+    <script src="{{asset('innovation/js/jquery.js')}}"></script>
     <!--Fake Loader -->
-    <script src="{{assets('innovation/js/fakeLoader.min.js')}}"></script>
+    <script src="{{asset('innovation/js/fakeLoader.min.js')}}"></script>
     <!-- contact form -->
-    <script src="{{assets('innovation/js/validator.js')}}"></script>
-    <script src="{{assets('innovation/js/contact.js')}}"></script>
+    <script src="{{asset('innovation/js/validator.js')}}"></script>
+    <script src="{{asset('innovation/js/contact.js')}}"></script>
     <!-- bootstrap-->
-    <script src="{{assets('innovation/js/bootsnav.js')}}"></script>
-    <script src="{{assets('innovation/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('innovation/js/bootsnav.js')}}"></script>
+    <script src="{{asset('innovation/js/bootstrap.min.js')}}"></script>
     <!-- AOS animation -->
-    <script src="{{assets('innovation/js/aos.js')}}"></script>
+    <script src="{{asset('innovation/js/aos.js')}}"></script>
     <!-- custom javascript file -->
-    <script src="{{assets('innovation/js/custom.js')}}"></script>
+    <script src="{{asset('innovation/js/custom.js')}}"></script>
 </body>
 
 </html>
