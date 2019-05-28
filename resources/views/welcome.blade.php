@@ -98,7 +98,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand aligment-for-home" href="#"><img src="images/logo/logoFinal.png" 
+                <a class="navbar-brand aligment-for-home" href="#"><img src="{{asset('innovation/images/logo/logoFinal.png')}}" 
                     
                     class="logo"
                         alt=""></a>
@@ -231,11 +231,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <img src="images/png-images/world2.png" class=" img-absolute" alt="">
+                            <img src="{{asset('innovation/images/png-images/world2.png')}}" class=" img-absolute" alt="">
                         </div>
                         <div class="col-sm-6">
                             <div class="img-container">
-                                <img src="images/png-images/home-carousel.png" class="img-responsive animated fadeInRight"
+                                <img src="{{asset('innovation/images/png-images/home-carousel.png')}}" class="img-responsive animated fadeInRight"
                                     alt="">
                             </div>
                         </div>
@@ -258,7 +258,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="img-container">
-                                <img src="images/png-images/green-energy.png" class="img-responsive animated fadeInRight"
+                                <img src="{{asset('innovation/images/png-images/green-energy.png')}}" class="img-responsive animated fadeInRight"
                                     alt="">
                             </div>
                         </div>
@@ -281,7 +281,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="img-container">
-                                <img src="images/png-images/home-carousel.png" class="img-responsive animated fadeInRight"
+                                <img src="{{asset('innovation/images/png-images/home-carousel.png')}}" class="img-responsive animated fadeInRight"
                                     alt="">
                             </div>
                         </div>
@@ -350,7 +350,7 @@
                     <div class="price">#agro</div>
                     <div class="table mobile-margin-bottom">
                         <div class="table-img">
-                            <img data-aos="fade-up" src="images/png-images/rocket.png" class="img-center img-responsive"
+                            <img data-aos="fade-up" src="{{asset('innovation/images/png-images/rocket.png')}}" class="img-center img-responsive"
                                 alt="Wordpress Hosting">
                         </div>
                         <div class="table-content">
@@ -373,7 +373,7 @@
                     <div class="price ">#tech</div>
                     <div class="table">
                         <div class="table-img">
-                            <img data-aos="fade-up" data-aos-delay="100" src="images/png-images/rocket2.png" class="img-center img-responsive"
+                            <img data-aos="fade-up" data-aos-delay="100" src="{{asset('innovation/images/png-images/rocket2.png')}}" class="img-center img-responsive"
                                 alt="Wordpress Hosting">
                         </div>
                         <div class="table-content">
@@ -397,7 +397,7 @@
                     <div class="price price-margin-top">#cost-reductions</div>
                     <div class="table">
                         <div class="table-img">
-                            <img data-aos="fade-up" data-aos-delay="200" src="images/png-images/rocket3.png" class="img-center img-responsive"
+                            <img data-aos="fade-up" data-aos-delay="200" src="{{asset('innovation/images/png-images/rocket3.png')}}" class="img-center img-responsive"
                                 alt="Wordpress Hosting">
                         </div>
                         <div class="table-content">
@@ -420,7 +420,7 @@
                     <div class="price price-margin-top">#mobile</div>
                     <div class="table">
                         <div class="table-img">
-                            <img data-aos="fade-up" data-aos-delay="300" src="images/png-images/rocket4.png" class="img-center img-responsive"
+                            <img data-aos="fade-up" data-aos-delay="300" src="{{asset('innovation/images/png-images/rocket4.png')}}" class="img-center img-responsive"
                                 alt="Wordpress Hosting">
                         </div>
                         <div class="table-content">
@@ -452,7 +452,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <img src="images/png-images/green-energy.png" class="img-responsive" alt="" data-aos="fade-right">
+                    <img src="{{asset('innovation/images/png-images/green-energy.png')}}" class="img-responsive" alt="" data-aos="fade-right">
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="text-container" data-aos="fade-up">
