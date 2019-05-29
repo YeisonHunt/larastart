@@ -14,8 +14,14 @@ class InnovationController extends Controller
      */
     public function index()
     {
-        //
+        
     }
+
+    public function check(Request $request){
+
+        return view('auth.registerStepTwo');
+    }
+
 
     /**
      * Show the form for creating a new resource.

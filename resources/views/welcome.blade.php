@@ -98,7 +98,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand aligment-for-home" href="#"><img src="{{asset('innovation/images/logo/logoFinal.png')}}" 
+            <a class="navbar-brand aligment-for-home" href="{{route('raiz')}}"><img src="{{asset('innovation/images/logo/logoFinal.png')}}" 
                     
                     class="logo"
                         alt=""></a>
@@ -108,6 +108,8 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="nav navbar-nav navbar-right" data-in="fadeIn" data-out="fadeOut">
+
+
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown">Home</a>
                         <ul class="dropdown-menu">
@@ -117,6 +119,7 @@
                             <li><a href="#">By Categories</a></li>
                         </ul>
                     </li>
+
 
                     
                     
@@ -131,10 +134,15 @@
                            
                         </ul>
                     </li>
+
+                    
+                  
                   
 
 
                     <li><a href="https://wepresent.wetransfer.com/">Inspiration<span class="badge-link">New</span></a></li>
+
+                <li><a href="{{route('login')}}">Login</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div>
@@ -221,12 +229,12 @@
                         <div class="col-sm-6">
                             <div class="text-container">
                                 <div class="home-title animated fadeInLeft">
-                                    <h2>Powerfull ideas for extraordinary projects</h2>
+                                    <h2>Powerfull ideas to extraordinary innovation projects</h2>
                                     <h4 class="animation-text">Starting at $5.99/monthly </h4> 
                                     <h6 >Free until 10 evaluated ideas</h6>
                                     <p>Asakaa | Innovation is a tool that transforms opportunities into real life projects. So, a simple idea can move the entire economic sector of a company making it grow in a serious way with our help. So, let's start now!</p>
                                     <div class="buttons">
-                                        <a href="#" class="btn btn-medium btn-green">Start a free trial</a>
+                                    <a href="{{route('register')}}" class="btn btn-medium btn-green">Start a free trial</a>
                                         <p>*No Credit Card Rquired</p>
                                     </div>
                                 </div>

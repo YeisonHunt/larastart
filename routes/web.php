@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('raiz');
 
 
 Route::get('/dashboard','AdminController@index')->name('admin');
@@ -40,6 +40,8 @@ Route::post('/updateIdea/{id}','IdeasController@update');
 Route::post('/addComment','DiscussionController@store');
 Route::post('/saveLike','DiscussionController@storeLike');
 Route::post('/saveDesired','IdeasController@vote');
+
+Route::get('/registerCheck','InnovationController@check')->name('r2');
 
 //Route::get('/innovations/{id}','AdminController@index');
 

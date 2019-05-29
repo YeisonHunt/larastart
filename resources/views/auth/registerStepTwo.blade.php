@@ -118,56 +118,30 @@
 							<!--begin::Signin-->
 							<div class="kt-login__form">
 								<div class="kt-login__title">
-									<h3>Sign In</h3>
+									<h3>Security code checking</h3>
 								</div>
 
 								<!--begin::Form-->
 								<form class="kt-form kt-form--label-right" action="" >
 
                                         
-                                        <div class="form-group row">
-                                                <label for="name" class="col-2 col-form-label mt-4 " >Full Name</label>
-                                                <div class="col-10">
-                                                    <input class="form-control" type="text" placeholder="Steve Jobs" id="name">
-                                                </div>
-                                            </div>
-
                                             <div class="form-group row">
-                                                    <label for="email" class="col-2 col-form-label mt-4 " >Email</label>
+                                                    <label for="code" class="col-2 col-form-label mt-4 " >Code</label>
                                                     <div class="col-10">
-                                                        <input class="form-control" type="text" placeholder="user@company.com" id="email">
+                                                        <input class="form-control" type="number" placeholder="" id="code">
                                                     </div>
                                                 </div>
                                             
-                                                <div class="form-group row">
-                                                        <label for="password1" class="col-2 col-form-label mt-4" >Password</label>
-                                                        <div class="col-10">
-                                                            <input class="form-control" type="password" placeholder="**********" id="password1">
-                                                        </div>
-                                                    </div>
-        
-                                                    <div class="form-group row">
-                                                            <label for="password2" class="col-2 col-form-label mt-4" >Repeat password</label>
-                                                            <div class="col-10">
-                                                                <input class="form-control" type="password" placeholder="**********"  id="password2">
-                                                            </div>
-                                                        </div>
-                                            
-                                                        <div class="form-group row">
-                                                                <label for="company" class="col-2 col-form-label mt-4" >Company</label>
-                                                                <div class="col-10">
-                                                                    <input class="form-control" type="text" placeholder="Business" id="company">
-                                                                </div>
-                                                            </div>
+                                                
 
                                                             
                                             <!--begin::Action-->
                                             <div class="kt-login__actions">
-                                            <a href="{{route('r2')}}" class="kt-link kt-login__link-forgot">
-                                                    
-                                                </a>
-                                                <button id="kt_login_signin_submit" class="btn btn-primary btn-elevate kt-login__btn-primary">Let's go</button>
-                                            </div>
+                                                    <a href="{{route('r2')}}" class="kt-link kt-login__link-forgot">
+                                                            
+                                                        </a>
+                                                        <button id="kt_login_signin_submit" class="btn btn-success btn-elevate kt-login__btn-primary">Check it now!</button>
+                                                    </div>
                                
                                    
 
