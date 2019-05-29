@@ -1245,8 +1245,19 @@
 													</div>
 												</a>
 												<div class="kt-notification__custom">
-													<a href="../../../custom/user/login-v2.html" target="_blank" class="btn btn-label-brand btn-sm btn-bold">Sign Out</a>
+												
+
+
+												<a href="{{ route('logout') }}"  class="btn btn-label-brand btn-sm btn-bold"  onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+														Sign Out
+													</a>    
+													<form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+														{{ csrf_field() }}
+													</form>
 												</div>
+
+
+
 											</div>
 		
 											<!--end: Navigation -->
