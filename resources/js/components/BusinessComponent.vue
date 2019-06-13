@@ -1,12 +1,36 @@
 <template>
-  <div class="hole">
+  <div class="hole" style="min-height:80vh;">
     <div class="row">
+      
+
+      <router-link :to="{name:'team-work'}" class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction hvr-float hvr-underline-from-center">
+        <div class="kt-portlet kt-portlet--height-fluid">
+          <div class="kt-widget14">
+            <div class="kt-widget14__header kt-margin-b-14">
+              <h3 class="kt-widget14__title" >My Contacts</h3>
+              <span class="kt-widget14__desc">Manage all your important contacts here.</span>
+            </div>
+
+
+            <div class="kt-widget14__chart" >
+                
+                <img :src="baseUrl+'img/contact.svg'"  width="90%" height="90%" alt=""
+                class="ml-3 animateOnHover"
+                >
+            </div>
+
+
+          </div>
+        </div>
+      </router-link> <!-- end first col -->
+
+
 
       <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction hvr-float hvr-underline-from-center">
         <div class="kt-portlet kt-portlet--height-fluid">
           <div class="kt-widget14">
             <div class="kt-widget14__header kt-margin-b-14">
-              <h3 class="kt-widget14__title" >Team Management</h3>
+              <h3 class="kt-widget14__title" >Work Teams</h3>
               <span class="kt-widget14__desc">Check out each team member for work details</span>
             </div>
 
@@ -89,17 +113,7 @@
       </div> <!-- end first col -->
 
    
-
-      
-
     
-    
-
-
-    </div><!-- end row -->
-
-    <div class="row">
-
          <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction  hvr-float hvr-underline-from-center">
         <div class="kt-portlet kt-portlet--height-fluid">
           <div class="kt-widget14">
@@ -143,19 +157,20 @@
         </div>
       </div> <!-- end first col -->
 
+      
+
+    
+    
 
 
-    </div><!-- end second row -->
+    </div><!-- end row -->
 
-    <div class="row"> <!-- esta fila solo esta para lograr que la pantalla se llene -->
-        <div class="col-12">
-            <hr style="border:none;
-                back-ground-color: #ADD8e6;
-                color: #ADD8E6;
-                height: 1px;
-                width: 80%;">
-        </div>
-    </div>
+  
+
+
+
+
+    
 
     
   </div><!-- end hole -->

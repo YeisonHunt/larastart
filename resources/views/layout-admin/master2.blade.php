@@ -19,18 +19,18 @@
                 }
             });
         </script>
-
+				<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 			<link rel="stylesheet" href="{{ asset('css/animate.css') }}">
 			<link rel="stylesheet" href="{{ asset('css/hover-min.css') }}">
 			<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-			<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+			<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-            
+
 
             <!--end::Fonts -->
-		
+
             <!--begin::Page Vendors Styles(used by this page) -->
             <link href="{{asset('assets/vendors/custom/fullcalendar/fullcalendar.bundle.css')}}" rel="stylesheet" type="text/css" />
 
@@ -69,10 +69,19 @@
 
 			<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
 
-			
-			
-			
-    		
+
+			<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+			<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+
+
+
+
+
+
+
+
 
 
 	</head>
@@ -81,12 +90,12 @@
 
 	<!-- begin::Body -->
 	<body class="kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading
-	kt-aside--minimize 
+	kt-aside--minimize
 	">
 
 	<div id="app">
 
-	
+
 
 		<!-- begin:: Page -->
 
@@ -94,10 +103,10 @@
 		<div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
 			<div class="kt-header-mobile__logo">
 				<router-link to="/admin">
-				
+
 						<img alt="Logo" src="{{asset('assets/media/logos/logo-light-asakaa.svg')}}" height="100%" width="100%" />
 					</router-link>
-				
+
 			</div>
 			<div class="kt-header-mobile__toolbar">
 				<button class="kt-header-mobile__toggler kt-header-mobile__toggler--left" id="kt_aside_mobile_toggler"><span></span></button>
@@ -147,75 +156,75 @@
 
 					<!-- end:: Aside -->
 
-				
+
 					<!-- begin:: Aside Menu -->
 					<div class="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_aside_menu_wrapper">
                             <div id="kt_aside_menu" class="kt-aside-menu " data-ktmenu-vertical="1" data-ktmenu-scroll="1" data-ktmenu-dropdown-timeout="500">
                                 <ul class="kt-menu__nav ">
-    
+
                                     <li class="kt-menu__item " aria-haspopup="true">
-                                        
-    
+
+
                                         <router-link to="/dashboard" class="kt-menu__link " active-class="activeSubLink" ><i class="kt-menu__link-icon flaticon-home"><span></span></i>
                                             <span class="kt-menu__link-text">Dashboard</span></router-link>
-    
-    
+
+
                                     </li>
-    
+
                                     <li class="kt-menu__item " aria-haspopup="true">
-                                        
-    
+
+
                                         <router-link to="/projects" class="kt-menu__link " active-class="activeSubLink" ><i class="kt-menu__link-icon flaticon-paper-plane"><span></span></i><span class="kt-menu__link-text">Projects</span></router-link>
-    
-    
+
+
                                     </li>
-    
-    
+
+
                                     <li class="kt-menu__item " aria-haspopup="true">
-                                        
-    
+
+
                                         <router-link to="/innovations" class="kt-menu__link " active-class="activeSubLink" ><i class="kt-menu__link-icon flaticon-light"><span></span></i><span class="kt-menu__link-text">Innovations</span></router-link>
-    
-    
+
+
 									</li>
-									
+
 									<li class="kt-menu__item " aria-haspopup="true">
-                                        
-    
+
+
                                         <router-link to="/timesheets" class="kt-menu__link " active-class="activeSubLink" ><i class="kt-menu__link-icon flaticon-stopwatch"><span></span></i><span class="kt-menu__link-text">Timesheets</span></router-link>
-    
-    
+
+
 									</li>
-									
+
 									<li class="kt-menu__item " aria-haspopup="true">
-                                        
-    
+
+
                                         <router-link to="/reports" class="kt-menu__link " active-class="activeSubLink" ><i class="kt-menu__link-icon flaticon-diagram"><span></span></i><span class="kt-menu__link-text">Reports</span></router-link>
-    
-    
+
+
 									</li>
-									
+
 									<li class="kt-menu__item " aria-haspopup="true">
-                                        
-    
+
+
                                         <router-link to="/goals" class="kt-menu__link " active-class="activeSubLink" ><i class="kt-menu__link-icon flaticon-interface-5"><span></span></i><span class="kt-menu__link-text">Goals</span></router-link>
-    
-    
+
+
 									</li>
-									
+
 									<li class="kt-menu__item " aria-haspopup="true">
-                                        
-    
+
+
                                         <router-link to="/business" class="kt-menu__link " active-class="activeSubLink" ><i class="kt-menu__link-icon flaticon-app"><span></span></i><span class="kt-menu__link-text">Admin</span></router-link>
-    
-    
+
+
                                     </li>
-    
-    
+
+
                                 </ul>
                             </div>
                         </div>
-    
+
                         <!-- end:: Aside Menu -->
 					<!-- end:: Aside Menu -->
 				</div>
@@ -433,14 +442,14 @@
 										</ul>
 									</div>
 								</div>
-		
+
 								<!-- end:: Header Menu -->
-		
+
 								<!-- begin:: Header Topbar -->
 								<div class="kt-header__topbar">
-		
+
 									<!--begin: Search -->
-		
+
 									<!--begin: Search -->
 									<div class="kt-header__topbar-item kt-header__topbar-item--search dropdown" id="kt_quick_search_toggle">
 										<div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px" aria-expanded="false">
@@ -467,11 +476,11 @@
 											</div>
 										</div>
 									</div>
-		
+
 									<!--end: Search -->
-		
+
 									<!--end: Search -->
-		
+
 									<!--begin: Notifications -->
 									<div class="kt-header__topbar-item dropdown">
 										<div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="30px,0px" aria-expanded="false">
@@ -484,15 +493,15 @@
 													</g>
 												</svg> <span class="kt-pulse__ring"></span>
 											</span>
-		
+
 											<!--
-						Use dot badge instead of animated pulse effect: 
+						Use dot badge instead of animated pulse effect:
 						<span class="kt-badge kt-badge--dot kt-badge--notify kt-badge--sm kt-badge--brand"></span>
 					-->
 										</div>
 										<div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-lg" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(44px, 64px, 0px);">
 											<form>
-		
+
 												<!--begin: Head -->
 												<div class="kt-head kt-head--skin-dark kt-head--fit-x kt-head--fit-b" style="background-image: url(../../../assets/media/misc/bg-1.jpg)">
 													<h3 class="kt-head__title">
@@ -512,7 +521,7 @@
 														</li>
 													</ul>
 												</div>
-		
+
 												<!--end: Head -->
 												<div class="tab-content">
 													<div class="tab-pane active show" id="topbar_notifications_notifications" role="tabpanel">
@@ -875,9 +884,9 @@
 											</form>
 										</div>
 									</div>
-		
+
 									<!--end: Notifications -->
-		
+
 									<!--begin: Quick Actions -->
 									<div class="kt-header__topbar-item dropdown">
 										<div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="30px,0px" aria-expanded="false">
@@ -894,7 +903,7 @@
 										</div>
 										<div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(44px, 64px, 0px);">
 											<form>
-		
+
 												<!--begin: Head -->
 												<div class="kt-head kt-head--skin-dark" style="background-image: url(../../../assets/media/misc/bg-1.jpg)">
 													<h3 class="kt-head__title">
@@ -903,9 +912,9 @@
 														<span class="btn btn-success btn-sm btn-bold btn-font-md">23 tasks pending</span>
 													</h3>
 												</div>
-		
+
 												<!--end: Head -->
-		
+
 												<!--begin: Grid Nav -->
 												<div class="kt-grid-nav kt-grid-nav--skin-light">
 													<div class="kt-grid-nav__row">
@@ -961,14 +970,14 @@
 														</a>
 													</div>
 												</div>
-		
+
 												<!--end: Grid Nav -->
 											</form>
 										</div>
 									</div>
-		
+
 									<!--end: Quick Actions -->
-		
+
 									<!--begin: My Cart -->
 									<div class="kt-header__topbar-item dropdown">
 										<div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="30px,0px" aria-expanded="false">
@@ -983,7 +992,7 @@
 										</div>
 										<div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(44px, 64px, 0px);">
 											<form>
-		
+
 												<!-- begin:: Mycart -->
 												<div class="kt-mycart">
 													<div class="kt-mycart__head kt-head" style="background-image: url(../../../assets/media/misc/bg-1.jpg);">
@@ -1103,14 +1112,14 @@
 														</div>
 													</div>
 												</div>
-		
+
 												<!-- end:: Mycart -->
 											</form>
 										</div>
 									</div>
-		
+
 									<!--end: My Cart -->
-		
+
 									<!--begin: Quick panel toggler -->
 									<div class="kt-header__topbar-item kt-header__topbar-item--quick-panel" data-toggle="kt-tooltip" title="" data-placement="right" data-original-title="Quick panel">
 										<span class="kt-header__topbar-icon" id="kt_quick_panel_toggler_btn">
@@ -1122,9 +1131,9 @@
 												</g>
 											</svg> </span>
 									</div>
-		
+
 									<!--end: Quick panel toggler -->
-		
+
 									<!--begin: Language bar -->
 									<div class="kt-header__topbar-item kt-header__topbar-item--langs">
 										<div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px" aria-expanded="false">
@@ -1155,41 +1164,42 @@
 											</ul>
 										</div>
 									</div>
-		
+
 									<!--end: Language bar -->
-		
+
 									<!--begin: User Bar -->
-									<div class="kt-header__topbar-item kt-header__topbar-item--user dropdown">
-										<div class="kt-header__topbar-wrapper dropdown-toggle" data-toggle="dropdown" data-offset="0px,0px" aria-haspopup="true"  aria-expanded="false">
+									<div class="kt-header__topbar-item kt-header__topbar-item--user dropdown-toggle">
+										<div id="logMenu" style="" class="kt-header__topbar-wrapper dropdown-toggle" data-toggle="dropdown" data-offset="0px,0px" aria-haspopup="true"  aria-expanded="true">
 											<div class="kt-header__topbar-user">
-												<span class="kt-header__topbar-welcome kt-hidden-mobile">Hi,</span>
-												<span class="kt-header__topbar-username kt-hidden-mobile">Yesid</span>
+												<span class="kt-header__topbar-welcome kt-hidden-mobile 	">Hi,</span>
+												<span class="kt-header__topbar-username kt-hidden-mobile ">{{ Auth::user()->name }}</span>
 												<img class="kt-hidden" alt="Pic" src="../../../assets/media/users/300_25.jpg">
-		
+
 												<!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
-												<span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">S</span>
+												<span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold 	">S</span>
 											</div>
 										</div>
-										<div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl" x-placement="bottom-end" style="position: absolute !important;  will-change: transform; top: 0px; left: 0px; transform: translate3d(1187px, 64px, 0px); ">
-		
+										<div id="logMenuDrop" class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl" x-placement="bottom-end" style="position: absolute ;  will-change: transform; top: 0px; left: 0px; transform: translate3d(1187px, 64px, 0px); " >
+
 											<!--begin: Head -->
 											<div class="kt-user-card kt-user-card--skin-dark kt-notification-item-padding-x" style="background-image: url(../../../assets/media/misc/bg-1.jpg)">
 												<div class="kt-user-card__avatar">
 													<img class="kt-hidden" alt="Pic" src="../../../assets/media/users/300_25.jpg">
-		
+
 													<!--use below badge element instead the user vavatar to display username's first letter(remove kt-hidden class to display it) -->
 													<span class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success">S</span>
 												</div>
 												<div class="kt-user-card__name">
-													Yesid Anacona
+													{{ Auth::user()->name }} <br/>
+													{{Auth::user()->email}}
 												</div>
 												<div class="kt-user-card__badge">
 													<span class="btn btn-success btn-sm btn-bold btn-font-md">23 messages</span>
 												</div>
 											</div>
-		
+
 											<!--end: Head -->
-		
+
 											<!--begin: Navigation -->
 											<div class="kt-notification">
 												<a href="#" class="kt-notification__item">
@@ -1245,12 +1255,12 @@
 													</div>
 												</a>
 												<div class="kt-notification__custom">
-												
+
 
 
 												<a href="{{ route('logout') }}"  class="btn btn-label-brand btn-sm btn-bold"  onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
 														Sign Out
-													</a>    
+													</a>
 													<form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
 														{{ csrf_field() }}
 													</form>
@@ -1259,14 +1269,14 @@
 
 
 											</div>
-		
+
 											<!--end: Navigation -->
 										</div>
 									</div>
-		
+
 									<!--end: User Bar -->
 								</div>
-		
+
 								<!-- end:: Header Topbar -->
 							</div>
 
@@ -1280,23 +1290,23 @@
 					<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
 
 
-						<div class="kt-content  kt-grid__item kt-grid__item--fluid myFondo" id="kt_content"> 
+						<div class="kt-content  kt-grid__item kt-grid__item--fluid myFondo" id="kt_content">
 
-                            
+
 							@yield('content')
 
                             <router-view></router-view>
 
                              <!-- set progressbar -->
 							 <vue-progress-bar></vue-progress-bar>
-							 
+
 							 <br>
 							 <br>
-							
+
 
 						</div>
 						<!-- begin:: Content -->
-				
+
 						<!-- end:: Content -->
 					</div>
 
@@ -1319,7 +1329,7 @@
 
 		<!-- end:: Page -->
 
-	
+
 		<!-- end::Quick Panel -->
 
 		<!-- begin::Scrolltop -->
@@ -1329,14 +1339,14 @@
 
 	</div>
 
-		
+
 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" ></script>
 
 
 
-	
-		
+
+
 
 		<!-- begin::Global Config(global config for global JS sciprts) -->
 		<script>
@@ -1361,7 +1371,7 @@
 		</script>
 
 		<!-- end::Global Config -->
-		
+
 
 			<!-- end::Global Config -->
 
@@ -1373,16 +1383,16 @@
 
 		<!--begin::Page Vendors(used by this page) -->
 		<script src="{{asset('assets/vendors/custom/fullcalendar/fullcalendar.bundle.js')}}" type="text/javascript"></script>
-		
+
 
 		<!--end::Page Vendors -->
 
 		<!--begin::Page Scripts(used by this page) -->
 		<script src="{{asset('assets/app/custom/general/dashboard.js')}}" type="text/javascript"></script>
-	
+
 		<script src="{{asset('assets/app/custom/general/crud/forms/widgets/select2.js')}}" type="text/javascript"></script>
 
-		
+
 
 		<!--end::Page Scripts -->
 
@@ -1390,19 +1400,25 @@
 		<script src="{{asset('assets/app/bundle/app.bundle.js')}}" type="text/javascript"></script>
 
 
-		
-		<script>
-		
-			$(document).ready(function(){
-				$("#content").summernote();
-				$('.dropdown-toggle').dropdown();
 
-			
-			
+		<script>
+
+			$(document).ready(function(){
+				//$("#content").summernote();
+				//$('.dropdown-toggle').dropdown();
+
+				//$('#logMenuDrop').attr('x-placement','bottom-end');
+
 				
+
 				
+
+
+
+
+
 			});
-			
+
 		</script>
 
 		<script>
@@ -1410,7 +1426,6 @@
 			window.baseUrl = '<?php echo (env('APP_URL')); ?>';
 
 			@auth
-			window.Permissions = {!! json_encode(Auth::user()->allPermissions, true) !!};
 			window.user = {!! json_encode(Auth::user(),true)  !!};
 
 			@else
@@ -1419,15 +1434,19 @@
 			@endauth
 		</script>
 
+
 		<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
 
-		
-	<script src="https://unpkg.com/tooltip.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 
-		
-	
 
-	
+
+		<script src="https://unpkg.com/tooltip.js"></script>
+
+
+
+
+
 
 
 		<!--end::Global App Bundle -->

@@ -1,381 +1,431 @@
 
-<template>
-    
-	
-    					<div class="row" >
+<template >
+  <div>
+    <div class="row" v-if="puedoEditar">
+      <div class="col-lg-12">
+        <!--begin::Portlet-->
+        <div
+          class="kt-portlet kt-portlet--last kt-portlet--head-lg kt-portlet--responsive-mobile myForm"
+          id="kt_page_portlet"
+        >
+          <form
+            class="kt-form"
+            id="kt_form"
+            @submit.prevent="createUser"
+            @keydown="form.onKeydown($event)"
+          >
+            <div class="kt-portlet__head kt-portlet__head--lg" style>
+              <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">
+                  Create awesome ideas
+                  <small>to improve your company functions</small>
+                </h3>
+              </div>
+              <div class="kt-portlet__head-toolbar">
+                <button type="button" class="btn btn-clean kt-margin-r-10" @click="$router.go(-1)">
+                  <i class="la la-arrow-left"></i>
+                  <span class="kt-hidden-mobile">Back</span>
+                </button>
+                <div class="btn-group">
+                  <button class="btn btn-brand" type="submit" :disabled="form.busy">
+                    <i class="la la-check"></i>
+                    <span class="kt-hidden-mobile">Update</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="kt-portlet__body blocked">
+              <div class="row">
+                <div class="col-xl-2"></div>
+                <div class="col-xl-8">
+                  <div class="kt-section kt-section--first">
+                    <div class="kt-section__body">
+                      <h3 class="kt-section__title kt-section__title-lg">Idea details</h3>
 
-								<div class="col-lg-12">
+                      <div class="form-group row">
+                        <label class="col-3 col-form-label">Title</label>
+                        <div class="col-9">
+                          <input
+                            class="form-control"
+                            v-model="form.title"
+                            name="title"
+                            type="text"
+                            placeholder="Short idea title..."
+                            required
+                          >
+                        </div>
+                      </div>
 
-									<!--begin::Portlet-->
-									<div class="kt-portlet kt-portlet--last kt-portlet--head-lg kt-portlet--responsive-mobile myForm " id="kt_page_portlet">
+                      <div class="form-group row">
+                        <label class="col-3 col-form-label">Description</label>
+                        <div class="col-9">
+                          <textarea
+                            class="form-control"
+                            v-model="form.description"
+                            name="description"
+                            rows="2"
+                            placeholder="Short idea description..."
+                            required
+                          ></textarea>
+                        </div>
+                      </div>
 
-										<form class="kt-form" id="kt_form" @submit.prevent="createUser" @keydown="form.onKeydown($event)">
-										<div class="kt-portlet__head kt-portlet__head--lg" style="">
-											<div class="kt-portlet__head-label">
-												<h3 class="kt-portlet__head-title">Create awesome ideas  <small>to improve your company functions</small></h3>
-											</div>
-											<div class="kt-portlet__head-toolbar">
-												<button type="button" class="btn btn-clean kt-margin-r-10" @click="$router.go(-1)">
-													<i class="la la-arrow-left"></i>
-													<span class="kt-hidden-mobile">Back</span>
-												</button>
-												<div class="btn-group">
-													<button  class="btn btn-brand" type="submit" :disabled="form.busy">
-														<i class="la la-check"></i>
-														<span class="kt-hidden-mobile">Update</span>
-													</button>
-													
-													
-												</div>
-											</div>
-										</div>
-										<div class="kt-portlet__body blocked">
-											
-												<div class="row">
-													<div class="col-xl-2"></div>
-													<div class="col-xl-8">
-														<div class="kt-section kt-section--first">
-															<div class="kt-section__body">
-																<h3 class="kt-section__title kt-section__title-lg">Idea details</h3>
+                      <div class="form-group row">
+                        <label for style="margin-left:10px;">Body</label>
+                        <div class="col-12">
+                        <!--   <textarea id="mySummer" @change="updateRichText" v-model="form.editordata"  name="editordata" class="summernote richtext" ></textarea>-->
 
-																<div class="form-group row">
-																	<label class="col-3 col-form-label">Title</label>
-																	<div class="col-9">
-																		<input class="form-control" v-model="form.title"  
-																		name="title" type="text" placeholder="Short idea title..." required>
-																	</div>
-																</div>
+                         <html-editor   class="summernote richtext" height="300" :model.sync="form.editordata"></html-editor>
 
-																<div class="form-group row">
-																	<label class="col-3 col-form-label">Description</label>
-																	<div class="col-9">
-																		<textarea class="form-control" v-model="form.description"  
-																		name="description" rows="2" placeholder="Short idea description..." required></textarea>
-																	</div>
-																</div>
-															
-																<div class="form-group row">
-																	<label for="" style="margin-left:10px;">Body</label>
-																	<div class="col-12">
-																		<!-- <textarea id="kt_summernote_1" @change="updateRichText" v-model="form.editordata"  name="editordata" class="summernote richtext" ></textarea>-->
+                          <span
+                            class="form-text text-muted"
+                          >If you want to increase your idea rating and apreciation. Please use our below rich text editor.</span>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-3 col-form-label">Main Image</label>
+                        <div class="col-9">
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">
+                                <i class="flaticon-photo-camera"></i>
+                              </span>
+                            </div>
+                            <input
+                              type="text"
+                              v-model="form.img"
+                              name="img"
+                              class="form-control"
+                              placeholder="https://wwwmyawesomeideaimg.com/myimage.jpg"
+                              aria-describedby="basic-addon1"
+                              required
+                            >
+                          </div>
+                          <span
+                            class="form-text text-muted"
+                          >Choose an awesome image to get more likes for your idea.</span>
+                        </div>
+                      </div>
 
-																		 <html-editor height="300" :model.sync="form.editordata"></html-editor>
-																			
-                                                                         
-																		<span class="form-text text-muted">If you want to increase your idea rating and apreciation. Please use our below rich text editor. </span>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-3 col-form-label">Main Image</label>
-																	<div class="col-9">
-																		<div class="input-group">
-																			<div class="input-group-prepend"><span class="input-group-text"><i class="flaticon-photo-camera"></i></span></div>
-																			<input type="text" v-model="form.img" name="img" class="form-control"  placeholder="https://wwwmyawesomeideaimg.com/myimage.jpg" aria-describedby="basic-addon1" required>
-																		</div>
-																		<span class="form-text text-muted">Choose an awesome image to get more likes for your idea.</span>
-																	</div>
-																</div>
-																
-																<div class="form-group form-group-last row">
-																	<label class="col-3 col-form-label">Category</label>
-																	<div class="col-9">
-																		<div class="input-group">
-																			
+                      <div class="form-group form-group-last row">
+                        <label class="col-3 col-form-label">Category</label>
+                        <div class="col-9">
+                          <div class="input-group">
+                            <select
+                              class="kt-selectpicker form-control"
+                              data-live-search="true"
+                              data-container="body"
+                              data-size="6"
+                              name="category"
+                              id="kt-selectpicker1"
+                              v-model="form.category"
+                              required
+                            >
+                              <option value="improvethis" selected>Improve Asakaa.com</option>
+                              <option value="sustainability">Sustainability</option>
+                              <option value="lifeandhealth">Life & Health</option>
+                              <option value="artandculture">Art & Culture</option>
+                              <option value="beautyandfaashion">Beauty & Fashion</option>
+                              <option value="homeandpets">Home & Pets</option>
+                              <option value="scienceandtechnology">Science & Technology</option>
+                              <option value="tourismandtravel">Tourism & Travel</option>
+                              <option value="transport">Transport</option>
+                              <option value="food">Food</option>
+                              <option value="politicsandsociety">Politics & Society</option>
+                              <option value="sportsandentertainment">Sports & Entertainment</option>
+                              <option value="businessandconsumer">Business & Consumer</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-																			<select class="kt-selectpicker form-control " data-live-search="true"   data-container="body" data-size="6" name="category" id="kt-selectpicker1" v-model="form.category"  required>
-																				<option value="improvethis" selected >Improve Asakaa.com</option>
-																				<option value="sustainability">Sustainability</option>
-																				<option value="lifeandhealth">Life & Health </option>
-																				<option value="artandculture">Art & Culture</option>
-																				<option value="beautyandfaashion">Beauty & Fashion</option>
-																				<option value="homeandpets">Home & Pets</option>
-																				<option value="scienceandtechnology">Science & Technology</option>
-																				<option value="tourismandtravel">Tourism & Travel</option>
-																				<option value="transport">Transport</option>
-																				<option value="food">Food</option>
-																				<option value="politicsandsociety">Politics & Society</option>
-																				<option value="sportsandentertainment">Sports & Entertainment</option>
-																				<option value="businessandconsumer">Business & Consumer</option>
-																			</select>
+                  <div class="kt-section">
+                    <div class="kt-section__body">
+                      <div class="form-group row">
+                        <label class="col-3 col-form-label">Language</label>
+                        <div class="col-9">
+                          <select
+                            class="kt-selectpicker form-control"
+                            name="language"
+                            id="kt-selectpicker2"
+                            v-model="form.language"
+                            required
+                          >
+                            <option value="en" selected>English</option>
 
+                            <option value="es">Español - Spanish</option>
+                          </select>
+                        </div>
+                      </div>
 
+                      <div class="form-group form-group-last row">
+                        <label class="col-3 col-form-label">Author</label>
+                        <div class="col-9">
+                          <div class="kt-checkbox-inline">
+                            <label class="kt-checkbox">
+                              <input
+                                type="radio"
+                                value="showme"
+                                checked="true"
+                                name="author"
+                                v-model="form.author"
+                              > Show my username
+                              <span></span>
+                            </label>
+                            <label class="kt-checkbox">
+                              <input
+                                type="radio"
+                                value="anonymous"
+                                name="author"
+                                v-model="form.author"
+                              > Anonymous
+                              <span></span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
 
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-														
-														<div class="kt-section">
-															<div class="kt-section__body">
-													
-															
-																<div class="form-group row">
-																	<label class="col-3 col-form-label">Language</label>
-																	<div class="col-9">
-																		<select class="kt-selectpicker form-control "  name="language" id="kt-selectpicker2" v-model="form.language" required>
-																			
-																			
-																			
-																			<option value="en" selected >English</option>
-																			
-																			<option value="es">Español - Spanish</option>
-																			
-																		</select>
-																	</div>
-																</div>
-																
-																<div class="form-group form-group-last row">
-																	<label class="col-3 col-form-label">Author</label>
-																	<div class="col-9">
-																		<div class="kt-checkbox-inline">
-																			<label class="kt-checkbox">
-																				<input type="radio" value="showme" 	checked="true" name="author" v-model="form.author" > Show my username
-																				<span></span>
-																			</label>
-																			<label class="kt-checkbox">
-																				<input type="radio" value="anonymous" name="author" v-model="form.author" > Anonymous
-																				<span></span>
-																			</label>
-																		
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-														
-													</div>
-													
-												</div>
-											
-										</div>
+            <center>
+              <div class="kt-portlet__head-toolbar">
+                <button type="button" class="btn btn-clean kt-margin-r-10" @click="$router.go(-1)">
+                  <i class="la la-arrow-left"></i>
+                  <span class="kt-hidden-mobile">Back</span>
+                </button>
+                <div class="btn-group">
+                  <button class="btn btn-brand" type="submit" :disabled="form.busy">
+                    <i class="la la-check"></i>
+                    <span class="kt-hidden-mobile">Update</span>
+                  </button>
+                </div>
+              </div>
+            </center>
 
-											<center>
+            <br>
+          </form>
+        </div>
 
-												<div class="kt-portlet__head-toolbar">
-												<button type="button" class="btn btn-clean kt-margin-r-10" @click="$router.go(-1)">
-													<i class="la la-arrow-left"></i>
-													<span class="kt-hidden-mobile">Back</span>
-												</button>
-												<div class="btn-group">
-													<button  class="btn btn-brand" type="submit" :disabled="form.busy">
-														<i class="la la-check"></i>
-														<span class="kt-hidden-mobile">Update</span>
-													</button>
-												
-												</div>
-											</div>
-											</center>
+        <!--end::Portlet-->
+      </div>
+    </div>
 
-											<br>
+    <div class="row" v-else>
+      <div class="col-4"></div>
 
-										</form>
-									</div>
+      <div class="col-4">
+        <router-link to="/innovations" class="btn btn-primary">Go back to innovations</router-link>
+      </div>
 
-									<!--end::Portlet-->
-								</div>
+      <div class="col-4"></div>
 
-							
-							</div>
+      <div class="col-12 mt-5">
+        <center>
+          <h4
+            style=" margin-left:auto;
+                    margin-right:auto;
+                    display:block; color:white;"
+          >Sorry, it seems you don't have permission to edit this idea.</h4>
+        </center>
 
-							
-    
-
+        <img
+          height="80%"
+          width="80%"
+          class="mt-5 fadeImg"
+          :src="baseUrl +'img/forbidden.svg'"
+          alt
+          style="text-align:center; margin-left:10%;"
+        >
+      </div>
+    </div>
+  </div>
 </template>
 
 
 <style>
-
 .note-toolbar {
-    z-index: auto;
+  z-index: auto;
 }
 
 .summernote {
-	display: fixed !important;
+  display: fixed !important;
 }
 
 .blocked {
-	z-index: 999 !important;
+  z-index: 999 !important;
 }
 
 .myForm {
-	background-color: #fafafa !important;
+  background-color: #fafafa !important;
 }
 
-
+ .dropdown-menu > li > a {
+           display: block;
+            padding: 3px 20px;
+            clear: both;
+            font-weight: normal;
+            line-height: 1.42857143;
+            color: #333;
+            white-space: nowrap;
+  }
 </style>
 
 
 <script>
-
-import htmlEditor from './html-editor.vue'
+import htmlEditor from "./html-editor.vue";
 
 export default {
+  components: {
+    htmlEditor
+  },
 
-		 components: {
-			htmlEditor
-		},
+  data() {
+    return {
+      id: this.$route.params.id,
+      idea: null,
+      permissions: {},
+      user: window.user,
+      baseUrl: window.baseUrl,
+      form: new Form({
+        id: "",
+        title: "",
+        description: "",
+        editordata: "",
+        img: "",
+        category: "",
+        language: "",
+        author: "",
+        privacy: ""
+      })
+    };
+  },
 
-	  data() {
-            return  {
+  computed: {
+    puedoEditar: function() {
+      if (this.permissions.length != 0) {
+        //validamos que exita la idea y luego si tengo permiso
 
-                id:this.$route.params.id,
-                idea:null,
-                form: new Form({
-                    id:'',
-					title: '',
-					description:'',
-					editordata   : '',
-					img:'',
-					category :'',
-					language:'',
-					author:''
-
-                }) 
+        let iCanSee = false;
+        let idUser = this.user.id;
+        let idIdea = this.id;
+        /* try {
+          this.permissions.forEach(function(permission) {
+            if (permission.permission_type == 'can view' && permission.id_user ==idUser && permision.id_idea== idIdea  ) {
+              
+              iCanSee = true;
+              console.log('times');
+              
             }
-		},
+          });
+        } catch (e) {
+          console.log(e);
+        }*/
 
-	computed: {
+        var item = {};
+        var permisos = this.permissions;
 
+        for (let i = 0; i < permisos.length; i++) {
+          item = permisos[i];
 
-		/*refreshIdea: function()	{
+          if (
+            item.permission_type == "can view-edit" &&
+            item.id_user == idUser &&
+            item.id_idea == idIdea
+          ) {
+            iCanSee = true;
+          }
+        }
 
-			       this.form.title = this.idea.title;
-				   this.form.editordata = this.idea.editordata;
+        return iCanSee;
+      } else {
+        return false;
+      }
+    }
+  },
 
-				  
+  methods: {
+    loadIdea() {
+      axios
+        .get("/getInnovation/" + this.id)
+        .then(response => {
+          this.form.title = response.data.idea.title;
+          this.form.description = response.data.idea.description;
+          this.form.img = response.data.idea.img;
+          this.form.category = response.data.idea.category;
+          this.form.language = response.data.idea.language;
+          this.form.author = response.data.idea.author;
+          this.form.privacy = response.data.idea.privacy;
 
-				   this.form.img = this.idea.img;
-				   this.form.category = this.idea.category;
-				   this.form.language = this.idea.language;
-				   this.form.author = this.idea.author;
+          this.form.editordata = response.data.idea.body;
+          this.permissions = response.data.permissions;
 
-				Vue.$set(this.form,'title',this.idea.title);
-				return this.form;
-		}*/
+          $("#mySummer").summernote("code", response.data.idea.body);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
 
-	},
-		
-	methods: {
+    createUser() {
+      this.$Progress.start();
+      // Submit the form via a POST request
 
-		loadIdea(){
+      //this.form.editordata =  $('#kt_summernote_1').summernote('code');
+      this.form
+        .post("/updateIdea/" + this.id)
+        .then(({ data }) => {
+          this.$router.go(-1);
+          toastr.success("Awesome!", "Idea updated successfully.");
+          this.form.reset();
+        })
+        .catch(() => {
+          toastr.error("Oops!", "Something goes wrong");
+        });
 
-			console.log('Montado edit component');
+      //$('#userCreationModal').modal('hide');
 
-				//axios.get('/getInnovation/'+this.id).then(({data})=>(
-					
-					//this.form.title=data.title
-					
-					
-					//));
+      this.$Progress.finish();
+    },
 
-					 axios
-						.get('/getInnovation/'+this.id)
-						.then(response => {
-							this.form.title = response.data.idea.title
-							this.form.description=response.data.idea.description
-							this.form.img=response.data.idea.img
-							this.form.category = response.data.idea.category;
-				  		    this.form.language = response.data.idea.language;
-							 this.form.author = response.data.idea.author;
+    updateRichText() {
+      this.form.editordata =  $('textarea[name="editordata"]').html($('#mySummer').code());
+    }
+  },
 
-							 this.form.editordata = response.data.idea.body;
-							 
-							$('#mySummer').summernote('code', response.data.idea.body);
+  mounted() {
+    
+    this.loadIdea();
 
-						})
-						.catch(error => {
-							console.log(error)
-							
-						})
-						
+    var KTSummernoteDemo = {
+      init: function() {
+        $("#mySummer").summernote({ height: 300 });
 
-				 
-		},
-		
-		createUser(){
+        //$('.kt-selectpicker').selectpicker();
 
-			 this.$Progress.start();
-			  // Submit the form via a POST request
-			  
-			  	 //this.form.editordata =  $('#kt_summernote_1').summernote('code');
-                 this.form.post('/updateIdea/'+this.id)
-                .then(({ data }) => { 
+        $("#mySummer").summernote();
+        $(".dropdown-toggle").dropdown();
 
-				 
-					this.$router.go(-1);
-                    toastr.success('Awesome!','Idea updated successfully.')
-					this.form.reset();
-                    
+        //$(".dropdown").dropdown();
 
-
-                 }).catch(()=>{
-                    toastr.error('Oops!','Something goes wrong')    
-                 })
-
-                //$('#userCreationModal').modal('hide');
-                
-                this.$Progress.finish();
-		},
-
-		updateRichText(){
-
-			this.form.editordata =  $('textarea[name="editordata"]').html($('#kt_summernote_1').code());
-		},
-
-	
-
-
-	},
+      
 
 
-	mounted() {
-		
-		this.loadIdea();
-		
-		var KTSummernoteDemo={
-			
-			
-			init:function(){
-			
-			$("#kt_summernote_1").summernote(
-				{height:300
-				
-				
-				}
-				
-				);
+      }
+    };
+    jQuery(document).ready(function() {
+    
 
-			//$('.kt-selectpicker').selectpicker();
+      KTSummernoteDemo.init();
+    });
 
-			$("#content").summernote();
-		    $('.dropdown-toggle').dropdown();
-
-		
-
-			
-
-		}};jQuery(document).ready(function()
-		
-		{
-			console.log('jQuery cargado');
-			
-			KTSummernoteDemo.init();
-			
-		
-		}
-		
-		);
-
-		
-		}
-
-		
-	
-}
-
-
-	
-					
+    
+  }
+};
 </script>

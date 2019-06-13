@@ -28,6 +28,9 @@
     "dependencies": {
         "bootstrap-vue": "^2.0.0-rc.19",
         "moment": "^2.24.0",
+        "semantic-ui": "^2.4.2",
+        "semantic-ui-css": "^2.4.1",
+        "semantic-ui-vue": "^0.8.1",
         "sweetalert": "^2.1.2",
         "sweetalert2": "^8.8.5",
         "vform": "^1.0.0",
@@ -35,6 +38,8 @@
         "vue-progressbar": "^0.7.5",
         "vue-random-pic": "^1.0.0",
         "vue-router": "^3.0.5",
-        "vue-star": "0.0.4"
+        "vue-star": "0.0.4",
+        "vuesax": "^3.8.75",
+        "vuetify": "^1.5.14"
     }
 }

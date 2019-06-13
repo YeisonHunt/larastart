@@ -13,6 +13,9 @@ use App\Discussion;
 use DB;
 use App\Desired;
 
+use App\User_Has_Idea;
+use App\User_Has_Ideas_Permission;
+
 
 class IdeasController extends Controller
 {
@@ -23,35 +26,227 @@ class IdeasController extends Controller
         $this->middleware('auth');
     }
 
+    public function updatePermissionPerId(Request $request){
+
+        $p = User_Has_Ideas_Permission::find($request->id);
+        $p->permission_type=$request->valor;
+        $p->save();
+
+        return response()->json([
+            'msg'=>'Updated successfully'
+        ]);
+
+    }
+
+    public function deletePermissionsUser(Request $request){
+
+
+       
+
+        if(Auth::check()){
+
+            $registrarIdea = DB::table('user__has__ideas')
+            ->where('id_user',$request->id_user)
+            ->where('id_idea',$request->id_idea)
+            ->first();
+
+            
+            $r = User_Has_Idea::find($registrarIdea->id);
+
+            $r->delete();
+
+            $permission = DB::table('user__has__ideas__permissions')
+            ->where('id_user',$request->id_user)
+            ->where('id_idea',$request->id_idea)
+            ->first();
+
+            $p = User_Has_Ideas_Permission::find($permission->id);
+            $p->delete();
+
+            return response()->json([
+                'msg'=>'Permissions deleted'
+            ]);
+
+        }else {
+            return response()->json([
+                'msg'=>'User not authenticated'
+            ]);
+        }
+    }
+
+
+    public function addUserPermission(Request $request){
+
+        if (Auth::check()) {
+            // The user is logged in...
+            $user= Auth::user();
+
+           
+
+
+                //El usuario tiene que estar registrado en asakaa
+
+                if($this->checkUserRegistered($request->email)){
+
+                    $user = DB::table('users')->where('email',$request->email)->first();
+
+                    if($request->permissions=='watch'){
+
+                        $registrarIdea = new User_Has_Idea();
+                        $registrarIdea->id_user= $user->id;
+                        $registrarIdea->id_idea= $request->idea_id;
+                        $registrarIdea->save();
+    
+                        $permission = new User_Has_Ideas_Permission();
+                        $permission->id_user= $user->id;
+                        $permission->id_idea= $request->idea_id;
+                        $permission->permission_type= 'can view';
+                        $permission->save();
+    
+    
+    
+                        return response()->json([
+                            
+                            'msg'=>'Now you can watch'
+                        ]);
+        
+
+                    }elseif($request->permissions=='watch-edit'){
+
+                       
+                        $registrarIdea = new User_Has_Idea();
+                        $registrarIdea->id_user= $user->id;
+                        $registrarIdea->id_idea= $request->idea_id;
+                        $registrarIdea->save();
+        
+                        $permission = new User_Has_Ideas_Permission();
+                        $permission->id_user= $user->id;
+                        $permission->id_idea= $request->idea_id;
+                        $permission->permission_type= 'can view-edit';
+                        $permission->save();
+        
+                        
+        
+                        return response()->json([
+                           
+                            'msg'=>'Now you can wath-edit'
+                        ]);
+        
+                    }else{
+                        return response()->json([
+                            'msg'=>'Bad request'
+                        ]);
+                    }
+
+                   
+                }else{
+                    return response()->json([
+                        
+                        'msg'=>'User not registered on Asakaa.'
+                    ]);
+    
+                }
+               
+            
+
+
+           
+
+        }else {
+            return response()->json([
+                'msg'=>'User not authenticated'
+            ]);
+        }
+    }
+
+    public function checkUserRegistered($email){
+
+        $user = DB::table('users')->where('email',$email)->first();
+
+        if(empty($user)){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    public function updateIdeaPrivacy(Request $request){
+
+        if (Auth::check()) {
+            // The user is logged in...
+            $user= Auth::user();
+
+            $idea = Innovation::find(intval($request->idea_id));
+
+            $idea->privacy = 'public';
+            $idea->save();
+
+            return response()->json([
+                'idea'=>$idea,
+                'msg'=>'Privacy of idea updated'
+            ]);
+
+        }else {
+            return response()->json([
+                'msg'=>'User not authenticated'
+            ]);
+        }
+    }
+
     public function index2(){
 
-        $ideas= DB::table('innovations')->orderBy('id','DESC')->get();
+        // De aqui se estan trayendo las innovaciones.
+        
+       
+        $userAuth = Auth::user();
 
+        // Para halar las innovaciones por usuario, el determinante debe ser el id del usuario.
+        $ideas= DB::table('user__has__ideas')
+  
+        ->where('id_user',$userAuth->id)
+        
+        ->get();
+
+        $public = DB::table('innovations')
+  
+        ->where('privacy','public')
+        ->where('created_by','!=',$userAuth->id)
+        
+        ->get();
+        
         $likesIdea = array();
-
         $ideasAll = array();
+
+        $likesIdeaPublic = array();
+        $ideasAllPublic = array();
+
 
         if (!empty($ideas)) {
             foreach($ideas as $idea){
 
-                $checkLikesIdea = DB::table('desireds')->where('innovation_id',$idea->id)->get();
+                $checkLikesIdea = DB::table('desireds')->where('innovation_id',$idea->id_idea)->get();
+
+                $ideaUser = DB::table('innovations')->where('id',$idea->id_idea)->first();
+
+                $permissions = DB::table('user__has__ideas__permissions')->where('id_idea',$idea->id_idea)->get();
 
                 if(count($checkLikesIdea)!=0) {
 
                     $tempIdea=array(
 
-                        'id'=>$idea->id,
-                        'title'=>$idea->title,
-                        'description'=>$idea->description,
-                        'body'=>$idea->body,
-                        'img'=>$idea->img,
-                        'category'=>$idea->category,
-                        'language'=>$idea->language,
-                        'tags'=>$idea->tags,
-                        'author'=>$idea->author,
-                        'created_by'=>$idea->created_by,
-                        'created_at'=>$idea->created_at,
-                        'likes'=>$checkLikesIdea
+                        'id'=>$ideaUser->id,
+                        'title'=>$ideaUser->title,
+                        'description'=>$ideaUser->description,
+                        'body'=>$ideaUser->body,
+                        'img'=>$ideaUser->img,
+                        'category'=>$ideaUser->category,
+                        'language'=>$ideaUser->language,
+                        'tags'=>$ideaUser->tags,
+                        'author'=>$ideaUser->author,
+                        'created_by'=>$ideaUser->created_by,
+                        'created_at'=>$ideaUser->created_at,
+                        'likes'=>$checkLikesIdea,
+                        'permissions'=>$permissions
         
         
                     );
@@ -62,18 +257,19 @@ class IdeasController extends Controller
                 }else{
                     $tempIdea=array(
 
-                        'id'=>$idea->id,
-                        'title'=>$idea->title,
-                        'description'=>$idea->description,
-                        'body'=>$idea->body,
-                        'img'=>$idea->img,
-                        'category'=>$idea->category,
-                        'language'=>$idea->language,
-                        'tags'=>$idea->tags,
-                        'author'=>$idea->author,
-                        'created_by'=>$idea->created_by,
-                        'created_at'=>$idea->created_at,
-                        'likes'=>$likesIdea
+                        'id'=>$ideaUser->id,
+                        'title'=>$ideaUser->title,
+                        'description'=>$ideaUser->description,
+                        'body'=>$ideaUser->body,
+                        'img'=>$ideaUser->img,
+                        'category'=>$ideaUser->category,
+                        'language'=>$ideaUser->language,
+                        'tags'=>$ideaUser->tags,
+                        'author'=>$ideaUser->author,
+                        'created_by'=>$ideaUser->created_by,
+                        'created_at'=>$ideaUser->created_at,
+                        'likes'=>$likesIdea,
+                        'permissions'=>$permissions
         
         
                     );
@@ -93,11 +289,84 @@ class IdeasController extends Controller
            
         }
 
+        //Para ideas publicas
+        
+
+        if (!empty($public)) {
+            foreach($public as $idea){
+
+                $checkLikesIdea = DB::table('desireds')->where('innovation_id',$idea->id)->get();
+
+                $ideaUser = DB::table('innovations')->where('id',$idea->id)->first();
+
+                $permissions = DB::table('user__has__ideas__permissions')->where('id_idea',$idea->id)->get();
+
+                if(count($checkLikesIdea)!=0) {
+
+                    $tempIdea=array(
+
+                        'id'=>$ideaUser->id,
+                        'title'=>$ideaUser->title,
+                        'description'=>$ideaUser->description,
+                        'body'=>$ideaUser->body,
+                        'img'=>$ideaUser->img,
+                        'category'=>$ideaUser->category,
+                        'language'=>$ideaUser->language,
+                        'tags'=>$ideaUser->tags,
+                        'author'=>$ideaUser->author,
+                        'created_by'=>$ideaUser->created_by,
+                        'created_at'=>$ideaUser->created_at,
+                        'likes'=>$checkLikesIdea,
+                        'permissions'=>$permissions
+        
+        
+                    );
+
+                    array_push($ideasAllPublic, $tempIdea);
+
+                    $tempIdea=array();
+                }else{
+                    $tempIdea=array(
+
+                        'id'=>$ideaUser->id,
+                        'title'=>$ideaUser->title,
+                        'description'=>$ideaUser->description,
+                        'body'=>$ideaUser->body,
+                        'img'=>$ideaUser->img,
+                        'category'=>$ideaUser->category,
+                        'language'=>$ideaUser->language,
+                        'tags'=>$ideaUser->tags,
+                        'author'=>$ideaUser->author,
+                        'created_by'=>$ideaUser->created_by,
+                        'created_at'=>$ideaUser->created_at,
+                        'likes'=>$likesIdea,
+                        'permissions'=>$permissions
+        
+        
+                    );
+
+                    array_push($ideasAllPublic, $tempIdea);
+
+                    $tempIdea=array();
+                    
+                }
+
+                
+    
+            }
+    
+        }else {
+            $ideasAllPublic=array();
+           
+        }
+
+
         
 
         return response()->json([
 
             'ideas'=>$ideasAll,
+            'publicIdeas'=>$ideasAllPublic
             
         ]);
     }
@@ -128,8 +397,7 @@ class IdeasController extends Controller
             
             $desired = DB::table('desireds')->where('innovation_id',$request->innovation_id)->get();
 
-            Log::info('Que se dice');
-
+           
 
             
            return response()->json([
@@ -147,7 +415,10 @@ class IdeasController extends Controller
     public function index()
     {
         
-        return Ideas::latest()->paginate(20);
+        
+
+
+        //return Ideas::latest()->paginate(2);
     }
 
     /**
@@ -168,18 +439,7 @@ class IdeasController extends Controller
      */
     public function store(IdeasRequest $request)
     {
-        
-       
 
-
-        return Ideas::create([
-
-                'ideatxt'=> $request->ideatxt,
-                'bugorfeaturetxt'=>$request->bugorfeaturetxt,
-                'img'=>$request->img
-        ]);
-
-        //Log::info('Idea creada correctamente');
 
 
     }
@@ -191,9 +451,10 @@ class IdeasController extends Controller
 
         $user = Auth::user();
 
+        
        
 
-        return Innovation::create([
+        $idea=  Innovation::create([
 
              'title'=>$request->title,
              'description'=>$request->description,
@@ -201,11 +462,29 @@ class IdeasController extends Controller
              'img'=>$request->img,
              'category'=>$request->category,
              'language'=>$request->language,
-             'author'=>$author,
+             'author'=>$request->author,
+             'privacy'=>$request->privacy,
              'created_by'=>$user->id
         ]);
 
-        Log::info('Idea2 creada correctamente');
+
+
+        $nuevoPermiso = new User_Has_Ideas_Permission();
+        $nuevoPermiso->id_user = $user->id;
+        $nuevoPermiso->id_idea = $idea->id;
+        $nuevoPermiso->permission_type = 'can view-edit';
+        $nuevoPermiso->save();
+
+  
+
+        $nuevoLinkUserTask = new User_Has_Idea();
+        $nuevoLinkUserTask->id_user = $user->id;
+        $nuevoLinkUserTask->id_idea = $idea->id;
+        $nuevoLinkUserTask->save();
+
+
+
+        Log::info('Innovation creada correctamente');
 
 
     }
@@ -222,6 +501,35 @@ class IdeasController extends Controller
 
         $vacio= array();
         $idea = Innovation::find($id);
+
+
+        if (Auth::check()) {
+            // The user is logged in...
+            $user= Auth::user();
+        }
+        
+
+        $permissions = DB::table('user__has__ideas__permissions')->where('id_idea',$idea->id)->where('id_user',$user->id)->get();
+
+        //$results = DB::select('select * from user__has__ideas__permissions where id_idea = :id_idea  and id_user = :id_user' , ['id_idea' =>$idea->id,'id_user'=>$user->id ]);
+
+        
+        $permissions2=array();
+
+   
+        foreach($permissions as $lel){
+
+            $permissions2[] = [
+                'id_user'=>$lel->id_user,
+                'id_idea'=>$lel->id_idea,
+                'permission_type'=>$lel->permission_type,
+                
+            ];
+
+        }
+        
+
+        
 
         if($idea->author=='showme'){
 
@@ -377,14 +685,23 @@ class IdeasController extends Controller
         
         $desired = DB::table('desireds')->where('innovation_id',$id)->get();
 
+        $othersPermissions= DB::table('user__has__ideas__permissions')
+        ->where('id_idea',$idea->id)
+        ->join('users','users.id','user__has__ideas__permissions.id_user')
+        ->select('users.*','user__has__ideas__permissions.permission_type','user__has__ideas__permissions.id_idea','user__has__ideas__permissions.id as permissionId')
+        ->get();
         
+        
+
 
        
         return response()->json([
             'idea' => $idea,
+            'permissions'=>$permissions2,
             'user' => $user,
             'discussions'=>$discussions,
-            'desired'=>$desired
+            'desired'=>$desired,
+            'othersPermissions'=>$othersPermissions
         ]);
 
         //return $idea;

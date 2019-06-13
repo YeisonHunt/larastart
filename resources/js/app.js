@@ -14,11 +14,18 @@ import { Form, HasError, AlertError } from 'vform'
 import moment from 'moment'
 import VueProgressBar from 'vue-progressbar'
 import Swal from 'sweetalert2'
-import BootstrapVue from 'bootstrap-vue'
 import Permissions from './mixins/Permissions'
 import VueStar from 'vue-star'
 import vueRandomPic from 'vue-random-pic'
 import VueMq from 'vue-mq'
+//import SuiVue from 'semantic-ui-vue';
+
+import Vuesax from 'vuesax'
+
+import 'vuesax/dist/vuesax.css' 
+Vue.use(Vuesax)
+
+
 
 
 Vue.use(vueRandomPic, 'https://unsplash.it');
@@ -45,7 +52,7 @@ Vue.component(AlertError.name, AlertError)
 Vue.component('VueStar', VueStar)
 
 Vue.use(VueRouter)
-Vue.use(BootstrapVue)
+//Vue.use(SuiVue);  // ya no se utilizara debido a incompatibilidad con el dropdown
 
 let routes = [
 	{ path: '/dashboard', component: require('./components/DashboardComponent.vue').default },
@@ -53,6 +60,7 @@ let routes = [
 	{ path: '/innovations', name:'ideaList', component: require('./components/IdeaComponent.vue').default },
 	{ path: '/ideaCreation', name: 'innovations', component: require('./components/IdeaCreationComponent.vue').default },
 	{ path: '/innovations/:id', component: require('./components/IdeaViewComponent.vue').default },
+	{ path: '/innovationPublic/:id', component: require('./components/PublicIdeaViewComponent.vue').default },
 	{ path: '/innovationsEdit/:id', component: require('./components/IdeaEditComponent.vue').default },
 
 	{ path: '/projects', component: require('./components/ProjectComponent.vue').default },
@@ -60,6 +68,9 @@ let routes = [
 	{ path: '/reports', component: require('./components/ReportComponent.vue').default },
 	{ path: '/goals', component: require('./components/GoalComponent.vue').default },
 	{ path: '/business', component: require('./components/BusinessComponent.vue').default },
+	{ path: '/business/team-works',name:'team-work', component: require('./components/BusinessTeamWorksComponent.vue').default },
+
+	{ path: '/shareInnovation/:id', component: require('./components/ShareInnovationComponent.vue').default },
 
 
 

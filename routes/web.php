@@ -45,7 +45,10 @@ Route::get('/registerCheck','InnovationController@check')->name('r2');
 
 //Route::get('/innovations/{id}','AdminController@index');
 
-
+Route::post('/updateIdeaPrivacy','IdeasController@updateIdeaPrivacy');
+Route::post('/addUserPermission','IdeasController@addUserPermission');
+Route::post('/deletePermissionsUser','IdeasController@deletePermissionsUser');
+Route::post('/updatePermissionPerId','IdeasController@updatePermissionPerId');
 
 
 

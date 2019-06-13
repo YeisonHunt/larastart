@@ -6,8 +6,26 @@
 @import 'variables';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
-@import 'node_modules/bootstrap-vue/src/index.scss';
+
+
+
+
+
+td { 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  word-wrap: break-word;
+}
+
+.hoverWhite{
+  color:#d9dde2;
+  cursor: pointer;
+}
+
+.hoverWhite:hover {
+  color:white !important;
+}
+
 
 .navbar-laravel {
   background-color: #fff;
@@ -27,7 +45,7 @@
   color:black !important;
 }
 
-.myFondo {
+.myFondoDELETETHISFORUSE {
    
   background: rgba(30,30,45,1);
 background: -moz-linear-gradient(left, rgba(30,30,45,1) 0%, rgba(16,101,199,1) 100%);

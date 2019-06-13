@@ -126,7 +126,7 @@
                                         @csrf
 
 									<div class="form-group">
-                                        <input class="form-control" type="text" placeholder="Email" name="email" autocomplete="off">
+                                        <input class="form-control" type="text" placeholder="Email" name="email" >
                                         
                                         @if ($errors->has('email'))
                                             <span class="invalid-feedback" role="alert">

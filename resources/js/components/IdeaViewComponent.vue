@@ -1,6 +1,6 @@
 <template>
   <div :class="{'container-fluid':mobile, 'container':large}">
-    <div class="row">
+    <div class="row" v-if="puedoVer" style="min-height:80vh;">
       <div class="col-lg-12 col-sm-12 col-md-12">
         <div class="kt-portlet mobilePortlet">
           <div class="kt-portlet__head">
@@ -33,15 +33,16 @@
 
 
 
-                <router-link
+                <router-link v-if="puedoEditar"
                   v-bind:to="'/innovationsEdit/'+this.id"
                   class="btn btn-outline-danger btn-sm btn-icon btn-icon-md"
                 >
                   <i class="flaticon-edit"></i>
                 </router-link>
-                <a href="#" class="btn btn-outline-success btn-sm btn-icon btn-icon-md">
-                  <i class="la la-star-o"></i>
-                </a>
+
+                <router-link :to="'/shareInnovation/'+this.id" class="btn btn-outline-success btn-sm btn-icon btn-icon-md">
+                  <i class="flaticon-share"></i>
+                </router-link>
               </div>
             </div>
           </div>
@@ -103,7 +104,7 @@
                           <div class="comment-wrapper">
                             <div class="panel panel-info">
                               <div class="panel-body">
-                                <h5 class="ml-3">Comments Section</h5>
+                                <h5 class="ml-3 mt-5">Comments Section</h5>
 
                                 <form
                                   @submit.prevent="goLastComment"
@@ -339,12 +340,89 @@
         </div>
       </div>
     </div>
+
+    <div class="row " v-else    >
+
+      <div class="col-4"></div>
+      
+      <div class="col-4">
+        <router-link  to="/innovations" class="btn btn-primary">
+
+          Go back to innovations
+        </router-link>
+      </div>
+
+      <div class="col-4"></div>
+
+     
+
+      <div class="col-12 mt-5">
+       <center>
+          <h4 style=" margin-left:auto;
+   margin-right:auto;
+   display:block; color:white;">Sorry, it seems you don't have permission to see this idea.</h4>
+         </center> 
+      
+            <img  height="80%" width="80%" class="mt-5 fadeImg"  :src="baseUrl +'img/forbidden.svg'" alt="" style="text-align:center; margin-left:10%;">
+   
+      
+      </div>
+    </div>
+
+
     <!-- end row -->
   </div>
   <!-- end container -->
 </template>
 
 <style type="text/css">
+
+
+.fadeImg {
+  
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 2s; /* Firefox < 16 */
+        -ms-animation: fadein 2s; /* Internet Explorer */
+         -o-animation: fadein 2s; /* Opera < 12.1 */
+            animation: fadein 2s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.noEscondido {
+  display:block !important;
+}
+
+.escondido {
+  display:none;
+}
 
 .largeBtn {
   width:100px !important;
@@ -493,10 +571,13 @@
 export default {
   data() {
     return {
+      canIseeVar:false,
+      permissions:{},
       id: this.$route.params.id,
       idea: {},
       editMode: false,
       ideas: {},
+      user:window.User,
       userIdea: {},
       liked: "",
       user: window.user,
@@ -608,11 +689,105 @@ export default {
 
     },
 
+    puedoVer: function(){
+      
+        if (this.permissions.length !=  0) { //validamos que exita la idea y luego si tengo permiso
+        
+       
+        let iCanSee = false;
+        let idUser = this.user.id;
+        let idIdea = this.id;
+       /* try {
+          this.permissions.forEach(function(permission) {
+            if (permission.permission_type == 'can view' && permission.id_user ==idUser && permision.id_idea== idIdea  ) {
+              
+              iCanSee = true;
+              console.log('times');
+              
+            }
+          });
+        } catch (e) {
+          console.log(e);
+        }*/
+
+       var item = {};
+       var permisos= this.permissions;
+     
+      
+      for (let i = 0; i < permisos.length; i++) {
+        item = permisos[i];
+        
+        if((item.permission_type=='can view' || item.permission_type=='can view-edit'  ) && item.id_user ==idUser && item.id_idea== idIdea){
+           iCanSee = true;
+        }
+        
+        
+      }
+      
+
+        return iCanSee;
+      } else {
+        
+      
+
+        return false;
+      }
+
+    },
+
+    puedoEditar: function(){
+      
+        if (this.permissions.length !=  0) { //validamos que exita la idea y luego si tengo permiso
+        
+         
+        let iCanSee = false;
+        let idUser = this.user.id;
+        let idIdea = this.id;
+       /* try {
+          this.permissions.forEach(function(permission) {
+            if (permission.permission_type == 'can view' && permission.id_user ==idUser && permision.id_idea== idIdea  ) {
+              
+              iCanSee = true;
+              console.log('times');
+              
+            }
+          });
+        } catch (e) {
+          console.log(e);
+        }*/
+
+       var item = {};
+       var permisos= this.permissions;
+     
+      
+      for (let i = 0; i < permisos.length; i++) {
+        item = permisos[i];
+        
+        if(item.permission_type=='can view-edit' && item.id_user ==idUser && item.id_idea== idIdea){
+           iCanSee = true;
+        }
+        
+        
+      }
+      
+
+        return iCanSee;
+      } else {
+        
+        
+
+        return false;
+      }
+
+    },
+
+
 
   },
 
   methods: {
 
+   
     
     alreadyLiked(idea){
 
@@ -746,6 +921,7 @@ export default {
           this.userIdea = response.data.user;
           this.discussionsFinal = response.data.discussions;
           this.likesPerIdea = response.data.desired;
+          this.permissions = response.data.permissions;
 
           //console.log(response);
         })
@@ -841,12 +1017,16 @@ export default {
     }
   },
   created() {
-    console.log("Visor de ideas individuales mounted");
-    this.loadUsers();
+    
+    
+    
   },
 
   mounted() {
-    document.getElementById("ideaBody").innerHTML = this.idea.body;
+    
+    this.loadUsers();
+
+    
   }
 };
 </script>

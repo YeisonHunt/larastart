@@ -79,7 +79,10 @@
 																	<label for="" style="margin-left:10px;">Body</label>
 																	<div class="col-12">
 																		
-																		 <textarea id="kt_summernote_1"  :class="{'is-invalid': form.errors.has('editordata')}"      @change="updateRichText" v-model="form.editordata"  name="editordata" class="summernote richtext" ></textarea>
+																		 <textarea id="kt_summernote_1"  
+																		 :class="{'is-invalid': form.errors.has('editordata')}" 
+																		      @change="updateRichText" v-model="form.editordata" 
+																			   name="editordata" class="summernote richtext" ></textarea>
 
 																		<has-error :form="form" field="body" ></has-error>
                                                                          
@@ -167,6 +170,25 @@
 																		</div>
 																	</div>
 																</div>
+
+																	<div class="form-group form-group-last row">
+																	<label class="col-3 col-form-label">Privacy</label>
+																	<div class="col-9">
+																		<div class="kt-checkbox-inline">
+																			<label class="kt-checkbox">
+																				<input type="radio"  value="me"  :class="{'is-invalid': form.errors.has('privacy')}"	 name="privacy" v-model="form.privacy" > Just for me
+																				<span></span>
+																			</label>
+																			<label class="kt-checkbox">
+																				<input type="radio" value="public" :class="{'is-invalid': form.errors.has('privacy')}" name="privacy" v-model="form.privacy" > Public
+																				<span></span>
+																			</label>
+																		<has-error :form="form" field="privacy" ></has-error>
+																		</div>
+																	</div>
+																</div>
+
+
 															</div>
 														</div>
 														
@@ -252,7 +274,8 @@ export default {
 					img:'',
 					category :'',
 					language:'',
-					author:'anonymous'
+					author:'anonymous',
+					privacy:'me'
 
                 }) 
             }
@@ -339,7 +362,7 @@ export default {
 		
 		}
 
-		,
+		
 	
 }
 
