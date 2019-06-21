@@ -75,7 +75,7 @@
                         <div class="col-12">
                         <!--   <textarea id="mySummer" @change="updateRichText" v-model="form.editordata"  name="editordata" class="summernote richtext" ></textarea>-->
 
-                         <html-editor   class="summernote richtext" height="300" :model.sync="form.editordata"></html-editor>
+                         <html-editor   class="summernote richtext" height="300" :model.sync="form.editordata"></html-editor> 
 
                           <span
                             class="form-text text-muted"

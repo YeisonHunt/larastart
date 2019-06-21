@@ -3,7 +3,7 @@
     <div class="row">
       
 
-      <router-link :to="{name:'team-work'}" class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction hvr-float hvr-underline-from-center">
+      <router-link :to="{name:'contacts'}" class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction hvr-float hvr-underline-from-center">
         <div class="kt-portlet kt-portlet--height-fluid">
           <div class="kt-widget14">
             <div class="kt-widget14__header kt-margin-b-14">
@@ -26,7 +26,7 @@
 
 
 
-      <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction hvr-float hvr-underline-from-center">
+     <router-link :to="{name:'work-teams'}"  class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction hvr-float hvr-underline-from-center">
         <div class="kt-portlet kt-portlet--height-fluid">
           <div class="kt-widget14">
             <div class="kt-widget14__header kt-margin-b-14">
@@ -45,14 +45,14 @@
 
           </div>
         </div>
-      </div> <!-- end first col -->
+     </router-link> <!-- end first col -->
 
     <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction  hvr-float hvr-underline-from-center">
         <div class="kt-portlet kt-portlet--height-fluid">
           <div class="kt-widget14">
             <div class="kt-widget14__header kt-margin-b-14">
               <h3 class="kt-widget14__title" >Innovation Engine</h3>
-              <span class="kt-widget14__desc">Check out each team member for work details</span>
+              <span class="kt-widget14__desc">This tool gives you innovation tips to transform an idea into a tangible project.</span>
             </div>
 
 
@@ -68,13 +68,13 @@
         </div>
       </div> <!-- end first col -->
 
-
+      <!--
         <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction  hvr-float hvr-underline-from-center">
         <div class="kt-portlet kt-portlet--height-fluid">
           <div class="kt-widget14">
             <div class="kt-widget14__header kt-margin-b-14">
               <h3 class="kt-widget14__title" >Growth Weapon</h3>
-              <span class="kt-widget14__desc">Check out each team member for work details</span>
+              <span class="kt-widget14__desc">Se detailed expansion plans recommended for you and your company.</span>
             </div>
 
 
@@ -88,15 +88,19 @@
 
           </div>
         </div>
-      </div> <!-- end first col -->
+      </div> 
 
+      -->
 
+    
+
+  <!--
     <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction  hvr-float hvr-underline-from-center">
         <div class="kt-portlet kt-portlet--height-fluid">
           <div class="kt-widget14">
             <div class="kt-widget14__header kt-margin-b-14">
               <h3 class="kt-widget14__title" >Reports Machine</h3>
-              <span class="kt-widget14__desc">Check out each team member for work details</span>
+              <span class="kt-widget14__desc">View all your important data in delighfull insights.</span>
             </div>
 
 
@@ -110,16 +114,18 @@
 
           </div>
         </div>
-      </div> <!-- end first col -->
+      </div> 
 
-   
+      -->
+
+   <!--
     
          <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction  hvr-float hvr-underline-from-center">
         <div class="kt-portlet kt-portlet--height-fluid">
           <div class="kt-widget14">
             <div class="kt-widget14__header kt-margin-b-14">
               <h3 class="kt-widget14__title" >ISO Tools</h3>
-              <span class="kt-widget14__desc">Check out each team member for work details</span>
+              <span class="kt-widget14__desc">Cuality assurance for all your customers.</span>
             </div>
 
 
@@ -133,15 +139,15 @@
 
           </div>
         </div>
-      </div> <!-- end first col -->
+      </div>-->
 
-
+<!--
         <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction  hvr-float hvr-underline-from-center">
         <div class="kt-portlet kt-portlet--height-fluid">
           <div class="kt-widget14">
             <div class="kt-widget14__header kt-margin-b-14">
               <h3 class="kt-widget14__title" >Big Gantt</h3>
-              <span class="kt-widget14__desc">Check out each team member for work details</span>
+              <span class="kt-widget14__desc">Watch the state of all your projects in just one view.</span>
             </div>
 
 
@@ -155,8 +161,7 @@
 
           </div>
         </div>
-      </div> <!-- end first col -->
-
+      </div> -->
       
 
     

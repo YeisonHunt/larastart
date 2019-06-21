@@ -49,7 +49,11 @@ Route::post('/updateIdeaPrivacy','IdeasController@updateIdeaPrivacy');
 Route::post('/addUserPermission','IdeasController@addUserPermission');
 Route::post('/deletePermissionsUser','IdeasController@deletePermissionsUser');
 Route::post('/updatePermissionPerId','IdeasController@updatePermissionPerId');
-
+Route::post('/saveContact','ContactController@saveContact');
+Route::get('/getContacts','ContactController@getContacts');
+Route::get('/getContact/{id}','ContactController@getContact');
+Route::post('/updateContact','ContactController@updateContact');
+Route::delete('/deleteContact/{id}','ContactController@deleteContact');
 
 
 Route::get('/{any}', 'AdminController@users')->where('any', '.*');

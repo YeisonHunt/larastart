@@ -7,7 +7,7 @@
 
 
      <div class="col-lg-1 col-sm-2">
-        <h5 class="mt-4 ">Show Public Ideas</h5>
+        <h6 class="mt-4 ">Show Public Ideas </h6>
       </div>
 
     <div class="col-lg-1 col-sm-2" >

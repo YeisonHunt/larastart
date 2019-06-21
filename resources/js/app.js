@@ -21,9 +21,35 @@ import VueMq from 'vue-mq'
 //import SuiVue from 'semantic-ui-vue';
 
 import Vuesax from 'vuesax'
+import Vuetify from 'vuetify'
+
+// index.js or main.js
+
+
 
 import 'vuesax/dist/vuesax.css' 
-Vue.use(Vuesax)
+import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
+
+Vue.use(Vuesax, {
+	theme:{
+	  colors:{
+		primary:'#5b3cc4',
+		success:'rgb(23, 201, 100)',
+		danger:'rgb(242, 19, 93)',
+		warning:'rgb(255, 130, 0)',
+		dark:'rgb(36, 33, 69)'
+	  }
+	}
+  })
+  Vue.use(Vuetify, {
+	theme: {
+	  primary: '#5b3cc4', // #E53935
+	  primary2: '#5b3cc4', // #E53935
+	  secondary: '#FFCFF2', // #FFCDD2
+	  accent: '#3F51B5' // #3F51B5
+	}
+  })
+
 
 
 
@@ -67,8 +93,21 @@ let routes = [
 	{ path: '/timesheets', component: require('./components/TimesheetComponent.vue').default },
 	{ path: '/reports', component: require('./components/ReportComponent.vue').default },
 	{ path: '/goals', component: require('./components/GoalComponent.vue').default },
+
+
 	{ path: '/business', component: require('./components/BusinessComponent.vue').default },
-	{ path: '/business/team-works',name:'team-work', component: require('./components/BusinessTeamWorksComponent.vue').default },
+	{ path: '/business/contacts',name:'contacts', component: require('./components/Business/contacts.vue').default },
+	{ path: '/business/contacts/create-contact',name:'create-contact', component: require('./components/Business/create-contact.vue').default },
+	{ path: '/business/contact-profile/:id',name:'contact', component: require('./components/Business/contact-profile.vue').default },
+	{ path: '/business/edit-contact/:id',name:'edit-contact', component: require('./components/Business/edit-contact.vue').default },
+
+	{ path: '/business/work-teams',name:'work-teams', component: require('./components/Business/work-teams-index.vue').default },
+
+
+
+	
+
+
 
 	{ path: '/shareInnovation/:id', component: require('./components/ShareInnovationComponent.vue').default },
 
@@ -105,6 +144,19 @@ Vue.filter(
 			return date.startOf('day').fromNow();    
 		}
 		
+	}
+
+);
+
+Vue.filter(
+
+	'cumple',
+	function (txtDate) {
+
+		
+			return moment(txtDate,'YYYY-MM-DD').format('MMMM DD');
+		
+	
 	}
 
 );
