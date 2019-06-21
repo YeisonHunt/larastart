@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-05-2019 a las 05:35:06
+-- Tiempo de generación: 21-06-2019 a las 04:23:09
 -- Versión del servidor: 10.1.29-MariaDB
 -- Versión de PHP: 7.2.0
 
@@ -172,6 +172,36 @@ INSERT INTO `comments` (`id`, `task_id`, `commentparent_id`, `user_id`, `text`, 
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `contacts`
+--
+
+CREATE TABLE `contacts` (
+  `id` int(100) NOT NULL,
+  `firstName` varchar(100) NOT NULL,
+  `lastName` varchar(100) NOT NULL,
+  `avatar` longtext NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `type` varchar(100) NOT NULL,
+  `birthdate` date NOT NULL,
+  `company` varchar(100) NOT NULL DEFAULT 'Pending...',
+  `country` varchar(100) DEFAULT 'Pending...',
+  `city` varchar(50) DEFAULT 'Pending...',
+  `phone` varchar(50) DEFAULT 'Pending',
+  `friend_id` int(10) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `contacts`
+--
+
+INSERT INTO `contacts` (`id`, `firstName`, `lastName`, `avatar`, `email`, `type`, `birthdate`, `company`, `country`, `city`, `phone`, `friend_id`, `created_at`, `updated_at`) VALUES
+(1, 'Nuevo contacto', 'Apellidos', 'https://i0.pngocean.com/files/2/604/62/computer-icons-silhouette-user-profile-silhouette.jpg', 'email@mail.com', 'Colleagues', '2019-06-19', 'asakaa', 'Colombia', 'bogota', '23123123123', 1, '2019-06-19 18:56:57', '2019-06-19 18:56:57');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `data_rows`
 --
 
@@ -326,11 +356,8 @@ CREATE TABLE `desireds` (
 --
 
 INSERT INTO `desireds` (`id`, `user_id`, `innovation_id`, `created_at`, `updated_at`) VALUES
-(4, 17, 4, '2019-05-24 07:48:05', '2019-05-24 07:48:05'),
-(6, 17, 5, '2019-05-24 08:00:42', '2019-05-24 08:00:42'),
-(8, 17, 3, '2019-05-24 08:01:07', '2019-05-24 08:01:07'),
-(9, 17, 1, '2019-05-24 08:10:29', '2019-05-24 08:10:29'),
-(10, 17, 2, '2019-05-24 08:28:30', '2019-05-24 08:28:30');
+(3, 17, 2, '2019-06-08 21:27:17', '2019-06-08 21:27:17'),
+(4, 1, 1, '2019-06-18 20:14:20', '2019-06-18 20:14:20');
 
 -- --------------------------------------------------------
 
@@ -347,20 +374,6 @@ CREATE TABLE `discussions` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `discussions`
---
-
-INSERT INTO `discussions` (`id`, `idea_id`, `discussion_parent_id`, `user_id`, `body`, `created_at`, `updated_at`) VALUES
-(74, 5, 0, 17, 'Nuevo comentario padre', '2019-05-22 19:28:09', '2019-05-22 19:28:09'),
-(75, 0, 74, 17, 'Nuevo comentario hijo', '2019-05-22 19:28:19', '2019-05-22 19:28:19'),
-(76, 5, 0, 17, 'Comentario hermano', '2019-05-22 19:53:07', '2019-05-22 19:53:07'),
-(77, 5, 0, 17, 'Otro comentario', '2019-05-22 19:55:32', '2019-05-22 19:55:32'),
-(78, 0, 74, 17, 'Otro comentario hijo', '2019-05-22 20:20:06', '2019-05-22 20:20:06'),
-(79, 4, 0, 17, 'Vamos a probar votar por esta idea', '2019-05-24 04:14:58', '2019-05-24 04:14:58'),
-(80, 0, 77, 17, 'Comentario', '2019-05-24 06:54:26', '2019-05-24 06:54:26'),
-(81, 5, 0, 17, 'Another comment', '2019-05-24 06:55:24', '2019-05-24 06:55:24');
 
 -- --------------------------------------------------------
 
@@ -424,6 +437,7 @@ CREATE TABLE `innovations` (
   `language` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tags` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `author` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `privacy` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'me',
   `created_by` int(10) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -433,12 +447,12 @@ CREATE TABLE `innovations` (
 -- Volcado de datos para la tabla `innovations`
 --
 
-INSERT INTO `innovations` (`id`, `title`, `description`, `body`, `img`, `category`, `type`, `language`, `tags`, `author`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 'Primera idea con editor nuevo', 'Esta es una descripción algo larga, por lo tanto vamos  a escribir más de lo normal para ver como cuadra', '<p>Awesome tesla cars carajooooooooooooooooooooooo</p>', 'https://i1.wp.com/electrek.co/wp-content/uploads/sites/3/2018/09/Screen-Shot-2018-09-04-at-10.16.43-AM-e1536070647937.jpg?resize=2000%2C0&quality=82&strip=all&ssl=1', 'sustainability', NULL, 'en', NULL, 'showme', 17, '2019-04-27 07:09:56', '2019-05-24 08:31:18'),
-(2, 'Segunda idea genial', '\'Awesome idea description...\'', '<p>Editor de texto rich</p>', 'https://images.unsplash.com/photo-1553356043-87636630a106?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80', 'homeandpets', NULL, 'de', NULL, 'showme', 17, '2019-04-27 08:05:46', '2019-04-27 08:05:46'),
-(3, 'Idea excelente creada con VueJS', 'Idea de prueba de VueJS', '<p class=\"contenido\" id=\"p362514-m297-296-298\" style=\"margin-right: auto; margin-bottom: 0px; margin-left: auto; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-height: 27px; font-family: roboto_slab_regular; font-size: 16px; vertical-align: baseline; color: rgb(57, 57, 57); -webkit-font-smoothing: antialiased; overflow-wrap: break-word;\">Si bien la tormenta que desató la no extradición de \'Jesús Santrich\' opacó la captura del magistrado Gustavo Malo y la acusación formal contra el expresidente de la Corte Suprema<b style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;\">&nbsp;<a href=\"https://www.eltiempo.com/noticias/leonidas-bustos\" style=\"margin: 0px; padding: 0px 2px 1px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-size: 1rem; vertical-align: baseline; -webkit-font-smoothing: antialiased; color: inherit; display: inline; position: relative; transition: background 0.125s ease-in-out 0s; background-image: linear-gradient(to right, rgb(3, 201, 234) 0px, rgb(3, 201, 234) 100%); background-position: 0px 100%; background-size: 100% 3px; background-repeat: repeat-x; background-attachment: initial; background-origin: initial; background-clip: initial;\">Leonidas Bustos</a></b>, \'por el llamado&nbsp;<a href=\"https://www.eltiempo.com/noticias/cartel-de-la-toga\" target=\"_blank\" style=\"margin: 0px; padding: 0px 2px 1px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-size: 1rem; vertical-align: baseline; -webkit-font-smoothing: antialiased; color: inherit; display: inline; position: relative; transition: background 0.125s ease-in-out 0s; background-image: linear-gradient(to right, rgb(3, 201, 234) 0px, rgb(3, 201, 234) 100%); background-position: 0px 100%; background-size: 100% 3px; background-repeat: repeat-x; background-attachment: initial; background-origin: initial; background-clip: initial;\"><b style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 16px; vertical-align: baseline;\">cartel de la toga\',&nbsp;</b></a>ambos casos avanza a buen ritmo.<br><br>Además de la acusación, la Comisión de Acusación de la Cámara ordenó<b style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;\">&nbsp;que se le congelaran todos los bienes a Bustos, incluido un lujoso apartamento que tiene a la venta en el exclusivo sector de La Cabrera, en Bogotá.</b></p><p class=\"contenido\" id=\"p362514-m341-2-342\" style=\"margin: 40px 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-height: 27px; font-family: roboto_slab_regular; font-size: 16px; vertical-align: baseline; color: rgb(57, 57, 57); -webkit-font-smoothing: antialiased; overflow-wrap: break-word;\">Si bien en la investigación se estableció que el dinero que le habrían cobrado a varios políticos, a manera de soborno, se usó para adquirir bienes, varios estarían a nombre de testaferros, que hoy están siendo rastreados.<br><br><a href=\"https://www.eltiempo.com/noticias/cartel-de-la-toga\" style=\"margin: 0px; padding: 0px 2px 1px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-size: 1rem; vertical-align: baseline; -webkit-font-smoothing: antialiased; color: inherit; display: inline; position: relative; transition: background 0.125s ease-in-out 0s; background-image: linear-gradient(to right, rgb(3, 201, 234) 0px, rgb(3, 201, 234) 100%); background-position: 0px 100%; background-size: 100% 3px; background-repeat: repeat-x; background-attachment: initial; background-origin: initial; background-clip: initial;\"><b style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 16px; vertical-align: baseline;\">(Lea todo el cubrimiento al escándalo del Cartel de la Toga)</b></a><br><br>Sin embargo, el apartamento, de 388 metros, ubicado en un tercer nivel,&nbsp;<b style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;\">está a nombre de Bustos quien, tal como lo reveló EL TIEMPO, salió desde finales de 2018 hacia Canadá.</b></p>', 'https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80', 'improvethis', NULL, 'en', NULL, 'showme', 17, '2019-05-01 04:03:28', '2019-05-18 20:47:01'),
-(4, 'Vamos de nuevo', '\'Awesome idea description...\'', '<h1>Meet DHTMLX Rich Text Editor!</h1><p>This demo will show you the main features of our highly customizable JavaScript rich text editor.</p><p>Type in any text here, apply text formatting and use the controls below to change the editor\'s look and feel and convert your text into HTML, markdown or plain text.</p><p><strong>To learn more, read our </strong><a href=\"https://docs.dhtmlx.com/richtext/index.html\" title=\"documentation\"><strong>documentation</strong></a><strong> and check the </strong><a href=\"https://docs.dhtmlx.com/richtext/samples/\" title=\"samples\"><strong>samples</strong></a></p><blockquote><p>It\'s extremely easy and fast to build a fully working nice-looking application that normally would take weeks or months to build.</p></blockquote><p style=\"text-align: right;\"><a href=\"https://www.g2crowd.com/products/dhtmlxsuite/reviews\" title=\"G2Crowd\">G2Crowd</a></p>', 'https://images.unsplash.com/photo-1507668077129-56e32842fceb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', 'improvethis', NULL, 'en', NULL, 'showme', 17, '2019-05-01 04:15:53', '2019-05-16 21:16:39'),
-(5, 'Cars', 'Esta idea podria servir para mejorar el mundo que conocemos', '<p>Awesome music <b>Hold on</b></p><p><span style=\"color: rgb(33, 37, 41); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;\"><br></span></p><p><span style=\"color: rgb(33, 37, 41); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;\">The&nbsp;</span><a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/:lang\" style=\"color: rgb(0, 123, 255); background-color: rgb(255, 255, 255); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;\"><code class=\"highlighter-rouge\" style=\"font-size: 14px;\">:lang()</code>&nbsp;pseudo-class</a><span style=\"color: rgb(33, 37, 41); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;\">&nbsp;is used to allow for translation of the “Browse” text into other languages. Override or add entries to the&nbsp;</span><code class=\"highlighter-rouge\" style=\"font-size: 14px; background-color: rgb(255, 255, 255);\">$custom-file-text</code><span style=\"color: rgb(33, 37, 41); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;\">&nbsp;Sass variable with the relevant&nbsp;</span><a href=\"https://en.wikipedia.org/wiki/IETF_language_tag\" style=\"color: rgb(0, 123, 255); background-color: rgb(255, 255, 255); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;\">language tag</a><span style=\"color: rgb(33, 37, 41); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;\">&nbsp;and localized strings. The English strings can be customized the same way. For example, here’s how one might add a Spanish translation (Spanish’s language code is&nbsp;</span><code class=\"highlighter-rouge\" style=\"font-size: 14px; background-color: rgb(255, 255, 255);\">es</code><span style=\"color: rgb(33, 37, 41); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;\">):</span></p><p><span style=\"color: rgb(33, 37, 41); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;\"><br></span></p><p><img src=\"https://amp.businessinsider.com/images/571fa66add089510618b47b7-750-375.jpg\" style=\"width: 750px;\"><span style=\"color: rgb(33, 37, 41); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;\"><br></span></p><p><span style=\"color: rgb(33, 37, 41); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;\">El carro anterior es bastante bonito.<br></span><br></p>', 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80', 'beautyandfaashion', NULL, 'es', NULL, 'anonymous', 17, '2019-05-09 05:25:46', '2019-05-24 03:48:01');
+INSERT INTO `innovations` (`id`, `title`, `description`, `body`, `img`, `category`, `type`, `language`, `tags`, `author`, `privacy`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 'Idea creada por admin y editada por yeison', 'The Metronic Datatable component supports local or remote data source. For the local data you can pass javascript array as data source. In this example the grid fetches its data from a javascript array data source. It also defines the schema model of the data source. In addition to the visualization, the Datatable provides built-in support for operations over data such as sorting, filtering and paging performed in user browser(frontend).', '<div class=\"alert alert-light alert-elevate\" role=\"alert\">\n								\n								<div class=\"alert-text\">\n									The Metronic Datatable component supports local or remote data \nsource. For the local data you can pass javascript array as data source.\n In this example the grid fetches its\n									data from a javascript array data source. It also defines\n									the schema model of the data source. In addition to the \nvisualization, the Datatable provides built-in support for operations \nover data such as sorting, filtering and\n									paging performed in user browser(frontend).\n								</div>\n							</div>', 'https://images.unsplash.com/photo-1553356043-87636630a106?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80', 'improvethis', NULL, 'en', NULL, 'showme', 'public', 1, '2019-05-31 00:24:43', '2019-06-07 22:46:17'),
+(2, 'Idea creada por Yeison', '\'Awesome idea description...\'', '<p>cuerpo by ye</p>', 'https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80', 'sportsandentertainment', NULL, 'en', NULL, 'showme', 'me', 17, '2019-05-31 00:30:34', '2019-05-31 00:30:34'),
+(3, 'Vamos a arreglar el dropdown porque aja', '\'Awesome idea description...\'', 'asdasdasdasdaasdasd', 'https://t2.ev.ltmcdn.com/es/posts/7/9/2/15_curiosidades_de_la_naturaleza_que_te_sorprenderan_1297_600.jpg', 'sustainability', NULL, 'en', NULL, 'showme', 'me', 1, '2019-06-13 04:27:49', '2019-06-13 04:27:49'),
+(4, 'erter', '\'Awesome idea description...\'', '<p>erteeeeeeeeeeeeeeeeeeeeeeeeeeee</p>', 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80', 'improvethis', NULL, 'en', NULL, 'showme', 'public', 1, '2019-06-13 04:28:02', '2019-06-13 04:28:21'),
+(5, 'Esta es una idea publica', '\'Awesome idea description...\'', '<p>idea publica</p>', 'https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80', 'sustainability', NULL, 'en', NULL, 'showme', 'public', 1, '2019-06-19 22:16:51', '2019-06-19 22:19:52');
 
 -- --------------------------------------------------------
 
@@ -453,16 +467,6 @@ CREATE TABLE `likes` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `likes`
---
-
-INSERT INTO `likes` (`id`, `user_id`, `comment_id`, `created_at`, `updated_at`) VALUES
-(62, 17, 75, '2019-05-22 19:44:04', '2019-05-22 19:44:04'),
-(67, 17, 76, '2019-05-24 03:48:13', '2019-05-24 03:48:13'),
-(71, 17, 79, '2019-05-24 04:25:13', '2019-05-24 04:25:13'),
-(75, 17, 74, '2019-05-24 06:50:56', '2019-05-24 06:50:56');
 
 -- --------------------------------------------------------
 
@@ -4445,10 +4449,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `account_type`, `name`, `email`, `businessName`, `avatar`, `password`, `code`, `status`, `active`, `remember_token`, `settings`, `actualizador`, `created_at`, `updated_at`, `business_id`, `hour_cost`, `temporal`) VALUES
-(1, 1, 'business', 'Yeison', 'admin@admin.com', NULL, 'users\\default.png', '$2y$10$5UqLtPw41IVWeM3VRUzTfeT8Wq9urXz1DMqt1FuQZeTPXPy9kykNm', '', 0, 1, '7CHI4caJv1yhBeEEEuA8ldC6aHfq5QQN2Yx8OMhakKajfULV5AwoWVL7ZERr', '{\"locale\":\"en\"}', '11260085', '2018-07-05 21:05:13', '2019-03-12 08:57:12', NULL, 0, 0),
+(1, 1, 'business', 'Yeison', 'admin@admin.com', NULL, 'users\\default.png', '$2y$10$5UqLtPw41IVWeM3VRUzTfeT8Wq9urXz1DMqt1FuQZeTPXPy9kykNm', '', 0, 1, 'WDlTUVX1kfJ5NNNI8KW5uv3BIPLv3qBQ4lfCyz18ecrHwiLqRIDY2naHwrus', '{\"locale\":\"en\"}', '11260085', '2018-07-05 21:05:13', '2019-03-12 08:57:12', NULL, 0, 0),
 (2, 2, 'personal', 'Yeison2', 'yecaicedo1231@unicauca.edu.co', NULL, 'users/default.png', '$2y$10$XvGDBmasUqUpbHv5YFzZcuP01Qd7hJvmhuV5Q7XkhARDaEO1/Rfrq', 'rr8vg1oynt', 1, 1, 'KeT3gnFtT7IbLCe9uDrhEg4akc49rQ10UvlGvZodH0vIjlqhBY3HaqxHSAzp', NULL, NULL, '2018-07-26 10:25:41', '2018-08-01 20:03:34', NULL, 0, 0),
 (10, 2, 'personal', 'Yeison', 'yeisoneduardocaicedo@outlook.com', NULL, 'users/default.png', '$2y$10$wyphsyIdNkVd7m1Z1gN6juWKI3BDerLEtA0wmXTiqwQiE/wiH9a5q', 'apxcmp4k6r', 0, 1, 'Rou4tHm4LSPDSPq8yCaqSCo27wHgfJsAyGk59SG8v2LWayTrCWcgO1CbD6E7', NULL, '2456187', '2018-09-03 21:36:24', '2018-11-08 19:31:18', NULL, 0, 0),
-(17, 2, 'business', 'Yeison Caicedoe', 'yecaicedo@unicauca.edu.co', NULL, 'users/letterY.png', '$2y$10$ANkI2WnlkMDL9f/xdGIq6erMV1sGO3OlJGOUzu8R9j1NUYv0a1XDe', 'nle9zmjnfo', 1, 1, 'AEs0ReevgRVKT84CnH7SbmNzzSMvmrgdZxgUapN2AYm4hU3BQD60PhIeo4ra', '{\"locale\":\"en\"}', '1702556', '2018-09-04 01:17:49', '2019-04-06 02:37:05', NULL, 0, 0),
+(17, 2, 'business', 'Yeison Caicedoe', 'yecaicedo@unicauca.edu.co', NULL, 'users/letterY.png', '$2y$10$ANkI2WnlkMDL9f/xdGIq6erMV1sGO3OlJGOUzu8R9j1NUYv0a1XDe', 'nle9zmjnfo', 1, 1, 'tWQizcNA7GVpHflQO6UdAEiwK6ly2vAhGi8XXTa5ZrMTjfbcPB9tcg7MWK8M', '{\"locale\":\"en\"}', '1702556', '2018-09-04 01:17:49', '2019-04-06 02:37:05', NULL, 0, 0),
 (18, 2, 'personal', 'Awesome user', 'asakaa1995x@gmail.com', NULL, 'users/letterA.png', '$2y$10$syyN65ppQCzKL5YjQwqEtO85PN3jM3TgTZNLONbWmIPzQdC159ptC', '1mqa55tjcc', 1, 1, NULL, NULL, '488758', '2018-10-13 02:58:33', '2018-10-13 04:51:55', NULL, 0, 0),
 (19, 2, 'personal', NULL, 'leonidas@gmail.com', NULL, 'users/default.png', NULL, 'b8h1v6fs20', NULL, 0, NULL, NULL, NULL, '2018-10-16 20:46:13', '2018-10-16 20:46:13', NULL, 0, 0),
 (20, 2, 'personal', NULL, 'blickblick@gmail.com', NULL, 'users/default.png', NULL, 'zwoq9sa6av', NULL, 0, NULL, NULL, NULL, '2018-10-16 22:09:07', '2018-10-16 22:09:07', NULL, 0, 0),
@@ -4641,6 +4645,57 @@ INSERT INTO `user_has_businesses` (`id`, `user_id`, `business_id`, `created_at`,
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `user__has__ideas`
+--
+
+CREATE TABLE `user__has__ideas` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_idea` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `user__has__ideas`
+--
+
+INSERT INTO `user__has__ideas` (`id`, `id_user`, `id_idea`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, '2019-05-31 00:24:43', '2019-05-31 00:24:43'),
+(2, 17, 2, '2019-05-31 00:30:34', '2019-05-31 00:30:34'),
+(3, 1, 3, '2019-06-13 04:27:49', '2019-06-13 04:27:49'),
+(4, 1, 4, '2019-06-13 04:28:02', '2019-06-13 04:28:02'),
+(5, 1, 5, '2019-06-19 22:16:51', '2019-06-19 22:16:51');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `user__has__ideas__permissions`
+--
+
+CREATE TABLE `user__has__ideas__permissions` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_idea` int(11) NOT NULL,
+  `permission_type` varchar(50) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `user__has__ideas__permissions`
+--
+
+INSERT INTO `user__has__ideas__permissions` (`id`, `id_user`, `id_idea`, `permission_type`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 'can view-edit', '2019-05-31 00:24:43', '2019-06-07 03:42:29'),
+(3, 17, 2, 'can view-edit', '2019-05-31 00:30:34', '2019-05-31 00:30:34'),
+(4, 1, 3, 'can view-edit', '2019-06-13 04:27:49', '2019-06-13 04:27:49'),
+(5, 1, 4, 'can view-edit', '2019-06-13 04:28:02', '2019-06-13 04:28:02'),
+(6, 1, 5, 'can view-edit', '2019-06-19 22:16:51', '2019-06-19 22:16:51');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `voyager_themes`
 --
 
@@ -4697,6 +4752,12 @@ ALTER TABLE `chats`
 -- Indices de la tabla `comments`
 --
 ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `contacts`
+--
+ALTER TABLE `contacts`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -4925,6 +4986,18 @@ ALTER TABLE `user_has_businesses`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `user__has__ideas`
+--
+ALTER TABLE `user__has__ideas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `user__has__ideas__permissions`
+--
+ALTER TABLE `user__has__ideas__permissions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `voyager_themes`
 --
 ALTER TABLE `voyager_themes`
@@ -4967,6 +5040,12 @@ ALTER TABLE `comments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
+-- AUTO_INCREMENT de la tabla `contacts`
+--
+ALTER TABLE `contacts`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `data_rows`
 --
 ALTER TABLE `data_rows`
@@ -4982,13 +5061,13 @@ ALTER TABLE `data_types`
 -- AUTO_INCREMENT de la tabla `desireds`
 --
 ALTER TABLE `desireds`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `discussions`
 --
 ALTER TABLE `discussions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `extras`
@@ -5012,7 +5091,7 @@ ALTER TABLE `innovations`
 -- AUTO_INCREMENT de la tabla `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `links`
@@ -5127,6 +5206,18 @@ ALTER TABLE `users_has_projects`
 --
 ALTER TABLE `user_has_businesses`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `user__has__ideas`
+--
+ALTER TABLE `user__has__ideas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `user__has__ideas__permissions`
+--
+ALTER TABLE `user__has__ideas__permissions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `voyager_themes`
