@@ -5,8 +5,8 @@
 	<!-- begin::Head -->
 	<head>
 		<meta charset="utf-8" />
-		<title>Asakaa | Home </title>
-		<meta name="description" content="No subheader example">
+		<title>Asakaa Innova | Home </title>
+		<meta name="description" content="Innovation gun for every awesome company">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 		<!--begin::Fonts -->
@@ -18,50 +18,31 @@
                     sessionStorage.fonts = true;
                 }
             });
-        </script>
-				<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-			<link rel="stylesheet" href="{{ asset('css/animate.css') }}">
-			<link rel="stylesheet" href="{{ asset('css/hover-min.css') }}">
+		</script>
+		
+
+		
+
+			<link rel="stylesheet" href="{{ asset('css/animate.css') }}"> <!-- Min -->
+			<link rel="stylesheet" href="{{ asset('css/hover-min.css') }}"> <!-- Min -->
 			<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
 			<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
-
-			<!--end::Fonts -->
 			
 
-            <!--begin::Page Vendors Styles(used by this page) -->
-            <link href="{{asset('assets/vendors/custom/fullcalendar/fullcalendar.bundle.css')}}" rel="stylesheet" type="text/css" />
-
-            <!--RTL version:<link href="../../assets/vendors/custom/fullcalendar/fullcalendar.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
-
-            <!--end::Page Vendors Styles -->
 
             <!--begin::Global Theme Styles(used by all pages) -->
-            <link href="{{asset('assets/vendors/base/vendors.bundle.css')}}" rel="stylesheet" type="text/css" />
+            <link href="{{asset('assets/vendors/base/vendors.bundle.min.css')}}" rel="stylesheet" type="text/css" />
 
             <!--RTL version:<link href="../../assets/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
-            <link href="{{asset('assets/demo/default/base/style.bundle.css')}}" rel="stylesheet" type="text/css" />
+            <link href="{{asset('assets/demo/default/base/style.bundle.min.css')}}" rel="stylesheet" type="text/css" />
 
-            <!--RTL version:<link href="../../assets/demo/default/base/style.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
+           
+            <link href="{{asset('assets/demo/default/skins/aside/dark.min.css')}}" rel="stylesheet" type="text/css" />
 
-            <!--end::Global Theme Styles -->
-
-            <!--begin::Layout Skins(used by all pages) -->
-            <link href="{{asset('assets/demo/default/skins/header/base/light.css')}}" rel="stylesheet" type="text/css" />
-
-            <!--RTL version:<link href="../../assets/demo/default/skins/header/base/light.rtl.css" rel="stylesheet" type="text/css" />-->
-            <link href="{{asset('assets/demo/default/skins/header/menu/light.css')}}" rel="stylesheet" type="text/css" />
-
-            <!--RTL version:<link href="../../assets/demo/default/skins/header/menu/light.rtl.css" rel="stylesheet" type="text/css" />-->
-            <link href="{{asset('assets/demo/default/skins/brand/dark.css')}}" rel="stylesheet" type="text/css" />
-
-            <!--RTL version:<link href="../../assets/demo/default/skins/brand/dark.rtl.css" rel="stylesheet" type="text/css" />-->
-            <link href="{{asset('assets/demo/default/skins/aside/dark.css')}}" rel="stylesheet" type="text/css" />
-
-            <!--RTL version:<link href="../../assets/demo/default/skins/aside/dark.rtl.css" rel="stylesheet" type="text/css" />-->
+        
 
             <!--end::Layout Skins -->
 			<link rel="icon" type="image/png" sizes="32x32" href="{{asset('innovation/favicon.png')}}">
@@ -73,7 +54,6 @@
 
 			<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-			<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
 		
 
@@ -837,7 +817,7 @@
 										<div id="logMenu" style="" class="kt-header__topbar-wrapper dropdown-toggle" data-toggle="dropdown" data-offset="0px,0px" aria-haspopup="true"  aria-expanded="true">
 											<div class="kt-header__topbar-user">
 												<span class="kt-header__topbar-welcome kt-hidden-mobile 	">Hi,</span>
-												<span class="kt-header__topbar-username kt-hidden-mobile ">{{ Auth::user()->name }}</span>
+												<span class="kt-header__topbar-username kt-hidden-mobile text-primary">{{ Auth::user()->name }}</span>
 												<img class="kt-hidden" alt="Pic" src="../../../assets/media/users/300_25.jpg">
 
 												<!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
@@ -1040,11 +1020,11 @@
 
 			<!-- end::Global Config -->
 
-		<!--begin::Global Theme Bundle(used by all pages) 
-		<script src="{{asset('assets/vendors/base/vendors.bundle.js')}}" type="text/javascript"></script>
-		<script src="{{asset('assets/demo/default/base/scripts.bundle.js')}}" type="text/javascript"></script>
-
-		 -->
+		<!--begin::Global Theme Bundle(used by all pages) -->
+		<script src="{{asset('assets/vendors/base/vendors.bundle.min.js')}}" type="text/javascript"></script>
+		<script src="{{asset('assets/demo/default/base/scripts.bundle.min.js')}}" type="text/javascript"></script>
+		
+		 
 
 
 
@@ -1059,10 +1039,10 @@
 		<!--end::Page Scripts -->
 
 		<!--begin::Global App Bundle(used by all pages) -->
-		<!--<script src="{{asset('assets/app/bundle/app.bundle.js')}}" type="text/javascript"></script>-->
+		<script src="{{asset('assets/app/bundle/app.bundle.min.js')}}" type="text/javascript"></script>
 
 
-<!--
+
 		<script>
 
 			$(document).ready(function(){
@@ -1081,7 +1061,7 @@
 
 			});
 
-		</script> -->
+		</script> 
 
 		<script>
 

@@ -10662,6 +10662,10 @@ a.text-dark:focus {
   }
 }
 
+#kt_header {
+  background-color: white !important;
+}
+
 td {
   overflow: hidden;
   text-overflow: ellipsis;

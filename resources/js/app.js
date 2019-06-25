@@ -13,7 +13,7 @@ import VueRouter from 'vue-router'
 import { Form, HasError, AlertError } from 'vform'
 import moment from 'moment'
 import VueProgressBar from 'vue-progressbar'
-//import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 import Permissions from './mixins/Permissions'
 import VueStar from 'vue-star'
 import vueRandomPic from 'vue-random-pic'
@@ -72,6 +72,7 @@ Vue.mixin(Permissions);
 
 
 window.Form = Form; // Ahora en cualquier lugar de nuestra aplicacion tenemos acceso a esa variable
+window.Swal= Swal;
 
 
 

@@ -199,7 +199,7 @@
                     <div class="col-lg-9">
                       <div class="mt-4">
                         <router-link
-                          :to="{name:'team-work'}"
+                          :to="{name:'contacts'}"
                           class="btn btn-outline-brand btn-elevate btn-pill"
                         >
                           <i class="fa fa-arrow-left mb-2"></i>

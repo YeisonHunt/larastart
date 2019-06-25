@@ -135,7 +135,7 @@
                             @click="showContactModal(user)"
                           >
                             <div id="tt1" class="icon material-icons">visibility</div>
-                            <div class="mdl-tooltip" data-mdl-for="tt1">Watch</div>
+                            
                           </button>
 
                           <router-link
