@@ -1040,11 +1040,11 @@
 
 			<!-- end::Global Config -->
 
-		<!--begin::Global Theme Bundle(used by all pages) -->
+		<!--begin::Global Theme Bundle(used by all pages) 
 		<script src="{{asset('assets/vendors/base/vendors.bundle.js')}}" type="text/javascript"></script>
 		<script src="{{asset('assets/demo/default/base/scripts.bundle.js')}}" type="text/javascript"></script>
 
-		<!--end::Global Theme Bundle -->
+		 -->
 
 
 
@@ -1062,7 +1062,7 @@
 		<!--<script src="{{asset('assets/app/bundle/app.bundle.js')}}" type="text/javascript"></script>-->
 
 
-
+<!--
 		<script>
 
 			$(document).ready(function(){
@@ -1081,7 +1081,7 @@
 
 			});
 
-		</script>
+		</script> -->
 
 		<script>
 
