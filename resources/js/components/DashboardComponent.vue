@@ -175,11 +175,11 @@
 
 
 <script>
-import * as am4core from "@amcharts/amcharts4/core";
+/*import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
-am4core.useTheme(am4themes_animated);
+am4core.useTheme(am4themes_animated); */
 
 export default {
   name: "HelloWorld",
@@ -196,7 +196,7 @@ export default {
 
   methods: {
 
-    cargarGrafico(){
+   /* cargarGrafico(){
        let chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart);
 
         chart.paddingRight = 20;
@@ -233,13 +233,13 @@ export default {
         chart.scrollbarX = scrollbarX;
 
       this.chart = chart;
-    }//Fin cargar grafico function
+    }//Fin cargar grafico function */
 
   },
 
   mounted() {
    
-	 this.cargarGrafico()
+	 //this.cargarGrafico()
 
 	
   },
