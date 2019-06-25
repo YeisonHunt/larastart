@@ -55,6 +55,9 @@ Route::get('/getContact/{id}','ContactController@getContact');
 Route::post('/updateContact','ContactController@updateContact');
 Route::delete('/deleteContact/{id}','ContactController@deleteContact');
 
+Route::post('/saveTeam','TeamController@saveTeam');
+Route::get('/getTeams','TeamController@getTeams');
+
 
 Route::get('/{any}', 'AdminController@users')->where('any', '.*');
 //Route::get('{path}',"AdminController@users")->where( 'path', '([A-z\d-\/_.]+)?' );

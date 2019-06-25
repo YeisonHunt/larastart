@@ -1059,7 +1059,7 @@
 		<!--end::Page Scripts -->
 
 		<!--begin::Global App Bundle(used by all pages) -->
-		<script src="{{asset('assets/app/bundle/app.bundle.js')}}" type="text/javascript"></script>
+		<!--<script src="{{asset('assets/app/bundle/app.bundle.js')}}" type="text/javascript"></script>-->
 
 
 

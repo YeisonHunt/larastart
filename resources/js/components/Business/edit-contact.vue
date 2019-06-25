@@ -572,7 +572,7 @@ export default {
       this.contactForm2
         .post("/updateContact")
         .then(({ data }) => {
-          this.$router.push({ name: "team-work" });
+          this.$router.push({ name: "contacts" });
           toastr.success("Awesome!", "Contact has been updated successfully.");
           this.contactForm2.reset();
         })
