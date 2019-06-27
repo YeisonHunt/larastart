@@ -58,6 +58,26 @@ Route::delete('/deleteContact/{id}','ContactController@deleteContact');
 Route::post('/saveTeam','TeamController@saveTeam');
 Route::get('/getTeams','TeamController@getTeams');
 
+Route::get('/public-ideas','PublicController@publicIdeas')->name('publicIdeas');
+
+
+Route::get('/facebook',function(){
+
+    return Redirect::to('https://www.facebook.com/Asaka-Project-Management-476601186135413');
+})->name('facebook');
+
+
+Route::get('/twitter',function(){
+
+    return Redirect::to('https://twitter.com/AsakaaProject');
+})->name('twitter');
+
+Route::get('/linkedin',function(){
+
+    return Redirect::to('https://www.linkedin.com/company/asakaa');
+})->name('linkedin');
+
+
 
 Route::get('/{any}', 'AdminController@users')->where('any', '.*');
 //Route::get('{path}',"AdminController@users")->where( 'path', '([A-z\d-\/_.]+)?' );

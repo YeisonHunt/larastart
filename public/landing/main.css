@@ -1,0 +1,17 @@
+
+
+.myBtn {
+    background-color:#6c63ff;
+    color:white;
+    border-radius: 10px;
+}
+
+.myBtn:hover {
+    background-color: #8983fc;
+}
+
+#Top_bar .menu>li>a span:not(.description) {
+
+    line-height: 40px;
+  
+}
