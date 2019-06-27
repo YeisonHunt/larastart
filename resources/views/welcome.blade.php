@@ -8,7 +8,7 @@
     <meta name="description" content="Asakaa | Innovation ">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Asakaa Group">
-    <meta name="keywords" content="innovation,dedicated,cloud,hosting,hosting template,whmcs, hosting whmcs,whmcs template">
+    <meta name="keywords" content="innovation">
     <link rel="icon" type="image/png" sizes="32x32" href="{{asset('innovation/favicon.png')}}">
     <!-- Page title -->
     <title>Asakaa | Innovation</title>
