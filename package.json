@@ -30,6 +30,7 @@
         "@amcharts/amcharts4-geodata": "^4.1.6",
         "bootstrap-vue": "^2.0.0-rc.19",
         "chart.js": "^2.8.0",
+        "element-ui": "^2.10.0",
         "moment": "^2.24.0",
         "semantic-ui": "^2.4.2",
         "semantic-ui-css": "^2.4.1",

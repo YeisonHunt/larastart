@@ -53,7 +53,7 @@
 		<!--RTL version:<link href="../../assets/demo/default/skins/aside/dark.rtl.css" rel="stylesheet" type="text/css" />-->
 
 		<!--end::Layout Skins -->
-        <link rel="shortcut icon" href="{{asset('assets/media/logos/favicon.ico')}}" />
+		<link rel="icon" type="image/svg+xml" href="{{asset('landing/html/content/agency3/images/fav.png')}}" sizes="any">
 	</head>
 
 	<!-- end::Head -->
@@ -70,7 +70,7 @@
 					<div class="kt-grid__item kt-grid__item--order-tablet-and-mobile-2 kt-grid kt-grid--hor kt-login__aside" style="background-image: url(../../assets/media//bg/bg-4.jpg);">
 						<div class="kt-grid__item">
 							<a href="{{route('raiz')}}" class="kt-login__logo">
-								<img src="{{asset('innovation/images/logo/logoFinal.png')}}" width="40%" height="40%">
+								<img src="{{asset('landing/html/content/agency3/images/white_name.png')}}" width="40%" height="40%">
 							</a>
 						</div>
 						<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver">
@@ -123,25 +123,25 @@
 								<!--begin::Form-->
                                 <form class="kt-form" action="{{ route('login') }}" method="POST" >
                                     
-                                        @csrf
+									{{ csrf_field() }}
 
 									<div class="form-group">
                                         <input class="form-control" type="text" placeholder="Email" name="email" >
                                         
                                         @if ($errors->has('email'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('email') }}</strong>
-                                            </span>
-                                        @endif
+														<span class="" style="font-size:90%; color:#e2445c; margin-top:10px; margin-left: 15px; ">
+															<strong>{{ $errors->first('email') }}</strong>
+														</span>
+														@endif
 									</div>
 									<div class="form-group">
                                         <input class="form-control" type="password" placeholder="Password" name="password">
                                         
                                         @if ($errors->has('password'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('password') }}</strong>
-                                            </span>
-                                        @endif
+														<span class="" style="font-size:90%; color:#e2445c; margin-top:10px; margin-left: 15px; ">
+															<strong>{{ $errors->first('password') }}</strong>
+														</span>
+														@endif
 									</div>
 
 									<!--begin::Action-->
@@ -149,7 +149,7 @@
 										<a href="#" class="kt-link kt-login__link-forgot">
 											Forgot Password ?
 										</a>
-										<button id="kt_login_signin_submit" type="submit" class="btn btn-primary btn-elevate kt-login__btn-primary">Log In</button>
+										<button id="kt_login_signin_submit" type="submit" class="btn btn-primary btn-elevate kt-login__btn-primary">Log In Now</button>
 									</div>
 
 									<!--end::Action-->
@@ -158,7 +158,7 @@
 								<!--end::Form-->
 
 								<!--begin::Divider-->
-								<div class="kt-login__divider">
+								<div class="kt-login__divider" style="visibility:hidden;">
 									<div class="kt-divider">
 										<span></span>
 										<span>OR</span>
@@ -169,7 +169,7 @@
 								<!--end::Divider-->
 
 								<!--begin::Options-->
-								<div class="kt-login__options">
+								<div class="kt-login__options" style="visibility:hidden;">
 									<a href="#" class="btn btn-primary kt-btn">
 										<i class="fab fa-facebook-f"></i>
 										Facebook
@@ -231,7 +231,7 @@
 		<!--end::Global Theme Bundle -->
 
 		<!--begin::Page Scripts(used by this page) -->
-		<
+		
 		<!--end::Page Scripts -->
 
 		<!--begin::Global App Bundle(used by all pages) -->

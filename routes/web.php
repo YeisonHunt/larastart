@@ -16,6 +16,8 @@ Route::get('/', function () {
 })->name('raiz');
 
 
+
+
 Route::get('/dashboard','AdminController@index')->name('admin');
 //Route::get('/dashboard2','AdminController@dashboard2')->name('dashboard2');
 Route::get('/users','AdminController@users')->name('users');
@@ -78,6 +80,30 @@ Route::get('/linkedin',function(){
 })->name('linkedin');
 
 
+//Ideas publicas controller
+Route::get('/getPublicIdeas','PublicController@getPublicIdeas');
+
+
+Route::get('/public-ideas/view/{id}','PublicController@publicIdeas');
+
+Route::get('/getPublicIdea/{id}','PublicController@getPublicIdea');
+
+
+Route::get('activacion/{code}/{randString}','UserController@activate');
+Route::post('complete/{id}','UserController@complete')->name('guardado');
+
+Route::get('/registrationStep1', function (){
+
+    Auth::logout();
+    Session::flush();
+
+    return view('response');
+});
+
+Route::get('/assets/assets/app/custom/login/login-v1.js',function(){
+
+    return redirect()->route('admin');
+});
 
 Route::get('/{any}', 'AdminController@users')->where('any', '.*');
 //Route::get('{path}',"AdminController@users")->where( 'path', '([A-z\d-\/_.]+)?' );

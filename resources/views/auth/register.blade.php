@@ -53,7 +53,7 @@
 		<!--RTL version:<link href="../../assets/demo/default/skins/aside/dark.rtl.css" rel="stylesheet" type="text/css" />-->
 
 		<!--end::Layout Skins -->
-        <link rel="shortcut icon" href="{{asset('assets/media/logos/favicon.ico')}}" />
+		<link rel="icon" type="image/svg+xml" href="{{asset('landing/html/content/agency3/images/fav.png')}}" sizes="any">
 	</head>
 
 	<!-- end::Head -->
@@ -70,7 +70,7 @@
 					<div class="kt-grid__item kt-grid__item--order-tablet-and-mobile-2 kt-grid kt-grid--hor kt-login__aside" style="background-image: url(../../assets/media//bg/bg-4.jpg);">
 						<div class="kt-grid__item">
 							<a href="{{route('raiz')}}" class="kt-login__logo">
-								<img src="{{asset('innovation/images/logo/logoFinal.png')}}" width="40%" height="40%">
+								<img src="{{asset('landing/html/content/agency3/images/white_name.png')}}" width="40%" height="40%">
 							</a>
 						</div>
 						<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver">
@@ -122,43 +122,45 @@
 								</div>
 
 								<!--begin::Form-->
-								<form class="kt-form kt-form--label-right" action="" >
-
+								<form class="kt-form kt-form--label-right"action="{{ route('register') }}"  method="POST" >
+									{{ csrf_field() }}
                                         
                                         <div class="form-group row">
                                                 <label for="name" class="col-2 col-form-label mt-4 " >Full Name</label>
                                                 <div class="col-10">
-                                                    <input class="form-control" type="text" placeholder="Steve Jobs" id="name">
+													<input class="form-control" type="text" name="name" required autocomplete="off" placeholder="Steve Jobs" id="name">
+													@if ($errors->has('name'))
+													<span class="" style="font-size:90%; color:#e2445c; margin-top:10px; margin-left: 15px; ">
+														<strong>{{ $errors->first('name') }}</strong>
+													</span>
+													@endif
+	
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
                                                     <label for="email" class="col-2 col-form-label mt-4 " >Email</label>
                                                     <div class="col-10">
-                                                        <input class="form-control" type="text" placeholder="user@company.com" id="email">
+														<input class="form-control"  name="email" autocomplete="off"  required type="email" placeholder="user@company.com" id="email">
+														@if ($errors->has('email'))
+														<span class="" style="font-size:90%; color:#e2445c; margin-top:10px; margin-left: 15px; ">
+															<strong>{{ $errors->first('email') }}</strong>
+														</span>
+														@endif
+		
                                                     </div>
                                                 </div>
                                             
-                                                <div class="form-group row">
-                                                        <label for="password1" class="col-2 col-form-label mt-4" >Password</label>
-                                                        <div class="col-10">
-                                                            <input class="form-control" type="password" placeholder="**********" id="password1">
-                                                        </div>
-                                                    </div>
-        
-                                                    <div class="form-group row">
-                                                            <label for="password2" class="col-2 col-form-label mt-4" >Repeat password</label>
-                                                            <div class="col-10">
-                                                                <input class="form-control" type="password" placeholder="**********"  id="password2">
-                                                            </div>
-                                                        </div>
+                                               
                                             
                                                         <div class="form-group row">
                                                                 <label for="company" class="col-2 col-form-label mt-4" >Company</label>
                                                                 <div class="col-10">
-                                                                    <input class="form-control" type="text" placeholder="Business" id="company">
+                                                                    <input class="form-control" autocomplete="off"  type="text" name="businessName"  required placeholder="Business Name" id="company">
                                                                 </div>
-                                                            </div>
+															</div>
+															
+															<input type="hidden" value="business" name="account_type">
 
                                                             
                                             <!--begin::Action-->
@@ -166,7 +168,7 @@
                                             <a href="{{route('r2')}}" class="kt-link kt-login__link-forgot">
                                                     
                                                 </a>
-                                                <button id="kt_login_signin_submit" class="btn btn-primary btn-elevate kt-login__btn-primary">Let's go</button>
+                                                <button id="kt_login_signin_submit" type="submit" class="btn btn-primary btn-elevate kt-login__btn-primary">Regiser now</button>
                                             </div>
                                
                                    
@@ -177,7 +179,7 @@
 								<!--end::Form-->
 
 								<!--begin::Divider-->
-								<div class="kt-login__divider">
+								<div class="kt-login__divider" style="visibility:hidden;">
 									<div class="kt-divider">
 										<span></span>
 										<span>OR</span>
@@ -188,7 +190,7 @@
 								<!--end::Divider-->
 
 								<!--begin::Options-->
-								<div class="kt-login__options">
+								<div class="kt-login__options" style="visibility:hidden;">
 									<a href="#" class="btn btn-primary kt-btn">
 										<i class="fab fa-facebook-f"></i>
 										Facebook

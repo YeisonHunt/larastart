@@ -20,17 +20,18 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
-    ];
+      'name', 'email', 'password','code','active','avatar','project_id','status','account_type','businessName','hour_cost',
+      'temporal'
+  ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+  /**
+   * The attributes that should be hidden for arrays.
+   *
+   * @var array
+   */
+  protected $hidden = [
+      'password', 'remember_token',
+  ];
 
     public function getAllPermissionsAttribute() {
         $permissions = [];

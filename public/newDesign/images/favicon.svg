@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 195 152">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clip-Asakaa_color_no_name);
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-width: 9px;
+      }
+
+      .cls-2 {
+        stroke: #ffd756;
+      }
+
+      .cls-3 {
+        stroke: #707070;
+      }
+
+      .cls-4 {
+        stroke: #00a1e6;
+      }
+    </style>
+    <clipPath id="clip-Asakaa_color_no_name">
+      <rect width="195" height="152"/>
+    </clipPath>
+  </defs>
+  <g id="Asakaa_color_no_name" data-name="Asakaa color no name" class="cls-1">
+    <g id="Group_1" data-name="Group 1" transform="translate(-100 -88)">
+      <line id="Line_3" data-name="Line 3" class="cls-2" y1="45" x2="85" transform="translate(110.5 180.5)"/>
+      <line id="Line_1" data-name="Line 1" class="cls-3" y1="127" x2="81" transform="translate(110.5 98.5)"/>
+      <line id="Line_5" data-name="Line 5" class="cls-4" x2="81" y2="45" transform="translate(200.5 180.5)"/>
+      <path id="Path_1" data-name="Path 1" class="cls-3" d="M0,0,74.882,127.16" transform="translate(208 98.837)"/>
+    </g>
+  </g>
+</svg>

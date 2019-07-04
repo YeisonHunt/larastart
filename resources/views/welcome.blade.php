@@ -65,15 +65,32 @@
                                                 <a href="{{route('publicIdeas') }}"><span>Explorar Ideas</span></a>
                                             </li>
                                             <li>
-                                                <a href="https://asakaa.com" target="_blank"><span>Asakaa Partnership </span></a>
+                                                <a href="https://asakaa.com" target="_blank"><span>Asakaa Project </span></a>
                                             </li>
+
+
+                                            @if (Route::has('login'))
+                                            @auth
                                             <li>
-                                                <a href="{{ route('login') }}"><span>Entrar</span></a>
-                                            </li>
-                                            <li>
-                                                    <a href="{{ route('register') }}" class=""><span class="myBtn">Registrarme</span></a>
+                                                    <a href="{{ route('admin') }}" class=""><span class="myBtn">Go Dashboard</span></a>
 
                                             </li>
+                                            @else
+                                                 <li>
+                                                    <a href="{{ route('login') }}"><span>Entrar</span></a>
+                                                </li>
+                                                <li>
+                                                        <a href="{{ route('register') }}" class=""><span class="myBtn">Registrarme</span></a>
+    
+                                                </li>
+    
+
+                                            @endauth
+                                            @endif
+
+
+
+
                                         </ul>
                                     </nav>
                                     <a class="responsive-menu-toggle" href="#"><i class="icon-menu-fine"></i></a>

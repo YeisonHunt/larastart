@@ -1,0 +1,23 @@
+a.button,
+a.tp-button,
+button,
+input[type=submit],
+input[type=reset],
+input[type=button] {
+  padding: 0 !important;
+}
+
+.container {
+  padding-top: 0 !important;
+}
+
+a.button,
+a.tp-button,
+button,
+input[type=submit],
+input[type=reset],
+input[type=button] {
+  box-shadow: none !important;
+  background-image: none !important;
+}
+

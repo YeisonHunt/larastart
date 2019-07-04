@@ -108,10 +108,6 @@ let routes = [
 
 
 
-	
-
-
-
 	{ path: '/shareInnovation/:id', component: require('./components/ShareInnovationComponent.vue').default },
 
 

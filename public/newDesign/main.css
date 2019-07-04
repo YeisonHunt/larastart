@@ -1,0 +1,743 @@
+/* ------ Global ----- */
+* {
+    margin:0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+
+}
+
+body {
+    overflow-x: hidden; /* needed because hiding the menu on the right side is not perfect,  */
+}
+
+
+ .oculta {
+    display:  none !important;
+    margin-bottom: 150px;
+
+ }
+
+ .noOculta {
+    display: inline-block;
+
+ }
+
+ .logoImage {
+        height: 50px !important; 
+        width: 210px !important;
+      }
+
+
+ .linksTo
+ {
+   text-decoration: none;
+   color: #232323;
+   margin: 0 !important;
+   float:left;
+   transition: color 0.3s ease;
+   display: inline-block;
+   padding: 0;
+   clear: left;
+   line-height: 90px;
+   font-size: 2rem;
+
+
+   
+ }
+ 
+ .linksTo:hover
+ {
+   color:#00A1E6 ;
+
+ }
+ 
+ #menuToggle
+ {
+   display: block;
+   position: absolute;
+   top: 50px;
+   right: 50px;
+   
+   z-index: 1;
+   
+   -webkit-user-select: none;
+   user-select: none;
+ }
+ 
+ #menuToggle input
+ {
+   display: block;
+   width: 40px;
+   height: 32px;
+   position: absolute;
+   top: -7px;
+   left: -5px;
+   
+   cursor: pointer;
+   
+   opacity: 0; /* hide this */
+   z-index: 2; /* and place it over the hamburger */
+   
+   -webkit-touch-callout: none;
+ }
+ 
+ /*
+  * Just a quick hamburger
+  */
+ #menuToggle span
+ {
+   display: block;
+   width: 33px;
+   height: 4px;
+   margin-bottom: 5px;
+   position: relative;
+   
+   background: #cdcdcd;
+   border-radius: 3px;
+   
+   z-index: 1;
+   
+   transform-origin: 4px 0px;
+   
+   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+               background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+               opacity 0.55s ease;
+ }
+ 
+ #menuToggle span:first-child
+ {
+   transform-origin: 0% 0%;
+ }
+ 
+ #menuToggle span:nth-last-child(2)
+ {
+   transform-origin: 0% 100%;
+ }
+ 
+ /* 
+  * Transform all the slices of hamburger
+  * into a crossmark.
+  */
+ #menuToggle input:checked ~ span
+ {
+   opacity: 1;
+   transform: rotate(45deg) translate(-2px, -1px);
+   background: #232323;
+ }
+ 
+ /*
+  * But let's hide the middle one.
+  */
+ #menuToggle input:checked ~ span:nth-last-child(3)
+ {
+   opacity: 0;
+   transform: rotate(0deg) scale(0.2, 0.2);
+ }
+ 
+ /*
+  * Ohyeah and the last one should go the other direction
+  */
+ #menuToggle input:checked ~ span:nth-last-child(2)
+ {
+   opacity: 1;
+   transform: rotate(-45deg) translate(0, -1px);
+ }
+ 
+ /*
+  * Make this absolute positioned
+  * at the top left of the screen
+  */
+ #menu
+ {
+   position: absolute;
+   width: 300px;
+   margin: -100px 0 0 0;
+   padding: 50px;
+   padding-top: 125px;
+   right: -100px;
+   height: 100vh;
+  
+   
+   background: #ededed;
+   list-style-type: none;
+   -webkit-font-smoothing: antialiased;
+   /* to stop flickering of text in safari */
+   
+   transform-origin: 0% 0%;
+   transform: translate(100%, 0);
+   
+   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+ }
+ 
+ #menu li
+ {
+   padding: 10px 0;
+   margin: 0;
+   height: 20px;
+   font-size: 22px;
+ }
+ 
+ /*
+  * And let's fade it in from the left
+  */
+ #menuToggle input:checked ~ ul
+ {
+   transform: scale(1.0, 1.0);
+   opacity: 1;
+ }
+
+
+
+
+
+.registerInput {
+    border: 2px solid #2B9DFF;
+    line-height: 33px;
+    width:270px;
+    height: 50px;
+    text-align:center;
+    color:#707070;
+    border-radius: 20px;
+    margin-left:5%;
+    margin-top:4%;
+
+}
+
+::placeholder {
+    color:#ccd3e0;
+}
+
+
+.btnOutline {
+    display:block;
+    text-decoration:none;
+   
+    border: 2px solid #2B9DFF;
+    border-radius: 20px;
+    width: 170px;
+    height: 53px;
+    line-height: 53px;
+    text-align:center;
+    margin-top:30px;
+    font-size: 1.20em;
+
+    color:white;
+    background-color: #2b9dff;
+    
+}
+
+
+
+
+html {
+    font-family: sans-serif;
+
+}
+body {
+    width:100%;
+}
+
+h1 {
+    
+    font-size:30px;
+    font-weight: 100;
+    color:#2B9DFF;
+
+}
+
+h2 {
+    font-size:22px;
+    font-weight: 100;
+    color:#2B9DFF;
+}
+
+h3 {
+    font-size: 23px;
+
+}
+p {
+    font-size: 16px;
+}
+
+
+
+
+.btnOutline:hover {
+    color:white ;
+    background-color:#e2445c ;
+    border: 2px solid #e2445c;
+}
+
+
+.btnFilled {
+    display:block;
+    text-decoration:none;
+    color:white;
+    background-color: #2b9dff;
+    border-radius: 6px;
+    width: 170px;
+    height: 53px;
+    line-height: 53px;
+    text-align:center;
+    margin-top:30px;
+    border-radius: 20px;
+    z-index: 4 !important;
+    
+}
+
+
+/* Nav */
+
+
+
+nav {
+    line-height: 150px;
+    text-align:right;
+
+}
+
+nav a {
+    text-decoration:none;
+    color:#707070;
+    font-size: 18px;
+    font-weight: 300;
+    margin-right: 5%;
+    
+
+
+}
+
+.logIn:hover {
+
+    text-decoration: azure;
+}
+
+
+
+nav a:first-child{
+    float:left;
+    margin-left:5%;
+    
+
+}
+
+
+
+nav a img {
+    vertical-align: middle;
+    width: 80px;
+    height: 25%;
+
+}
+
+nav a span {
+    background-color: #2b9dff;
+    padding: 5px 15px;
+    border-radius:1000px;
+    font-weight: 100;
+    color:white;
+    margin-left:7px;
+
+}
+
+/* Header Section */
+
+header {
+    height: 950px;
+    min-height:950px;
+    
+    padding:0 5px;
+    background-image:url('images/newLanding.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position:800px 5px;
+
+}
+
+header h1 {
+    width: 40%;
+    margin: 2em 0 0 0;
+    margin-left:5%;
+
+}
+
+header .btnOutline {
+    margin-left:5%;
+}
+
+
+/* Middle Section */
+
+.title {
+    font-size:2.2em;
+}
+.subtitle {
+
+    color: #707070;
+    font-size:1.8em;
+    text-align: center;
+}
+
+.team {
+    text-align:center;
+    margin:5em 0 3em 0;
+    padding: 0 5%;
+    background-image: url('images/background_team.png');
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+.team h1 {
+    width: 50%;
+    margin:0 auto 30px auto;
+
+}
+
+.members {
+    display:flex;
+    justify-content: center;
+
+}
+
+.person {
+    margin:0 30px;
+    color: #202427;
+
+}
+.person h3 {
+     margin-bottom: 5px;
+}
+
+.about {
+    padding: 0 5%;
+    background-image: url(images/background_about.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 80%;
+    height: 900px;
+    min-height: 900px;
+     
+}
+
+.about h1 {
+    margin-bottom:30px;
+    padding-top:300px;
+}
+
+.icons img {
+    margin-right: 30px;
+
+}
+.about h1, .icons {
+    margin-left:50%;
+}
+
+.icons {
+    display:grid;
+    grid-template-columns: 15% 30% 15% 30%;
+}
+
+.features {
+    padding-top:5%;
+    margin-bottom: 2%;
+    margin-right: 0;
+    
+    
+}
+
+.featuresText {
+    margin-top:14%;
+    padding-right:3em !important;
+    margin-left:0;
+    color:#707070;
+    font-size:1.2em;
+}
+
+
+
+/* Call to action */
+
+.callToAction {
+    text-align:center;
+    padding:5em 5% 20em 5%;
+    background-image:url(images/background_calltoaction.png);
+    background-repeat: no-repeat;
+    background-size: 40%;
+    background-position: center;
+    
+}
+
+.callToAction input, .callToAction a {
+
+    display:inline-block;
+    margin:0 60px;
+    vertical-align: middle;
+
+
+}
+
+.callToAction input {
+    border: 2px solid #2B9DFF;
+    line-height: 53px;
+    width:270px;
+    text-align:center;
+    color:#707070;
+    border-radius: 20px;
+}
+
+
+
+/* Footer */
+
+
+footer {
+    padding: 0 5%;
+    margin-bottom:40px;
+    color:#2b9dff;
+
+}
+
+footer p, .footerPages {
+    display:inline-block;
+
+}
+
+.footerPages {
+    float: right;
+}
+
+.footerPages a {
+    text-decoration:none;
+    font-weight: 100;
+    color:#2b9dff;
+    margin-left:30px;
+}
+
+
+/* Responsive */
+
+@media only screen and (max-width:2000px){
+
+    header {
+        height: 1000px;
+        min-width: 1000px;
+        padding:0 5px;
+          background-image:url('images/smM.png');
+        background-repeat: no-repeat;
+        background-size: 1110px 598px;
+        background-position:700px 150px;
+    }
+
+}
+
+@media only screen and (max-width:1600px){
+
+    header {
+        height: 800px;
+        min-width: 800px;
+        padding:0 5px;
+        background-image:url('images/smM.png');
+        background-repeat: no-repeat;
+
+        background-size:950px 512px ;
+        background-position:580px 150px;
+    }
+
+}
+
+@media only screen and (max-width:1000px) {
+    /* Below 1000px */
+
+    .oculta {
+        display: block !important;
+    }
+
+    .noOculta {
+        display: none !important;
+    }
+
+
+
+
+   nav a {
+       color:#707070;
+   }
+
+    header {
+        height: 600px;
+        min-width: 600px;
+        padding:0 5px;
+        background-image:none;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position:300px 245px;
+    }
+
+    header h1 {
+        width:100%;
+
+    }
+
+    .team {
+        margin:3em 0 3em 0;
+        background-image: url('images/mobile_background_team.png');
+        background-position: top;
+    }
+    .team h1 {
+        width: 100%;
+    }
+
+    .about {
+        background-image: url(images/mobile_background_about.png);
+        background-size: contain;
+        height: 900px;
+        min-height: 900px;
+        overflow-y: visible;
+         
+    }
+
+    .about h1 {
+        padding-top: 900px;
+    }
+
+    .about h1, .icons {
+        margin-left:0;
+
+    }
+
+    /* Features */
+
+    ul{
+        color:#707070;
+        list-style-type: none;
+    }
+
+
+
+
+
+
+    .callToAction {
+        margin-top:25em;
+        padding:15em 5% 15em 5%;
+        background-size:70%;
+
+    }
+
+    .callToAction h1, .callToAction a {
+        margin-bottom: 30px;
+    }
+
+    footer {
+        text-align: center;
+
+    }
+
+    .footerPages {
+        visibility: hidden;
+
+    }
+
+    footer p, .footerPages {
+        display: block;
+    }
+} /* End responsive for tablet */ 
+
+.menu {
+    display:none;
+
+}
+
+@media (max-width:600px) {
+
+    h1 {
+        font-size: 1.7rem !important;
+        word-break: break-all;
+       
+    }
+
+
+    .oculta {
+        display: block !important;
+    }
+
+    .noOculta {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+
+    .logoImage {
+        margin-bottom: 35px;
+    }    
+
+    header {
+        height: 400px;
+        min-height: 400px;
+        background-position:200px 320px;
+        backgroun-image:none;
+    }
+
+  
+
+    .menu  a {
+        text-align:right;
+        margin:0;
+        padding-bottom:5%;
+        height:60px;
+        line-height: 50px;
+        padding-top:0;
+
+    }
+
+    h1 {
+        color:#2b9dff;
+    }
+    
+
+
+
+
+    .callToAction a {
+        margin-top:10%;
+    }
+
+    .featuresText {
+        margin-top:14%;
+        padding-right:3em !important;
+        margin-left:0;
+        color:#707070;
+        font-size:0.8em;
+        margin-left:25%;
+    }
+    
+
+    header {
+        height: 1300px;
+        min-height: 1300px;
+    }
+
+    header h1 {
+        margin: 1em 1em 1em 1em;
+
+    }
+
+    .about h1 {
+        padding-top:800px;
+
+    }
+
+    .members {
+        flex-direction: column;
+        
+    }
+
+    .person {
+        margin-top:30px;
+    }
+
+}/* End responsive for cellphone */

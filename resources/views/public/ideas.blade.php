@@ -12,6 +12,8 @@
     <title>Asakaa | Ideas Públicas</title>
     <meta name="description" content="">
     <meta name="author" content="">
+    
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- Favicons -->
@@ -29,10 +31,12 @@
     <link rel='stylesheet' href='{{asset('landing/html/content/agency3/css/structure.css')}}'>
     <link rel='stylesheet' href='{{asset('landing/html/content/agency3/css/agency3.css')}}'>
 
-     <link rel='stylesheet' href='{{asset('landing/html/css/style-demo.css')}}'>
      <link rel="stylesheet" href="{{asset('landing/main.css')}}">
+     <link rel="stylesheet" href="{{asset('css/appLanding.css')}}">
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    
 
-         <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+
          
          <link href="https://fonts.googleapis.com/css?family=Satisfy&display=swap" rel="stylesheet">
 
@@ -42,6 +46,10 @@
 </head>
 <body class="color-custom style-default button-default layout-full-width no-content-padding header-classic minimalist-header-no sticky-header sticky-tb-color ab-hide subheader-both-center menu-link-color menuo-right menuo-no-borders mobile-tb-center mobile-side-slide mobile-mini-mr-ll tablet-sticky mobile-header-mini mobile-sticky tr-header tr-menu tr-content be-reg-20971">
     <div id="Wrapper">
+
+          
+
+
         <div id="Header_wrapper">
             <header id="Header">
                 <div id="Top_bar" style="min-height:80px; background-color:white !important;">
@@ -69,15 +77,32 @@
                                                 <a href="{{route('publicIdeas') }}"><span>Explorar Ideas</span></a>
                                             </li>
                                             <li>
-                                                <a href="https://asakaa.com" target="_blank"><span>Asakaa Partnership </span></a>
+                                                <a href="https://asakaa.com" target="_blank"><span>Asakaa Project </span></a>
                                             </li>
+
+
+                                            @if (Route::has('login'))
+                                            @auth
                                             <li>
-                                                <a href="{{ route('login') }}"><span>Entrar</span></a>
-                                            </li>
-                                            <li>
-                                                    <a href="{{ route('register') }}" class=""><span class="myBtn">Registrarme</span></a>
+                                                    <a href="{{ route('admin') }}" class=""><span class="myBtn">Go Dashboard</span></a>
 
                                             </li>
+                                            @else
+                                                 <li>
+                                                    <a href="{{ route('login') }}"><span>Entrar</span></a>
+                                                </li>
+                                                <li>
+                                                        <a href="{{ route('register') }}" class=""><span class="myBtn">Registrarme</span></a>
+    
+                                                </li>
+    
+
+                                            @endauth
+                                            @endif
+
+                                           
+
+
                                         </ul>
                                     </nav>
                                     <a class="responsive-menu-toggle" href="#"><i class="icon-menu-fine"></i></a>
@@ -92,111 +117,24 @@
 
 
 
-    <div id="Container" class="container" style="margin-top:140px; 
+    <div id="Container" class="container" style="margin-top:140px; width:100%;
     background-image: url('{{asset('landing/html/content/agency3/css/img/home_agency3_bg.png')}}')
    
     
     ">
+          <router-view></router-view>
 
-                <div class="row">
-                    <div class="col-3">
-                        <h3  class="mt-4" style="font-family: 'Satisfy', cursive;">Ideas Públicas</h3>
-                        
-                    </div>
-
-                    <div class="col-6">
-                            <div class="input-group " style="margin-top:27px">
-                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                                    <div class="input-group-append">
-                                      <span class="input-group-text ">Buscar</span>
-                                      
-                                    </div>
-                                  </div>
-                    </div>
-
-                    <div class="col-3">
-                          
-                                    <label for="exampleSelect1" class="bmd-label-floating">Filtrar por tipo</label>
-                                    <select class="form-control" id="exampleSelect1">
-                                      <option>1</option>
-                                      <option>2</option>
-                                      <option>3</option>
-                                      <option>4</option>
-                                      <option>5</option>
-                                    </select>
-                                 
-                    </div>
-
-                </div>
-                <br>
-
-                <div class="row">
-
-
-                        <div class="col-6">
-
-                          <div class="card ">
-                                <img class="card-img-top" src="https://images.pexels.com/photos/1260309/pexels-photo-1260309.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Card image cap">
-                            <div class="card-body">
-                              <h5 class="card-title">Special title treatment</h5>
-                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                              <a href="javacript:;" class="btn  btn-primary " style="text-style:capitalize;">Ver idea completa</a>
-                            </div>
-                          </div>
-
-
-                        </div>
-                        <div class="col-6">
-                          <div class="card">
-                                <img class="card-img-top" src="https://images.pexels.com/photos/315658/pexels-photo-315658.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Card image cap">
-                            <div class="card-body">
-                              <h5 class="card-title">Special title treatment</h5>
-                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                              <a href="javacript:;" class="btn  btn-primary " style="text-style:capitalize;">Ver idea completa</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <br>
-
-                      <div class="row">
-                            <div class="col-6">
-                                    
-                              <div class="card">
-                                    <img class="card-img-top" src="https://images.pexels.com/photos/450279/pexels-photo-450279.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Card image cap">
-                                <div class="card-body">
-                                  <h5 class="card-title">Special title treatment</h5>
-                                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                  <a href="javacript:;" class="btn  btn-primary " style="text-style:capitalize;">Ver idea completa</a>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-6">
-                              <div class="card">
-                                    <img class="card-img-top" src="https://images.pexels.com/photos/1181310/pexels-photo-1181310.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Card image cap">
-                                <div class="card-body">
-                                  <h5 class="card-title">Special title treatment</h5>
-                                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                  <a href="javacript:;" class="btn  btn-primary " style="text-style:capitalize;">Ver idea completa</a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <br>
-              
-          
-
-        </div>
+          <!-- set progressbar -->
+          <vue-progress-bar></vue-progress-bar>
+             
+        
 
 
 
 
+            <br>
 
-
-
-
+    </div>
 
 
 
@@ -276,18 +214,23 @@
     </div>
     <div id="body_overlay"></div>
     <!-- JS -->
-    <script src="{{ asset('landing/html/js/jquery-2.1.4.min.js')}}"></script>
+    <script
+    src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
     <script src="{{ asset('landing/html/js/mfn.menu.js')}}"></script>
     <script src="{{ asset('landing/html/js/jquery.plugins.js')}}"></script>
     <script src="{{ asset('landing/html/js/animations/animations.js')}}"></script>
     <script src="{{ asset('landing/html/js/translate3d.js')}}"></script>
     <script src="{{ asset('landing/html/js/scripts.js')}}"></script>
 
-    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
-    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+    <script>
+        	window.baseUrl = '<?php echo (env('APP_URL')); ?>';
+    </script>
 
-    <script src="{{ asset('landing/app.js')  }}" >
+
+		<script type="text/javascript" src="{{asset('js/appLanding.js')}}"></script>
+
     
     </script>
 
