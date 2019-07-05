@@ -164,19 +164,17 @@
                     <v-layout row>
 
 
-                        <v-flex lg-7>
+                        <v-flex lg8 >
                              <div class="headline">{{idea.title | uppercaseFirst}}
                              
                          </div>
                         </v-flex>
 
-                        <v-flex lg5  text-xs-right>
+                        <v-flex lg4  text-xs-right>
                               <v-btn icon >
                             <v-icon >favorite</v-icon>
                         </v-btn>
-                        <v-btn icon>
-                            <v-icon>bookmark</v-icon>
-                        </v-btn>
+                      
                         <v-btn icon  @click.stop="showDialog(idea)" >
                             <v-icon>share</v-icon>
                         </v-btn>
