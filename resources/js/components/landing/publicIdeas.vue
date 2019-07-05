@@ -149,11 +149,12 @@
       </v-layout>
     
       <v-layout row wrap>
-       <v-flex  xs12 sm12 pa-3  md6 lg6  v-for="idea in publicIdeas" :key="idea.id" >
-            <v-card :hover="true" ripple >
+       <v-flex  xs12 sm12 pa-3  md4 lg4  v-for="idea in publicIdeas" :key="idea.id" >
+            <v-card :hover="true" ripple  >
                 <v-img
                 :src=" idea.img"
-                height="200px"
+                height="230px"
+                
                 >
                 </v-img>
 

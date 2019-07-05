@@ -2351,6 +2351,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -41650,14 +41651,14 @@ var render = function() {
             "v-flex",
             {
               key: idea.id,
-              attrs: { xs12: "", sm12: "", "pa-3": "", md6: "", lg6: "" }
+              attrs: { xs12: "", sm12: "", "pa-3": "", md4: "", lg4: "" }
             },
             [
               _c(
                 "v-card",
                 { attrs: { hover: true, ripple: "" } },
                 [
-                  _c("v-img", { attrs: { src: idea.img, height: "200px" } }),
+                  _c("v-img", { attrs: { src: idea.img, height: "230px" } }),
                   _vm._v(" "),
                   _c("v-card-title", { attrs: { "primary-title": "" } }, [
                     _c(
