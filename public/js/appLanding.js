@@ -41462,6 +41462,7 @@ var render = function() {
               _vm._v(" "),
               _c("v-card-text", [
                 _c("input", {
+                  staticStyle: { visibility: "hidden" },
                   attrs: { type: "hidden", id: "linkTo" },
                   domProps: { value: _vm.linkToIdea }
                 }),

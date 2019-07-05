@@ -38,7 +38,7 @@
         <v-card-text>
           
 
-          <input type="hidden"  id="linkTo" :value="linkToIdea" >
+          <input type="hidden" style="visibility:hidden;" id="linkTo" :value="linkToIdea" >
 
           <a  style="text-decoration:none;" :href="linkToIdea">{{linkToIdea}}</a>
           
