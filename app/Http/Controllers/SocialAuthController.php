@@ -52,7 +52,7 @@ class SocialAuthController extends Controller
                 $this->email($dates,$newUser->email);
 
 
-                
+                Log::info('El usuario esta registrado e intenta pasar por 1');
 
                 //LOGUEAR
 
@@ -70,6 +70,8 @@ class SocialAuthController extends Controller
                 //LOGUEAR
 
                 
+
+                Log::info('El usuario esta registrado e intenta pasar por 2');
                 
                 Auth::loginUsingId($pretendingUser->id);
                       
