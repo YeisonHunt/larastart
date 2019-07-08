@@ -179,25 +179,27 @@
 								<!--end::Form-->
 
 								<!--begin::Divider-->
-								<div class="kt-login__divider" style="visibility:hidden;">
+								<div class="kt-login__divider" >
 									<div class="kt-divider">
 										<span></span>
-										<span>OR</span>
+										<span>OR Register with</span>
 										<span></span>
 									</div>
+
+									
 								</div>
 
 								<!--end::Divider-->
 
 								<!--begin::Options-->
-								<div class="kt-login__options" style="visibility:hidden;">
-									<a href="#" class="btn btn-primary kt-btn">
-										<i class="fab fa-facebook-f"></i>
-										Facebook
+								<div class="kt-login__options" >
+									<a href="#" class="btn btn-dark kt-btn">
+										<i class="fab fa-github"></i>
+										GitHub
 									</a>
 									<a href="#" class="btn btn-info kt-btn">
-										<i class="fab fa-twitter"></i>
-										Twitter
+										<i class="fab fa-linkedin"></i>
+										LinkedIn
 									</a>
 									<a href="#" class="btn btn-danger kt-btn">
 										<i class="fab fa-google"></i>
