@@ -71,13 +71,13 @@ class SocialAuthController extends Controller
 
                 
 
-                Log::info('El usuario esta registrado e intenta pasar por 2'.$pretendingUser->id);
+                Log::info('El usuario esta registrado e intenta pasar por 2 - ID:'.$pretendingUser->id);
                 
-                Auth::loginUsingId($pretendingUser->id);
+                //Auth::loginUsingId($pretendingUser->id);
 
                 $usuario = User::find($pretendingUser->id);
 
-                if(Auth::login($user)){
+                if(Auth::loginUsingId($usuario->id)){
                     Log::info('Pasando por 2.1');
                     return redirect()->route('admin');
 
