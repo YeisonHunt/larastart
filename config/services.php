@@ -53,13 +53,13 @@ return [
     'linkedin' => [
         'client_id' => '78ciyd5c9nhtwm',
         'client_secret' => 'EXc3ecz2EeeBxmT9',
-        'redirect' => 'https://guardproject.com/linkedin/callback',
+        'redirect' => 'https://guardproject.com/login/linkedin/callback',
     ],
 
     'google' => [
         'client_id' =>  '1077415976370-j7bt6us6qv6n5td3ov76ksrjgi86ptqd.apps.googleusercontent.com',
         'client_secret' => 'SJ2lUCoBrL1qN0T7Y8eAPLlN',
-        'redirect' => 'https://guardproject.com/google/callback',
+        'redirect' => 'https://guardproject.com/login/google/callback',
     ],
 
 ];
