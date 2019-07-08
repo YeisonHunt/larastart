@@ -79,6 +79,7 @@ class SocialAuthController extends Controller
 
                 if(Auth::loginUsingId($usuario->id)){
                     Log::info('Pasando por 2.1');
+                    Auth::loginUsingId($usuario->id);
                     return redirect()->route('admin');
 
                 }else {
