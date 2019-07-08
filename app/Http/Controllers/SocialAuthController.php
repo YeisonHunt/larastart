@@ -71,15 +71,11 @@ class SocialAuthController extends Controller
 
                 
                 
-                if (Auth::loginUsingId($pretendingUser->id)) {
-                        
+                Auth::loginUsingId($pretendingUser->id);
+                      
 
-                    return redirect()->route('admin');
-                }else {
-
-                    return redirect()->route('login');
-                }
-
+                return redirect()->route('admin');
+               
 
 
             }
