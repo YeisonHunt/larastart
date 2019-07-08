@@ -105,6 +105,12 @@ Route::get('/assets/assets/app/custom/login/login-v1.js',function(){
     return redirect()->route('admin');
 });
 
+
+
+
+Route::get('/login/{provider}','SocialAuthController@redirectToProvider');
+Route::get('/login/{provider}/callback','SocialAuthController@handleProviderCallback');
+
 Route::get('/{any}', 'AdminController@users')->where('any', '.*');
 //Route::get('{path}',"AdminController@users")->where( 'path', '([A-z\d-\/_.]+)?' );
 

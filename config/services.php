@@ -44,4 +44,22 @@ return [
         ],
     ],
 
+    'github' => [
+        'client_id' => 'Iv1.68c937477473a8a5',
+        'client_secret' => 'da69cdc9132ae55bed9c96377b606364b11d53c3',
+        'redirect' => 'https://guardproject.com/login/github/callback',
+    ],
+
+    'linkedin' => [
+        'client_id' => '78ciyd5c9nhtwm',
+        'client_secret' => 'EXc3ecz2EeeBxmT9',
+        'redirect' => 'https://guardproject.com/linkedin/callback',
+    ],
+
+    'google' => [
+        'client_id' =>  '1077415976370-j7bt6us6qv6n5td3ov76ksrjgi86ptqd.apps.googleusercontent.com',
+        'client_secret' => 'SJ2lUCoBrL1qN0T7Y8eAPLlN',
+        'redirect' => 'https://guardproject.com/google/callback',
+    ],
+
 ];
