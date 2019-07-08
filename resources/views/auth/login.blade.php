@@ -158,31 +158,33 @@
 								<!--end::Form-->
 
 								<!--begin::Divider-->
-								<div class="kt-login__divider" style="visibility:hidden;">
-									<div class="kt-divider">
-										<span></span>
-										<span>OR</span>
-										<span></span>
+								<div class="kt-login__divider" >
+										<div class="kt-divider">
+											<span></span>
+											<span>OR Register with</span>
+											<span></span>
+										</div>
+	
+										
 									</div>
-								</div>
-
-								<!--end::Divider-->
-
-								<!--begin::Options-->
-								<div class="kt-login__options" style="visibility:hidden;">
-									<a href="#" class="btn btn-primary kt-btn">
-										<i class="fab fa-facebook-f"></i>
-										Facebook
-									</a>
-									<a href="#" class="btn btn-info kt-btn">
-										<i class="fab fa-twitter"></i>
-										Twitter
-									</a>
-									<a href="#" class="btn btn-danger kt-btn">
-										<i class="fab fa-google"></i>
-										Google
-									</a>
-								</div>
+	
+									<!--end::Divider-->
+	
+									<!--begin::Options-->
+									<div class="kt-login__options" >
+										<a href="login/github" class="btn btn-dark kt-btn">
+											<i class="fab fa-github"></i>
+											GitHub
+										</a>
+										<a href="login/linkedin" class="btn btn-info kt-btn">
+											<i class="fab fa-linkedin"></i>
+											LinkedIn
+										</a>
+										<a href="/login/google" class="btn btn-danger kt-btn">
+											<i class="fab fa-google"></i>
+											Google
+										</a>
+									</div>
 
 								<!--end::Options-->
 							</div>

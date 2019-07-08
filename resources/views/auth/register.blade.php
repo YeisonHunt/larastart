@@ -193,15 +193,15 @@
 
 								<!--begin::Options-->
 								<div class="kt-login__options" >
-									<a href="#" class="btn btn-dark kt-btn">
+									<a href="login/github" class="btn btn-dark kt-btn">
 										<i class="fab fa-github"></i>
 										GitHub
 									</a>
-									<a href="#" class="btn btn-info kt-btn">
+									<a href="login/linkedin" class="btn btn-info kt-btn">
 										<i class="fab fa-linkedin"></i>
 										LinkedIn
 									</a>
-									<a href="#" class="btn btn-danger kt-btn">
+									<a href="/login/google" class="btn btn-danger kt-btn">
 										<i class="fab fa-google"></i>
 										Google
 									</a>
