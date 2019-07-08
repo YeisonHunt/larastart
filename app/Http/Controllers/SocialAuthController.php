@@ -20,7 +20,7 @@ class SocialAuthController extends Controller
         return Socialite::driver($provider)->redirect();
     }
 
-    public function handleProviderCallback($providere){
+    public function handleProviderCallback($provider){
 
         try {
 
