@@ -49,7 +49,7 @@ class SocialAuthController extends Controller
                 $newUser->save();
 
                 $dates = array('tempPass'=>$pass,'email'=>$user->getEmail());
-                $this->email($dates,$email);
+                $this->email($dates,$newUser->email);
 
 
                 
