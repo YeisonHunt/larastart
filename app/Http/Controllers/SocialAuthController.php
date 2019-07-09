@@ -56,7 +56,7 @@ class SocialAuthController extends Controller
 
                 //LOGUEAR
 
-                $credentials = $request->only('email', 'password');
+                //$credentials = $request->only('email', 'password');
 
                     if (Auth::attempt(['email' => $user->getEmail(), 'password' => $pass, 'active' => 1])) {
                         
