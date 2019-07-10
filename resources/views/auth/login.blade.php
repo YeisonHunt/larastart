@@ -161,7 +161,7 @@
 								<div class="kt-login__divider" >
 										<div class="kt-divider">
 											<span></span>
-											<span>OR Register with</span>
+											<span>OR Login with</span>
 											<span></span>
 										</div>
 	
