@@ -42,18 +42,42 @@
     <link rel="stylesheet" href="{{asset('pricingA/style.css')}}">
 
 
+    <style>
+    
+    .is-sticky{
+        height: 100px !important;
+    }
 
+    .gradiente {
+        background: rgba(30,30,45,1);
+        background: -moz-linear-gradient(left, rgba(30,30,45,1) 0%, rgba(16,101,199,1) 100%);
+        background: -webkit-gradient(left top, right top, color-stop(0%, rgba(30,30,45,1)), color-stop(100%, rgba(16,101,199,1)));
+        background: -webkit-linear-gradient(left, rgba(30,30,45,1) 0%, rgba(16,101,199,1) 100%);
+        background: -o-linear-gradient(left, rgba(30,30,45,1) 0%, rgba(16,101,199,1) 100%);
+        background: -ms-linear-gradient(left, rgba(30,30,45,1) 0%, rgba(16,101,199,1) 100%);
+        background: linear-gradient(to right, rgba(30,30,45,1) 0%, rgba(16,101,199,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e1e2d', endColorstr='#1065c7', GradientType=1 );
+        color:white;
+    }
+
+    .precio:hover {
+
+        box-shadow: 0.4em 0.4em 1em 0.4em gray;
+
+    }
+    
+    </style>
 
 </head>
 <body class="color-custom style-default button-default layout-full-width no-content-padding header-classic minimalist-header-no sticky-header sticky-tb-color ab-hide subheader-both-center menu-link-color menuo-right menuo-no-borders mobile-tb-center mobile-side-slide mobile-mini-mr-ll tablet-sticky mobile-header-mini mobile-sticky tr-header tr-menu tr-content be-reg-20971">
     <div id="Wrapper">
         <div id="Header_wrapper">
             <header id="Header">
-                <div id="Top_bar">
+                <div id="Top_bar" >
                     <div class="container">
                         <div class="column one">
                             <div class="top_bar_left clearfix">
-                                <div class="logo">
+                                <div class="logo" style="display:block;">
                                     <a id="logo" href="{{route('raiz')}}" title="Asakaa | Innova" style="height: 60px !important;"   data-height="60" data-padding="10">
                                         
                                         <img class="logo-main scale-with-grid" style="max-height:60px;"  src="{{asset('landing/html/content/agency3/images/innova.png')}}" data-retina="{{asset('landing/html/content/agency3/images/innova.png')}}" data-height="50" alt="agency3">
@@ -69,7 +93,7 @@
                                     <nav id="menu">
                                         <ul id="menu-main-menu" class="menu menu-main">
                                             <li >
-                                                <a href="javascript:;"><span>Inicio</span></a>
+                                                <a href="{{route('raiz') }}"><span>Inicio</span></a>
                                             </li>
 
                                             <li>
@@ -124,32 +148,33 @@
                 
                 <section class="section-padding-1_7 section-bg">
                     <div class="container pt-4">
-                            <center><h4>Pricing Plans</h4></center>
+                            <center><h1 class="gradiente">Precios</h1></center>
 
                             <br>
                             <br>
                             <br>
                         <div class="row align-items-center">
                             <div class="col-md-4">
-                                <div class="pricing pricing--1 ">
+                                <div class="pricing pricing--1 precio ">
                                     <div class="pricing__title">
                                         <h4>
-                                            Basic Plan
-                                            <span class="atbd_plan-active">Active</span>
+                                            Plan Starter
+                                            <span class="atbd_plan-active">Para comenzar</span>
                                         </h4>
                                     </div>
                                     <div class="pricing__price rounded">
                                         <p class="pricing_value">
-                                            <sup>$</sup>Free<small> / Lifetime</small>
+                                            <sup>$</sup>Free<small> / Forever</small>
                                         </p>
                                         <p class="pricing_subtitle">Up to 50 Users</p>
                                         <!-- <p class="pricing_description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, tempora!</p> -->
                                     </div>
                                     <div class="pricing__features">
                                         <ul class="list-unstyled">
-                                            <li><span class="la la-check available"></span><span class="atbd_color-success">Unlimited</span> Regular Listings
+                                            <li><span class="la la-check available"></span> Ideas <span class="atbd_color-success">Ilimitadas</span>
                                             </li>
-                                            <li><span class="la la-check available"></span><span class="atbd_color-success">Unlimited</span> Premium Listings</li>
+                                            <li><span class="la la-check available"></span> Retos <span class="atbd_color-success">Ilimitados</span></li>
+
                                             <li><span class="la la-check available"></span>100 Price Limit Options</li>
                                             <li><span class="la la-check available"></span>150 Tags Limit</li>
                                             <li><span class="la la-check available"></span><span class="atbd_color-success">Unlimited</span> Listing Image</li>
@@ -165,7 +190,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="pricing pricing--1 atbd_pricing_special">
+                                <div class="pricing pricing--1 atbd_pricing_special precio">
                                     <span class="atbd_popular_badge">Recommended</span>
                                     <div class="pricing__title">
                                         <h4>
@@ -174,16 +199,16 @@
                                     </div>
                                     <div class="pricing__price rounded">
                                         <p class="pricing_value">
-                                            <sup>$</sup>99<small> / 30 days</small>
+                                            <sup>$</sup>3<small> / mensual</small>
                                         </p>
-                                        <p class="pricing_subtitle">Per Package</p>
+                                        <p class="pricing_subtitle">Por  Usuario</p>
                                         <!-- <p class="pricing_description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, tempora!</p> -->
                                     </div>
                                     <div class="pricing__features">
                                         <ul class="list-unstyled">
-                                            <li><span class="la la-check available"></span><span class="atbd_color-success">Unlimited</span> Regular Listings
+                                                <li><span class="la la-check available"></span> Ideas <span class="atbd_color-success">Ilimitadas</span>
                                             </li>
-                                            <li><span class="la la-check available"></span><span class="atbd_color-success">Unlimited</span> Premium Listings</li>
+                                            <li><span class="la la-check available"></span> Retos <span class="atbd_color-success">Ilimitados</span></li>
                                             <li><span class="la la-check available"></span>100 Price Limit Options</li>
                                             <li><span class="la la-check available"></span>150 Tags Limit</li>
                                             <li><span class="la la-check available"></span><span class="atbd_color-success">Unlimited</span> Listing Image</li>
@@ -199,7 +224,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="pricing pricing--1 ">
+                                <div class="pricing pricing--1 precio">
                                     <div class="pricing__title">
                                         <h4>
                                             Enterprise Plan
@@ -207,16 +232,16 @@
                                     </div>
                                     <div class="pricing__price rounded">
                                         <p class="pricing_value">
-                                            <sup>$</sup>199<small> / 30 days</small>
+                                            <sup>$</sup>5<small> / mensual</small>
                                         </p>
-                                        <p class="pricing_subtitle">Per Package</p>
+                                        <p class="pricing_subtitle">Por usuario</p>
                                         <!-- <p class="pricing_description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, tempora!</p> -->
                                     </div>
                                     <div class="pricing__features">
                                         <ul class="list-unstyled">
-                                            <li><span class="la la-check available"></span><span class="atbd_color-success">Unlimited</span> Regular Listings
-                                            </li>
-                                            <li><span class="la la-check available"></span><span class="atbd_color-success">Unlimited</span> Premium Listings</li>
+                                                <li><span class="la la-check available"></span> Ideas <span class="atbd_color-success">Ilimitadas</span>
+                                                </li>
+                                                <li><span class="la la-check available"></span> Retos <span class="atbd_color-success">Ilimitados</span></li>
                                             <li><span class="la la-check available"></span>100 Price Limit Options</li>
                                             <li><span class="la la-check available"></span>150 Tags Limit</li>
                                             <li><span class="la la-check available"></span><span class="atbd_color-success">Unlimited</span> Listing Image</li>
