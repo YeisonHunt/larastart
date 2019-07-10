@@ -10,6 +10,11 @@ use App\User;
 class PublicController extends Controller
 {
 
+		public function pricing(Request $request){
+
+			return view('pricing');
+		}
+
 		public function publicIdeas(Request $request){
 
 			return view('public.ideas');

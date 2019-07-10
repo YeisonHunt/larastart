@@ -68,6 +68,11 @@
                                                 <a href="https://asakaa.com" target="_blank"><span>Asakaa Project </span></a>
                                             </li>
 
+                                            <li >
+                                            <a href="{{route('pricing')}}"><span>Pricing </span></a>
+                                                </li>
+
+
 
                                             @if (Route::has('login'))
                                             @auth

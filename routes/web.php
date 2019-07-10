@@ -87,6 +87,7 @@ Route::get('/getPublicIdeas','PublicController@getPublicIdeas');
 Route::get('/public-ideas/view/{id}','PublicController@publicIdeas');
 
 Route::get('/getPublicIdea/{id}','PublicController@getPublicIdea');
+Route::get('/pricing','PublicController@pricing')->name('pricing');
 
 
 Route::get('activacion/{code}/{randString}','UserController@activate');
