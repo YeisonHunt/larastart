@@ -49,7 +49,7 @@
     }
 
     .gradiente {
-        background: -webkit-linear-gradient(#eee, #333);
+        background: -webkit-linear-gradient(#333, #eee);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     }
