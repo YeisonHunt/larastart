@@ -56,7 +56,7 @@
 
     .precio:hover {
 
-        box-shadow: 0.1em 0.1em 0.1em 0.1em lightgreen;
+        box-shadow: 0 0 1em lightgreen;
 
     }
     
