@@ -49,20 +49,14 @@
     }
 
     .gradiente {
-        background: rgba(30,30,45,1);
-        background: -moz-linear-gradient(left, rgba(30,30,45,1) 0%, rgba(16,101,199,1) 100%);
-        background: -webkit-gradient(left top, right top, color-stop(0%, rgba(30,30,45,1)), color-stop(100%, rgba(16,101,199,1)));
-        background: -webkit-linear-gradient(left, rgba(30,30,45,1) 0%, rgba(16,101,199,1) 100%);
-        background: -o-linear-gradient(left, rgba(30,30,45,1) 0%, rgba(16,101,199,1) 100%);
-        background: -ms-linear-gradient(left, rgba(30,30,45,1) 0%, rgba(16,101,199,1) 100%);
-        background: linear-gradient(to right, rgba(30,30,45,1) 0%, rgba(16,101,199,1) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e1e2d', endColorstr='#1065c7', GradientType=1 );
-        color:white;
+        background: -webkit-linear-gradient(#eee, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     }
 
     .precio:hover {
 
-        box-shadow: 0.4em 0.4em 1em 0.4em gray;
+        box-shadow: 0.1em 0.1em 0.1em 0.1em lightgreen;
 
     }
     
