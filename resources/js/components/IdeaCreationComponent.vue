@@ -94,7 +94,8 @@
 																	<div class="col-9">
 																		<div class="input-group">
 																			<div class="input-group-prepend"><span class="input-group-text"><i class="flaticon-photo-camera"></i></span></div>
-																			<input type="text" v-model="form.img" name="img" class="form-control"   :class="{'is-invalid': form.errors.has('img')}"   placeholder="https://wwwmyawesomeideaimg.com/myimage.jpg" aria-describedby="basic-addon1" required>
+																			<input type="file"  accept="image/x-png, image/jpeg"   @change="onFilePicked" name="img" class="form-control"   :class="{'is-invalid': form.errors.has('img')}"   
+																			placeholder="https://wwwmyawesomeideaimg.com/myimage.jpg" aria-describedby="basic-addon1" required>
 
 																			<has-error :form="form" field="img" ></has-error>
 																		</div>
@@ -170,6 +171,10 @@
 																		</div>
 																	</div>
 																</div>
+
+																<hr style="border: 0;
+																			height: 1px;
+																			background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); ">
 
 																	<div class="form-group form-group-last row">
 																	<label class="col-3 col-form-label">Privacy</label>
@@ -282,6 +287,26 @@ export default {
 		},
 		
 	methods: {
+
+		onFilePicked(event) {
+			
+			const files = event.target.files;
+			let filename = files[0].name;
+
+			if (filename.lastIndexOf(".") <= 0) {
+				return alert("Please add a valid file");
+			}
+
+			const fileReader = new FileReader();
+			fileReader.addEventListener("load", () => {
+				//this.contactPhoto = fileReader.result;
+				this.form.img = fileReader.result;
+			});
+			fileReader.readAsDataURL(files[0]);
+			//this.contactPhotoImg = files[0]; // file without any changes
+
+			// esta ultima es la que se envia
+    },
 
 		testFun(){
 
