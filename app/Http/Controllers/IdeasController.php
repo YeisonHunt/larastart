@@ -583,25 +583,25 @@ class IdeasController extends Controller
                             ->select('likes.*')
                             ->get();   
 
-                    $childLike=array(
-                        'id'=>$child->id,
-                        'idea_id'=>$child->idea_id,
-                        'discussion_parent_id'=>$child->discussion_parent_id,
-                        'user_id'=>$child->user_id,
-                        'body'=>$child->body,
-                        'created_at'=>$child->created_at,
-                        'updated_at'=>$child->updated_at,
-                        'name'=>$child->name,
-                        'email'=>$child->email,
-                        'avatar'=>$child->avatar,
-                        'likes'=>$checkLikesHijo2
-        
-        
-                    );
+                        $childLike=array(
+                            'id'=>$child->id,
+                            'idea_id'=>$child->idea_id,
+                            'discussion_parent_id'=>$child->discussion_parent_id,
+                            'user_id'=>$child->user_id,
+                            'body'=>$child->body,
+                            'created_at'=>$child->created_at,
+                            'updated_at'=>$child->updated_at,
+                            'name'=>$child->name,
+                            'email'=>$child->email,
+                            'avatar'=>$child->avatar,
+                            'likes'=>$checkLikesHijo2
+            
+            
+                        );
 
-                    array_push($childs, $childLike);
+                        array_push($childs, $childLike);
 
-                    $childLike=array();
+                        $childLike=array();
 
                 }
 

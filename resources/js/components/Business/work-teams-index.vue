@@ -134,16 +134,7 @@
                  
                   <v-card-actions>
 
-                    <!--
-                    <v-switch
-                      v-model="autoUpdate"
-                      :disabled="isUpdating"
-                      class="mb-2"
-                      color="grey lighten-5"
-                      hide-details
-                      label="Auto Update"
-                    ></v-switch> -->
-
+        
                     
 
                     <v-btn
@@ -173,30 +164,51 @@
 
     <div class="container-fluid">
       <v-toolbar flat color="white">
-        <v-toolbar-title>Work Teams &nbsp; &nbsp;</v-toolbar-title>
-        <v-divider class="mx-2" inset vertical></v-divider>
-        <v-toolbar-title>My Company</v-toolbar-title>
+        <v-toolbar-title>Equipos de Trabajo &nbsp; &nbsp;</v-toolbar-title>
+      
         <v-spacer></v-spacer>
 
-        <v-text-field v-model="search" append-icon="search" label="Search" single-line hide-details></v-text-field>
+        <v-text-field v-model="search" append-icon="search" label="Buscar por nombre o departamento" single-line hide-details></v-text-field>
             &nbsp; &nbsp;
         <v-dialog v-model="dialog" max-width="500px">
           <template v-slot:activator="{ on }">
-            <v-btn color="blue" dark class="mb-2" @click="newTeam">New team</v-btn>
+            <v-btn color="blue" dark class="mb-2" @click="newTeam">Nuevo Equipo</v-btn>
           </template>
         </v-dialog>
       </v-toolbar>
 
-      <v-data-table :headers="headers" :items="desserts" class="elevation-1" :search="search">
+      <v-data-table disable-initial-sort :headers="headers" :items="teams" class="elevation-1" :search="search">
         <template v-slot:items="props">
           <td>{{ props.item.name }}</td>
-          <td class="text-xs-left">{{ props.item.calories }}</td>
-          <td class="text-xs-left">{{ props.item.fat }}</td>
-          <td class="text-xs-left">{{ props.item.carbs }}</td>
+          <td class="text-xs-left">{{ props.item.department }}</td>
+          <td >
+
+          
+
+             
+                   <v-avatar  v-for="dude in props.item.avatars.avatar" :key="dude.id"
+                      size="40px"
+                    >
+                      <img
+                      
+                        :src="dude.avatar"
+                        :alt="dude.email"
+                        :title="dude.firstName + ' '+ dude.lastName"
+                   
+                      >
+                  
+                   </v-avatar>
+            
+
+
+            
+
+          </td>
+        
 
           <td class="justify-center layout px-0">
             <v-icon small class="mr-2" @click="editTeam(props.item)">edit</v-icon>
-            <v-icon small @click="deleteItem(props.item)">delete</v-icon>
+            <v-icon small @click="deleteTeam(props.item.id)">delete</v-icon>
           </td>
         </template>
         <template v-slot:no-data>
@@ -205,9 +217,9 @@
         <template v-slot:no-results>
           <v-alert
             :value="true"
-            color="error"
+            style="color:red;"
             icon="warning"
-          >Your search for "{{ search }}" found no results.</v-alert>
+          >Your search for "{{ search }}" found no teams.</v-alert>
         </template>
       </v-data-table>
     </div>
@@ -246,12 +258,9 @@ export default {
 
       return {
         
-         teamForm: new Form({
-            name: "",
-            department:'',
-            members:[],
-          }),
-          teams:{},
+       
+          teams:[],
+          saving:false,
 
      
         autoUpdate: false,
@@ -259,18 +268,6 @@ export default {
         friends: [1],
         isUpdating: false,
         name: 'Midnight Crew',
-        people: [
-       
-          {id:1, name: 'Sandra Adams', group: 'Group 1', avatar: srcs[1] },
-          {id:2, name: 'Ali Connors', group: 'Group 1', avatar: srcs[2] },
-          {id:3, name: 'Trevor Hansen', group: 'Group 1', avatar: srcs[3] },
-          {id:1, name: 'Tucker Smith', group: 'Group 1', avatar: srcs[2] },
-     
-          {id:4, name: 'Britta Holt', group: 'Group 2', avatar: srcs[4] },
-          {id:5, name: 'Jane Smith ', group: 'Group 2', avatar: srcs[5] },
-          {id:6, name: 'John Smith', group: 'Group 2', avatar: srcs[1] },
-          {id:7, name: 'Sandra Williams', group: 'Group 2', avatar: srcs[3] }
-        ],
         title: "Work departments ",
         sub:'creation.',
         btnTitle:'Save now',
@@ -286,16 +283,16 @@ export default {
         },
         headers: [
           {
-            text: "Work Team (Name)",
+            text: "Nombre de Equipo",
             align: "left",
             sortable: false,
             value: "name"
           },
-          { text: "Department", value: "calories" },
-          { text: "Members", value: "fat" },
-          { text: "In Charge", value: "carbs" },
+          { text: "Departamento", value: "department" },
+          { text: "Miembros", value: "fat" },
+         
 
-          { text: "Actions", value: "name", sortable: false }
+          { text: "Acciones", value: "name", sortable: false }
         ],
         desserts: [],
         editedIndex: -1,
@@ -310,7 +307,18 @@ export default {
           calories: 0,
           fat: 0,
           carbs: 0
-        }
+        },
+          teamForm: new Form({
+            id:'',
+            name: "",
+            department:'',
+            members:[],
+          }),
+
+          deleteTeamF: new Form({
+            id:'',
+           
+          }),
           }
      
   },
@@ -336,7 +344,66 @@ export default {
     this.initialize();
   },
 
+
+
   methods: {
+
+
+    deleteTeam(idTeam){
+
+
+        Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete the team."
+      }).then(result => {
+        if (result.value) {
+          
+          this.deleteTeamF.id = idTeam  
+
+          this.deleteTeamF
+            .post("/deleteTeam")
+            .then(({ data }) => {
+              toastr.success("Done!", "Team deleted!.");
+
+              this.getTeams()
+           
+
+            })
+            .catch(() => {
+              toastr.error("Oops!", "Something went wrong.");
+              this.isUpdating=false;
+            });
+
+
+        }
+      });
+
+        
+
+
+
+
+    },
+
+    editTeam(team){
+      $("#teamModal").modal("show");
+      this.sub= 'editing.'
+      this.btnTitle='Update now'
+      this.btnIcon='update'
+
+      this.saving = false
+
+      this.teamForm.id = team.id
+      this.teamForm.name = team.name
+      this.teamForm.department = team.department
+      this.teamForm.members = team.avatars.avatar
+
+    },
 
      remove (item) {
         const index = this.friends.indexOf(item.id)
@@ -371,38 +438,7 @@ export default {
 
 
     initialize() {
-      this.desserts = [
-        {
-          name: "Diseno Movil",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24
-        },
-        {
-          name: "Testers Axon ",
-          calories: 237,
-          fat: 9.0,
-          carbs: 37
-        },
-        {
-          name: "Innovacion EPM",
-          calories: 262,
-          fat: 16.0,
-          carbs: 23
-        },
-        {
-          name: "Ventas Axon",
-          calories: 305,
-          fat: 3.7,
-          carbs: 67
-        },
-        {
-          name: "Comercial",
-          calories: 356,
-          fat: 16.0,
-          carbs: 49
-        }
-      ];
+      
     },
 
     editItem(item) {
@@ -433,7 +469,8 @@ export default {
 
     saveTeam(){
 
-      if(this.teamForm.members.length > 0){
+      if(this.saving){
+          if(this.teamForm.members.length > 0){
          this.isUpdating=true;
 
       this.teamForm
@@ -441,7 +478,7 @@ export default {
             .then(({ data }) => {
               toastr.success("Done!", "New team has appeared!.");
 
-              this.loadContacts();
+              this.getTeams()
               this.isUpdating=false;
               $("#teamModal").modal("hide");
 
@@ -459,8 +496,77 @@ export default {
       )
 
       }
+      }else {
+
+      if(this.teamForm.members.length > 0){
+         this.isUpdating=true;
+
+      this.teamForm
+            .post("/updateTeam")
+            .then(({ response }) => {
+              toastr.success("Done!", "Equipo actualizado con éxito!.");
+
+              this.getTeams()
+              //this.teams = response.data.teams;
+              this.isUpdating=false;
+              $("#teamModal").modal("hide");
+
+            })
+            .catch(({error}) => {
+              //toastr.error("Oops!", "Algo anda mal.");
+              console.log(error);
+              this.isUpdating=false;
+              $("#teamModal").modal("hide");
+            });
+      }else {
+      
+        Swal.fire(
+        'Oops?',
+        'Teams must have at least 1 member.',
+        'question'
+      )
+
+      }
+      }
+
+    
 
      
+
+    },
+
+
+    updateTeam(){
+
+
+      if(this.teamForm.members.length > 0){
+         this.isUpdating=true;
+
+      this.teamForm
+            .post("/updateTeam")
+            .then(({ response }) => {
+              toastr.success("Done!", "Equipo actualizado con éxito!.");
+
+              //this.getTeams()
+              this.teams = response.data.teams;
+              this.isUpdating=false;
+              $("#teamModal").modal("hide");
+
+            })
+            .catch(() => {
+              toastr.error("Oops!", "Algo anda mal.");
+              this.isUpdating=false;
+            });
+      }else {
+      
+        Swal.fire(
+        'Oops?',
+        'Teams must have at least 1 member.',
+        'question'
+      )
+
+      }
+
 
     },
 
@@ -470,16 +576,13 @@ export default {
       this.btnTitle='Save now'
       this.btnIcon='save'
 
+      this.saving=true
+
       this.teamForm.reset();
 
     },
 
-    editTeam(team){
-      $("#teamModal").modal("show");
-      this.sub= 'editing.'
-      this.btnTitle='Update now'
-      this.btnIcon='update'
-    }
+    
   }, // end methods
 
   mounted() {

@@ -45,7 +45,7 @@
         
 
             <!--end::Layout Skins -->
-			<link rel="icon" type="image/png" sizes="32x32" href="{{asset('innovation/white_logo.png')}}">
+			<link rel="icon" type="image/png" sizes="32x32" href="{{asset('innovation/color_logo.png')}}">
 
             <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -816,7 +816,7 @@
 									<div class="kt-header__topbar-item kt-header__topbar-item--user dropdown-toggle">
 										<div id="logMenu" style="" class="kt-header__topbar-wrapper dropdown-toggle" data-toggle="dropdown" data-offset="0px,0px" aria-haspopup="true"  aria-expanded="true">
 											<div class="kt-header__topbar-user">
-												<span class="kt-header__topbar-welcome kt-hidden-mobile 	">Hi,</span>
+												<span class="kt-header__topbar-welcome kt-hidden-mobile 	">Hola,</span>
 												<span class="kt-header__topbar-username kt-hidden-mobile text-primary">{{ Auth::user()->name }}</span>
 												<img class="kt-hidden" alt="Pic" src="../../../assets/media/users/300_25.jpg">
 
@@ -838,9 +838,7 @@
 													{{ Auth::user()->name }} <br/>
 													{{Auth::user()->email}}
 												</div>
-												<div class="kt-user-card__badge">
-													<span class="btn btn-success btn-sm btn-bold btn-font-md">23 messages</span>
-												</div>
+												
 											</div>
 
 											<!--end: Head -->
@@ -901,10 +899,10 @@
 												</a>
 												<div class="kt-notification__custom">
 
-
+													
 
 												<a href="{{ route('logout') }}"  class="btn btn-label-brand btn-sm btn-bold"  onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
-														Sign Out
+														Cerrar Sesión
 													</a>
 													<form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
 														{{ csrf_field() }}

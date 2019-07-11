@@ -58,6 +58,9 @@ Route::post('/updateContact','ContactController@updateContact');
 Route::delete('/deleteContact/{id}','ContactController@deleteContact');
 
 Route::post('/saveTeam','TeamController@saveTeam');
+Route::post('/updateTeam','TeamController@updateTeam');
+Route::post('/deleteTeam','TeamController@deleteTeam');
+
 Route::get('/getTeams','TeamController@getTeams');
 
 Route::get('/public-ideas','PublicController@publicIdeas')->name('publicIdeas');

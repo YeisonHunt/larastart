@@ -212,7 +212,7 @@
                                             <li><span class="la la-times unavailable"></span> Gallery Image Limit</li>
                                         </ul>
                                         <div class="price_action m-top-25">
-                                            <a href="{{ route('register') }}" class="btn btn-block btn-secondary price_action--btn">Continue</a>
+                                            <a href="{{ route('register') }}" class="btn btn-block btn-secondary price_action--btn">Working on it</a>
                                         </div>
                                     </div>
                                 </div>
@@ -245,7 +245,7 @@
                                             <li><span class="la la-times unavailable"></span> Gallery Image Limit</li>
                                         </ul>
                                         <div class="price_action m-top-25">
-                                            <a href="{{ route('register') }}" class="btn btn-block btn-outline-secondary price_action--btn">Continue</a>
+                                            <a href="{{ route('register') }}" class="btn btn-block btn-outline-secondary price_action--btn">Working on it</a>
                                         </div>
                                     </div>
                                 </div>

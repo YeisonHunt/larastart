@@ -127,7 +127,7 @@
                         <div class="mt-3 letraGrande">{{user.company | uppercaseFirst}}</div>
                       </td>
                       <td>
-                        <div class>
+                        <div class="pt-3">
                           <button
                             data-placement="top"
                             title
@@ -199,26 +199,27 @@
       tabindex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
-      style="display: none;"
+      style="display: none; "
       aria-hidden="true"
+      
     >
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-body">
-            <div class="kt-portlet kt-portlet--skin-solid kt-portlet-- kt-bg-brand">
+            <div class="kt-portlet  "  >
               <div class="kt-portlet__head">
                 <div class="kt-portlet__head-label">
                   <span class="kt-portlet__head-icon">
                     <i class="flaticon-notes"></i>
                   </span>
                   <h3
-                    class="kt-portlet__head-title"
+                    class="kt-portlet__head-title" style="color:gray !important;"
                   >{{user.firstName + ' ' + user.lastName | uppercaseFirst}}</h3>
                 </div>
                 <div class="kt-portlet__head-toolbar">
                   <div class="kt-portlet__head-actions">
-                    <a href="#" class="btn btn-outline-light btn-pill btn-sm btn-icon btn-icon-md">
-                      <i class="flaticon-edit-1"></i>
+                    <a href="#" class="btn btn-light btn-pill btn-sm btn-icon btn-icon-md" @click="closeModal">
+                      <i class="flaticon-close"></i>
                     </a>
                   </div>
                 </div>
@@ -275,11 +276,6 @@
                   <div class="col-6"></div>
                 </div>
 
-                <div class="row">
-                  <div class="col-12">
-                    <p style="font-size:0.9em;">Note: Click outside to close this window</p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -522,6 +518,11 @@ export default {
   },
 
   methods: {
+
+    closeModal(){
+      $("#contactModal").modal("hide");
+    },
+
     loadContacts() {
       axios
         .get("/getContacts")
@@ -552,6 +553,7 @@ export default {
     },
 
     deleteContact(id) {
+
       Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -577,6 +579,9 @@ export default {
             });
         }
       });
+
+
+      
     }
   },
 
