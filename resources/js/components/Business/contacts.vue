@@ -2,22 +2,23 @@
   <div class="hole" style="min-height:80vh;">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-1 col-sm-6">
-          <h3 class="kt-portlet__head-title">Contacts</h3>
+
+        <div class="col-lg-1 pt-3">
+          
+            <v-btn fab dark small color="indigo" @click="$router.go(-1)">
+            <v-icon dark>arrow_back</v-icon>
+          </v-btn>
+        </div>
+
+        <div class="col-lg-1 col-sm-6 pt-2">
+
+          
+          <h2 class="kt-portlet__head-title">Contacts</h2>
           <p>&nbsp; {{users.length}} Total</p>
         </div>
 
-        <div class="col-lg-7 col-sm-12 form-row">
-          <div class="col-sm-12 col-lg-6 mt-2">
-            <div style="padding-top:5px !important;">
-              <vs-input
-                icon="search"
-                class="letraGrande"
-                label-placeholder="Search by name"
-                v-model="searchInput"
-              />
-            </div>
-          </div>
+        <div class="col-lg-6 col-sm-12 form-row">
+         
 
           <div class="col-lg-3 col-sm-6 mt-2">
             <!-- <sui-dropdown
@@ -28,6 +29,17 @@
               v-model="current"
               class="form-control letter"
             />-->
+          </div>
+
+           <div class="col-sm-12 col-lg-6 mt-2">
+            <div style="padding-top:5px !important;">
+              <vs-input
+                icon="search"
+                class="letraGrande"
+                label-placeholder="Search by name"
+                v-model="searchInput"
+              />
+            </div>
           </div>
 
           <div class="col-lg-3 col-sm-6 mt-2">
@@ -455,6 +467,9 @@ export default {
   },
 
   computed: {
+
+   
+
     currentPageMod: function() {
       return this.currentPage + 1;
     },

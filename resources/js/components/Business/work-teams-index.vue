@@ -92,7 +92,7 @@
                             item-text="email"
                             item-value="email"
                             multiple
-                            
+                            @change="checkTeamEmpty"
                             persistent-hint
                           >
                             <template v-slot:selection="data">
@@ -164,7 +164,12 @@
 
     <div class="container-fluid">
       <v-toolbar flat color="white">
-        <v-toolbar-title>Equipos de Trabajo &nbsp; &nbsp;</v-toolbar-title>
+        <v-toolbar-title> 
+          <v-btn fab dark small color="indigo" @click="$router.go(-1)">
+            <v-icon dark>arrow_back</v-icon>
+          </v-btn>
+          
+             Equipos de Trabajo &nbsp; &nbsp;</v-toolbar-title>
       
         <v-spacer></v-spacer>
 
@@ -172,7 +177,8 @@
             &nbsp; &nbsp;
         <v-dialog v-model="dialog" max-width="500px">
           <template v-slot:activator="{ on }">
-            <v-btn color="blue" dark class="mb-2" @click="newTeam">Nuevo Equipo</v-btn>
+            <v-btn color="indigo" dark class="mb-2" @click="newTeam">Nuevo Equipo</v-btn>
+            
           </template>
         </v-dialog>
       </v-toolbar>
@@ -313,12 +319,17 @@ export default {
             name: "",
             department:'',
             members:[],
+            updateForm:'object'
           }),
 
           deleteTeamF: new Form({
             id:'',
            
           }),
+
+          itemActual:{}, 
+          teamTemporal:{},
+          membersUpdater:false,
           }
      
   },
@@ -326,7 +337,23 @@ export default {
   computed: {
     formTitle() {
       return this.editedIndex === -1 ? "New Team" : "Edit Team";
+    },
+
+
+    miembros:function(){
+
+        return this.teamForm.members.filter(contact => {
+          if (contact.email != itemActual.email) {
+            return true;
+          } else {
+            return false;
+          }
+        });
+
     }
+
+
+
   },
 
   watch: {
@@ -403,11 +430,62 @@ export default {
       this.teamForm.department = team.department
       this.teamForm.members = team.avatars.avatar
 
+      this.teamTemporal = team.avatars.avatar
+      this.membersUpdater=false
+
+    },
+
+    checkTeamEmpty(){
+
+     this.membersUpdater = true
+     this.teamForm.updateForm = 'array'
+
+      /*if(this.teamForm.members.length >0){
+
+       //this.teamForm.members = this.teamForm.members
+       console.log('condicion tiene otros')
+      }else {
+       this.teamForm.members = {} ;
+       console.log('condicion vacia')
+      } */
+
     },
 
      remove (item) {
-        const index = this.friends.indexOf(item.id)
-        if (index >= 0) this.friends.splice(index, 1)
+
+       
+       console.log(item)
+      
+        /*let nuevoObjeto;
+
+        nuevoObjeto =  this.teamForm.members.filter(contact => {
+          return String(contact.email) != String(item.email)
+          
+        }); */
+
+        if(this.membersUpdater){
+          //Buscar email sencillo
+       
+             const ind = this.teamForm.members.indexOf(item.email)
+            if (ind >= 0) this.teamForm.members.splice(ind, 1)
+
+
+        }else {
+          //buscar por objeto
+                const index = this.teamForm.members.map(
+                  function(e){
+                    return e.email;
+                  }
+                ).indexOf(item.email)
+                if (index >= 0) this.teamForm.members.splice(index, 1)
+        }
+
+        
+        
+
+        
+        
+
       },
 
     loadContacts() {
@@ -501,33 +579,35 @@ export default {
       if(this.teamForm.members.length > 0){
          this.isUpdating=true;
 
-      this.teamForm
-            .post("/updateTeam")
-            .then(({ response }) => {
-              toastr.success("Done!", "Equipo actualizado con éxito!.");
+            this.teamForm
+                  .post("/updateTeam")
+                  .then(({ response }) => {
+                    toastr.success("Done!", "Equipo actualizado con éxito!.");
 
-              this.getTeams()
-              //this.teams = response.data.teams;
-              this.isUpdating=false;
-              $("#teamModal").modal("hide");
+                    this.getTeams()
+                    //this.teams = response.data.teams;
+                    this.isUpdating=false;
+                    $("#teamModal").modal("hide");
 
-            })
-            .catch(({error}) => {
-              //toastr.error("Oops!", "Algo anda mal.");
-              console.log(error);
-              this.isUpdating=false;
-              $("#teamModal").modal("hide");
-            });
-      }else {
-      
-        Swal.fire(
-        'Oops?',
-        'Teams must have at least 1 member.',
-        'question'
-      )
+                  })
+                  .catch(({error}) => {
+                    //toastr.error("Oops!", "Algo anda mal.");
+                    console.log(error);
+                    this.isUpdating=false;
+                    $("#teamModal").modal("hide");
+                  });
+            }else {
+            
+              Swal.fire(
+              'Oops?',
+              'Teams must have at least 1 member.',
+              'question'
+            )
 
-      }
-      }
+            }
+
+
+      }//end else update team
 
     
 

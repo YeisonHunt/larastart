@@ -64,14 +64,28 @@ class TeamController extends Controller
             $oldMembers = DB::table('tmembers')->where('id_team',$idTeam)->delete();
 
             if(count($request->members)>0){
-                foreach($request->members as $member){
 
-                    $m = new Tmember();
-                    $m->id_team = $t->id;
-                    $m->email_contact = $member;
-                    $m->save();
+                if($request->updateForm=='object'){
+                    foreach($request->members as $member){
 
+                        $m = new Tmember();
+                        $m->id_team = $t->id;
+                        $m->email_contact = $member->email;
+                        $m->save();
+    
+                    }
+                }else {
+                    foreach($request->members as $member){
+
+                        $m = new Tmember();
+                        $m->id_team = $t->id;
+                        $m->email_contact = $member;
+                        $m->save();
+    
+                    }
                 }
+
+               
 
 
                 $teams = DB::table('teams')->where('teams.creator_id',$user->id)

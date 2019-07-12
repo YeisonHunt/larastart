@@ -307,7 +307,7 @@
                                                 <ul class="testimonials_slider_ul">
                                                     <li>
                                                         <div class="single-photo-img">
-                                                            <img src="{{asset('landing/html/content/agency3/images/javier.jpg')}}" class="scale-with-grid wp-post-image">
+                                                            <img src="{{asset('landing/html/content/agency3/images/carlos.jpg')}}" class="scale-with-grid wp-post-image" style="height:90px;">
                                                         </div>
                                                         <div class="bq_wrapper">
                                                             <blockquote>
@@ -339,7 +339,7 @@
                                                     </li>
                                                     <li>
                                                         <div class="single-photo-img">
-                                                            <img src="{{asset('landing/html/content/agency3/images/javer.jpg')}}" class="scale-with-grid wp-post-image">
+                                                            <img src="{{asset('landing/html/content/agency3/images/james.jpg')}}" class="scale-with-grid wp-post-image">
                                                         </div>
                                                         <div class="bq_wrapper">
                                                             <blockquote>
