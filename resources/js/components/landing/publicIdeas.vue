@@ -26,8 +26,11 @@
       v-model="dialog"
       max-width="400"
           >
+
+
       <v-card :hover="true" 
-      
+       :elevation="10"
+      :outlined="true"
       >
           <v-img
           :src="ideaImg"
@@ -66,12 +69,13 @@
           </v-btn>
         </v-card-actions>
       </v-card>
+
     </v-dialog>
     
 
       <v-layout>
         <v-flex lg3>
-          <h3 class="mt-4" style="font-family: 'Satisfy', cursive;">Ideas Globales</h3>
+          <h3 class="mt-4 ml-3" >Ideas Globales</h3>
         </v-flex>
 
         <v-flex lg5 >
@@ -95,33 +99,7 @@
         <v-spacer></v-spacer>
         <v-flex lg3  >
 
-            <!--
-            <label for="selector">Filtrar por tipo</label>
-             <el-select id="selector" v-model="value" placeholder="Todas">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-
-            -->
-              <!-- <label for="selector">Filtrar por tipo</label>  
-                <div include="form-input-select()">
-            
-                <select id="selector" required>
-               
-                  <option value=""
-                          hidden
-                  >Todas</option>
-
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                  <option value="3">Option 3</option>
-                  <option value="4">Option 4</option>
-                  <option value="5">Option 5</option>
-                </select>-->
+          
                 <label for="selector">Filtrar por tipo</label>
                  <select class="select-css" id="selector" v-model="tipo">
                     <option value="all">Todas</option>
@@ -150,14 +128,19 @@
     
       <v-layout row wrap>
        <v-flex  xs12 sm12 pa-3  md4 lg4  v-for="idea in publicIdeas" :key="idea.id" >
-            <v-card :hover="true" ripple  >
+            <v-card :hover="true" ripple
+            
+              >
                 <v-img
                 :src=" idea.img"
-                height="230px"
+                height="250px"
                 
                 >
                 </v-img>
 
+
+                <v-container fluid>
+                   <v-layout    >
                 <v-card-title primary-title>
                 <div style="width:100%;">
 
@@ -171,9 +154,7 @@
                         </v-flex>
 
                         <v-flex lg4  text-xs-right>
-                              <v-btn icon >
-                            <v-icon >favorite</v-icon>
-                        </v-btn>
+                            
                       
                         <v-btn icon  @click.stop="showDialog(idea)" >
                             <v-icon>share</v-icon>
@@ -188,16 +169,27 @@
                 </div>
                 </v-card-title>
 
-                <v-card-actions style="margin-left:10px;">
+                 
+
+                  </v-layout>
+
+                  <v-layout  align-end  >
+                <v-card-actions style="margin-left:10px;  bottom:0;" >
                     
                 <v-btn flat class="text-capitalize noUnderline" :to="{name:'view-idea',params:{id:idea.id}}" color="teal">Leer completa</v-btn>
-                <v-btn flat class="text-capitalize noUnderline" color="light-blue ">Votar</v-btn>
-                <!--
-                <v-spacer></v-spacer>
-                <v-btn icon @click="showMore(idea)">
-                    <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
-                </v-btn> -->
+                
+                  <v-btn flat  color="blue-grey lighten-3" class="text-capitalize noUnderline">
+                    Vote &nbsp;
+                  <v-icon class="mb-1">thumb_up</v-icon>
+                  &nbsp;15
+                </v-btn>
+
                 </v-card-actions>
+                  </v-layout>
+                </v-container>
+              
+
+
 
                 <v-slide-y-transition>
                 <v-card-text v-show="show">
@@ -212,8 +204,65 @@
             </v-flex>
 
            
+        <v-flex xs12 sm12 pa-3  md4 lg4 >
+          <v-card
+              class="mx-auto"
+              
+            >
+              <v-img
+                class="white--text"
+                height="200px"
+                src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+              >
+                <v-card-title class="align-end fill-height">Top 10 Australian beaches</v-card-title>
+              </v-img>
 
-             
+              <v-card-text>
+                <span>Author: Yeison Caicedo</span><br>
+                <span class="text--primary">
+                  <span>Plantar arboles en la orilla del mar para prevenir vientos fuertes</span><br>
+                  <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span>
+                </span>
+              </v-card-text>
+
+              <v-card-actions>
+                <v-btn
+                  text
+                  color="orange"
+                >
+                  Share
+                </v-btn>
+                <v-btn
+                  text
+                  color="orange"
+                >
+                  Explore
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+        </v-flex>
+
+        
+             <v-flex>
+               
+            <q-card class="my-card">
+                <q-img src="https://cdn.quasar.dev/img/parallax2.jpg">
+                  <div class="absolute-bottom">
+                    <div class="text-h6">Our Changing Planet</div>
+                    <div class="text-subtitle2">by John Doe</div>
+                  </div>
+                </q-img>
+                
+                <q-card-section>
+                  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen
+                </q-card-section>
+
+                <q-card-actions>
+                  <q-btn flat>Action 1</q-btn>
+                  <q-btn flat>Action 2</q-btn>
+                </q-card-actions>
+              </q-card>
+             </v-flex>
 
             
             

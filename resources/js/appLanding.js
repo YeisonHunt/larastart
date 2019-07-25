@@ -8,41 +8,41 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-
+import '@mdi/font/css/materialdesignicons.css'
 import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
 
-Vue.use(Vuetify, {
-    theme: {
-        primary: '#1976D2',
-        secondary: '#424242',
-        accent: '#82B1FF',
-        error: '#FF5252',
-        info: '#2196F3',
-        success: '#4CAF50',
-        warning: '#FFC107'
-    }
+Vue.use(Vuetify)
+export default new Vuetify({
+	icons: {
+	  iconfont: 'mdi', // default - only for display purposes
+	},
+	breakpoint: {
+		thresholds: {
+		  xs: 340,
+		  sm: 540,
+		  md: 800,
+		  lg: 960,
+		  xl: 1280,
+		},
+		scrollBarWidth: 24,
+	  },
   })
 
 import VueProgressBar from 'vue-progressbar'
 import Swal from 'sweetalert2'
-import 'vuetify/dist/vuetify.min.css' 
+
 
 import VueRouter from 'vue-router'
 
 
 
-/*import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-import locale from 'element-ui/lib/locale/lang/en'
-
-Vue.use(ElementUI, { locale })  */
-
 Vue.use(VueRouter)
 
 let routes = [
 
-	{ path: '/public-ideas/view/:id',name:'view-idea', component: require('./components/landing/viewIdeaPublic.vue').default },
-	{ path: '/public-ideas',name:'public-ideas', component: require('./components/landing/publicIdeas.vue').default },
+	{ path: '/public-ideas/view/:id',name:'view-idea', component: require('./components/landing2/view.vue').default },
+	{ path: '/public-ideas',name:'public-ideas', component: require('./components/landing2/index.vue').default },
 
 	
 
@@ -60,7 +60,7 @@ const router = new VueRouter({
 
 window.Swal= Swal;
 
-Vue.component('public-ideas', require('./components/landing/publicIdeas.vue').default);
+
 
 const optionsP = {
 	color: '#0080FF',
@@ -239,9 +239,9 @@ Vue.filter(
 	function (text) {
 
 		let t = text.toString();
-		if (t.length > 150) {
+		if (t.length > 50) {
 
-			let t2 = t.slice(0, 150).concat('...');
+			let t2 = t.slice(0, 50).concat('...');
 			return t2;
 
 		} else {
@@ -264,21 +264,6 @@ Vue.filter(
 );
 
 
-const options = {
-	color: '#0080FF',
-	failedColor: '#874b4b',
-	thickness: '5px',
-	transition: {
-		speed: '1s',
-		opacity: '0.5s',
-		termination: 400
-	},
-	autoRevert: true,
-	location: 'top',
-	inverse: false
-}
-
-Vue.use(VueProgressBar, options)
 
 
 
@@ -286,6 +271,7 @@ Vue.use(VueProgressBar, options)
 
 const app = new Vue({
 	el: '#Container',
+	vuetify: new Vuetify(),
 	router
 	
 });

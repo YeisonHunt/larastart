@@ -67,7 +67,7 @@
     <div id="Wrapper">
         <div id="Header_wrapper">
             <header id="Header">
-                <div id="Top_bar" >
+                <div id="Top_bar" style="background-color:#FAFAFA !important;" >
                     <div class="container">
                         <div class="column one">
                             <div class="top_bar_left clearfix">
