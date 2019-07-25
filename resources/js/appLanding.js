@@ -239,9 +239,9 @@ Vue.filter(
 	function (text) {
 
 		let t = text.toString();
-		if (t.length > 100) {
+		if (t.length > 90) {
 
-			let t2 = t.slice(0, 100).concat('...');
+			let t2 = t.slice(0, 90).concat('...');
 			return t2;
 
 		} else {

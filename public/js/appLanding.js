@@ -92589,8 +92589,8 @@ Vue.filter('mediumText', function (text) {
 Vue.filter('largeText', function (text) {
   var t = text.toString();
 
-  if (t.length > 100) {
-    var t2 = t.slice(0, 100).concat('...');
+  if (t.length > 90) {
+    var t2 = t.slice(0, 90).concat('...');
     return t2;
   } else {
     var t3;
