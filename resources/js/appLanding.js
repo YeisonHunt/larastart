@@ -239,18 +239,26 @@ Vue.filter(
 	function (text) {
 
 		let t = text.toString();
-		if (t.length > 90) {
+		if (t.length > 95) {
 
-			let t2 = t.slice(0, 90).concat('...');
+			let t2 = t.slice(0, 95).concat('...');
 			return t2;
 
 		} else {
 
-			let t3;
+			let long= t.length;
+			let dif = 90 - long;
 
-			t3= t+ '  \xa0\xa0\xa0\xa0\xa0\xa0\xa0 \xa0\xa0\xa0\xa0\xa0\xa0\xa0  \xa0\xa0\xa0\xa0\xa0\xa0\xa0  \xa0\xa0\xa0\xa0\xa0\xa0\xa0  \xa0\xa0\xa0\xa0\xa0\xa0\xa0  \xa0\xa0\xa0\xa0\xa0\xa0\xa0  \xa0\xa0\xa0\xa0\xa0\xa0\xa0  \xa0\xa0\xa0\xa0\xa0\xa0\xa0 ' + ' ';
+			let t3 ='';
 
-			return t3;
+			for (var i = 0; i < dif; i++) {
+
+				t3 = t3+ ' \xa0';
+			}
+
+
+
+			return t + t3;
 		}
 
 	}

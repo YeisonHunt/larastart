@@ -2152,6 +2152,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     source: String
@@ -2223,6 +2224,39 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    checkAction: function checkAction(icon) {
+      var host = window.baseUrl;
+
+      switch (icon) {
+        case 'add':
+          window.location = host + 'ideaCreation';
+          break;
+
+        case 'home':
+          window.location = host;
+          break;
+
+        case 'link':
+          window.location = 'https://asakaa.com';
+          break;
+
+        case 'monetization_on':
+          window.location = host + 'pricing';
+          break;
+
+        case 'arrow_forward':
+          window.location = host + 'login';
+          break;
+
+        case 'person_add':
+          window.location = host + 'register';
+          break;
+
+        default:
+          alert('Ninguna opción clickeada');
+          break;
+      }
+    },
     getPublicIdeas: function getPublicIdeas() {
       var _this = this;
 
@@ -40801,9 +40835,9 @@ var render = function() {
                               item.heading
                                 ? _c("v-subheader", [
                                     _vm._v(
-                                      "\n              " +
+                                      "\n                " +
                                         _vm._s(item.heading) +
-                                        "\n            "
+                                        "\n              "
                                     )
                                   ])
                                 : _vm._e()
@@ -40853,9 +40887,9 @@ var render = function() {
                                           [
                                             _c("v-list-item-title", [
                                               _vm._v(
-                                                "\n                  " +
+                                                "\n                    " +
                                                   _vm._s(item.text) +
-                                                  "\n                "
+                                                  "\n                  "
                                               )
                                             ])
                                           ],
@@ -40885,7 +40919,14 @@ var render = function() {
                           _vm._l(item.children, function(child, i) {
                             return _c(
                               "v-list-item",
-                              { key: i, on: { click: function($event) {} } },
+                              {
+                                key: i,
+                                on: {
+                                  click: function($event) {
+                                    return _vm.checkAction(child.icon)
+                                  }
+                                }
+                              },
                               [
                                 child.icon
                                   ? _c(
@@ -40904,9 +40945,9 @@ var render = function() {
                                   [
                                     _c("v-list-item-title", [
                                       _vm._v(
-                                        "\n                " +
+                                        "\n                  " +
                                           _vm._s(child.text) +
-                                          "\n              "
+                                          "\n                "
                                       )
                                     ])
                                   ],
@@ -40921,7 +40962,14 @@ var render = function() {
                       )
                     : _c(
                         "v-list-item",
-                        { key: item.text, on: { click: function($event) {} } },
+                        {
+                          key: item.text,
+                          on: {
+                            click: function($event) {
+                              return _vm.checkAction(item.icon)
+                            }
+                          }
+                        },
                         [
                           _c(
                             "v-list-item-action",
@@ -40934,9 +40982,9 @@ var render = function() {
                             [
                               _c("v-list-item-title", [
                                 _vm._v(
-                                  "\n              " +
+                                  "\n                " +
                                     _vm._s(item.text) +
-                                    "\n            "
+                                    "\n              "
                                 )
                               ])
                             ],
@@ -41124,9 +41172,9 @@ var render = function() {
                           _vm._v(" "),
                           _c("v-card-text", [
                             _vm._v(
-                              "\n                  " +
+                              "\n                    " +
                                 _vm._s(_vm._f("largeText")(idea.description)) +
-                                "\n                  "
+                                "\n                    "
                             )
                           ]),
                           _vm._v(" "),
@@ -41143,7 +41191,7 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                      Leer\n                  "
+                                    "\n                        Leer\n                    "
                                   )
                                 ]
                               ),
@@ -41158,7 +41206,7 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                      Guardar\n                  "
+                                    "\n                        Guardar\n                    "
                                   )
                                 ]
                               ),
@@ -41238,6 +41286,11 @@ var render = function() {
             fab: "",
             fixed: "",
             right: ""
+          },
+          on: {
+            click: function($event) {
+              return _vm.checkAction("add")
+            }
           }
         },
         [_c("v-icon", [_vm._v("add")])],
@@ -41261,7 +41314,7 @@ var render = function() {
             "v-card",
             [
               _c("v-card-title", { staticClass: "grey darken-2" }, [
-                _vm._v("\n        Create contact\n      ")
+                _vm._v("\n          Create contact\n        ")
               ]),
               _vm._v(" "),
               _c(
@@ -92589,13 +92642,19 @@ Vue.filter('mediumText', function (text) {
 Vue.filter('largeText', function (text) {
   var t = text.toString();
 
-  if (t.length > 90) {
-    var t2 = t.slice(0, 90).concat('...');
+  if (t.length > 95) {
+    var t2 = t.slice(0, 95).concat('...');
     return t2;
   } else {
-    var t3;
-    t3 = t + '  \xa0\xa0\xa0\xa0\xa0\xa0\xa0 \xa0\xa0\xa0\xa0\xa0\xa0\xa0  \xa0\xa0\xa0\xa0\xa0\xa0\xa0  \xa0\xa0\xa0\xa0\xa0\xa0\xa0  \xa0\xa0\xa0\xa0\xa0\xa0\xa0  \xa0\xa0\xa0\xa0\xa0\xa0\xa0  \xa0\xa0\xa0\xa0\xa0\xa0\xa0  \xa0\xa0\xa0\xa0\xa0\xa0\xa0 ' + ' ';
-    return t3;
+    var _long = t.length;
+    var dif = 90 - _long;
+    var t3 = '';
+
+    for (var i = 0; i < dif; i++) {
+      t3 = t3 + ' \xa0';
+    }
+
+    return t + t3;
   }
 });
 Vue.filter('uppercaseFirst', function (text) {

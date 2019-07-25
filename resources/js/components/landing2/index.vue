@@ -46,7 +46,7 @@
             <v-list-item
               v-for="(child, i) in item.children"
               :key="i"
-              @click=""
+              @click="checkAction(child.icon)"
             >
               <v-list-item-action v-if="child.icon">
                 <v-icon>{{ child.icon }}</v-icon>
@@ -61,7 +61,7 @@
           <v-list-item
             v-else
             :key="item.text"
-            @click=""
+            @click="checkAction(item.icon)"
           >
             <v-list-item-action>
               <v-icon>{{ item.icon }}</v-icon>
@@ -213,6 +213,7 @@
       fab
       fixed
       right
+			@click="checkAction('add')"
 
     >
       <v-icon>add</v-icon>
@@ -344,6 +345,38 @@
     }),
 
 		methods: {
+
+			checkAction(icon){
+
+				var host = window.baseUrl;
+
+				switch (icon) {
+				  case 'add':
+				    window.location = host +'ideaCreation';
+				    break;
+				  case 'home':
+				    window.location = host;
+				    break;
+
+				  case 'link':
+				    window.location = 'https://asakaa.com';
+				    break;
+					case 'monetization_on':
+					    window.location = host+'pricing';
+					    break;
+					case 'arrow_forward':
+							window.location = host+'login';
+							break;
+					case 'person_add':
+							window.location = host+'register';
+							break;
+
+				  default:
+				    alert('Ninguna opción clickeada')
+				    break;
+				}
+
+			},
 
 			getPublicIdeas(){
 				 axios.get('/getPublicIdeas')

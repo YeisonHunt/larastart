@@ -16,13 +16,16 @@
 <script>
 window.Laravel = {!! json_encode([
 'csrfToken' => csrf_token(),
-]) !!};
+
+ ]) !!};
+
+ window.baseUrl = "<?php echo (env('APP_URL')); ?>";
 </script>
 
 </head>
 <body>
 
-  
+
 
 <div id="Container">
     <router-view></router-view>
