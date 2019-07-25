@@ -125,7 +125,7 @@
     <v-content>
       <v-container
         fluid
-        fill-height
+
       >
      <v-layout row wrap>
 
@@ -140,24 +140,24 @@
           item
         >
           <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/mountain.jpg"
+            :src=" idea.img"
             alt="Asakaa Innova"
             mr-3
           >
           </v-img></v-avatar>
                     <v-list-item-content style="margin-left:15px;">
-                        <v-list-item-title class="headline">Cambiar la gestión de proyectos</v-list-item-title>
+                        <v-list-item-title class="headline">{{idea.title | uppercaseFirst}}</v-list-item-title>
                         <v-list-item-subtitle style="margin-left:2px;">por Yesid Anacona</v-list-item-subtitle>
                     </v-list-item-content>
                     </v-list-item>
 
                     <v-img
-                    src="https://cdn.vuetifyjs.com/images/cards/mountain.jpg"
+                    :src=" idea.img"
                     height="194"
                     ></v-img>
 
                     <v-card-text>
-                    Visit ten places on our planet that are undergoing the biggest changes today.
+                    {{idea.description | largeText}}
                     </v-card-text>
 
                     <v-card-actions>
@@ -186,6 +186,23 @@
 
      </v-layout>
 
+     <br>
+
+     <v-layout row  align-center
+          justify-center>
+
+          <v-flex>
+               <div class="text-center">
+                    <v-pagination
+                    v-model="page"
+                    :length="6"
+                    circle
+                    ></v-pagination>
+                </div>
+          </v-flex>
+
+     </v-layout>
+
 
       </v-container>
     </v-content>
@@ -196,7 +213,7 @@
       fab
       fixed
       right
-      
+
     >
       <v-icon>add</v-icon>
     </v-btn>
@@ -291,6 +308,7 @@
       source: String,
     },
     data: () => ({
+      page: 1,
       dialog: false,
       drawer: null,
       items: [

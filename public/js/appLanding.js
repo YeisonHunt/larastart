@@ -2135,12 +2135,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     source: String
   },
   data: function data() {
     return {
+      page: 1,
       dialog: false,
       drawer: null,
       items: [{
@@ -41027,7 +41045,7 @@ var render = function() {
         [
           _c(
             "v-container",
-            { attrs: { fluid: "", "fill-height": "" } },
+            { attrs: { fluid: "" } },
             [
               _c(
                 "v-layout",
@@ -41063,8 +41081,7 @@ var render = function() {
                                 [
                                   _c("v-img", {
                                     attrs: {
-                                      src:
-                                        "https://cdn.vuetifyjs.com/images/cards/mountain.jpg",
+                                      src: idea.img,
                                       alt: "Asakaa Innova",
                                       "mr-3": ""
                                     }
@@ -41080,7 +41097,13 @@ var render = function() {
                                   _c(
                                     "v-list-item-title",
                                     { staticClass: "headline" },
-                                    [_vm._v("Cambiar la gestión de proyectos")]
+                                    [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm._f("uppercaseFirst")(idea.title)
+                                        )
+                                      )
+                                    ]
                                   ),
                                   _vm._v(" "),
                                   _c(
@@ -41096,16 +41119,14 @@ var render = function() {
                           ),
                           _vm._v(" "),
                           _c("v-img", {
-                            attrs: {
-                              src:
-                                "https://cdn.vuetifyjs.com/images/cards/mountain.jpg",
-                              height: "194"
-                            }
+                            attrs: { src: idea.img, height: "194" }
                           }),
                           _vm._v(" "),
                           _c("v-card-text", [
                             _vm._v(
-                              "\n                  Visit ten places on our planet that are undergoing the biggest changes today.\n                  "
+                              "\n                  " +
+                                _vm._s(_vm._f("largeText")(idea.description)) +
+                                "\n                  "
                             )
                           ]),
                           _vm._v(" "),
@@ -41167,6 +41188,37 @@ var render = function() {
                     1
                   )
                 }),
+                1
+              ),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c(
+                "v-layout",
+                {
+                  attrs: { row: "", "align-center": "", "justify-center": "" }
+                },
+                [
+                  _c("v-flex", [
+                    _c(
+                      "div",
+                      { staticClass: "text-center" },
+                      [
+                        _c("v-pagination", {
+                          attrs: { length: 6, circle: "" },
+                          model: {
+                            value: _vm.page,
+                            callback: function($$v) {
+                              _vm.page = $$v
+                            },
+                            expression: "page"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ])
+                ],
                 1
               )
             ],
@@ -92537,8 +92589,8 @@ Vue.filter('mediumText', function (text) {
 Vue.filter('largeText', function (text) {
   var t = text.toString();
 
-  if (t.length > 50) {
-    var t2 = t.slice(0, 50).concat('...');
+  if (t.length > 100) {
+    var t2 = t.slice(0, 100).concat('...');
     return t2;
   } else {
     return t;

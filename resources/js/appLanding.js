@@ -44,7 +44,7 @@ let routes = [
 	{ path: '/public-ideas/view/:id',name:'view-idea', component: require('./components/landing2/view.vue').default },
 	{ path: '/public-ideas',name:'public-ideas', component: require('./components/landing2/index.vue').default },
 
-	
+
 
 
 ]
@@ -88,12 +88,12 @@ Vue.filter(
 		var now = moment();
 
 		if (now > date) {
-		
+
 			return date.fromNow();
 		} else {
-			return date.startOf('day').fromNow();    
+			return date.startOf('day').fromNow();
 		}
-		
+
 	}
 
 );
@@ -103,10 +103,10 @@ Vue.filter(
 	'cumple',
 	function (txtDate) {
 
-		
+
 			return moment(txtDate,'YYYY-MM-DD').format('MMMM DD');
-		
-	
+
+
 	}
 
 );
@@ -127,7 +127,7 @@ Vue.filter(
 	'dayDate',
 	function (txtDate) {
 
-		return moment(txtDate).day();	
+		return moment(txtDate).day();
 	}
 
 );
@@ -239,9 +239,9 @@ Vue.filter(
 	function (text) {
 
 		let t = text.toString();
-		if (t.length > 50) {
+		if (t.length > 100) {
 
-			let t2 = t.slice(0, 50).concat('...');
+			let t2 = t.slice(0, 100).concat('...');
 			return t2;
 
 		} else {
@@ -273,10 +273,5 @@ const app = new Vue({
 	el: '#Container',
 	vuetify: new Vuetify(),
 	router
-	
+
 });
-
-
-
-
-
