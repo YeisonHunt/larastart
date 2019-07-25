@@ -245,7 +245,7 @@ Vue.filter(
 			return t2;
 
 		} else {
-			return t;
+			return t.concat('... \n');
 		}
 
 	}

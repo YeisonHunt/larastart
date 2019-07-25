@@ -92593,7 +92593,7 @@ Vue.filter('largeText', function (text) {
     var t2 = t.slice(0, 100).concat('...');
     return t2;
   } else {
-    return t;
+    return t.concat('... \n');
   }
 });
 Vue.filter('uppercaseFirst', function (text) {
