@@ -41186,11 +41186,6 @@ var render = function() {
             fab: "",
             fixed: "",
             right: ""
-          },
-          on: {
-            click: function($event) {
-              _vm.dialog = !_vm.dialog
-            }
           }
         },
         [_c("v-icon", [_vm._v("add")])],

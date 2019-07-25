@@ -196,7 +196,7 @@
       fab
       fixed
       right
-      @click="dialog = !dialog"
+      
     >
       <v-icon>add</v-icon>
     </v-btn>
