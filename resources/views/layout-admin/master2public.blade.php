@@ -45,7 +45,7 @@
         
 
             <!--end::Layout Skins -->
-			<link rel="icon" type="image/png" sizes="32x32" href="{{asset('innovation/color_logo.png')}}">
+			<link rel="icon" type="image/png" href="{{asset('images/icon.png')}}">
 
             <meta name="csrf-token" content="{{ csrf_token() }}">
 

@@ -41,8 +41,8 @@ Vue.use(VueRouter)
 
 let routes = [
 
-	{ path: '/public-ideas/view/:id',name:'view-idea', component: require('./components/landing2/view.vue').default },
-	{ path: '/public-ideas',name:'public-ideas', component: require('./components/landing2/index.vue').default },
+	{ path: '/public-ideas/view/:id',name:'view-idea', component: require('./components/landing2/idea/view.vue').default  },
+	{ path: '/public-ideas',name:'public-ideas', component: require('./components/landing2/index.vue').default},
 
 
 

@@ -22,13 +22,14 @@ window.Laravel = {!! json_encode([
  window.baseUrl = "<?php echo (env('APP_URL')); ?>";
 </script>
 
+<link rel="icon" type="image/png" href="{{asset('images/icon.png')}}">
+
 </head>
 <body>
 
 
-
 <div id="Container">
-    <router-view></router-view>
+    <router-view :key="$route.fullPath"></router-view>
 </div>
 
 <script src="{{ asset('js/appLanding.js') }}"></script>

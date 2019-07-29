@@ -111,7 +111,9 @@ Route::get('/assets/assets/app/custom/login/login-v1.js',function(){
 
 
 
-
+Route::get('/assets/vendors/base/purify.js.map',function(){
+    return redirect()->route('admin');
+});
 Route::get('/login/{provider}','SocialAuthController@redirectToProvider');
 Route::get('/login/{provider}/callback','SocialAuthController@handleProviderCallback');
 

@@ -24,7 +24,9 @@ class PublicController extends Controller
 			// This function returns all public ideas without auth 
 
 
-			$publicIdeas = DB::table('innovations')->where('privacy','public')->orderBy('created_at','DESC')->get();
+			$publicIdeas = DB::table('innovations')->where('privacy','public')
+			
+			->orderBy('created_at','DESC')->get();
 
 			return response()->json([
 
@@ -196,18 +198,21 @@ class PublicController extends Controller
 			
 	
 			
-			$desired = DB::table('desireds')->where('innovation_id',$id)->get();
+			$desired = count(DB::table('desireds')->where('innovation_id',$id)->get());
 	
-		
+		    
+
+			 $public= DB::table('innovations')->where('privacy','public')->get();
+			 
+			 $featured = DB::select( DB::raw("SELECT innovations.*, COUNT(*) as cuenta FROM `desireds` inner join innovations on innovations.id = desireds.innovation_id where innovations.privacy='public' group by innovations.id order by cuenta desc limit 3") );
+
 			
-	
-	
-		   
 			return response()->json([
 				'idea' => $idea,
 				'discussions'=>$discussions,
 				'desired'=>$desired,
-			
+				'featured'=>$featured
+
 			]);
 
 		}

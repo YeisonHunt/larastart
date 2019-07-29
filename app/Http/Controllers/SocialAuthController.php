@@ -46,6 +46,7 @@ class SocialAuthController extends Controller
                 $pass = $this->generateRandomString();
                 $newUser->password = bcrypt($pass); 
                 $newUser->active= 1;
+                $newUser->businessName='Mi empresa';
                 $newUser->save();
 
                 $dates = array('tempPass'=>$pass,'email'=>$user->getEmail());

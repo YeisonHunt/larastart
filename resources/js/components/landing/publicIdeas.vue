@@ -641,20 +641,20 @@ export default {
       page: 2,
       publicIdeas:{},
      
-        show:false,
-        mostradas:[],
-        tipo:'all',
-        busqueda:'',
-        dialog:false,
-        linkToIdea:'',
-        baseUrl:window.baseUrl,
-        ideaImg:'',
-        snackbar: false,
-        y: 'top',
-        x: null,
-        mode: '',
-        timeout: 5000,
-        text: 'Link copiado al portapapeles'
+      show:false,
+      mostradas:[],
+      tipo:'all',
+      busqueda:'',
+      dialog:false,
+      linkToIdea:'',
+      baseUrl:window.baseUrl,
+      ideaImg:'',
+      snackbar: false,
+      y: 'top',
+      x: null,
+      mode: '',
+      timeout: 5000,
+      text: 'Link copiado al portapapeles'
 
         
         
