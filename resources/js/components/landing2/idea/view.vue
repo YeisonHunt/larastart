@@ -141,7 +141,7 @@
 
           <v-layout row v-else>
             <v-flex lg1 pb-3 ml-3 mt-1>
-              <v-btn class="mx-2" fab dark small color="primary" @click="$router.go(-1)">
+              <v-btn class="mx-2" fab dark small color="primary" :to="{name:'public-ideas'}">
                 <v-icon>arrow_back</v-icon>
               </v-btn>
             </v-flex>

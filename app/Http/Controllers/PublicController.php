@@ -25,7 +25,8 @@ class PublicController extends Controller
 
 
 			$publicIdeas = DB::table('innovations')->where('privacy','public')
-			
+			->join('users','innovations.created_by','users.id')
+			->select('innovations.*','users.name as escrita')
 			->orderBy('created_at','DESC')->get();
 
 			return response()->json([

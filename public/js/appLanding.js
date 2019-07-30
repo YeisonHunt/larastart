@@ -2712,7 +2712,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     source: String
@@ -2771,7 +2770,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       linkToIdea: "",
       baseUrl: window.baseUrl,
       currentPage: 1
-    }, _defineProperty(_ref, "dialog", false), _defineProperty(_ref, "drawer", null), _defineProperty(_ref, "ideaImg", " "), _defineProperty(_ref, "items", [{
+    }, _defineProperty(_ref, "dialog", false), _defineProperty(_ref, "drawer", false), _defineProperty(_ref, "ideaImg", " "), _defineProperty(_ref, "items", [{
       icon: "add",
       text: "Crear nueva idea"
     }, {
@@ -2897,6 +2896,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
   },
   methods: {
+    checkUser: function checkUser(privacy) {
+      if (privacy == 'showme') {
+        return true;
+      } else {
+        return false;
+      }
+    },
     copyPorta: function copyPorta(link) {
       this.dialog = false;
       var input = document.createElement("input");
@@ -42109,12 +42115,8 @@ var render = function() {
                                     fab: "",
                                     dark: "",
                                     small: "",
-                                    color: "primary"
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.$router.go(-1)
-                                    }
+                                    color: "primary",
+                                    to: { name: "public-ideas" }
                                   }
                                 },
                                 [_c("v-icon", [_vm._v("arrow_back")])],
@@ -43211,6 +43213,13 @@ var render = function() {
                                                 attrs: {
                                                   text: "",
                                                   color: "deep-purple accent-4"
+                                                },
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.checkAction(
+                                                      "add"
+                                                    )
+                                                  }
                                                 }
                                               },
                                               [_vm._v("Crear innovación ahora")]
@@ -43222,7 +43231,7 @@ var render = function() {
                                     ],
                                     null,
                                     false,
-                                    3162367482
+                                    4062464224
                                   )
                                 },
                                 [
@@ -43330,15 +43339,30 @@ var render = function() {
                                             ]
                                           ),
                                           _vm._v(" "),
-                                          _c(
-                                            "v-list-item-subtitle",
-                                            {
-                                              staticStyle: {
-                                                "margin-left": "2px"
-                                              }
-                                            },
-                                            [_vm._v("por Yesid Anacona")]
-                                          )
+                                          _vm.checkUser(idea.author)
+                                            ? _c(
+                                                "v-list-item-subtitle",
+                                                {
+                                                  staticStyle: {
+                                                    "margin-left": "2px"
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "por " +
+                                                      _vm._s(idea.escrita)
+                                                  )
+                                                ]
+                                              )
+                                            : _c(
+                                                "v-list-item-subtitle",
+                                                {
+                                                  staticStyle: {
+                                                    "margin-left": "2px"
+                                                  }
+                                                },
+                                                [_vm._v("Anónimo(a)")]
+                                              )
                                         ],
                                         1
                                       )
@@ -43351,17 +43375,13 @@ var render = function() {
                                   }),
                                   _vm._v(" "),
                                   _c("v-card-text", [
-                                    _c("h4", [
-                                      _vm._v(
-                                        " " +
-                                          _vm._s(
-                                            _vm._f("largeText")(
-                                              idea.description
-                                            )
-                                          )
-                                      )
-                                    ]),
-                                    _vm._v(" "),
+                                    _vm._v(
+                                      "\n               \n               " +
+                                        _vm._s(
+                                          _vm._f("largeText")(idea.description)
+                                        ) +
+                                        "\n             \n                "
+                                    ),
                                     _c("h4", [
                                       _c("b", [_vm._v("Categoría: ")]),
                                       _vm._v(
@@ -43513,27 +43533,6 @@ var render = function() {
                 1
               )
             ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-btn",
-            {
-              attrs: {
-                bottom: "",
-                color: "pink",
-                dark: "",
-                fab: "",
-                fixed: "",
-                right: ""
-              },
-              on: {
-                click: function($event) {
-                  return _vm.checkAction("add")
-                }
-              }
-            },
-            [_c("v-icon", [_vm._v("add")])],
             1
           )
         ],

@@ -173,7 +173,7 @@
                 <b>{{searchQuery}}</b>
                   . Aunque podrías ser el primero en crearla. Qué dices?
                 <template v-slot:actions>
-                  <v-btn text color="deep-purple accent-4">Crear innovación ahora</v-btn>
+                  <v-btn text @click="checkAction('add')" color="deep-purple accent-4">Crear innovación ahora</v-btn>
                 </template>
               </v-banner>
             </v-flex>
@@ -190,7 +190,8 @@
                   </v-avatar>
                   <v-list-item-content style="margin-left:15px;">
                     <v-list-item-title class="headline">{{idea.title | uppercaseFirst}}</v-list-item-title>
-                    <v-list-item-subtitle style="margin-left:2px;">por Yesid Anacona</v-list-item-subtitle>
+                    <v-list-item-subtitle style="margin-left:2px;" v-if="checkUser(idea.author)" >por {{idea.escrita}}</v-list-item-subtitle>
+                     <v-list-item-subtitle style="margin-left:2px;" v-else >Anónimo(a)</v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
 
@@ -198,7 +199,7 @@
 
                 <v-card-text>
                  
-                 <h4> {{idea.description | largeText}}</h4>
+                 {{idea.description | largeText}}
                
                   <h4> <b>Categoría: </b> {{idea.category | toCategory}}</h4>  
                 </v-card-text>
@@ -245,9 +246,7 @@
             </v-card>
         </v-container>
       </v-content>
-      <v-btn bottom color="pink" dark fab fixed right @click="checkAction('add')">
-        <v-icon>add</v-icon>
-      </v-btn>
+      
     </v-app>
   </div>
 </template>
@@ -295,7 +294,7 @@ export default {
     baseUrl: window.baseUrl,
     currentPage: 1,
     dialog: false,
-    drawer: null,
+    drawer: false,
     ideaImg: " ",
     items: [
       { icon: "add", text: "Crear nueva idea" },
@@ -334,6 +333,8 @@ export default {
   }),
 
   computed: {
+
+    
 
     bannerImg: function(){
 
@@ -438,6 +439,16 @@ export default {
   },
 
   methods: {
+
+    checkUser(privacy){
+
+      if(privacy=='showme'){
+        return true;
+      }else {
+        return false;
+      }
+    },
+
     copyPorta(link) {
       this.dialog = false;
       const input = document.createElement("input");
