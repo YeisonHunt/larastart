@@ -137,7 +137,7 @@
     </div>
     <div class="banner-img">
       <img src="{{asset('modern-innova/images/innovation_meeting.png')}}"
-        title="Cliengo Chatbot de Ventas." alt="Cliengo Chatbot de Ventas." />
+        title="Asakaa Innova para profesinales." alt="Asakaa Innova para profesinales." />
     </div>
   </section>
   <section id="whatPeopleWant">
@@ -209,8 +209,8 @@
       <h2>¿Por qué apostar a la innovación para transformar América Latina?</h2>
       <div class="content">
         <div class="clg-1">
-          <img class="lozad" alt="Comillas_cliengo_testimonio_springwall"
-            title="Mira como Springwall aumentó sus ventas incorporando Cliengo"
+          <img class="lozad" alt="Asakaa Innova para profesinales."
+            title="Mira como Asakaa | Innova es apreciada inclusive por gerentes de bancos. "
             data-src="{{asset('modern-innova/hbrrdozyj/image/upload/c_scale_h_50/v1563370347/imagen_caso_exito_springwall_o4zemq.png')}}">
           <p>
             "En América Latina se ha disminuido la pobreza y ha aumentado considerablemente la clase media en los últimos años. Sin embargo, necesitamos crecer en escala 
@@ -428,7 +428,7 @@
     //Reescribir el headline si viene el userName con algun valor.
     if ("") {
       //Para agarrar la primer letra del headline y hacerla mayuscula.
-      var firstHeadline = "Convierte visitantes en clientes con un chatbot para ventas.";
+      var firstHeadline = "Asakaa Innova para profesinales.";
       var hlWithoutFirstLetter = firstHeadline.split(firstHeadline[0]);
       //Agarro la primer letra del nombre y la hago mayuscula.
       var userNameToUpperCase = "";
@@ -443,7 +443,7 @@
       newHeadline =
         "<h1 style='font-size: 42px;'>" + "El sitio <b>" + websiteUrl +
         "</b> "
-        + "usa Cliengo para responder de inmediato y vender más." + "</h1>";
+        + "usa Asakaa Innova para innovar con más rapidez y calidad en tu empresa." + "</h1>";
       $("#firstHeadline").replaceWith(newHeadline);
     }
     function getCookie(sKey) {
@@ -558,7 +558,7 @@
         <li><a target="_blank" href="#">Agencias & partners</a></li>
         <li><a target="_blank" href="index.html">Desarrolladores</a>
         </li>
-        <li><a target="_blank" href="index.html">Comunidad Cliengo</a>
+        <li><a target="_blank" href="index.html">Comunidad</a>
         </li>
         <li><a target="_blank" href="">Blog</a></li>
         <li><a href="">Centro de ayuda</a></li>
@@ -583,7 +583,7 @@
     </div>
   </footer>
   <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
-  <link rel="stylesheet" href="{{asset('modern-innova/public/2f34c7d7b1/Iconoscliengo/style.css')}}">
+  <link rel="stylesheet" href="{{asset('modern-innova/public/2f34c7d7b1/iconos/style.css')}}">
  
 
   <script>
