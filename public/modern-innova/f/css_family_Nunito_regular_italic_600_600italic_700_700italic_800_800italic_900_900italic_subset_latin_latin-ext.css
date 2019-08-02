@@ -1,0 +1,60 @@
+@font-face {
+  font-family: 'Nunito';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Nunito Italic'), local('Nunito-Italic'), url(s/nunito/v11/XRXX3I6Li01BKofIMNaNRsg.woff) format('woff');
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: italic;
+  font-weight: 600;
+  src: local('Nunito SemiBold Italic'), local('Nunito-SemiBoldItalic'), url(s/nunito/v11/XRXQ3I6Li01BKofIMN5cYtvEUTk.woff) format('woff');
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Nunito Bold Italic'), local('Nunito-BoldItalic'), url(s/nunito/v11/XRXQ3I6Li01BKofIMN44Y9vEUTk.woff) format('woff');
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: italic;
+  font-weight: 800;
+  src: local('Nunito ExtraBold Italic'), local('Nunito-ExtraBoldItalic'), url(s/nunito/v11/XRXQ3I6Li01BKofIMN4kYNvEUTk.woff) format('woff');
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: italic;
+  font-weight: 900;
+  src: local('Nunito Black Italic'), local('Nunito-BlackItalic'), url(s/nunito/v11/XRXQ3I6Li01BKofIMN4AYdvEUTk.woff) format('woff');
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Nunito Regular'), local('Nunito-Regular'), url(s/nunito/v11/XRXV3I6Li01BKofIO-aH.woff) format('woff');
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Nunito SemiBold'), local('Nunito-SemiBold'), url(s/nunito/v11/XRXW3I6Li01BKofA6sKUb-vO.woff) format('woff');
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Nunito Bold'), local('Nunito-Bold'), url(s/nunito/v11/XRXW3I6Li01BKofAjsOUb-vO.woff) format('woff');
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Nunito ExtraBold'), local('Nunito-ExtraBold'), url(s/nunito/v11/XRXW3I6Li01BKofAksCUb-vO.woff) format('woff');
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Nunito Black'), local('Nunito-Black'), url(s/nunito/v11/XRXW3I6Li01BKofAtsGUb-vO.woff) format('woff');
+}

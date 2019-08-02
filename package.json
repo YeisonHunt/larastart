@@ -50,6 +50,6 @@
         "vue-router": "^3.0.5",
         "vue-star": "0.0.4",
         "vuesax": "^3.8.75",
-        "vuetify": "^2.0.0"
+        "vuetify": "^2.0.3"
     }
 }

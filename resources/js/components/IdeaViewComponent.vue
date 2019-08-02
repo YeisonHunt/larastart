@@ -1,5 +1,5 @@
 <template>
-  <div :class="{'container-fluid':mobile, 'container':large}">
+  <div :class="{'container-fluid':mobile, 'container-fluid':large}">
     <div class="row" v-if="puedoVer" style="min-height:80vh;">
       <div class="col-lg-12 col-sm-12 col-md-12">
         <div class="kt-portlet mobilePortlet">

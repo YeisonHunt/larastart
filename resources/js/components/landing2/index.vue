@@ -46,7 +46,12 @@
         </v-dialog>
       </v-layout>
 
-      <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app>
+      <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp"
+        class="grey darken-4"
+         gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
+      dark
+      
+       app>
         <v-list dense>
           <template v-for="item in items">
             <v-layout v-if="item.heading" :key="item.heading" align-center>
@@ -99,9 +104,9 @@
       <v-app-bar
         :clipped-left="$vuetify.breakpoint.lgAndUp"
         app
-        color="indigo "
+        :color="'#1E1E2D'"
         dark
-        src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
+        
       >
         <v-toolbar-title style="width: 400px" class="ml-0 pl-4">
           <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
@@ -111,7 +116,7 @@
           flat
           solo-inverted
           dark
-          color="blue darken-1"
+          color="grey darken-3"
           hide-details
           prepend-inner-icon="search"
           placeholder="Buscar ideas ..."
@@ -135,7 +140,7 @@
         <v-btn icon large style="margin-right:10px;" @click="goAdmin">
           <v-avatar size="32px" item>
             <v-img
-              src="http://www.guardproject.com/landing/html/content/agency3/images/white_logo.png"
+              src="https://www.guardproject.com/landing/html/content/agency3/images/white_logo.png"
               alt="Asakaa Innova"
             ></v-img>
           </v-avatar>
@@ -183,7 +188,7 @@
 
           <v-layout row wrap v-else>
             <v-flex xs12 sm12 pa-3 md4 lg4 xl3 v-for="idea in filteredIdeas" :key="idea.id" transition="scroll-y-transition">
-              <v-card max-width="400" class="mx-auto" hover>
+              <v-card max-width="440" class="mx-auto" hover>
                 <v-list-item>
                   <v-avatar size="32px" item>
                     <v-img :src=" idea.img" alt="Asakaa Innova" mr-3></v-img>
