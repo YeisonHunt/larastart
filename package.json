@@ -44,11 +44,13 @@
         "sweetalert2": "^8.8.5",
         "vform": "^1.0.0",
         "vue-chartjs": "^3.4.2",
+        "vue-custom-scrollbar": "^1.1.0",
         "vue-mq": "^1.0.1",
         "vue-progressbar": "^0.7.5",
         "vue-random-pic": "^1.0.0",
         "vue-router": "^3.0.5",
         "vue-star": "0.0.4",
+        "vue2-perfect-scrollbar": "^1.2.1",
         "vuesax": "^3.8.75",
         "vuetify": "^2.0.3"
     }

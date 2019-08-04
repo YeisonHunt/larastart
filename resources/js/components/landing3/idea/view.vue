@@ -1,7 +1,12 @@
 <template>
-  <div>
+
+<div class="hole">
+    
     <v-app id="inspire">
-      <v-snackbar
+      <v-content>
+        <v-container fluid>
+
+          <v-snackbar
         v-model="snackbar"
         :bottom="y === 'bottom'"
         :left="x === 'left'"
@@ -43,84 +48,6 @@
           </v-card>
         </v-dialog>
       </v-layout>
-
-      <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app>
-        <v-list dense>
-          <template v-for="item in items">
-            <v-layout v-if="item.heading" :key="item.heading" align-center>
-              <v-flex xs6>
-                <v-subheader v-if="item.heading">{{ item.heading }}</v-subheader>
-              </v-flex>
-              <v-flex xs6 class="text-center">
-                <a href="#!" class="body-2 black--text">EDIT</a>
-              </v-flex>
-            </v-layout>
-            <v-list-group
-              v-else-if="item.children"
-              :key="item.text"
-              v-model="category"
-              :prepend-icon="item.model ? item.icon : item['icon-alt']"
-              append-icon
-            >
-              <template v-slot:activator>
-                <v-list-item>
-                  <v-list-item-content>
-                    <v-list-item-title>{{ item.text }}</v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </template>
-              <v-list-item
-                v-for="(child, i) in item.children"
-                :key="i"
-                @click="checkAction(child.icon)"
-              >
-                <v-list-item-action v-if="child.icon">
-                  <v-icon>{{ child.icon }}</v-icon>
-                </v-list-item-action>
-                <v-list-item-content>
-                  <v-list-item-title>{{ child.text }}</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list-group>
-            <v-list-item v-else :key="item.text" @click="checkAction(item.icon)">
-              <v-list-item-action>
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-item-action>
-              <v-list-item-content>
-                <v-list-item-title>{{ item.text }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </template>
-        </v-list>
-      </v-navigation-drawer>
-
-      <v-app-bar
-        :clipped-left="$vuetify.breakpoint.lgAndUp"
-        app
-        color="indigo "
-        dark
-        src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
-      >
-        <v-toolbar-title style="width: 400px" class="ml-0 pl-4">
-          <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-          <span class="hidden-sm-and-down">Asakaa Innova | Ideas Globales</span>
-        </v-toolbar-title>
-
-        <v-spacer></v-spacer>
-
-        <v-btn icon large style="margin-right:10px;" @click="goAdmin">
-          <v-avatar size="32px" item>
-            <v-img
-              src="http://www.guardproject.com/landing/html/content/agency3/images/white_logo.png"
-              alt="Asakaa Innova"
-            ></v-img>
-          </v-avatar>
-        </v-btn>
-      </v-app-bar>
-
-
-      <v-content>
-        <v-container fluid>
           <v-layout v-if="!idea">
             <v-flex>
               <v-img :src="baseUrl+'images/empty.svg'" height="400" contain></v-img>
@@ -142,24 +69,24 @@
           </v-layout>
 
           <v-layout row v-else>
-            <v-flex lg1 pb-3 ml-3 mt-1>
-              <v-btn class="mx-2" fab dark small color="primary" :to="{name:'public-ideas'}">
-                <v-icon>arrow_back</v-icon>
+            <v-flex lg1 pb-3 ml-3 pt-3 style="margin-top:5px;" >
+              <v-btn class="mx-2" fab dark small color="#576CFF" :to="{name:'global-ideas'}">
+                <v-icon>mdi-arrow-left</v-icon>
               </v-btn>
             </v-flex>
 
-            <v-flex lg7 mt-3 text-xs-center>
-              <h3>Idea actual</h3>
+            <v-flex lg8 mb-3 text-xs-center style="margin-bottom:10px;" >
+              <h2>Idea actual</h2>
             </v-flex>
-            <v-flex lg3 mt-2 text-xs-right hide-sm-and-down>
-              <h3>Tendencias</h3>
+            <v-flex lg2 mt-2 text-xs-right hide-sm-and-down>
+              <h2>Tendencias</h2>
             </v-flex>
           </v-layout>
 
           <!-- Here goes the content -->
 
           <v-layout row wrap>
-            <v-flex xs12 sm12 pa-2 md8 lg8 xl8>
+            <v-flex xs12 sm12 pa-2 md8 lg8 xl8 style="margin-top:20px;">
               <v-card class="mx-auto" hover>
                 <v-list-item>
                   <v-avatar size="32px" item>
@@ -167,7 +94,8 @@
                   </v-avatar>
                   <v-list-item-content style="margin-left:15px;">
                     <v-list-item-title class="headline">{{idea.title | uppercaseFirst}}</v-list-item-title>
-                    <v-list-item-subtitle style="margin-left:2px;">por {{idea.author}}</v-list-item-subtitle>
+                    <v-list-item-subtitle style="margin-left:2px;" v-if="idea.author=='showme'">por {{idea.escrita}}</v-list-item-subtitle>
+                     <v-list-item-subtitle style="margin-left:2px;"  v-else >Anónimo(a)</v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
 
@@ -195,7 +123,7 @@
                   <v-spacer></v-spacer>
 
                   <v-btn class="text-center" icon @click="show = !show">
-                    <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
+                    <v-icon>{{ show ? 'mdi-minus' : 'mdi-plus' }}</v-icon>
                   </v-btn>
                 </v-card-actions>
 
@@ -300,10 +228,10 @@
               </v-card>
             </v-flex>
 
-            <v-flex md3 lg4 xl4 class="hidden-sm-and-down" pl-2  >
+            <v-flex md3 lg4 xl4 class="hidden-sm-and-down" pl-2   >
               <v-container>
                 <v-layout row>
-                  <v-flex v-for="f in featured" :key="f.id" pb-4>
+                  <v-flex v-for="f in featured" :key="f.id"  style="padding:10px;" >
                     <v-card max-width="340" class="mx-auto" hover>
                       <v-list-item>
                         <v-avatar size="32px" item>
@@ -311,7 +239,8 @@
                         </v-avatar>
                         <v-list-item-content style="margin-left:15px;">
                           <v-list-item-title class="headline">{{f.title | uppercaseFirst}}</v-list-item-title>
-                          <v-list-item-subtitle style="margin-left:2px;">por Yesid Anacona</v-list-item-subtitle>
+                          <v-list-item-subtitle style="margin-left:2px;"  v-if="f.author=='showme'">por {{f.name}}</v-list-item-subtitle>
+                           <v-list-item-subtitle style="margin-left:2px;" v-else>por Anónimo(a)</v-list-item-subtitle>
                         </v-list-item-content>
                       </v-list-item>
 
@@ -334,9 +263,11 @@
                         >Leer completa</v-btn>
 
                         <v-spacer></v-spacer>
-                        <v-btn icon @click="goIdea(f.id)">
-                          <v-icon>mdi-heart</v-icon>
-                        </v-btn>
+                        
+                         
+                       
+                        
+
                         <v-btn icon @click.stop.prevent="vote(idea)">
                           <v-icon>mdi-share-variant</v-icon>
                         </v-btn>
@@ -351,48 +282,20 @@
           <!-- Here finishes the content -->
           <br />
 
-          <v-card height="30">
-            <v-footer absolute class="font-weight-medium">
-              <v-flex text-center xs12>
-                {{ new Date().getFullYear() }} —
-                <strong>Asakaa | Innova</strong>
-              </v-flex>
-            </v-footer>
-          </v-card>
+         
         </v-container>
       </v-content>
-
-
-      
-      <v-btn bottom color="pink" dark fab fixed right @click="checkAction('add')">
-        <v-icon>add</v-icon>
-      </v-btn>
-    </v-app>
-  </div>
+      </v-app>
+</div>
+    
 </template>
 
 
 <style>
-.lightbox {
-  box-shadow: 0 0 20px inset rgba(0, 0, 0, 0.2);
-  background-image: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.6) 0%,
-    transparent 102px
-  );
-}
 
-@import url("https://fonts.googleapis.com/css?family=Montserrat:600,700&display=swap");
 
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-family: "Montserrat", sans-serif !important;
-  font-weight: 600 !important;
-}
 </style>
+
 
 
 <script>
@@ -493,8 +396,10 @@ export default {
   methods: {
 
     goIdea(idIdea){
-      let host = window.baseUrl;
-          window.location = host + "innovations/"+idIdea;
+     // let host = window.baseUrl;
+         // window.location = host + "innovations/"+idIdea;
+
+          this.$router.push({ path: 'view-idea',params:{id:idIdea} })
     },
     copyPorta(link) {
       this.dialog = false;
@@ -569,6 +474,7 @@ export default {
 
   mounted() {
     this.getPublicIdea();
+    document.getElementById('home').style.display = "none";
   } //end mounted
 };
 </script>

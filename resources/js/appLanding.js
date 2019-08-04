@@ -8,26 +8,12 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-import '@mdi/font/css/materialdesignicons.css'
+import '@mdi/font/css/materialdesignicons.css' 
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 
-Vue.use(Vuetify)
-export default new Vuetify({
-	icons: {
-	  iconfont: 'mdi', // default - only for display purposes
-	},
-	breakpoint: {
-		thresholds: {
-		  xs: 340,
-		  sm: 540,
-		  md: 800,
-		  lg: 960,
-		  xl: 1280,
-		},
-		scrollBarWidth: 24,
-	  },
-  })
+ 
+
 
 import VueProgressBar from 'vue-progressbar'
 import Swal from 'sweetalert2'
@@ -39,10 +25,19 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
+
+
+Vue.use(Vuetify)
+
 let routes = [
 
-	{ path: '/public-ideas/view/:id',name:'view-idea', component: require('./components/landing2/idea/view.vue').default  },
-	{ path: '/public-ideas',name:'public-ideas', component: require('./components/landing2/index.vue').default},
+
+    { path: '/',name:'home', component: require('./components/landing3/home.vue').default},
+	{ path: '/global-ideas',name:'global-ideas', component: require('./components/landing3/global-ideas.vue').default},
+	{ path: '/products',name:'products', component: require('./components/landing3/products.vue').default},
+	{ path: '/pricing',name:'pricing', component: require('./components/landing3/pricing.vue').default},
+	{ path: '/blog',name:'blog', component: require('./components/landing3/blog.vue').default},
+	{ path: '/global-ideas/view/:id',name:'view-idea', component: require('./components/landing3/idea/view.vue').default  },
 
 
 
@@ -283,8 +278,26 @@ Vue.filter(
 
 
 const app = new Vue({
-	el: '#Container',
-	vuetify: new Vuetify(),
+	el: '#innova-app',
+	vuetify: new Vuetify({
+		icons: {
+			iconfont: 'mdi', // default - only for display purposes
+		  },
+
+		  theme: {
+			themes: {
+			  light: {
+				primary: '#1976D2',
+				secondary: '#424242',
+				accent: '#82B1FF',
+				error: '#FF5252',
+				info: '#2196F3',
+				success: '#4CAF50',
+				warning: '#FFC107',
+			  },
+			},
+		  },
+	}),
 	router
 
 });

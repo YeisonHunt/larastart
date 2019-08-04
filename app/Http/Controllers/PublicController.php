@@ -17,7 +17,7 @@ class PublicController extends Controller
 
 		public function publicIdeas(Request $request){
 
-			return view('public.ideas');
+			return view('layout-final.layout-final');
 		}
 
 		public function getPublicIdeas(Request $request){
@@ -42,7 +42,13 @@ class PublicController extends Controller
 		public function getPublicIdea(Request $request, $id){
 
 			$vacio= array();
-			$idea = Innovation::find($id);
+			//$idea = Innovation::find($id);
+
+
+			$idea = DB::table('innovations')->where('innovations.id',$id)
+			->join('users','innovations.created_by','users.id')
+			->select('innovations.*','users.name as escrita')
+			->first();
 	
 	
 			
@@ -205,7 +211,7 @@ class PublicController extends Controller
 
 			 $public= DB::table('innovations')->where('privacy','public')->get();
 			 
-			 $featured = DB::select( DB::raw("SELECT innovations.*, COUNT(*) as cuenta FROM `desireds` inner join innovations on innovations.id = desireds.innovation_id where innovations.privacy='public' group by innovations.id order by cuenta desc limit 3") );
+			 $featured = DB::select( "SELECT innovations.*,users.name , COUNT(*) as cuenta FROM `desireds` inner join innovations on innovations.id = desireds.innovation_id inner join users on users.id = desireds.user_id  where innovations.privacy='public' group by innovations.id order by cuenta desc limit 3");
 
 			
 			return response()->json([

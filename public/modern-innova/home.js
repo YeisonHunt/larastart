@@ -32,13 +32,13 @@
         (function(t) {
             function e(t) {
                 var e = document.createElement("script");
-                e.type = "text/javascript", e.async = !0, e.src = "https://s.cliengo.com/weboptimizer/564e0efee4b04145b9dde10b/" + t + ".js";
+                e.type = "text/javascript", e.async = !0, e.src = "https://" + t + ".js";
                 var n = document.getElementsByTagName("script")[0];
                 n.parentNode.insertBefore(e, n), window.addEventListener("message", i, !1)
             }
 
             function i(t) {
-                if (t.data && "https://w.cliengo.com" === t.origin && "string" == typeof t.data) {
+                if (t.data && "https://guardproject.com" === t.origin && "string" == typeof t.data) {
                     var e = t.data.split("=");
                     n.setCookie(e[0], e[1], 30)
                 }
@@ -52,7 +52,7 @@
                     var n = new Date;
                     n.setTime(n.getTime() + 24 * i * 60 * 60 * 1e3);
                     var o = "expires=" + n.toUTCString(),
-                        s = "domain=" + ("localhost" === window.location.hostname ? "localhost" : ".cliengo.com");
+                        s = "domain=" + ("localhost" === window.location.hostname ? "localhost" : ".guardproject.com");
                     return document.cookie = t + "=" + e + ";" + o + ";" + s + ";path=/", !0
                 },
                 keys: function() {
@@ -67,7 +67,7 @@
                     }))
                 })), t("#preview-now").submit((function(e) {
                     var i = n.getCookie("ulang"),
-                        o = "http://www.cliengo.com/" + ("es" === i ? "" : i + "/") + "demo/",
+                        o = "http://www.guardproject.com/" + ("es" === i ? "" : i + "/") + "demo/",
                         s = document.getElementById("websiteInputPreview"),
                         r = s.value;
                     return r && /^(https?:\/\/)?[a-z0-9-]+(\.[a-z0-9-]+)+$/i.test(r) ? (t("#demo-input-error").hide("fast"), r = r.replace("http://", ""), r = r.replace("https://", ""), window.open(o + r, "_blank")) : t("#demo-input-error").show("fast"), !1

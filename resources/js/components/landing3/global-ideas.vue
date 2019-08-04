@@ -1,21 +1,29 @@
 <template>
-  <div>
-    <v-app id="inspire">
-      <v-snackbar
-        v-model="snackbar"
-        :bottom="y === 'bottom'"
-        :left="x === 'left'"
-        :multi-line="mode === 'multi-line'"
-        :right="x === 'right'"
-        :timeout="timeout"
-        :top="y === 'top'"
-        :vertical="mode === 'vertical'"
-      >
-        {{ text }}
-        <v-btn color="blue" @click="snackbar = false">Cerrar</v-btn>
-      </v-snackbar>
+    
+    <div class="hole">
 
-      <v-layout justify-center>
+      
+      <v-app>
+
+      
+         <v-content>
+        <v-container fluid>
+
+            <v-snackbar
+            v-model="snackbar"
+            :bottom="y === 'bottom'"
+            :left="x === 'left'"
+            :multi-line="mode === 'multi-line'"
+            :right="x === 'right'"
+            :timeout="timeout"
+            :top="y === 'top'"
+            :vertical="mode === 'vertical'"
+          >
+            {{ text }}
+            <v-btn color="#576CFF" @click="snackbar = false">Cerrar</v-btn>
+          </v-snackbar>
+
+            <v-layout justify-center>
         <v-dialog v-model="dialog" max-width="400">
           <v-card :hover="true" :elevation="10" :outlined="true"
           
@@ -37,7 +45,7 @@
               <v-spacer></v-spacer>
 
               <v-btn
-                color="blue darken-1"
+                color="#576CFF"
                 dark
                 @click="copyPorta(linkToIdea)"
               >Copiar al portapapeles</v-btn>
@@ -46,127 +54,66 @@
         </v-dialog>
       </v-layout>
 
-      <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp"
-        class="grey darken-4"
-         gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
-      dark
-      
-       app>
-        <v-list dense>
-          <template v-for="item in items">
-            <v-layout v-if="item.heading" :key="item.heading" align-center>
-              <v-flex xs6>
-                <v-subheader v-if="item.heading">{{ item.heading }}</v-subheader>
-              </v-flex>
-              <v-flex xs6 class="text-center">
-                <a href="#!" class="body-2 black--text">EDIT</a>
-              </v-flex>
-            </v-layout>
-            <v-list-group
-              v-else-if="item.children"
-              :key="item.text"
-              v-model="category"
-              :prepend-icon="item.model ? item.icon : item['icon-alt']"
-              append-icon
-            >
-              <template v-slot:activator>
-                <v-list-item>
-                  <v-list-item-content>
-                    <v-list-item-title>{{ item.text }}</v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </template>
-              <v-list-item
-                v-for="(child, i) in item.children"
-                :key="i"
-                @click="checkAction(child.icon)"
-              >
-                <v-list-item-action v-if="child.icon">
-                  <v-icon>{{ child.icon }}</v-icon>
-                </v-list-item-action>
-                <v-list-item-content>
-                  <v-list-item-title>{{ child.text }}</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list-group>
-            <v-list-item v-else :key="item.text" @click="checkAction(item.icon)">
-              <v-list-item-action>
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-item-action>
-              <v-list-item-content>
-                <v-list-item-title>{{ item.text }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </template>
-        </v-list>
-      </v-navigation-drawer>
-
-      <v-app-bar
-        :clipped-left="$vuetify.breakpoint.lgAndUp"
-        app
-        :color="'#1E1E2D'"
-        dark
-        
-      >
-        <v-toolbar-title style="width: 400px" class="ml-0 pl-4">
-          <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-          <span class="hidden-sm-and-down">Asakaa Innova | Ideas Globales</span>
-        </v-toolbar-title>
-        <v-text-field
-          flat
-          solo-inverted
-          dark
-          color="grey darken-3"
-          hide-details
-          prepend-inner-icon="search"
-          placeholder="Buscar ideas ..."
-          class="hidden-sm-and-down"
-          v-model="searchQuery"
-        ></v-text-field>
-        <v-spacer></v-spacer>
-        <v-select
-        
-          v-model="select"
-          :items="items2"
-          item-text="category"
-          item-value="val"
-          label="Filtrar ideas por categoría																			"
-          outline
-          append-icon="filter_list"
-          style="margin-top:25px; margin-right:20px; "
-        ></v-select>
-      
-        
-        <v-btn icon large style="margin-right:10px;" @click="goAdmin">
-          <v-avatar size="32px" item>
-            <v-img
-              src="https://www.guardproject.com/landing/html/content/agency3/images/white_logo.png"
-              alt="Asakaa Innova"
-            ></v-img>
-          </v-avatar>
-        </v-btn>
-      </v-app-bar>
-
-      
-      <v-content>
-        <v-container fluid>
+   
 
           <v-layout row pl-3 pr-3 pt-1 pb-2>
 
-            <router-view></router-view>
+         
             <v-flex>
-              <v-img :aspect-ratio="6" :src="bannerImg">
+              <v-img  style=" border-radius:10px;" :aspect-ratio="6" :src="bannerImg">
               <v-layout pa-2 column fill-height class="lightbox white--text">
                 <v-spacer></v-spacer>
-                <v-flex shrink>
-                  <div class="subheading">Estamos mejorando el mundo con nuevas ideas.</div>
-                  <div class="body-1">Quieres ser parte?</div>
+                <v-flex shrink style="padding:10px; font-size:1.2rem;">
+                  <div class="subheading" style="color:white;">Estamos mejorando el mundo con nuevas ideas.</div>
+                  <div class="body-1" style="color:white;">Quieres ser parte?</div>
                 </v-flex>
               </v-layout>
             </v-img>
 
+            <br>
+
+             
+            <v-layout row style="margin-left:10px;">
+                <v-flex xs12 sm12 md6 lg6>
+                  <v-text-field
+                  color="#576CFF"
+
+                    label="Busca alguna innovación de nuestros miles de usuarios"
+                    placeholder="Ej: Energía renovable"
+                    outlined
+                    v-model="searchQuery"
+                  ></v-text-field>
+              </v-flex>
+
+              <v-flex md1 lg1 class="hidden-sm-and-down">
+
+              </v-flex>
+
+
+              <v-flex xs12 sm12 md4 lg4 style="margin-right:10px;">
+                 <v-select
+        
+                  v-model="select"
+                  :items="items2"
+                  item-text="category"
+                  item-value="val"
+                  label="Filtrar ideas por categoría																			"
+                  outline
+                  color="#576CFF"
+                 
+                 
+                ></v-select>
+
+
+              </v-flex>
+
+            </v-layout>
+
             </v-flex>
           </v-layout>
+
+
+
 
           <v-layout v-if="filteredIdeas.length<=0">
             <v-flex>
@@ -189,8 +136,8 @@
          
 
           <v-layout row wrap v-else>
-            <v-flex xs12 sm12 pa-3 md4 lg4 xl3 v-for="idea in filteredIdeas" :key="idea.id" transition="scroll-y-transition">
-              <v-card max-width="440" class="mx-auto" hover>
+            <v-flex xs12 sm12 pa-3 style="padding:10px !important;"  md4 lg4 xl3 v-for="idea in filteredIdeas" :key="idea.id" transition="scroll-y-transition">
+              <v-card max-width=""  class="mx-auto" hover>
                 <v-list-item>
                   <v-avatar size="32px" item>
                     <v-img :src=" idea.img" alt="Asakaa Innova" mr-3></v-img>
@@ -231,48 +178,48 @@
           <v-layout row align-center justify-center v-if="filteredIdeas.length>0">
             <v-flex>
               <div class="text-center">
-                <v-pagination v-model="currentPage" :length="totalPages" circle></v-pagination>
+                <v-pagination  color="#576CFF" v-model="currentPage" :length="totalPages" circle></v-pagination>
               </div>
             </v-flex>
           </v-layout>
           <br>
           <br>
 
-          <v-card height="30" pt-5>
-              <v-footer
-                absolute
-                class="font-weight-medium"
-              >
-                <v-flex
-                  text-center
-                  xs12
-                >
-                  {{ new Date().getFullYear() }} — <strong>Asakaa | Innova</strong>
-                </v-flex>
-              </v-footer>
-            </v-card>
+        
         </v-container>
       </v-content>
-      
-    </v-app>
-  </div>
+
+      </v-app>
+     
+    </div>
+
 </template>
 
-
 <style>
- .lightbox {
+
+.lightbox {
     box-shadow: 0 0 20px inset rgba(0, 0, 0, 0.2);
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 102px);
   }
+
 </style>
 
 
+
+
+
+
 <script>
+
 export default {
+
   props: {
     source: String
   },
   data: () => ({
+     settings: {
+        maxScrollbarLength: 60
+      },
     category: 'business',
     select: "all",
     items2: [
@@ -535,6 +482,8 @@ export default {
 
   mounted() {
     this.getPublicIdeas();
-  } //end mounted
+    document.getElementById('home').style.display = "none";
+    document.getElementById("inicioLink").classList.remove("active");
+  } 
 };
 </script>

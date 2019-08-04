@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome2');
+    return view('layout-final.layout-final');
 })->name('raiz');
 
 
@@ -63,7 +63,7 @@ Route::post('/deleteTeam','TeamController@deleteTeam');
 
 Route::get('/getTeams','TeamController@getTeams');
 
-Route::get('/public-ideas','PublicController@publicIdeas')->name('publicIdeas');
+Route::get('/global-ideas','PublicController@publicIdeas')->name('publicIdeas');
 
 
 Route::get('/facebook',function(){
@@ -116,6 +116,16 @@ Route::get('/assets/vendors/base/purify.js.map',function(){
 });
 Route::get('/login/{provider}','SocialAuthController@redirectToProvider');
 Route::get('/login/{provider}/callback','SocialAuthController@handleProviderCallback');
+
+
+Route::any('/global-ideas','PublicController@publicIdeas');
+Route::any('/products','PublicController@publicIdeas');
+Route::any('/pricing','PublicController@publicIdeas');
+Route::any('/blog','PublicController@publicIdeas');
+Route::any('/global-ideas/view/{id}','PublicController@publicIdeas');
+
+
+
 
 Route::get('/{any}', 'AdminController@users')->where('any', '.*');
 //Route::get('{path}',"AdminController@users")->where( 'path', '([A-z\d-\/_.]+)?' );
