@@ -94,7 +94,7 @@
 																</div>
 																<br>
 																<div class="form-group form-group-last row" v-if="form.type=='reto' && form.privacy=='me'">
-																<label class="col-3 col-form-label">A qué grupo va dirijido?</label>	
+																<label class="col-3 col-form-label">A qué grupos va dirijido?</label>	
 															<div class="col-9">
 																	<label class="typo__label">Escoger equipos de trabajo</label>
 																	<multiselect v-model="value" tag-placeholder="Add this as new tag" placeholder="Search or add a tag" label="name" track-by="code" :options="options" :multiple="true" :taggable="true" @tag="addTag" :openDirection="'bottom'"  ></multiselect>
@@ -318,7 +318,7 @@ export default {
 					category :'sustainability',
 					language:'es',
 					author:'anonymous',
-					privacy:'public',
+					privacy:'me',
 					type:'idea'
 
                 }) 
