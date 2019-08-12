@@ -6,7 +6,7 @@ mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');
 
 mix.js('resources/js/appLanding.js', 'public/js')
-   sass('resources/sass/appLanding.scss', 'public/css');
+   .sass('resources/sass/appLanding.scss', 'public/css');
    
 
 mix.browserSync({
