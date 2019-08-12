@@ -6,7 +6,9 @@ window.Vue = require('vue');
 import '@mdi/font/css/materialdesignicons.css' 
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+ // Import component
 
+ 
  
 
 

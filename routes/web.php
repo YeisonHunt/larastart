@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 
 Route::get('/dashboard','AdminController@index')->name('admin');
+Route::get('/innovations','AdminController@index')->name('innovations');
 //Route::get('/dashboard2','AdminController@dashboard2')->name('dashboard2');
 Route::get('/users','AdminController@users')->name('users');
 

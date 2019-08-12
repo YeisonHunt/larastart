@@ -34,3 +34,39 @@ a.button, a.tp-button, button, input[type="submit"], input[type="reset"], input[
   box-shadow: none !important;
         background-image: none !important; 
 }
+
+.preloader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #fff ;
+  z-index:9999;
+
+}
+
+.preloader .logo {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #fff ;
+  z-index:9999;
+
+  width: 12.5rem;
+  height: 12.5rem;
+  background-color: #fff;
+  background-repeat: no-repeat;
+
+
+
+
+}
+

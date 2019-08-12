@@ -31,7 +31,7 @@ Register - Asakaa Project Management
                          <div class="input-group">
 
                               
-                                  <input type="text" class="form-control" placeholder="Your name" name="name" required >
+                                  <input autocomplete="off" type="text" class="form-control" placeholder="Your name" name="name" required >
                             <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
                             @if($errors->has('name'))
                                                 <span class="" style="font-size:90%; color:#e2445c; margin-top:4px; ">
@@ -44,7 +44,7 @@ Register - Asakaa Project Management
                         <div class="input-group">
 
                               
-                                  <input type="password" class="form-control" placeholder="Your new password" name="password" required>
+                                  <input autocomplete="off" type="password" class="form-control" placeholder="Your new password" name="password" required>
                             <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
                             @if($errors->has('password'))
                                                 <span class="" style="font-size:90%; color:#e2445c; margin-top:4px; ">

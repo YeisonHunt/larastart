@@ -193,7 +193,7 @@ class UserController extends Controller
         
          if (Auth::attempt(['email' => $user->email, 'password' => $request->password])) {
             // Authentication passed...
-            return redirect()->route('admin');
+            return redirect()->route('innovations');
         }
 
         //return redirect('login')
