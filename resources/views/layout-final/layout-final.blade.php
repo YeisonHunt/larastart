@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>Asakaa Innova - Una herramienta para que lleves a tu empresa a una nueva era.</title>
   
-  <link rel="icon" type="image/png" sizes="192x192" href="{{asset('modern-innova/images/features/faviconInnova.png')}}">
+  <link rel="icon" type="image/png" sizes="192x192" href="{{asset('modern-innova/images/features/faviconInnova-min.png')}}">
  
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
@@ -29,13 +29,13 @@
             "@context": "http://schema.org",
             "@type": "Organization",
             "url": "https://www.guardproject.com",
-            "logo": "https://www.guardproject.com/modern-innova/faviconInnova.png"
+            "logo": "https://www.guardproject.com/modern-innova/faviconInnova-min.png"
         }
     </script>
   <meta property="og:title" content="Asakaa | Innova - Herramienta de administración y validación de ideas." />
   <meta property="og:description" 
     content="Asakaa | Innova - Herramienta de administración y validación de ideas." />
-  <meta property="og:image" content="https://www.guardproject.com/modern-innova/faviconInnova.png" />
+  <meta property="og:image" content="https://www.guardproject.com/modern-innova/faviconInnova-min.png" />
   <style>
     .async-hide {
       opacity: 0 !important
@@ -106,7 +106,7 @@
 
 
           <a href="/" id="navlogo" class="navbar-brand">
-            <img src="{{asset('modern-innova/images/features/LogoInnova.png')}}" alt="logo" />
+            <img src="{{asset('modern-innova/images/features/LogoInnova-min.png')}}" alt="logo" />
           </a>
         </div>
         <div class="collapse navbar-collapse" id="mobile-navbar">
@@ -191,7 +191,7 @@
       </div>
     </div>
     <div class="banner-img">
-      <img src="{{asset('modern-innova/images/innovation_meeting.png')}}"
+      <img src="{{asset('modern-innova/images/innovation_meeting-min.png')}}"
         title="Asakaa Innova para profesinales." alt="Asakaa Innova para profesinales." />
     </div>
   </section>
@@ -224,7 +224,7 @@
       <div class="block-container">
         <div class="block-chatbot animated" data-animation="slideInLeft">
           <div class="block-description">
-            <img class="img-fluid lozad jc" src="{{asset('modern-innova/images/global2.png')}}"  
+            <img class="img-fluid lozad jc" src="{{asset('modern-innova/images/global2-min.png')}}"  
               title="Chatbot" alt="Chatbot">
             <h3>Ideas Globales</h3>
             
@@ -236,7 +236,7 @@
         </div>
         <div class="block-live animated" data-animation="fadeIn">
           <div class="block-description">
-            <img class="img-fluid lozad jc" src="{{asset('modern-innova/images/feedback2.png')}}"  
+            <img class="img-fluid lozad jc" src="{{asset('modern-innova/images/feedback2-min.png')}}"  
               title="Live Chat" alt="Live Chat">
              
             <h3>Retroalimentación local y mundial</h3>
@@ -247,7 +247,7 @@
         <div class="block-crm animated" data-animation="slideInRight">
           <div class="block-description">
             <img class="img-fluid lozad jc"
-              src="{{asset('modern-innova/images/management2.png')}}" title="CRM Gratuito" 
+              src="{{asset('modern-innova/images/management2-min.png')}}" title="CRM Gratuito" 
               alt="CRM Gratuito">
             <h3>Administración centralizada</h3>
             <p>El jefe de innovación puede estar pendiente de todas las ideas que generan los diferentes grupos en una empresa con solo hacer 1 click.</p>
@@ -266,7 +266,7 @@
         <div class="clg-1">
           <img class="lozad" alt="Asakaa Innova para profesinales."
             title="Mira como Asakaa | Innova es apreciada inclusive por gerentes de bancos. "
-            src="{{asset('images/comillas.png')}}">
+            src="{{asset('images/comillas-min.png')}}">
           <p>
             "En América Latina se ha disminuido la pobreza y ha aumentado considerablemente la clase media en los últimos años. Sin embargo, necesitamos crecer en escala 
             y para eso necesitamos fortalecer el conocimiento y sobre todo la innovación."
@@ -332,7 +332,7 @@
             <div class="img animated" data-animation="slideInRight">
               <img class="lozad" alt="Optimizado para aumentar tus oportunidades de vender"
                 title="Optimizado para aumentar tus oportunidades de vender"
-                src="{{asset('modern-innova/images/features/internal_feedback.png')}}" height="300px">
+                src="{{asset('modern-innova/images/features/internal_feedback-min.png')}}" height="300px">
             </div>
             <div class="text visible-xs animated" data-animation="fadeIn">
               <h3>Retos empresariales</h3>
@@ -341,7 +341,7 @@
             <div class="img animated" data-animation="fadeIn delay-400ms">
               <img class="lozad" alt="Mejora la experiencia de tus usuarios en tiempo real" 
                 title="Mejora la experiencia de tus usuarios en tiempo real"
-                src="{{asset('modern-innova/images/features/retos.png')}}" height="300px">
+                src="{{asset('modern-innova/images/features/retos-min.png')}}" height="300px">
             </div>
             <div class="text hidden-xs animated" data-animation="fadeIn">
               <h3>Retos empresariales</h3>
@@ -354,7 +354,7 @@
             </div>
             <div class="img animated" data-animation="slideInRight">
               <img
-                src="{{asset('modern-innova/images/features/external_feedback.png')}}" height="300px"
+                src="{{asset('modern-innova/images/features/external_feedback-min.png')}}" height="300px"
                 alt="ARTIFICIAL_INTELLIGENCE" title="Inteligencia artificial al servicio de tu negocio" class="lozad">
             </div>
             <div class="text visible-xs animated" data-animation="slideInLeft">
@@ -363,7 +363,7 @@
               <p>Asakaa | Innova permite la creación de grupos de trabajo a los que se les puede asignar un reto de innovación o simplemente para manejar retroalimentación.</p>
             </div>
             <div class="img animated" data-animation="fadeIn">
-              <img src="{{asset('modern-innova/images/features/equipos.png')}}" height="300px"
+              <img src="{{asset('modern-innova/images/features/equipos-min.png')}}" height="300px"
                 alt="Instalable y configurable en pocos minutos" title="Instalable y configurable en pocos minutos"
                 class="lozad">
             </div>
@@ -389,19 +389,19 @@
           <div id="testimonial-icons-carousel">
             <div class="slide">
               <a href="" target="_blank">
-                <img class="lozad" src="https://www.somos.biz/img/somos-logo-white.png" />
+              <img class="lozad" src="{{asset('modern-innova/images/somos.png')}}" />
                 SoMoS
               </a>
             </div>
             <div class="slide">
               <a href="" target="_blank">
-                <img class="lozad" src="http://dagelec.com/wp-content/uploads/2017/12/Logo-DAGELEC-color-verde-1024x302.png" />
+                <img class="lozad" src="{{asset('modern-innova/images/dagalec.png')}}" />
                 Dagalec Ltda
               </a>
             </div>
             <div class="slide">
               <a href="" target="_blank">
-                <img class="lozad" src="http://www.esatic.com/images/sitio_esatic/company_logo_esatic.png" />
+                <img class="lozad" src="{{asset('modern-innova/images/esatic.png')}}" />
                Esatic
               </a>
             </div>
@@ -416,7 +416,7 @@
                 </div>
             <div class="slide">
               <p>" Hemos mejorado notablemente la evaluación de las ideas por parte de todos los miembros de la empresa. Antes lo hacíamos en herramientas separadas y no es muy aconsejable."</p>
-              <img class="lozad" src="https://www.somos.biz/img/somos-logo-white.png" />
+              <img class="lozad" src="{{asset('modern-innova/images/somos.png')}}" />
               <p class="name">PhD. Javier Hurtado</p>
               <p class="title">Gerente de SoMoS Software & Mobile Solutions, Colombia</p>
             </div>
@@ -425,14 +425,14 @@
 
             <div class="slide">
                 <p>" En el grupo de telemática hemos organizado nuestras ideas y hemos recibido retroalimentación masiva de nuestros estudiantes. Es una excelente herramienta."</p>
-                <img class="lozad" height="60" src="http://dagelec.com/wp-content/uploads/2017/12/Logo-DAGELEC-color-verde-1024x302.png" />
+                <img class="lozad" height="60" src="{{asset('modern-innova/images/dagalec.png')}}" />
                 <p class="name">José Luis Fernández</p>
                   <p class="title">Gerente Dagalec Ltda, Colombia.</p>
               </div>
 
               <div class="slide">
                   <p>"Me parece una herramienta fácil y al punto. Nuestros empleados mediante la interfaz han ayudado bastante en los diferentes aspectos de innovación dentro de la empresa."</p>
-                  <img class="lozad" height="40" src="http://www.esatic.com/images/sitio_esatic/company_logo_esatic.png" />
+                  <img class="lozad" height="40" src="{{asset('modern-innova/images/esatic.png')}}" />
                  
 
                   <p class="name">Carlos Mendez</p>
