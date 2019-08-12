@@ -1,9 +1,4 @@
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 
 require('./bootstrap');
 
@@ -14,9 +9,6 @@ import 'vuetify/dist/vuetify.min.css'
 
  
 
-
-import VueProgressBar from 'vue-progressbar'
-import Swal from 'sweetalert2'
 
 
 import VueRouter from 'vue-router'
@@ -53,25 +45,10 @@ const router = new VueRouter({
 })
 
 
-window.Swal= Swal;
 
 
 
-const optionsP = {
-	color: '#0080FF',
-	failedColor: '#874b4b',
-	thickness: '5px',
-	transition: {
-		speed: '1s',
-		opacity: '0.5s',
-		termination: 400
-	},
-	autoRevert: true,
-	location: 'top',
-	inverse: false
-}
 
-Vue.use(VueProgressBar, optionsP)
 
 
 Vue.filter(

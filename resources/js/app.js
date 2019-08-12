@@ -66,7 +66,6 @@ Vue.use(VueMq, {
 	}
   })
 
-Vue.mixin(Permissions);
 
 
 
@@ -123,13 +122,6 @@ const router = new VueRouter({
 
 })
 
-Vue.directive('focus', {
-	// When the bound element is inserted into the DOM...
-	componentUpdated: function (el) {
-	  // Focus the element
-	  el.focus()
-	}
-  })
 
 Vue.filter(
 

@@ -661,7 +661,7 @@ export default {
 
       minHeight: '300px',
       baseUrl:window.baseUrl,
-      public: true,
+      public: false,
 
 
       form: new Form({
