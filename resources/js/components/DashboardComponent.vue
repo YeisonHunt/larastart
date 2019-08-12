@@ -2,14 +2,16 @@
   <div class style="min-height:80vh;">
     <div class="hole">
 
-		<v-container fluid>
-			<v-layout row>
-				<v-flex lg6 xs12 sm12 pa-2>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-4 col-sm-12">
 					<v-card
 							class="mx-auto"
 							color="#26c6da"
 							dark
 							hover
+							height="220"
 							
 						>
 							<v-card-title>
@@ -23,7 +25,7 @@
 							</v-card-title>
 
 							<v-card-text class="headline font-weight-bold">
-							1237 públicas. 
+							1237 públicas. <br>
 							423  privadas.
 							</v-card-text>
 
@@ -32,15 +34,14 @@
 						<v-btn style="color:#26c6da;" :to="{name:'ideaList'}" color="white">Ver todas las ideas</v-btn>
 						</v-card-actions>
 						</v-card>
-				</v-flex>
-
-				<v-flex lg6 xs12 sm12 pa-2>
+				</div>
+				<div class="col-lg-4 col-sm-12">
 					<v-card
 							class="mx-auto"
 							color="#FAB200"
 							dark
 							hover
-							
+							height="220"
 						>
 							<v-card-title>
 							<v-icon
@@ -53,7 +54,7 @@
 							</v-card-title>
 
 							<v-card-text class="headline font-weight-bold">
-							324 públicos.  
+							324 públicos.  <br>
 							266  privados.
 							</v-card-text>
 
@@ -62,15 +63,14 @@
 						<v-btn style="color:#FAB200;" :to="{name:'ideaList'}" color="white">Ver todas los retos</v-btn>
 						</v-card-actions>
 						</v-card>
-				</v-flex>
-
-				<v-flex lg6 xs12 sm12 pa-2>
+				</div>
+				<div class="col-lg-4 col-sm-12">
 					<v-card
 							class="mx-auto"
 							color="#A24DDC"
 							dark
 							hover
-							
+							height="220"
 						>
 							<v-card-title>
 							<v-icon
@@ -83,7 +83,7 @@
 							</v-card-title>
 
 							<v-card-text class="headline font-weight-bold">
-							23 públicos. 
+							23 públicos. <br>
 							245  privados.
 							</v-card-text>
 
@@ -92,18 +92,21 @@
 						<v-btn style="color:#A24DDC;" :to="{name:'work-teams'}" color="white">Ver todas los grupos</v-btn>
 						</v-card-actions>
 						</v-card>
-				</v-flex>
+				</div>
+			</div>
 
-				
+			<br>
 
-			</v-layout>
-	        <v-flex lg4 sm12  xs12 pt-2 style="padding-right:10px;">
-					<v-card
+			<div class="row">
+				<div class="col-lg-4 col-sm-12">
+					
+
+						<v-card
 							class="mx-auto"
 							color="#9E9E9E "
 							dark
 							hover
-							
+							height="220"
 						>
 							<v-card-title>
 							<v-icon
@@ -117,7 +120,8 @@
 
 							<v-card-text class="headline font-weight-bold">
 							Asakaa Project Management
-							<div class="subheading">Maneja tus proyectos desde un solo lugar.</div>
+							<br/>
+						
 							</v-card-text>
 
 						 <v-card-actions>
@@ -125,14 +129,11 @@
 						<v-btn style="color:#9E9E9E ;" @click="goAsakaa" color="white">Explorar herramienta</v-btn>
 						</v-card-actions>
 						</v-card>
-				</v-flex>
+				</div>
+			</div>
+		</div>
 
-			<br>
-			<v-layout row>
-
-			</v-layout>
-		</v-container>
- 
+		
 
     </div>
   </div>

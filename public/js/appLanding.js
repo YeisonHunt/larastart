@@ -95593,32 +95593,32 @@ Vue.filter('toCategory', function (category) {
   var t = category.toString();
 
   if (t == 'improvethis') {
-    var t2 = 'Improve Asakaa.com';
+    var t2 = 'Mejorar Asakaa.com';
     return t2;
   } else if (t == 'sustainability') {
-    return 'Sustainability';
+    return 'Sostenibilidad';
   } else if (t == 'lifeandhealth') {
-    return 'Life & Health';
+    return 'Vida & Salud';
   } else if (t == 'artandculture') {
-    return 'Art & Culture';
+    return 'Arte & Cultura';
   } else if (t == 'beautyandfaashion') {
-    return 'Beauty & Fashion';
+    return 'Belleza & Moda';
   } else if (t == 'homeandpets') {
-    return 'Home & Pets';
+    return 'Hogar & Mascotas';
   } else if (t == 'scienceandtechnology') {
-    return 'Science & Technology';
+    return 'Ciencia & Tecnología';
   } else if (t == 'tourismandtravel') {
-    return 'Tourism & Travel';
+    return 'Turismo & Viajes';
   } else if (t == 'transport') {
-    return 'Transport';
+    return 'Transporte';
   } else if (t == 'food') {
-    return 'Food';
+    return 'Comida';
   } else if (t == 'politicsandsociety') {
-    return 'Politics & Society';
+    return 'Política & Sociedad';
   } else if (t == 'sportsandentertainment') {
-    return 'Sports & Entertainment';
+    return 'Deporte & Entretenimiento';
   } else if (t == 'businessandconsumer') {
-    return 'Business & Consumer';
+    return 'Negocios';
   } else {
     return 'General';
   }

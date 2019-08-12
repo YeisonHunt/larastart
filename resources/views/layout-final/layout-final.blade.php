@@ -41,7 +41,7 @@
       opacity: 0 !important
     }
   </style>
-  <link href="{{asset('modern-innova/css/new_home.5db11bb9710cb72ec455a4f37baf3e2e.min.css')}}" rel="stylesheet">
+  <link  href="{{asset('modern-innova/css/new_home.5db11bb9710cb72ec455a4f37baf3e2e.min.css')}}" rel="stylesheet">
  
 
 
@@ -266,7 +266,7 @@
         <div class="clg-1">
           <img class="lozad" alt="Asakaa Innova para profesinales."
             title="Mira como Asakaa | Innova es apreciada inclusive por gerentes de bancos. "
-            src="{{asset('images/comillas-min.png')}}">
+            src="{{asset('images/comillas.png')}}">
           <p>
             "En América Latina se ha disminuido la pobreza y ha aumentado considerablemente la clase media en los últimos años. Sin embargo, necesitamos crecer en escala 
             y para eso necesitamos fortalecer el conocimiento y sobre todo la innovación."

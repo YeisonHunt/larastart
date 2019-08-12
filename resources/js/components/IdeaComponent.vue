@@ -3,7 +3,7 @@
 <div style="min-height:80vh;">
   <div class="row" >
 
-    <div class="col-lg-5"></div>
+    <div class="col-lg-4"></div>
 
 
      
@@ -67,7 +67,9 @@
 
     </div>
 
-    <div class="col-lg-3 col-sm-2 col-md-4 mt-4">
+    <div class="col-lg-1"></div>
+
+    <div class="col-lg-3 col-sm-2 col-md-4 mt-4 ">
       <router-link to="/ideaCreation" >
          <vs-button color="primary" type="gradient"  icon="add">Añadir nueva idea de innovación</vs-button>
       </router-link>
