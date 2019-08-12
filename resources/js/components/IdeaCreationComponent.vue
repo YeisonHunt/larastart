@@ -73,8 +73,27 @@
 																		</div>
 																	</div>
 																</div>
+
 																<br>
-																<div class="form-group form-group-last row" v-if="form.type=='reto'">
+
+																<div class="form-group form-group-last row">
+																	<label class="col-3 col-form-label">Privacidad de la idea</label>
+																	<div class="col-9">
+																		<div class="kt-checkbox-inline">
+																			<label class="kt-checkbox">
+																				<input type="radio"  value="me"  :class="{'is-invalid': form.errors.has('privacy')}"	 name="privacy" v-model="form.privacy" > Privada (Personal o empresarial)
+																				<span></span>
+																			</label>
+																			<label class="kt-checkbox">
+																				<input type="radio" value="public" :class="{'is-invalid': form.errors.has('privacy')}" name="privacy" v-model="form.privacy" > Hacerla pública
+																				<span></span>
+																			</label>
+																		<has-error :form="form" field="privacy" ></has-error>
+																		</div>
+																	</div>
+																</div>
+																<br>
+																<div class="form-group form-group-last row" v-if="form.type=='reto' && form.privacy=='me'">
 																<label class="col-3 col-form-label">A qué grupo va dirijido?</label>	
 															<div class="col-9">
 																	<label class="typo__label">Escoger equipos de trabajo</label>
@@ -199,26 +218,9 @@
 																	</div>
 																</div>
 
-																<hr style="border: 0;
-																			height: 1px;
-																			background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); ">
+															
 
-																	<div class="form-group form-group-last row">
-																	<label class="col-3 col-form-label">Privacidad de la idea</label>
-																	<div class="col-9">
-																		<div class="kt-checkbox-inline">
-																			<label class="kt-checkbox">
-																				<input type="radio"  value="me"  :class="{'is-invalid': form.errors.has('privacy')}"	 name="privacy" v-model="form.privacy" > Solo para mi
-																				<span></span>
-																			</label>
-																			<label class="kt-checkbox">
-																				<input type="radio" value="public" :class="{'is-invalid': form.errors.has('privacy')}" name="privacy" v-model="form.privacy" > Hacerla pública
-																				<span></span>
-																			</label>
-																		<has-error :form="form" field="privacy" ></has-error>
-																		</div>
-																	</div>
-																</div>
+																	
 
 
 															</div>
