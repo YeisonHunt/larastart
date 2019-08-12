@@ -15,7 +15,7 @@
            
 
 
-                <v-card color="blue lighten-1" dark>
+                <v-card color="grey lighten-5" dark>
                   <v-img height="230"  :src="baseUrl+ 'images/team.png'">
                     <v-layout wrap>
                       <v-flex xs12>
@@ -57,7 +57,7 @@
                       </v-layout>
                     </v-layout>
                   </v-img>
-                  <form  @submit.prevent="saveTeam" @keydown="teamForm.onKeydown($event)"   >
+                  <form id="formulario" @submit.prevent="saveTeam" @keydown="teamForm.onKeydown($event)"   >
                     <v-container>
                       <v-layout wrap>
                         <v-flex xs12 md6>
@@ -65,8 +65,8 @@
                             v-model="teamForm.name"
                             :disabled="isUpdating"
                             box
-                            color="blue-light-blue  lighten-2"
-                            label="Team Name"
+                            color="grey lighten-5"
+                            label="Nombre del equipo"
                             required
                           ></v-text-field>
                         </v-flex>
@@ -75,20 +75,21 @@
                             v-model="teamForm.department"
                             :disabled="isUpdating"
                             box
-                            color="blue-light-blue  lighten-2"
-                            label="Team Department"
+                            color="grey lighten-5"
+                            label="Departamento"
                             required
                           ></v-text-field>
                         </v-flex>
                         <v-flex xs12>
-                          <v-autocomplete
+                          <v-autocomplete 
                             v-model="teamForm.members"
                             :disabled="isUpdating"
                             :items="contacts"
-                            box
+                             dense
+                            outline
                             chips
-                            color="blue-light-blue lighten-2"
-                            label="Members"
+                            color="grey darken-3"
+                            label="Usuarios de empresa"
                             item-text="email"
                             item-value="email"
                             multiple
@@ -102,7 +103,7 @@
 
                                 class="chip--select-multi"
                                 
-                                color="grey lighten-4"
+                                color="grey lighten-5"
                                 style="color:#424242;"
                                 @input="remove(data.item)"
                               >
@@ -165,7 +166,7 @@
     <div class="container-fluid">
       <v-toolbar flat color="white">
         <v-toolbar-title> 
-          <v-btn fab dark small color="indigo" @click="$router.go(-1)">
+          <v-btn fab  small color="grey lighten-5" @click="$router.go(-1)">
             <v-icon dark>arrow_back</v-icon>
           </v-btn>
           
@@ -177,14 +178,19 @@
             &nbsp; &nbsp;
         <v-dialog v-model="dialog" max-width="500px">
           <template v-slot:activator="{ on }">
-            <v-btn color="indigo" dark class="mb-2" @click="newTeam">Nuevo Equipo</v-btn>
+            <!--<v-btn color="indigo" dark class="mb-2" @click="newTeam">Nuevo Equipo</v-btn>-->
+
+             <vs-button color="primary" type="gradient" @click="newTeam" icon="add">Crear nuevo equipo</vs-button>
             
           </template>
         </v-dialog>
       </v-toolbar>
 
-      <v-data-table disable-initial-sort :headers="headers" :items="teams" class="elevation-1" :search="search">
+        <v-progress-linear v-slot:progress color="#ccc" indeterminate v-if="loadingTable" ></v-progress-linear>
+      <v-data-table disable-initial-sort :headers="headers"  :loading="loadingTable" :items="teams" class="elevation-1" :search="search">
+         
         <template v-slot:items="props">
+         
           <td>{{ props.item.name }}</td>
           <td class="text-xs-left">{{ props.item.department }}</td>
           <td >
@@ -225,7 +231,7 @@
             :value="true"
             style="color:red;"
             icon="warning"
-          >Your search for "{{ search }}" found no teams.</v-alert>
+          >Tu busqueda por  "{{ search }}" no arrojó resultados.</v-alert>
         </template>
       </v-data-table>
     </div>
@@ -248,12 +254,21 @@ body {
   height: 100%;
   width: 100%;
 }
+
+#formulario {
+  background-color:#424242;
+}
+
+.darkGrey {
+  color:#424242;
+}
 </style>
 
 
 <script>
 export default {
   data() {
+
    const srcs ={
         1: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
         2: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
@@ -268,15 +283,15 @@ export default {
           teams:[],
           saving:false,
 
-     
+        loadingTable:true,
         autoUpdate: false,
         baseUrl: window.baseUrl,
         friends: [1],
         isUpdating: false,
         name: 'Midnight Crew',
-        title: "Work departments ",
-        sub:'creation.',
-        btnTitle:'Save now',
+        title: "Equipos de trabajo en ",
+        sub:'creación.',
+        btnTitle:'Guardar equipo ahora',
         btnIcon:'save',
 
         search: "",
@@ -419,8 +434,8 @@ export default {
 
     editTeam(team){
       $("#teamModal").modal("show");
-      this.sub= 'editing.'
-      this.btnTitle='Update now'
+      this.sub= 'edición.'
+      this.btnTitle='Actualizar equipo ahora'
       this.btnIcon='update'
 
       this.saving = false
@@ -492,7 +507,9 @@ export default {
       axios
         .get("/getContacts")
         .then(response => {
+         
           this.contacts = response.data.contacts;
+          this.loadingTable=false;
         })
         .catch(error => {
           console.log(error);
@@ -653,7 +670,7 @@ export default {
     newTeam() {
       $("#teamModal").modal("show");
       this.sub= 'creation.'
-      this.btnTitle='Save now'
+      this.btnTitle='Guardar equipo ahora'
       this.btnIcon='save'
 
       this.saving=true

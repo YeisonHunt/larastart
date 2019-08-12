@@ -123,7 +123,7 @@
 								<!--begin::Form-->
                                 <form class="kt-form" action="{{ route('login') }}" method="POST" >
                                     
-									{{ csrf_field() }}
+									<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 									<div class="form-group">
                                         <input class="form-control" type="text" placeholder="Email" name="email" >

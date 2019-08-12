@@ -1,12 +1,12 @@
 <template>
-  <div :class="{'container-fluid':mobile, 'container':large}">
+  <div :class="{'container-fluid':mobile, 'container-fluid':large}">
     <div class="row"  style="min-height:80vh;">
       <div class="col-lg-12 col-sm-12 col-md-12">
         <div class="kt-portlet mobilePortlet">
           <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
               <router-link to="/innovations" class="btn btn-clean kt-margin-r-10">
-                <i class="la la-arrow-left"></i>
+                <i style="padding-bottom:8px;" class="la la-arrow-left"></i>
                 <span class="kt-hidden-mobile">Back</span>
               </router-link>
 
@@ -199,7 +199,7 @@
                                           <span>
                                             <i
                                               class="flaticon-reply normalFont links"
-                                            >{{d.childs.length}} comments</i>
+                                            >&nbsp; {{d.childs.length}}  comments</i>
                                           </span>
                                         </a>
                                       </div>

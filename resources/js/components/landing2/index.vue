@@ -104,7 +104,7 @@
       <v-app-bar
         :clipped-left="$vuetify.breakpoint.lgAndUp"
         app
-        :color="'#1E1E2D'"
+        :color="'#151B26'"
         dark
         
       >

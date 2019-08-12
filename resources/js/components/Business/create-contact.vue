@@ -1,22 +1,21 @@
 <template>
   <div class="container-fluid" style="min-height:90vh;">
+    <div class="hole">
+
+      
     <div class="row">
-      <div class="col-lg-8 col-sm-12">
+      <div class="col-lg-12 col-sm-12">
         <div class="row">
           <div class="col-12">
             <v-card>
-              <v-img
-                src="https://media.istockphoto.com/photos/abstract-background-picture-id537447438?k=6&m=537447438&s=612x612&w=0&h=YF98lsh0OIxChOs4XmOFmuzLxSj8sieD-CiK-V8iGfU="
-                aspect-ratio="3.5"
-              ></v-img>
+             
 
               <v-card-title primary-title>
                 <div>
-                  <h3 class="headline mb-0" style="color:#1867C0;">Add a new business contact</h3>
-                  <div>Increase your agenda lists and make wonderfull connections with people.</div>
+                  <h3 class="headline mb-0" style="color:#1867C0;"> Añadir un nuevo usuario a la compañía</h3>
+                  <div style="color:#9b9b9b;"> <b>Las credenciales</b>   para iniciar sesión en Innova serán enviadas al correo que proporcione aquí.</div>
 
-                  <br>
-                  <h5>Contact information</h5>
+ 
                 </div>
 
                 <form @submit.prevent="createContact" @keydown="contactForm.onKeydown($event)">
@@ -24,7 +23,7 @@
                     <div class="col-lg-8">
                       <div class="mt-4">
                         <div class="form-group">
-                          <label style="margin-left:4px;">Contact profile photo</label>
+                          <label style="margin-left:4px;">Foto de perfil</label>
                           <div></div>
                           <div class="custom-file">
                             <input
@@ -35,7 +34,7 @@
                               @change="onFilePicked"
                               ref="contactPhoto"
                             >
-                            <label class="custom-file-label" for="customFile">Choose image</label>
+                            <label class="custom-file-label" for="customFile">Escoger imágen en pc...</label>
                           </div>
                         </div>
 
@@ -60,7 +59,7 @@
                     <div class="col-lg-4 col-sm-6">
                       <v-text-field
                         class="purple-input"
-                        label="First Name"
+                        label="Nombres"
                         :hint="'i.e., Johann Carl'"
                         append-icon="person"
                         required
@@ -71,7 +70,7 @@
                     <div class="col-lg-4 col-sm-6">
                       <v-text-field
                         class="purple-input"
-                        label="Last Name"
+                        label="Apellidos"
                         :hint="'i.e., Friedrich Gauss'"
                         append-icon="person_outline"
                         required
@@ -104,7 +103,7 @@
 
                         <v-select
                           :items="items"
-                          label="Contact group"
+                          label="Grupo "
                           style="margin-top:12px;"
                           prepend-icon="group"
                           required
@@ -125,7 +124,7 @@
                           <template v-slot:activator="{ on }">
                             <v-text-field
                               v-model="contactForm.birthdate"
-                              label="Born date"
+                              label="Fecha de nacimiento"
                               append-icon="event"
                               readonly
                               required
@@ -145,7 +144,7 @@
                       <div class="pt-2">
                         <v-text-field
                           class="purple-input"
-                          label="Company"
+                          label="Compañía"
                           append-icon="account_balance"
                           required
                           :hint="'i.e., Google, Mercadolibre, EPM'"
@@ -161,9 +160,9 @@
                       <div class="mt-2">
                         <v-autocomplete
                           v-model="contactForm.country"
-                          :hint="'Optional'"
+                          :hint="'Campo opcional'"
                           :items="states"
-                          :label="`Country`"
+                          :label="`País`"
                           persistent-hint
                           prepend-icon="flag"
                         ></v-autocomplete>
@@ -173,8 +172,8 @@
                       <div class="mt-2">
                         <v-text-field
                           class="purple-input"
-                          label="City"
-                          :hint="'Optional'"
+                          label="Ciudad"
+                          :hint="'Campo opcional'"
                           append-icon="location_city"
                             
                           type="text"
@@ -186,11 +185,11 @@
                       <div class="mt-2">
                         <v-text-field
                           class="purple-input"
-                          label="Phone"
+                          label="Celular"
                           append-icon="phone"
                           
                           type="text"
-                          :hint="'Optional'"
+                          :hint="'Campo opcional'"
                           v-model="contactForm.phone"
                         />
                       </div>
@@ -200,17 +199,17 @@
                       <div class="mt-4">
                         <router-link
                           :to="{name:'contacts'}"
-                          class="btn btn-outline-brand btn-elevate btn-pill"
+                          class="btn btn-elevate btn-pill"
                         >
                           <i class="fa fa-arrow-left mb-2"></i>
-                          Go back
+                          Ir atrás
                         </router-link>
                       </div>
                     </div>
 
                     <div class="col-lg-3 col-sm-12">
                       <div class="mt-4">
-                        <v-btn color="blue" type="submit" :disabled="contactForm.busy" style="color:white;">Save contact</v-btn>
+                        <v-btn color="blue" type="submit"  :loading="contactForm.busy"   :disabled="contactForm.busy" style="color:white;">Crear nuevo usuario de compañía</v-btn>
                       </div>
                     </div>
                   </div>
@@ -221,38 +220,54 @@
         </div>
       </div>
 
-      <div class="col-lg-4 col-sm-12">
-        <div style="background-color:white;">
-          <v-avatar slot="offset" class="mx-auto d-block" size="130">
-            <img
-              src="https://www.infobae.com/new-resizer/BJswSsOlSn1P8jv3W7m2XJubkUE=/750x0/filters:quality(100)/s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2017/09/24175204/alejandro-magno4.jpg"
-              class="mt-2"
-            >
-          </v-avatar>
-          <v-card-text class="text-xs-center">
-            <h6 class="category text-gray font-weight-thin mb-3">Conquistador</h6>
-            <h4 class="card-title font-weight-light">Alejandro Magno</h4>
-            <p
-              class="card-description font-weight-light"
-            >"Recuerda que de la conducta de cada uno depende el destino de todos."</p>
-            <v-btn
-              style="color:white;"
-              color="blue"
-              round
-              class="font-weight-light"
-              @click="readMore"
-            >Read more</v-btn>
-          </v-card-text>
-        </div>
-      </div>
+    
+
+
     </div>
 
     
-
+    </div>
   </div>
 </template>
 
 <style>
+
+ .custom-loader {
+    animation: loader 1s infinite;
+    display: flex;
+  }
+  @-moz-keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @-o-keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 .theme--light.v-card {
   background-color: #fff;
   border-color: #fff;
@@ -297,11 +312,11 @@ export default {
         { text: "Other", value: "Other" }
       ],
       date: new Date().toISOString().substr(0, 10),
+      baseUrl: window.baseUrl,
       modal: false,
       menu: false,
       items: ["Colleagues", "Friends", "Partners", "Other"],
-      contactPhoto:
-        "https://i0.pngocean.com/files/2/604/62/computer-icons-silhouette-user-profile-silhouette.jpg",
+      contactPhoto: window.baseUrl+'images/empty_user.svg',
       contactPhotoImg: null,
 
       contactForm: new Form({
@@ -573,9 +588,11 @@ export default {
           this.$router.push({ name: "contacts" });
           toastr.success("Awesome!", "New contact has been added.");
           this.contactForm.reset();
+          console.log(data.msg)
         })
-        .catch(() => {
+        .catch((error) => {
           toastr.error("Oops!", "Something goes wrong");
+          console.log(error)
         });
 
       //$('#userCreationModal').modal('hide');

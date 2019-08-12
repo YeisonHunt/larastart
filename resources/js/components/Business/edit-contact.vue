@@ -1,22 +1,18 @@
 <template>
   <div class="container-fluid" style="min-height:90vh;">
     <div class="row">
-      <div class="col-lg-8 col-sm-12">
+      <div class="col-lg-12 col-sm-12">
         <div class="row">
           <div class="col-12">
             <v-card>
-              <v-img
-                src="https://cdn.pixabay.com/photo/2015/12/22/04/00/edit-1103599_960_720.png"
-                aspect-ratio="4.0"
-              ></v-img>
-
+             
               <v-card-title primary-title>
                 <div>
-                  <h3 class="headline mb-0" style="color:#1867C0;">Editing contact</h3>
-                  <div>Editing contacts helps to keep information updated and at hand for any moment.</div>
+                  <h3 class="headline mb-0" style="color:#1867C0;">Editando usuario de empresa</h3>
+                  <div>El campo de correo es estático debido a que está conectado con inicio de sesión. Si se equivocó con el correo por favor borre el usuario y cree uno nuevo.</div>
 
                   <br>
-                  <h5>Contact information</h5>
+                  <h5>Información de contacto</h5>
                 </div>
 
                 <form @submit.prevent="createContact" 
@@ -25,7 +21,7 @@
                     <div class="col-lg-8">
                       <div class="mt-4">
                         <div class="form-group">
-                          <label style="margin-left:4px;">Contact profile photo</label>
+                          <label style="margin-left:4px;">Foto de perfil  (archivo menor a 3M)</label>
                           <div></div>
                           <div class="custom-file">
                             <input
@@ -35,8 +31,9 @@
                               accept="image/x-png, image/jpeg"
                               @change="onFilePicked"
                               ref="contactPhoto"
+                              
                             >
-                            <label class="custom-file-label" for="customFile">Choose image</label>
+                            <label class="custom-file-label" for="customFile">Escoger imágen desde el pc</label>
                           </div>
                         </div>
 
@@ -81,6 +78,7 @@
                         :hint="'i.e., gauss@asakaa.com'"
                         append-icon="email"
                         required
+                        disabled
                         type="email"
                         v-model="contactForm2.email"
                       />
@@ -216,30 +214,6 @@
         </div>
       </div>
 
-      <div class="col-lg-4 col-sm-12">
-        <div style="background-color:white;">
-          <v-avatar slot="offset" class="mx-auto d-block" size="130">
-            <img
-              src="https://www.infobae.com/new-resizer/BJswSsOlSn1P8jv3W7m2XJubkUE=/750x0/filters:quality(100)/s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2017/09/24175204/alejandro-magno4.jpg"
-              class="mt-2"
-            >
-          </v-avatar>
-          <v-card-text class="text-xs-center">
-            <h6 class="category text-gray font-weight-thin mb-3">Conquistador</h6>
-            <h4 class="card-title font-weight-light">Alejandro Magno</h4>
-            <p
-              class="card-description font-weight-light"
-            >"Recuerda que de la conducta de cada uno depende el destino de todos."</p>
-            <v-btn
-              style="color:white;"
-              color="blue"
-              round
-              class="font-weight-light"
-              @click="readMore"
-            >Read more</v-btn>
-          </v-card-text>
-        </div>
-      </div>
     </div>
 
     
@@ -573,7 +547,7 @@ export default {
         .post("/updateContact")
         .then(({ data }) => {
           this.$router.push({ name: "contacts" });
-          toastr.success("Awesome!", "Contact has been updated successfully.");
+          toastr.success("Awesome!", "El usuario se ha actualizado con éxito.");
           this.contactForm2.reset();
         })
         .catch(() => {

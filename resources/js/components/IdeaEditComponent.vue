@@ -23,13 +23,13 @@
               </div>
               <div class="kt-portlet__head-toolbar">
                 <button type="button" class="btn btn-clean kt-margin-r-10" @click="$router.go(-1)">
-                  <i class="la la-arrow-left"></i>
-                  <span class="kt-hidden-mobile">Back</span>
+                  <i style="padding-bottom:8px;" class="la la-arrow-left"></i>
+                  <span class="kt-hidden-mobile">Atrás</span>
                 </button>
                 <div class="btn-group">
                   <button class="btn btn-brand" type="submit" :disabled="form.busy">
-                    <i class="la la-check"></i>
-                    <span class="kt-hidden-mobile">Update</span>
+                    <i style="padding-bottom:8px;" class="la la-check"></i>
+                    <span class="kt-hidden-mobile">Actualizar</span>
                   </button>
                 </div>
               </div>
@@ -197,12 +197,12 @@
             <center>
               <div class="kt-portlet__head-toolbar">
                 <button type="button" class="btn btn-clean kt-margin-r-10" @click="$router.go(-1)">
-                  <i class="la la-arrow-left"></i>
+                  <i style="padding-bottom:8px;" class="la la-arrow-left"></i>
                   <span class="kt-hidden-mobile">Back</span>
                 </button>
                 <div class="btn-group">
                   <button class="btn btn-brand" type="submit" :disabled="form.busy">
-                    <i class="la la-check"></i>
+                    <i style="padding-bottom:8px;" class="la la-check"></i>
                     <span class="kt-hidden-mobile">Update</span>
                   </button>
                 </div>

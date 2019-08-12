@@ -5,7 +5,7 @@
 
         <div class="col-lg-1 pt-3">
           
-            <v-btn fab dark small color="indigo" @click="$router.go(-1)">
+            <v-btn fab  small color="grey lighten-5" @click="$router.go(-1)">
             <v-icon dark>arrow_back</v-icon>
           </v-btn>
         </div>
@@ -13,7 +13,7 @@
         <div class="col-lg-1 col-sm-6 pt-2">
 
           
-          <h2 class="kt-portlet__head-title">Contacts</h2>
+          <h2 class="kt-portlet__head-title">Users</h2>
           <p>&nbsp; {{users.length}} Total</p>
         </div>
 
@@ -46,7 +46,7 @@
             <vs-select
               class="selectExample"
               icon="arrow_downward"
-              label="Type"
+              label="Filter by Type"
               v-model="typeFilter"
             >
               <vs-select-item
@@ -59,11 +59,15 @@
           </div>
         </div>
 
-        <div class="col-lg-4 col-sm-6 mt-2">
+        <div class="col-1">
+
+        </div>
+
+        <div class="col-lg-3 col-sm-6 mt-2">
           <div class="ml-5 mt-3">
             <div class="kt-portlet__head-wrapper align-middle" style="padding-top:5px !important;">
               <router-link :to="{name:'create-contact'}">
-                <vs-button color="primary" type="line" icon="add">Add new contact</vs-button>
+                <vs-button color="primary" type="gradient" icon="add">Add new company user</vs-button>
                 <!-- <vs-button color="primary" type="gradient" icon="add">Add new contact</vs-button> -->
               </router-link>
             </div>
@@ -86,15 +90,16 @@
                   <thead class="thead-primary">
                     <tr>
                       <th class="letraGrande" style="font-weight: bold;">#</th>
-                      <th class="letraGrande" style="font-weight: bold;">Photo</th>
-                      <th class="letraGrande" style="font-weight: bold;">Full Name</th>
-                      <th class="letraGrande" style="font-weight: bold;">Email</th>
-                      <th class="letraGrande" style="font-weight: bold;">Status</th>
-                      <th class="letraGrande" style="font-weight: bold;">Type</th>
-                      <th class="letraGrande" style="font-weight: bold;">Birthday</th>
+                     
+                      <th class="letraGrande" style="font-weight: bold;">Nombre Completo</th>
+                       <th class="letraGrande" style="font-weight: bold;">Foto</th>
+                      <th class="letraGrande" style="font-weight: bold;">Correo</th>
+                      <th class="letraGrande" style="font-weight: bold;">Estado</th>
+                      <th class="letraGrande" style="font-weight: bold;">Tipo</th>
+                      <th class="letraGrande" style="font-weight: bold;">Cumpleaños</th>
 
-                      <th class="letraGrande" style="font-weight: bold;">Company</th>
-                      <th class="letraGrande" style="font-weight: bold;">Actions</th>
+                      <th class="letraGrande" style="font-weight: bold;">Compañía</th>
+                      <th class="letraGrande" style="font-weight: bold;">Acciones</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -102,7 +107,14 @@
                       <th scope="row">
                         <div class="mt-3 letraGrande">{{user.id}}</div>
                       </th>
+                    
                       <td>
+                        <div
+                          class="mt-3 letraGrande"
+                        >{{user.firstName + ' ' + user.lastName | uppercaseFirst }}</div>
+                      </td>
+
+                        <td>
                         <img
                           alt="image"
                           :src="user.avatar"
@@ -113,11 +125,6 @@
                           title
                           data-original-title="Hariono Yusup"
                         >
-                      </td>
-                      <td>
-                        <div
-                          class="mt-3 letraGrande"
-                        >{{user.firstName + ' ' + user.lastName | uppercaseFirst }}</div>
                       </td>
 
                       <td>
@@ -141,6 +148,7 @@
                       <td>
                         <div class="pt-3">
                           <button
+                            style="color:#9b9b9b;"
                             data-placement="top"
                             title
                             class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"
@@ -155,6 +163,7 @@
                             data-toggle="kt-tooltip"
                             data-placement="top"
                             title
+                             style="color:#9b9b9b;"
                             data-original-title="Edit"
                             class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"
                           >
@@ -165,6 +174,7 @@
                             @click="deleteContact(user.id)"
                             data-toggle="kt-tooltip"
                             data-placement="top"
+                             style="color:#9b9b9b;"
                             title
                             data-original-title="Delete"
                             class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"
@@ -246,7 +256,7 @@
                   <div class="col-6"></div>
                 </div>
                 <div class="pt-3">
-                  <h5>Contact information</h5>
+                  <h5>Información de contacto</h5>
                 </div>
                 <div class="row mt-3">
                   <div class="col-6">
@@ -303,6 +313,7 @@
 
 body {
   font-family: "Open Sans", "sans-serif" !important;
+  font-weight: 400 !important;
 }
 
 h3,

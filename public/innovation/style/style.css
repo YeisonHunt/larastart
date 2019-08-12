@@ -126,10 +126,13 @@ TABLE OF CONTENT ENDS HERE:
 
 /*  General Style */
 body {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans',sans-serif !important;
     background: #19233f;
 }
 
+* {
+    font-family: 'Open Sans',sans-serif !important; 
+}
 .custom-width {
     width: 1250px;
     margin: auto;

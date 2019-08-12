@@ -7,8 +7,8 @@
         <div class="kt-portlet kt-portlet--height-fluid">
           <div class="kt-widget14">
             <div class="kt-widget14__header kt-margin-b-14">
-              <h3 class="kt-widget14__title" >My Contacts</h3>
-              <span class="kt-widget14__desc">Manage all your important contacts here.</span>
+              <h3 class="kt-widget14__title" >Mis usuarios de empresa</h3>
+              <span class="kt-widget14__desc">Maneja todos tus usuarios  corporativos aquí.</span>
             </div>
 
 
@@ -30,8 +30,8 @@
         <div class="kt-portlet kt-portlet--height-fluid">
           <div class="kt-widget14">
             <div class="kt-widget14__header kt-margin-b-14">
-              <h3 class="kt-widget14__title" >Work Teams</h3>
-              <span class="kt-widget14__desc">Check out each team member for work details</span>
+              <h3 class="kt-widget14__title" >Equipos de trabajo</h3>
+              <span class="kt-widget14__desc">Grupos de personas destinadas a funciones e innovaciones específicas.</span>
             </div>
 
 
@@ -47,12 +47,12 @@
         </div>
      </router-link> <!-- end first col -->
 
-    <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction  hvr-float hvr-underline-from-center">
+   <!-- <router-link :to="{name:'retos'}" class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction  hvr-float hvr-underline-from-center">
         <div class="kt-portlet kt-portlet--height-fluid">
           <div class="kt-widget14">
             <div class="kt-widget14__header kt-margin-b-14">
-              <h3 class="kt-widget14__title" >Innovation Engine</h3>
-              <span class="kt-widget14__desc">This tool gives you innovation tips to transform an idea into a tangible project.</span>
+              <h3 class="kt-widget14__title" >Retos de Innovación</h3>
+              <span class="kt-widget14__desc">Esta herramienta te permite dar a conocer necesidades, buscarles solución con ayuda de grupos de trabajo y/o la comunidad en general.</span>
             </div>
 
 
@@ -66,7 +66,7 @@
 
           </div>
         </div>
-      </div> <!-- end first col -->
+    </router-link> <!-- end first col -->
 
       <!--
         <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction  hvr-float hvr-underline-from-center">
@@ -194,6 +194,8 @@ html, body {
     width: 100%;
 }
 
+
+
 </style>
 
 
@@ -206,6 +208,12 @@ export default {
             baseUrl: window.baseUrl
         }
     },
-    mounted() {}
+    mounted() {
+
+      $("#admin").addClass('menuActivo');
+      $("#dashboard").removeClass('menuActivo');
+      $("#innovations").removeClass('menuActivo');
+
+    }
 };
 </script>

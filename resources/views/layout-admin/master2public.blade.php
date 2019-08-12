@@ -933,7 +933,7 @@
 					</div>
 
 							<!-- begin:: Footer -->
-							<div class="kt-footer kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" style="background-color:#1E1E2D !important;">
+							<div class="kt-footer kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" style="background-color:#151B26 !important;">
 									<div class="kt-footer__copyright">
 										2019&nbsp;&copy;&nbsp;<a href="#"  class="kt-link">Asakaa</a>
 									</div>

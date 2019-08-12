@@ -7,6 +7,8 @@ use App\Contact;
 use Auth;
 use Log;
 use DB;
+use App\User;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -26,6 +28,11 @@ class ContactController extends Controller
 
          
             $c->delete();
+
+            $anotherUser = User::where('email',$c->email)->firstOrFail();
+            $anotherUser->delete();
+
+
 
             return response()->json([
                 'mgs'=>'Deleted Successfully'
@@ -61,6 +68,8 @@ class ContactController extends Controller
             $c->friend_id = $request->friend_id;
 
             $c->save();
+
+        
 
             return response()->json([
                 'contact'=>$c
@@ -128,26 +137,66 @@ class ContactController extends Controller
 
         if(Auth::check()){
 
-            $c = new Contact();
-            $c->firstName = $request->firstName;
-            $c->lastName= $request->lastName;
-            $c->avatar = $request->avatar;
-            $c->email= $request->email;
-            $c->type = $request->type;
-            $c->birthdate= $request->birthdate;
-            $c->company= $request->company;
-            $c->country= $request->country;
-            $c->city= $request->city;
-            $c->phone= $request->phone;
-            $c->friend_id = $request->friend_id;
 
-            $c->save();
+            $checkUser = DB::table('users')->where('email',$request->email)->first();
+
+            Log::info('Usuario creado');
+
+            if($checkUser === null){
+
+                $user = new User();
+                //$user->role_id = 2;
+                $user->account_type = 'business';
+                $user->name = $request->firstName . " ". $request->lastName;
+                $user->email=$request->email;
+                $user->avatar= 'users/default.png';
+    
+                $pass = $this->generateRandomString(6);
+                $user->password = bcrypt($pass);
+                $user->businessName = $request->company;
+                $user->active=1;
+                $user->save();
+    
+               
+    
+                $c = new Contact();
+                $c->firstName = $request->firstName;
+                $c->lastName= $request->lastName;
+                $c->avatar = $request->avatar;
+                $c->email= $request->email;
+                $c->type = $request->type;
+                $c->birthdate= $request->birthdate;
+                $c->company= $request->company;
+                $c->country= $request->country;
+                $c->city= $request->city;
+                $c->phone= $request->phone;
+                $c->friend_id = $request->friend_id;
+    
+                $c->save();
+
+                $dates = array('code'=>'1231231','email'=>$request->email,'randString'=>$pass);
+                $this->email($dates,$request->email);
+
+
+                return response()->json([
+                    'msg'=>'User saved successfully'
+                ]);
+
+               
+            }else{
+
+                return response()->json([
+                    'msg'=>'User already exists'
+                ]);
+
+               
+            }
+
+           
 
             
-
-            return response()->json([
-                'msg'=>'Contact saved successfully'
-            ]);
+                
+            
 
         }else {
             return response()->json([
@@ -155,8 +204,30 @@ class ContactController extends Controller
             ]);
         }
 
+       
+
 
     }
+
+    public function generateRandomString($length = 6) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
+    function email($dates,$email)
+         {
+             Mail::send('emails.invitationUser',$dates, function($message) use ($email) 
+             {
+                $message->subject('Bienvenido(a) a Innova!');
+                $message->to($email);
+                $message->from('innovation-team@guardproject.com','Credenciales Innova');
+             });
+         }
 
 
 }

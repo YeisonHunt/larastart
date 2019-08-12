@@ -3,20 +3,23 @@
 <div style="min-height:80vh;">
   <div class="row" >
 
-    <div class="col-lg-6"></div>
+    <div class="col-lg-5"></div>
 
 
-     <div class="col-lg-1 col-sm-2">
-        <h6 class="mt-4 ">Show Public Ideas </h6>
-      </div>
+     
 
-    <div class="col-lg-1 col-sm-2" >
-     <span class="kt-switch kt-switch--info mt-4">
-															<label>
-																<input type="checkbox"  name="public" v-model="public">
-																<span></span>
-															</label>
-														</span>
+    <div class="col-lg-2 col-sm-2" >
+     <span class="kt-switch kt-switch--info ">
+							
+
+                              <v-checkbox
+          v-model="public"
+          label="Mostrar Ideas globales"
+          color="#7F8AE5"
+        ></v-checkbox>
+
+     </span>
+
     </div>
 
 
@@ -53,7 +56,7 @@
 
         <vs-select
           class="selectExample "
-          label="Categories"
+          label="Categorías"
           v-model="select1"
           >
           <vs-select-item :key="index" :value="item.value" :text="item.text" v-for="item,index in options1" />
@@ -64,11 +67,14 @@
 
     </div>
 
-    <div class="col-lg-2 col-sm-2 col-md-4 mt-4">
-      <router-link to="/ideaCreation" class="btn btn-primary ">
-        Add Idea &nbsp;
-        <i class="flaticon-add-circular-button"></i>
+    <div class="col-lg-3 col-sm-2 col-md-4 mt-4">
+      <router-link to="/ideaCreation" >
+         <vs-button color="primary" type="gradient"  icon="add">Añadir nueva idea de innovación</vs-button>
       </router-link>
+
+      
+            
+
     </div>
     <!-- end first column 12 -->
 
@@ -221,7 +227,7 @@
                               <router-link class="" v-bind:to="'/innovations/'+idea.id">{{idea.likes.length}}</router-link>
 														</span>
 
-                          <router-link class="kt-widget19__comment" v-bind:to="'/innovationPublic/'+idea.id">Votes</router-link>
+                          <router-link class="kt-widget19__comment" v-bind:to="'/innovations/public/'+idea.id">Votes</router-link>
 
 
 
@@ -239,11 +245,11 @@
 
 
                          <router-link class="btn btn-sm btn-label-brand btn-bold "
-                         v-bind:to="'/innovationPublic/'+idea.id">Read full idea...</router-link>
+                         v-bind:to="'/innovations/public/'+idea.id">Read full idea...</router-link>
 
 
 
-                         <router-link v-bind:to="'/innovationPublic/'+idea.id" class="btn btn-sm  btn-label-danger btn-bold pull-right ">Vote
+                         <router-link v-bind:to="'/innovations/public/'+idea.id" class="btn btn-sm  btn-label-danger btn-bold pull-right ">Vote
                          </router-link>
 
 
@@ -354,6 +360,9 @@
 </template>
 
 <style type="text/css">
+
+
+
 
 hr {
   border: 0;
@@ -628,21 +637,22 @@ export default {
       editMode: false,
       select1:'all',
          options1:[
-        {text:'All Categories',value:'all'},
-				{text:'Improve Asakaa.com',value:'improvethis'},
-
-        {text:'Sustainability',value:'sustainability'},
-        {text:'Life & Health',value:'lifeandhealth'},
-				{text:'Art & Culture',value:'Art & Culture'},
-				{text:'Beauty & Fashion',value:'beautyandfaashion'},
-				{text:'Home & Pets',value:'homeandpets'},
-				{text:'Science & Technology',value:'scienceandtechnology'},
-				{text:'Tourism & Travel',value:'tourismandtravel'},
-				{text:'Transport',value:'transport'},
-				{text:'Food',value:'food'},
-				{text:'Politics & Society',value:'politicsandsociety'},
-				{text:'Sports & Entertainment',value:'sportsandentertainment'},
-				{text:'Business & Consumer',value:'businessandconsumer'},
+        {text:'Todas las categorías',value:'all'},
+			
+        {text:'Negocios',value:'businessandconsumer'},
+        {text:'Sostenibilidad',value:'sustainability'},
+        {text:'Vida & Salud',value:'lifeandhealth'},
+				{text:'Arte & Cultura',value:'Art & Culture'},
+				{text:'Belleza & Moda',value:'beautyandfaashion'},
+				{text:'Hogar & Mascotas',value:'homeandpets'},
+				{text:'Ciencia & Tecnología',value:'scienceandtechnology'},
+				{text:'Turismo & Viajes',value:'tourismandtravel'},
+				{text:'Transporte',value:'transport'},
+				{text:'Comida',value:'food'},
+				{text:'Política & Sociedad',value:'politicsandsociety'},
+				{text:'Deportes & Entretenimiento',value:'sportsandentertainment'},
+       
+        {text:'Improve Asakaa.com',value:'improvethis'},
       ],
       ideas: {},
       publicIdeas:{},
@@ -872,6 +882,11 @@ export default {
     console.log("Ideas component mounted");
     this.loadUsers();
     $('.dropdown-toggle').dropdown();
+
+    
+      $("#admin").removeClass('menuActivo');
+      $("#dashboard").removeClass('menuActivo');
+      $("#innovations").addClass('menuActivo');
   }
 };
 </script>

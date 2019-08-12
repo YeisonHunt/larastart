@@ -14,17 +14,17 @@
 										<form class="kt-form" id="kt_form" @submit.prevent="createUser" @keydown="form.onKeydown($event)">
 										<div class="kt-portlet__head kt-portlet__head--lg" style="">
 											<div class="kt-portlet__head-label">
-												<h3 class="kt-portlet__head-title">Create awesome ideas  <small>to improve your company functions</small></h3>
+												<h3 class="kt-portlet__head-title">Crea ideas geniales  <small>para solucionar problemas en tu empresa y en el mundo.</small></h3>
 											</div>
 											<div class="kt-portlet__head-toolbar">
 												<router-link to="/innovations" class="btn btn-clean kt-margin-r-10">
-													<i class="la la-arrow-left"></i>
-													<span class="kt-hidden-mobile">Back</span>
+													<i style="padding-bottom:8px;" class="la la-arrow-left"></i>
+													<span class="kt-hidden-mobile" >Atrás</span>
 												</router-link>
 												<div class="btn-group">
 													<button  class="btn btn-brand" type="submit" :disabled="form.busy">
-														<i class="la la-check"></i>
-														<span class="kt-hidden-mobile">Save</span>
+														<i style="padding-bottom:8px;" class="la la-check"></i>
+														<span class="kt-hidden-mobile">Guardar idea</span>
 													</button>
 													<button type="button" class="btn btn-brand dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 													</button>
@@ -55,28 +55,55 @@
 													<div class="col-xl-11">
 														<div class="kt-section kt-section--first">
 															<div class="kt-section__body">
-																<h3 class="kt-section__title kt-section__title-lg ">Idea details</h3>
+																<h3 class="kt-section__title kt-section__title-lg ">Detalles de Idea</h3>
+
+																<div class="form-group form-group-last row">
+																	<label class="col-3 col-form-label">Idea o Reto?</label>
+																	<div class="col-9">
+																		<div class="kt-checkbox-inline">
+																			<label class="kt-checkbox">
+																				<input type="radio"  value="idea"  :class="{'is-invalid': form.errors.has('type')}"	 name="type" v-model="form.type" > Idea
+																				<span></span>
+																			</label>
+																			<label class="kt-checkbox">
+																				<input type="radio" value="reto" :class="{'is-invalid': form.errors.has('type')}" name="type" v-model="form.type" > Reto
+																				<span></span>
+																			</label>
+																		<has-error :form="form" field="type" ></has-error>
+																		</div>
+																	</div>
+																</div>
+																<br>
+																<div class="form-group form-group-last row" v-if="form.type=='reto'">
+																<label class="col-3 col-form-label">A qué grupo va dirijido?</label>	
+															<div class="col-9">
+																	<label class="typo__label">Escoger equipos de trabajo</label>
+																	<multiselect v-model="value" tag-placeholder="Add this as new tag" placeholder="Search or add a tag" label="name" track-by="code" :options="options" :multiple="true" :taggable="true" @tag="addTag" :openDirection="'bottom'"  ></multiselect>
+															</div>
+                      
+																</div>
+																<br>
 
 																<div class="form-group row">
-																	<label class="col-3 col-form-label  ">Title</label>
+																	<label class="col-3 col-form-label  ">Título</label>
 																	<div class="col-9">
-																		<input class="form-control" :class="{'is-invalid': form.errors.has('title')}" v-model="form.title" name="title" type="text" placeholder="Short idea title..." required>
+																		<input class="form-control" :class="{'is-invalid': form.errors.has('title')}" v-model="form.title" name="title" type="text" placeholder="e.g., Usar bolsa reutilizable a la hora de comprar" required>
 																	</div>
 
 																	 <has-error :form="form" field="title" ></has-error>
 																</div>
 
 																<div class="form-group row">
-																	<label class="col-3 col-form-label  ">Description</label>
+																	<label class="col-3 col-form-label  ">Descripción corta</label>
 																	<div class="col-9">
-																		<textarea class="form-control" :class="{'is-invalid': form.errors.has('description')}" v-model="form.description" name="description" type="text" placeholder="Short idea description..." rows="2" required></textarea>
+																		<textarea class="form-control" :class="{'is-invalid': form.errors.has('description')}" v-model="form.description" name="description" type="text" placeholder="e.g., Tener a la mano una bolsa grande para llevar las compras" rows="2" required></textarea>
 																		<has-error :form="form" field="description" ></has-error>
 																	</div>
 																</div>
 															
 																<div class="form-group row">
 																	
-																	<label for="" style="margin-left:10px;">Body</label>
+																	<label for="" style="margin-left:10px;">Descripción detallada</label>
 																	<div class="col-12">
 																		
 																		 <textarea id="kt_summernote_1"  
@@ -86,11 +113,11 @@
 
 																		<has-error :form="form" field="body" ></has-error>
                                                                          
-																		<span class="form-text text-muted">If you want to increase your idea rating and apreciation. Please use our below rich text editor. </span>
+																		<span class="form-text text-muted">El anterior editor enrriquecido de texto te permite escribir descripciones profesionales al alcance de tu mano. </span>
 																	</div>
 																</div>
 																<div class="form-group row">
-																	<label class="col-3 col-form-label">Main Image</label>
+																	<label class="col-3 col-form-label">Imágen alusiva a la idea</label>
 																	<div class="col-9">
 																		<div class="input-group">
 																			<div class="input-group-prepend"><span class="input-group-text"><i class="flaticon-photo-camera"></i></span></div>
@@ -99,30 +126,30 @@
 
 																			<has-error :form="form" field="img" ></has-error>
 																		</div>
-																		<span class="form-text text-muted">Choose an awesome image to get more likes for your idea.</span>
+																		<span class="form-text text-muted">Escoger una buena imágen hace que la idea sea más llamativa y fácil de comprender.</span>
 																	</div>
 																</div>
 																
 																<div class="form-group form-group-last row">
-																	<label class="col-3 col-form-label">Category</label>
+																	<label class="col-3 col-form-label">Categoría</label>
 																	<div class="col-9">
 																		<div class="input-group">
 																			
 
 																			<select class="kt-selectpicker form-control "  :class="{'is-invalid': form.errors.has('category')}"        data-container="body"  name="category" id="kt-selectpicker1" v-model="form.category"  required>
-																				<option value="improvethis" selected >Improve Asakaa.com</option>
-																				<option value="sustainability">Sustainability</option>
-																				<option value="lifeandhealth">Life & Health </option>
-																				<option value="artandculture">Art & Culture</option>
-																				<option value="beautyandfaashion">Beauty & Fashion</option>
-																				<option value="homeandpets">Home & Pets</option>
-																				<option value="scienceandtechnology">Science & Technology</option>
-																				<option value="tourismandtravel">Tourism & Travel</option>
-																				<option value="transport">Transport</option>
-																				<option value="food">Food</option>
-																				<option value="politicsandsociety">Politics & Society</option>
-																				<option value="sportsandentertainment">Sports & Entertainment</option>
-																				<option value="businessandconsumer">Business & Consumer</option>
+																				
+																				<option value="sustainability">Sostenibilidad</option>
+																				<option value="lifeandhealth">Vida & Salud </option>
+																				<option value="artandculture">Arte & Cultura</option>
+																				<option value="beautyandfaashion">Moda & Belleza</option>
+																				<option value="homeandpets">Hogar & Mascotas</option>
+																				<option value="scienceandtechnology">Ciencia & Tecnología</option>
+																				<option value="tourismandtravel">Turismo & Viajes</option>
+																				<option value="transport">Transporte</option>
+																				<option value="food">Comida</option>
+																				<option value="politicsandsociety">Política & Sociedad</option>
+																				<option value="sportsandentertainment">Deporte & Entretenimiento</option>
+																				<option value="businessandconsumer">Negocios & Consumo</option>
 																			</select>
 																			<has-error :form="form" field="category" ></has-error>
 
@@ -139,7 +166,7 @@
 													
 															
 																<div class="form-group row">
-																	<label class="col-3 col-form-label">Language</label>
+																	<label class="col-3 col-form-label">Lenguaje</label>
 																	<div class="col-9">
 																		<select class="kt-selectpicker form-control " :class="{'is-invalid': form.errors.has('language')}"  name="language" id="kt-selectpicker2" v-model="form.language" required>
 																			
@@ -156,15 +183,15 @@
 																</div>
 																
 																<div class="form-group form-group-last row">
-																	<label class="col-3 col-form-label">Author</label>
+																	<label class="col-3 col-form-label">Mostrar mi nombre en la idea?</label>
 																	<div class="col-9">
 																		<div class="kt-checkbox-inline">
 																			<label class="kt-checkbox">
-																				<input type="radio"  value="showme"  :class="{'is-invalid': form.errors.has('author')}"	 name="author" v-model="form.author" > Show my username
+																				<input type="radio"  value="showme"  :class="{'is-invalid': form.errors.has('author')}"	 name="author" v-model="form.author" > Mostrar mi correo
 																				<span></span>
 																			</label>
 																			<label class="kt-checkbox">
-																				<input type="radio" value="anonymous" :class="{'is-invalid': form.errors.has('author')}" name="author" v-model="form.author" > Anonymous
+																				<input type="radio" value="anonymous" :class="{'is-invalid': form.errors.has('author')}" name="author" v-model="form.author" > Anónimo(a)
 																				<span></span>
 																			</label>
 																		<has-error :form="form" field="author" ></has-error>
@@ -177,15 +204,15 @@
 																			background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); ">
 
 																	<div class="form-group form-group-last row">
-																	<label class="col-3 col-form-label">Privacy</label>
+																	<label class="col-3 col-form-label">Privacidad de la idea</label>
 																	<div class="col-9">
 																		<div class="kt-checkbox-inline">
 																			<label class="kt-checkbox">
-																				<input type="radio"  value="me"  :class="{'is-invalid': form.errors.has('privacy')}"	 name="privacy" v-model="form.privacy" > Just for me
+																				<input type="radio"  value="me"  :class="{'is-invalid': form.errors.has('privacy')}"	 name="privacy" v-model="form.privacy" > Solo para mi
 																				<span></span>
 																			</label>
 																			<label class="kt-checkbox">
-																				<input type="radio" value="public" :class="{'is-invalid': form.errors.has('privacy')}" name="privacy" v-model="form.privacy" > Public
+																				<input type="radio" value="public" :class="{'is-invalid': form.errors.has('privacy')}" name="privacy" v-model="form.privacy" > Hacerla pública
 																				<span></span>
 																			</label>
 																		<has-error :form="form" field="privacy" ></has-error>
@@ -207,13 +234,13 @@
 
 												<div class="kt-portlet__head-toolbar">
 												<router-link to="/innovations" class="btn btn-clean kt-margin-r-10">
-													<i class="la la-arrow-left"></i>
-													<span class="kt-hidden-mobile">Back</span>
+													<i style="padding-bottom:8px;" class="la la-arrow-left"></i>
+													<span class="kt-hidden-mobile">Atrás</span>
 												</router-link>
 												<div class="btn-group">
 													<button  class="btn btn-brand" type="submit" :disabled="form.busy">
-														<i class="la la-check"></i>
-														<span class="kt-hidden-mobile">Save</span>
+														<i style="padding-bottom:8px;" class="la la-check"></i>
+														<span class="kt-hidden-mobile">Guardar nueva idea</span>
 													</button>
 												
 												</div>
@@ -269,7 +296,16 @@ export default {
 
 	  data() {
             return  {
-               
+			   
+			     value: [
+                        { name: 'Equipo 1', code: 'js' }
+                    ],
+                    options: [
+                        { name: 'Equipo 1', code: 'vu' },
+                        { name: 'Equipo 2', code: 'js' },
+                        { name: 'Equipo 3', code: 'os' }
+                    ],
+                
 			    user: window.User,
                 form: new Form({
                     id:'',
@@ -277,10 +313,11 @@ export default {
 					description:'',
 					editordata   : '',
 					img:'',
-					category :'',
-					language:'',
+					category :'sustainability',
+					language:'es',
 					author:'anonymous',
-					privacy:'me'
+					privacy:'public',
+					type:'idea'
 
                 }) 
             }

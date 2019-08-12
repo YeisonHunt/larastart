@@ -18,17 +18,18 @@ import Permissions from './mixins/Permissions'
 import VueStar from 'vue-star'
 import vueRandomPic from 'vue-random-pic'
 import VueMq from 'vue-mq'
+import '@mdi/font/css/materialdesignicons.css' 
 //import SuiVue from 'semantic-ui-vue';
 
 import Vuesax from 'vuesax'
-import Vuetify from 'vuetify'
-
+import Vuetify from 'vuetify-v1'
+import Multiselect from 'vue-multiselect'
 // index.js or main.js
 
 
 
 import 'vuesax/dist/vuesax.css' 
-import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
+import 'vuetify-v1/dist/vuetify.min.css' // Ensure you are using css-loader
 
 
 
@@ -79,6 +80,7 @@ window.Swal= Swal;
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 Vue.component('VueStar', VueStar)
+Vue.component('multiselect', Multiselect)
 
 Vue.use(VueRouter)
 //Vue.use(SuiVue);  // ya no se utilizara debido a incompatibilidad con el dropdown
@@ -89,7 +91,7 @@ let routes = [
 	{ path: '/innovations', name:'ideaList', component: require('./components/IdeaComponent.vue').default },
 	{ path: '/ideaCreation', name: 'innovations', component: require('./components/IdeaCreationComponent.vue').default },
 	{ path: '/innovations/:id', component: require('./components/IdeaViewComponent.vue').default },
-	{ path: '/innovationPublic/:id', component: require('./components/PublicIdeaViewComponent.vue').default },
+	{ path: '/innovations/public/:id', component: require('./components/PublicIdeaViewComponent.vue').default },
 	{ path: '/innovationsEdit/:id', component: require('./components/IdeaEditComponent.vue').default },
 
 	{ path: '/projects', component: require('./components/ProjectComponent.vue').default },
@@ -98,13 +100,14 @@ let routes = [
 	{ path: '/goals', component: require('./components/GoalComponent.vue').default },
 
 
-	{ path: '/business', component: require('./components/BusinessComponent.vue').default },
-	{ path: '/business/contacts',name:'contacts', component: require('./components/Business/contacts.vue').default },
-	{ path: '/business/contacts/create-contact',name:'create-contact', component: require('./components/Business/create-contact.vue').default },
-	{ path: '/business/contact-profile/:id',name:'contact', component: require('./components/Business/contact-profile.vue').default },
-	{ path: '/business/edit-contact/:id',name:'edit-contact', component: require('./components/Business/edit-contact.vue').default },
+	{ path: '/business', name:'business',component: require('./components/BusinessComponent.vue').default },
+	{ path: '/business/users',name:'contacts', component: require('./components/Business/contacts.vue').default },
+	{ path: '/business/users/create-contact',name:'create-contact', component: require('./components/Business/create-contact.vue').default },
+	{ path: '/business/user-profile/:id',name:'contact', component: require('./components/Business/contact-profile.vue').default },
+	{ path: '/business/edit-user/:id',name:'edit-contact', component: require('./components/Business/edit-contact.vue').default },
 
 	{ path: '/business/work-teams',name:'work-teams', component: require('./components/Business/work-teams-index.vue').default },
+	{ path: '/business/retos',name:'retos', component: require('./components/Business/retos.vue').default },
 
 
 
@@ -152,8 +155,9 @@ Vue.filter(
 	'cumple',
 	function (txtDate) {
 
-		
-			return moment(txtDate,'YYYY-MM-DD').format('MMMM DD');
+			let temp = moment(txtDate,'YYYY-MM-DD').locale('es').format('MMMM DD')
+			
+			return temp.charAt(0).toUpperCase() + temp.slice(1);
 		
 	
 	}
@@ -222,34 +226,34 @@ Vue.filter(
 		let t = category.toString();
 		if (t == 'improvethis') {
 
-			let t2 = 'Improve Asakaa.com';
+			let t2 = 'Mejorar Asakaa.com';
 			return t2;
 
 		} else if (t == 'sustainability') {
-			return 'Sustainability';
+			return 'Sostenibilidad';
 		} else if (t == 'lifeandhealth') {
-			return 'Life & Health';
+			return 'Vida & Salud';
 		} else if (t == 'artandculture') {
-			return 'Art & Culture';
+			return 'Arte & Cultura';
 		} else if (t == 'beautyandfaashion') {
-			return 'Beauty & Fashion';
+			return 'Belleza & Moda';
 		} else if (t == 'homeandpets') {
-			return 'Home & Pets';
+			return 'Hogar & Mascotas';
 		} else if (t == 'scienceandtechnology') {
-			return 'Science & Technology';
+			return 'Ciencia & Tecnología';
 		}
 		else if (t == 'tourismandtravel') {
-			return 'Tourism & Travel';
+			return 'Turismo & Viajes';
 		} else if (t == 'transport') {
-			return 'Transport';
+			return 'Transporte';
 		} else if (t == 'food') {
-			return 'Food';
+			return 'Comida';
 		} else if (t == 'politicsandsociety') {
-			return 'Politics & Society';
+			return 'Política & Sociedad';
 		} else if (t == 'sportsandentertainment') {
-			return 'Sports & Entertainment';
+			return 'Deporte & Entretenimiento';
 		} else if (t == 'businessandconsumer') {
-			return 'Business & Consumer';
+			return 'Negocios';
 		}
 
 		else {
@@ -259,7 +263,6 @@ Vue.filter(
 	}
 
 );
-
 
 
 
@@ -336,7 +339,10 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
 	el: '#app',
-	router
+	router,
+	icons: {
+		iconfont: 'mdi', // default - only for display purposes
+	  },
 });
 
 

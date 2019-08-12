@@ -46,6 +46,7 @@
         "vue-chartjs": "^3.4.2",
         "vue-custom-scrollbar": "^1.1.0",
         "vue-mq": "^1.0.1",
+        "vue-multiselect": "^2.1.6",
         "vue-progressbar": "^0.7.5",
         "vue-random-pic": "^1.0.0",
         "vue-router": "^3.0.5",

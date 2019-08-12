@@ -123,7 +123,7 @@
 
 								<!--begin::Form-->
 								<form class="kt-form kt-form--label-right"action="{{ route('register') }}"  method="POST" >
-									{{ csrf_field() }}
+									@csrf 
                                         
                                         <div class="form-group row">
                                                 <label for="name" class="col-2 col-form-label mt-4 " >Full Name</label>

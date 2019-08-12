@@ -73,7 +73,7 @@ $kt-media-breakpoints: (
 
 @media (max-width: 1024px) {
   .kt-header__topbar {
-    background-color: #1E1E2D;
+    background-color: #151B26;
     -webkit-box-shadow: none;
     box-shadow: none; }
   .kt-header__topbar--mobile-on .kt-header__topbar {
