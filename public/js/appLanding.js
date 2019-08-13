@@ -2416,13 +2416,7 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     ;
-    $(document).ready(function () {
-      $("#header").removeClass("hideUntilLoad");
-      $("#home").removeClass("hideUntilLoad");
-      $("#footer").removeClass("hideUntilLoad");
-      $("#spinner").addClass("hideUntilLoad");
-      document.getElementById('home').style.display = "block";
-    });
+    document.getElementById('home').style.display = "block";
     document.getElementById("inicioLink").classList.add("active");
   }
 });

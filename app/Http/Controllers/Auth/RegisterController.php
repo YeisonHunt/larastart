@@ -60,10 +60,11 @@ class RegisterController extends Controller
      */
     
 
-    //TestComment
+    
     protected function validator(array $data)
     {
 
+            
 
          $usuarioInvitado1 = User::where('email',$data['email'])->where('temporal',1)->first();
 
@@ -71,8 +72,8 @@ class RegisterController extends Controller
 
             return Validator::make($data, [
                 'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255'
-               
+                'email' => 'required|string|email|max:255',
+                'businessName' => 'required|max:30'
                
             ]);
 
@@ -81,7 +82,8 @@ class RegisterController extends Controller
 
           return Validator::make($data, [
                 'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users'
+                'email' => 'required|string|email|max:255|unique:users',
+                'businessName' => 'required|max:30'
                
                
             ]);
@@ -165,7 +167,9 @@ class RegisterController extends Controller
            return User::create([
              'email' => strtolower($data['email']),
              'code' => $code,
-             'account_type'=>$data['account_type'],          
+             'account_type'=>$data['account_type'], 
+             'businessName'=>$data['businessName'],
+             'name'=>$data['name']         
          ]);
       
          }

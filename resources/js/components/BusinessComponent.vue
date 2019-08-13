@@ -47,7 +47,7 @@
         </div>
      </router-link> <!-- end first col -->
 
-   <!-- <router-link :to="{name:'retos'}" class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction  hvr-float hvr-underline-from-center">
+     <router-link :to="{name:'retos'}" class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction  hvr-float hvr-underline-from-center">
         <div class="kt-portlet kt-portlet--height-fluid">
           <div class="kt-widget14">
             <div class="kt-widget14__header kt-margin-b-14">
@@ -67,6 +67,32 @@
           </div>
         </div>
     </router-link> <!-- end first col -->
+
+    
+     <router-link :to="{name:'company'}"  class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction hvr-float hvr-underline-from-center">
+        <div class="kt-portlet kt-portlet--height-fluid">
+          <div class="kt-widget14">
+            <div class="kt-widget14__header kt-margin-b-14">
+              <h3 class="kt-widget14__title" >Mi empresa</h3>
+              <span class="kt-widget14__desc">Aquí podrás modificar el nombre y el logo de la empresa, estos se verán reflejados en las cuentas de usuario que tengas a disposición.</span>
+            </div>
+
+
+            <div class="kt-widget14__chart" >
+                
+                <img :src="baseUrl+'img/company.svg'"  width="90%" height="90%" alt=""
+                class="ml-3 animateOnHover"
+                >
+            </div>
+
+
+          </div>
+        </div>
+     </router-link> <!-- end first col -->
+
+
+
+    
 
       <!--
         <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction  hvr-float hvr-underline-from-center">

@@ -61,7 +61,7 @@
                         class="purple-input"
                         label="Nombres"
                         :hint="'i.e., Johann Carl'"
-                        append-icon="person"
+                        prepend-icon="person"
                         required
                         :autofocus="1==1"
                         v-model="contactForm.firstName"
@@ -72,7 +72,7 @@
                         class="purple-input"
                         label="Apellidos"
                         :hint="'i.e., Friedrich Gauss'"
-                        append-icon="person_outline"
+                        prepend-icon="person_outline"
                         required
                         v-model="contactForm.lastName"
                       />
@@ -83,7 +83,7 @@
                         class="purple-input"
                         label="E-mail"
                         :hint="'i.e., gauss@asakaa.com'"
-                        append-icon="email"
+                        prepend-icon="email"
                         required
                         type="email"
                         v-model="contactForm.email"
@@ -125,7 +125,7 @@
                             <v-text-field
                               v-model="contactForm.birthdate"
                               label="Fecha de nacimiento"
-                              append-icon="event"
+                              prepend-icon="event"
                               readonly
                               required
                               v-on="on"
@@ -140,27 +140,14 @@
                       </div>
                     </div>
 
-                    <div class="col-lg-4 col-sm-6">
-                      <div class="pt-2">
-                        <v-text-field
-                          class="purple-input"
-                          label="Compañía"
-                          append-icon="account_balance"
-                          required
-                          :hint="'i.e., Google, Mercadolibre, EPM'"
-                          style="margin-top:4px;"
-                          v-model="contactForm.company"
-                        />
-                      </div>
-                    </div>
-
+                  
                     <v-spacer></v-spacer>
 
                     <div class="col-lg-4 col-sm-6">
                       <div class="mt-2">
                         <v-autocomplete
                           v-model="contactForm.country"
-                          :hint="'Campo opcional'"
+                         
                           :items="states"
                           :label="`País`"
                           persistent-hint
@@ -174,7 +161,7 @@
                           class="purple-input"
                           label="Ciudad"
                           :hint="'Campo opcional'"
-                          append-icon="location_city"
+                          prepend-icon="location_city"
                             
                           type="text"
                           v-model="contactForm.city"
@@ -186,7 +173,7 @@
                         <v-text-field
                           class="purple-input"
                           label="Celular"
-                          append-icon="phone"
+                          prepend-icon="phone"
                           
                           type="text"
                           :hint="'Campo opcional'"

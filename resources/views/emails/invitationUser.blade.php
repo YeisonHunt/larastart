@@ -121,11 +121,11 @@ table p, table h1, table h2, table h3, table h4{ margin-top:0!important;margin-r
                             <!-- ttl -->
                             <tr><td data-size="s1-title-size" 
                                 data-color="s1-title-color" mc:edit="" style="color: #000000; font-family: 'Roboto', Arial, Helvetica, sans-serif; font-size: 28px; font-weight: 500; letter-spacing: 0.05em; line-height: 35px; text-align: left; text-decoration: none !important; text-transform: none;">
-                                <multiline>Bienvenido al equipo de innovación  <br class="disable"></multiline></td></tr>
+                                <multiline>Bienvenido al equipo de innovación de {{$code}} <br class="disable"></multiline></td></tr>
 
                                 <tr><td height="11"></td></tr>
 
-                                <tr><td data-size="s2-title-size" data-color="s2-title-color" mc:edit="" style="color: #000000; font-family: 'Roboto', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 500; letter-spacing: 0.005em; line-height: 20px; text-align: left; text-decoration: none !important;"><multiline>Aquí están tus credenciales {{$email}}:</multiline></td></tr>
+                                <tr><td data-size="s2-title-size" data-color="s2-title-color" mc:edit="" style="color: #000000; font-family: 'Roboto', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 500; letter-spacing: 0.005em; line-height: 20px; text-align: left; text-decoration: none !important;"><multiline>Aquí están tus credenciales <p>{{$email}}</p> </multiline></td></tr>
                             <!-- ttl -->
                             <!-- mrgn -->
                             <tr><td height="11"></td></tr>
@@ -143,7 +143,7 @@ table p, table h1, table h2, table h3, table h4{ margin-top:0!important;margin-r
 
                             <tr><td height="11"></td></tr>
 
-                            <tr><td data-size="s2-title-size" data-color="s2-title-color" mc:edit="" style="color: #000000; font-family: 'Roboto', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 300; letter-spacing: 0.005em; line-height: 20px; text-align: left; text-decoration: none !important;"><multiline>1. Contraseña: <b>{{$randString}}</b>  </multiline></td></tr>
+                            <tr><td data-size="s2-title-size" data-color="s2-title-color" mc:edit="" style="color: #000000; font-family: 'Roboto', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 300; letter-spacing: 0.005em; line-height: 20px; text-align: left; text-decoration: none !important;"><multiline> Contraseña: <b>{{$randString}}</b>  </multiline></td></tr>
                             <!-- ttl -->
                             <!-- mrgn -->
                          
@@ -161,7 +161,7 @@ table p, table h1, table h2, table h3, table h4{ margin-top:0!important;margin-r
                                     <table align="left" border="0" cellpadding="0" cellspacing="0" bgcolor="#8918dc" style="-webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px; background-color: #8918dc; min-width: 110px;" data-bgcolor="s1-btn-bg">
                                         <tr>
                                             <td width="18"></td>
-                                            <td style="color: #ffffff; font-family: 'Roboto', Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 500; height: 30px; letter-spacing: 0.025em; line-height: 13px; text-align: center; text-decoration: none !important; text-transform: uppercase;" height="30" align="center" data-size="s1-btn-size" data-color="s1-btn-color" data-link-style="color: #ffffff;" data-link-color="s1-btn-color"  mc:edit=""><multiline><a href="{{route('login')}} "  style="color:white !important;">Inciar sesión ahora. </a></multiline></td>
+                                            <td style="color: #ffffff; font-family: 'Roboto', Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 500; height: 30px; letter-spacing: 0.025em; line-height: 13px; text-align: center; text-decoration: none !important; text-transform: uppercase;" height="30" align="center" data-size="s1-btn-size" data-color="s1-btn-color" data-link-style="color: #ffffff;" data-link-color="s1-btn-color"  mc:edit=""><multiline><a href="{{route('login')}} "  style="color:white !important;">Inciar sesión ahora </a></multiline></td>
                                             <td width="18"></td>
                                         </tr>
                                     </table>

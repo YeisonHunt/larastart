@@ -191,6 +191,84 @@
 <br>
    <!-- Fin seccion mis ideas -->
 
+    
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12"  v-for="idea in companyIdeas "
+      :key="ideas.id"     >
+
+      <div class="kt-portlet kt-portlet--height-fluid kt-widget19  hvr-underline-from-center">
+										<div class="kt-portlet__body kt-portlet__body--fit">
+											<div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides imageCard "
+
+                                    v-bind:style='{ backgroundImage: "url(" + idea.img + ")", }'  >
+												<h3 class="kt-widget19__title kt-font-light">
+													{{idea.title | shortText }}
+												</h3>
+												<div class="kt-widget19__shadow"></div>
+												<div class="kt-widget19__labels">
+													<a  class="btn btn-light  btn-pill  btn-sm ">Public</a>
+												</div>
+											</div>
+										</div>
+										<div class="kt-portlet__body">
+											<div class="kt-widget19__wrapper">
+												<div class="kt-widget19__content">
+													<div class="kt-widget19__userpic">
+														<img :src="idea.img" height="50" width="50">
+													</div>
+													<div class="kt-widget19__info">
+														<a v-if="idea.author='showme'" href="#" class="kt-widget19__username">
+															Por: <br/>&nbsp;
+														</a>
+
+                            <a  v-else href="#" class="kt-widget19__username">
+														Por: <br/>	&nbsp;Anónimo(a)
+														</a>
+
+													<!--	<span class="kt-widget19__time">
+															UX/UI Designer, Google
+														</span> -->
+													</div>
+													<div class="kt-widget19__stats">
+														<span class="kt-widget19__number kt-font-brand">
+
+                              <router-link class="" v-bind:to="'/innovations/'+idea.id">{{idea.likes.length}}</router-link>
+														</span>
+
+                          <router-link class="kt-widget19__comment" v-bind:to="'/innovations/public/'+idea.id">Votos</router-link>
+
+
+
+													</div>
+												</div>
+												<div class="kt-widget19__text">
+													<b>Categoría: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
+                           <b>Fecha: </b>{{idea.created_at |humanDate}} <br>
+                          {{idea.description | mediumText}}
+
+												</div>
+											</div>
+
+											<div class="kt-widget19__action">
+
+
+                         <router-link class="btn btn-sm btn-label-brand btn-bold "
+                         v-bind:to="'/innovations/public/'+idea.id">Leer idea completa...</router-link>
+
+
+
+                         <router-link v-bind:to="'/innovations/public/'+idea.id" class="btn btn-sm  btn-label-danger btn-bold pull-right ">Votar
+                         </router-link>
+
+
+											</div>
+
+
+
+										</div>
+									</div>
+    </div>
+ 
+
 
     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12"  v-for="idea in filteredPublic "
       :key="ideas.id"    v-if="public" >
@@ -213,15 +291,20 @@
 											<div class="kt-widget19__wrapper">
 												<div class="kt-widget19__content">
 													<div class="kt-widget19__userpic">
-														<img src="https://www.placecage.com/g/140/100" height="50" width="50">
+														<img :src="idea.img" height="50" width="50">
 													</div>
 													<div class="kt-widget19__info">
-														<a href="#" class="kt-widget19__username">
-															{{idea.author | uppercaseFirst}}
+														<a v-if="idea.author='showme'" href="#" class="kt-widget19__username">
+															Por: <br/>&nbsp;{{idea.escrita | uppercaseFirst}}
 														</a>
-														<span class="kt-widget19__time">
+
+                            <a  v-else href="#" class="kt-widget19__username">
+														Por: <br/>	&nbsp;Anónimo(a)
+														</a>
+
+													<!--	<span class="kt-widget19__time">
 															UX/UI Designer, Google
-														</span>
+														</span> -->
 													</div>
 													<div class="kt-widget19__stats">
 														<span class="kt-widget19__number kt-font-brand">
@@ -229,15 +312,15 @@
                               <router-link class="" v-bind:to="'/innovations/'+idea.id">{{idea.likes.length}}</router-link>
 														</span>
 
-                          <router-link class="kt-widget19__comment" v-bind:to="'/innovations/public/'+idea.id">Votes</router-link>
+                          <router-link class="kt-widget19__comment" v-bind:to="'/innovations/public/'+idea.id">Votos</router-link>
 
 
 
 													</div>
 												</div>
 												<div class="kt-widget19__text">
-													<b>Category: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
-                           <b>Date: </b>{{idea.created_at |humanDate}} <br>
+													<b>Categoría: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
+                           <b>Fecha: </b>{{idea.created_at |humanDate}} <br>
                           {{idea.description | mediumText}}
 
 												</div>
@@ -247,11 +330,11 @@
 
 
                          <router-link class="btn btn-sm btn-label-brand btn-bold "
-                         v-bind:to="'/innovations/public/'+idea.id">Read full idea...</router-link>
+                         v-bind:to="'/innovations/public/'+idea.id">Leer idea completa...</router-link>
 
 
 
-                         <router-link v-bind:to="'/innovations/public/'+idea.id" class="btn btn-sm  btn-label-danger btn-bold pull-right ">Vote
+                         <router-link v-bind:to="'/innovations/public/'+idea.id" class="btn btn-sm  btn-label-danger btn-bold pull-right ">Votar
                          </router-link>
 
 
@@ -279,8 +362,8 @@
 													{{idea.title | shortText | uppercaseFirst}}
 												</h3>
 												<div class="kt-widget19__shadow"></div>
-												<div class="kt-widget19__labels">
-													<a href="#" class="btn btn-label-light-o2 btn-bold btn-sm ">Mine </a>
+												<div class="kt-widget19__labels" style="background-color:white; border-radius:5px;">
+													<a href="#" class="btn btn-label-light-o2 btn-bold btn-sm " style="color:#7a7f87; ">Personal </a>
 												</div>
 											</div>
 										</div>
@@ -288,15 +371,13 @@
 											<div class="kt-widget19__wrapper">
 												<div class="kt-widget19__content">
 													<div class="kt-widget19__userpic">
-														<img src="https://www.placecage.com/g/140/100" height="50" width="50">
+														<img :src="idea.img" height="50" width="50">
 													</div>
 													<div class="kt-widget19__info">
 														<a href="#" class="kt-widget19__username">
-															{{idea.author | uppercaseFirst}}
+														Escrita por mi &nbsp;persona
 														</a>
-														<span class="kt-widget19__time">
-															UX/UI Designer, Google
-														</span>
+														
 													</div>
 													<div class="kt-widget19__stats">
 														<span class="kt-widget19__number kt-font-brand">
@@ -304,7 +385,7 @@
                               <router-link class="" v-bind:to="'/innovations/'+idea.id">{{idea.likes.length}}</router-link>
 														</span>
 
-                          <router-link class="kt-widget19__comment" v-bind:to="'/innovations/'+idea.id">Votes</router-link>
+                          <router-link class="kt-widget19__comment" v-bind:to="'/innovations/'+idea.id">Votos</router-link>
 
 
 
@@ -322,11 +403,11 @@
 
 
                          <router-link class="btn btn-sm btn-label-brand btn-bold "
-                         v-bind:to="'/innovations/'+idea.id">Read full idea...</router-link>
+                         v-bind:to="'/innovations/'+idea.id">Leer idea completa...</router-link>
 
 
 
-                         <router-link v-bind:to="'/innovations/'+idea.id" class="btn btn-sm  btn-label-danger btn-bold pull-right ">Vote
+                         <router-link v-bind:to="'/innovations/'+idea.id" class="btn btn-sm  btn-label-danger btn-bold pull-right ">Votar
                          </router-link>
 
 
@@ -658,10 +739,12 @@ export default {
       ],
       ideas: {},
       publicIdeas:{},
+      companyIdeas:{},
 
       minHeight: '300px',
       baseUrl:window.baseUrl,
       public: false,
+      user:{},
 
 
       form: new Form({
@@ -864,6 +947,9 @@ export default {
 
           this.ideas = response.data.ideas;
           this.publicIdeas = response.data.publicIdeas;
+          this.user = response.data.user;
+          this.companyIdeas = response.data.companyIdeas;
+          
         })
         .catch(error => {
           console.log(error);

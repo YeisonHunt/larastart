@@ -104,35 +104,43 @@
                           <div class="comment-wrapper">
                             <div class="panel panel-info">
                               <div class="panel-body">
-                                <h5 class="ml-3 mt-5">Comments Section</h5>
+                                <h5 class="ml-3 mt-5">Nueva retroalimentación</h5>
 
-                                <form
+                                <div class="row">
+                                  <div class="col-lg-12 col-sm-12">
+                                    <center>
+                                       <form
                                   @submit.prevent="goLastComment"
                                   @keydown="form.onKeydown($event)"
+                                  @keyup.enter="goLastComment()"
                                   class="form-inline"
                                 >
                                   <div class="form-group">
+                                    
                                     <textarea
+                                      
                                       v-model="form.body"
-                                      class="form-control fit-width-input"
-                                      style=" margin:10px; overflow:hidden;  "
-                                      placeholder="Write a comment..."
+                                      class="form-control "
+                                      style=" margin:10px; width:600px;  "
+                                      placeholder="Algo para aportar?"
                                       rows="2"
                                       required
                                     ></textarea>
+                                    <br/>
+                                    
                                   </div>
 
-                                  <div class="form-group">
-                                    <button
-                                      type="submit"
-                                      class="btn btn-primary form-control"
-                                      :disabled="form.busy"
-                                    >
-                                      Comment
-                                      <i class="flaticon-paper-plane"></i>
-                                    </button>
-                                  </div>
+                                
+                                
                                 </form>
+                                    </center>
+                                  </div>
+                                </div>
+
+                               
+
+                                  <p>Nota: presionar tecla <b>Enter</b> para enviar comentario</p>
+
 
                                 <br>
                                 <ul class="media-list">

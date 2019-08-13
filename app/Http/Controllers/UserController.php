@@ -15,11 +15,11 @@ use App\UserHasBusiness;
 
 class UserController extends Controller
 {
-    
+
 	public function store(Request $request){
 
 
-		
+
 	}
 
 	public function activate($code,$randString)
@@ -56,7 +56,7 @@ class UserController extends Controller
 
     {
        // dd($id);
-        
+
         $businessJustSaved= DB::table('businesses')->where('randString',$request->randString)->first();
 
         if(!empty($businessJustSaved)){
@@ -65,15 +65,15 @@ class UserController extends Controller
         $uhb->user_id = $id;
         $uhb->business_id = $businessJustSaved->id;
         $uhb->save();
-        
+
         }else{
 
         }
 
-       
 
 
-        
+
+
 
         $user = User::find($id);
         $user->password = bcrypt($request->password);
@@ -84,16 +84,17 @@ class UserController extends Controller
         $n = $nF[0];
 
         if(!empty($businessJustSaved)){
-            
-        $user->businessName = $businessJustSaved->id;
-        
+
+        $user->businessName = $businessJustSaved->name;
+				$user->company_id  = $businessJustSaved->id;
+
         }else{
-        
+
         }
 
-        
+
         $user->save();
-        
+
 
         $user2 = User::find($id);
 
@@ -188,9 +189,9 @@ class UserController extends Controller
         //Guardar, autenticar y redireccionar.
         //return redirect::to('/login');
         //
-        
 
-        
+
+
          if (Auth::attempt(['email' => $user->email, 'password' => $request->password])) {
             // Authentication passed...
             return redirect()->route('innovations');

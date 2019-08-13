@@ -154,7 +154,7 @@
 
 
                                         <router-link to="/dashboard" class="kt-menu__link " active-class="activeSubLink" ><i id="dashboard" class="kt-menu__link-icon flaticon-home" ><span></span></i>
-                                            <span class="kt-menu__link-text">Dashboard</span></router-link>
+                                            <span class="kt-menu__link-text">Inicio</span></router-link>
 
 
                                     </li>
@@ -171,7 +171,7 @@
                                     <li class="kt-menu__item " aria-haspopup="true">
 
 
-                                        <router-link to="/innovations" class="kt-menu__link " active-class="activeSubLink" ><i  id="innovations" class="kt-menu__link-icon flaticon-light"><span></span></i><span class="kt-menu__link-text">Innovations</span></router-link>
+                                        <router-link to="/innovations" class="kt-menu__link " active-class="activeSubLink" ><i  id="innovations" class="kt-menu__link-icon flaticon-light"><span></span></i><span class="kt-menu__link-text">Innovaciones</span></router-link>
 
 
 									</li>
@@ -205,7 +205,7 @@
 									<li class="kt-menu__item " aria-haspopup="true">
 
 
-                                        <router-link to="/business" class="kt-menu__link " active-class="activeSubLink" ><i  id="admin" class="kt-menu__link-icon flaticon-app"><span></span></i><span class="kt-menu__link-text">Admin</span></router-link>
+                                        <router-link to="/business" class="kt-menu__link " active-class="activeSubLink" ><i  id="admin" class="kt-menu__link-icon flaticon-app"><span></span></i><span class="kt-menu__link-text">Administrador</span></router-link>
 
 
                                     </li>
@@ -456,12 +456,12 @@
 									<div class="kt-header__topbar-item kt-header__topbar-item--user dropdown-toggle">
 										<div id="logMenu" style="" class="kt-header__topbar-wrapper dropdown-toggle" data-toggle="dropdown" data-offset="0px,0px" aria-haspopup="true"  aria-expanded="true">
 											<div class="kt-header__topbar-user">
-												<span class="kt-header__topbar-welcome kt-hidden-mobile 	">Hola,</span>
-												<span class="kt-header__topbar-username kt-hidden-mobile text-primary">{{ Auth::user()->name }}</span>
+												
+												<span  id="nombreUsuario" class="kt-header__topbar-username kt-hidden-mobile text-primary">{{ Auth::user()->name }}</span>
 												
 
 												<!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
-												<span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold 	">Y</span>
+												<span id="inicial1" class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold 	">Y</span>
 											</div>
 										</div>
 										<div id="logMenuDrop" class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl" x-placement="bottom-end" style="position: absolute ;  will-change: transform; top: 0px; left: 0px; transform: translate3d(1187px, 64px, 0px); " >
@@ -472,7 +472,7 @@
 													
 
 													<!--use below badge element instead the user vavatar to display username's first letter(remove kt-hidden class to display it) -->
-													<span class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success">S</span>
+													<span id="inicial2" class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success"></span>
 												</div>
 												<div class="kt-user-card__name">
 													{{ Auth::user()->name }} <br/>
@@ -594,14 +594,14 @@
 					</div>
 
 							<!-- begin:: Footer -->
-							<div class="kt-footer kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" style="background-color:#151B26 !important;">
+							<div class="kt-footer kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" style="background-color:#151B26 !important; ">
 									<div class="kt-footer__copyright">
 										2019&nbsp;&copy;&nbsp;<a href="#"  class="kt-link">Innova</a>
 									</div>
 									<div class="kt-footer__menu">
-										<a href="#" target="_blank" class="kt-footer__menu-link kt-link">About</a>
-										<a href="#" target="_blank" class="kt-footer__menu-link kt-link">Team</a>
-										<a href="#" target="_blank" class="kt-footer__menu-link kt-link">Contact</a>
+										<a href="#" target="_blank" class="kt-footer__menu-link kt-link">Sobre Nosotros</a>
+										<a href="#" target="_blank" class="kt-footer__menu-link kt-link">Equipo</a>
+										<a href="#" target="_blank" class="kt-footer__menu-link kt-link">Contacto</a>
 									</div>
 								</div>
 
@@ -689,8 +689,11 @@
 
 				//$('#logMenuDrop').attr('x-placement','bottom-end');
 
+				var nombre = $("#nombreUsuario").text();
 				
 
+				$("#inicial1").text(nombre.charAt(0));
+				$("#inicial2").text(nombre.charAt(0));
 				
 
 

@@ -128,8 +128,11 @@ Route::any('/global-ideas/view/{id}','PublicController@publicIdeas');
 
 
 
-Route::get('/{any}', 'AdminController@users')->where('any', '.*');
-//Route::get('{path}',"AdminController@users")->where( 'path', '([A-z\d-\/_.]+)?' );
 
+
+Route::post('/data/updateCompanyInfo','CompanyController@updateCompanyInfo');
+Route::get('/data/getCompanyInfo','CompanyController@getCompanyInfo');
+//Route::get('{path}',"AdminController@users")->where( 'path', '([A-z\d-\/_.]+)?' );
+Route::get('/{any}', 'AdminController@users')->where('any', '.*');
 
 //Route::resource('innovations', 'InnovationController');

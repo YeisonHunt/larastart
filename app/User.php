@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class User extends Authenticatable
 {
     use Notifiable, HasRoles;
-   
+
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +21,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
       'name', 'email', 'password','code','active','avatar','project_id','status','account_type','businessName','hour_cost',
-      'temporal'
+      'temporal','businessLogo','company_id'
   ];
 
   /**
@@ -43,5 +43,5 @@ class User extends Authenticatable
           return $permissions;
       }
 
-   
+
 }

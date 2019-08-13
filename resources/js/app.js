@@ -107,7 +107,7 @@ let routes = [
 
 	{ path: '/business/work-teams',name:'work-teams', component: require('./components/Business/work-teams-index.vue').default },
 	{ path: '/business/retos',name:'retos', component: require('./components/Business/retos.vue').default },
-
+    { path: '/business/company',name:'company', component: require('./components/Business/mycompany.vue').default },
 
 
 	{ path: '/shareInnovation/:id', component: require('./components/ShareInnovationComponent.vue').default },

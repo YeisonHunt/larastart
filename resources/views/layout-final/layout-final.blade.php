@@ -199,7 +199,7 @@
           @if (Route::has('login'))
           @auth
           <li class="register">
-          <a id="register-header" class="register btn" href="{{route('admin')}}">
+          <a id="register-header" class="register btn" href="{{route('innovations')}}">
               Ir a dashboard
             </a>
           </li>
@@ -706,6 +706,17 @@
   </script>
 
   <script>
+  
+  $(document).ready(function(){
+
+    $("#header").removeClass("hideUntilLoad");
+        $("#home").removeClass("hideUntilLoad");
+        $("#footer").removeClass("hideUntilLoad");
+         $("#spinner").addClass("hideUntilLoad");
+  });
+  </script>
+
+  <script>
         function animateOnScroll() {
           // Check if element is scrolled into view
           function isScrolledIntoView(elem) {
@@ -770,10 +781,7 @@
         }
       </script>
     
-      <script>
-        var observer = lozad();
-        observer.observe();
-      </script>
+     
       <script type="text/javascript" src="{{asset('modern-innova/home.js')}}" async></script>
 
 

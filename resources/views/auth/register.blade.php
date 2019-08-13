@@ -124,11 +124,17 @@
 								<!--begin::Form-->
 								<form class="kt-form kt-form--label-right"action="{{ route('register') }}"  method="POST" >
 									@csrf 
-                                        
-                                        <div class="form-group row">
+										
+									
+									<input class="form-control" type="hidden" name="name"
+													 required autocomplete="off" value="temporalNameNoActiveUser" id="name">
+
+
+                                       <!-- <div class="form-group row">
                                                 <label for="name" class="col-2 col-form-label mt-4 " >Full Name</label>
                                                 <div class="col-10">
-													<input class="form-control" type="text" name="name" required autocomplete="off" placeholder="Steve Jobs" id="name">
+														<input class="form-control" type="text" name="name"
+														required autocomplete="off" placeholder="Steve Jobs" id="name">
 													@if ($errors->has('name'))
 													<span class="" style="font-size:90%; color:#e2445c; margin-top:10px; margin-left: 15px; ">
 														<strong>{{ $errors->first('name') }}</strong>
@@ -136,7 +142,7 @@
 													@endif
 	
                                                 </div>
-                                            </div>
+                                            </div>-->
 
                                             <div class="form-group row">
                                                     <label for="email" class="col-2 col-form-label mt-4 " >Email</label>

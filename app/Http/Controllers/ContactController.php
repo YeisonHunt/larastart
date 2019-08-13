@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
-    
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -26,7 +26,7 @@ class ContactController extends Controller
             $user= Auth::user();
             $c = Contact::find($request->id);
 
-         
+
             $c->delete();
 
             $anotherUser = User::where('email',$c->email)->firstOrFail();
@@ -69,7 +69,7 @@ class ContactController extends Controller
 
             $c->save();
 
-        
+
 
             return response()->json([
                 'contact'=>$c
@@ -80,7 +80,7 @@ class ContactController extends Controller
                 'msg'=>'User not authenticated'
             ]);
         }
-        
+
     }
 
 
@@ -93,7 +93,7 @@ class ContactController extends Controller
             $user= Auth::user();
             $contact = DB::table('contacts')->where('id',$id)->where('friend_id',$user->id)->first();
 
-         
+
 
             return response()->json([
                 'contact'=>$contact
@@ -104,7 +104,7 @@ class ContactController extends Controller
                 'msg'=>'User not authenticated'
             ]);
         }
-        
+
 
     }
 
@@ -131,9 +131,9 @@ class ContactController extends Controller
 
         //TODO: para terminos de rapidez, haremos la subida de la imagen en caracteres, aunque al idea no es esta.
 
-        //Miramos que este el usuario autenticado 
+        //Miramos que este el usuario autenticado
 
-        
+
 
         if(Auth::check()){
 
@@ -145,20 +145,24 @@ class ContactController extends Controller
             if($checkUser === null){
 
                 $user = new User();
-                //$user->role_id = 2;
-                $user->account_type = 'business';
+
+                $user->account_type = 'personal';
                 $user->name = $request->firstName . " ". $request->lastName;
                 $user->email=$request->email;
                 $user->avatar= 'users/default.png';
-    
-                $pass = $this->generateRandomString(6);
+
+                $pass = $this->generateRandomString(8);
                 $user->password = bcrypt($pass);
-                $user->businessName = $request->company;
+                $user->businessName = auth()->user()->businessName;
+                $user->businessLogo = auth()->user()->businessLogo;
+                $user->businessBoss= auth()->user()->id;
+								$user->company_id  = auth()->user()->company_id;
+
                 $user->active=1;
                 $user->save();
-    
-               
-    
+
+                $nombreDeEmpresa = auth()->user()->businessName;
+
                 $c = new Contact();
                 $c->firstName = $request->firstName;
                 $c->lastName= $request->lastName;
@@ -166,15 +170,17 @@ class ContactController extends Controller
                 $c->email= $request->email;
                 $c->type = $request->type;
                 $c->birthdate= $request->birthdate;
-                $c->company= $request->company;
+                $c->company= auth()->user()->businessName;
                 $c->country= $request->country;
                 $c->city= $request->city;
                 $c->phone= $request->phone;
                 $c->friend_id = $request->friend_id;
-    
+
                 $c->save();
 
-                $dates = array('code'=>'1231231','email'=>$request->email,'randString'=>$pass);
+                Log::info('usuario y contacto creados');
+
+                $dates = array('code'=>$nombreDeEmpresa,'email'=>$request->email,'randString'=>$pass);
                 $this->email($dates,$request->email);
 
 
@@ -182,21 +188,21 @@ class ContactController extends Controller
                     'msg'=>'User saved successfully'
                 ]);
 
-               
+
             }else{
 
                 return response()->json([
                     'msg'=>'User already exists'
                 ]);
 
-               
+
             }
 
-           
 
-            
-                
-            
+
+
+
+
 
         }else {
             return response()->json([
@@ -204,7 +210,7 @@ class ContactController extends Controller
             ]);
         }
 
-       
+
 
 
     }
@@ -221,7 +227,7 @@ class ContactController extends Controller
 
     function email($dates,$email)
          {
-             Mail::send('emails.invitationUser',$dates, function($message) use ($email) 
+             Mail::send('emails.invitationUser',$dates, function($message) use ($email)
              {
                 $message->subject('Bienvenido(a) a Innova!');
                 $message->to($email);

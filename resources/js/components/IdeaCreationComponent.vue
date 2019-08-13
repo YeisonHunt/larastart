@@ -57,22 +57,7 @@
 															<div class="kt-section__body">
 																<h3 class="kt-section__title kt-section__title-lg ">Detalles de Idea</h3>
 
-																<div class="form-group form-group-last row">
-																	<label class="col-3 col-form-label">Idea o Reto?</label>
-																	<div class="col-9">
-																		<div class="kt-checkbox-inline">
-																			<label class="kt-checkbox">
-																				<input type="radio"  value="idea"  :class="{'is-invalid': form.errors.has('type')}"	 name="type" v-model="form.type" > Idea
-																				<span></span>
-																			</label>
-																			<label class="kt-checkbox">
-																				<input type="radio" value="reto" :class="{'is-invalid': form.errors.has('type')}" name="type" v-model="form.type" > Reto
-																				<span></span>
-																			</label>
-																		<has-error :form="form" field="type" ></has-error>
-																		</div>
-																	</div>
-																</div>
+																
 
 																<br>
 
@@ -81,7 +66,12 @@
 																	<div class="col-9">
 																		<div class="kt-checkbox-inline">
 																			<label class="kt-checkbox">
-																				<input type="radio"  value="me"  :class="{'is-invalid': form.errors.has('privacy')}"	 name="privacy" v-model="form.privacy" > Privada (Personal o empresarial)
+																				<input type="radio"  value="me"  :class="{'is-invalid': form.errors.has('privacy')}"	 name="privacy" v-model="form.privacy" > Privada (Solo para mi)
+																				<span></span>
+																			</label>
+
+																			<label class="kt-checkbox">
+																				<input type="radio"  value="empresarial"  :class="{'is-invalid': form.errors.has('privacy')}"	 name="privacy" v-model="form.privacy" > Privada (Empresarial)
 																				<span></span>
 																			</label>
 																			<label class="kt-checkbox">
@@ -93,6 +83,8 @@
 																	</div>
 																</div>
 																<br>
+
+
 																<div class="form-group form-group-last row" v-if="form.type=='reto' && form.privacy=='me'">
 																<label class="col-3 col-form-label">A qué grupos va dirijido?</label>	
 															<div class="col-9">
