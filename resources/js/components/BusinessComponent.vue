@@ -3,7 +3,7 @@
     <div class="row">
       
 
-      <router-link :to="{name:'contacts'}" class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction hvr-float hvr-underline-from-center">
+      <router-link v-if="userType=='admin'" :to="{name:'contacts'}" class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction hvr-float hvr-underline-from-center">
         <div class="kt-portlet kt-portlet--height-fluid">
           <div class="kt-widget14">
             <div class="kt-widget14__header kt-margin-b-14">
@@ -26,7 +26,7 @@
 
 
 
-     <router-link :to="{name:'work-teams'}"  class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction hvr-float hvr-underline-from-center">
+     <router-link v-if="userType=='admin'" :to="{name:'work-teams'}"  class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction hvr-float hvr-underline-from-center">
         <div class="kt-portlet kt-portlet--height-fluid">
           <div class="kt-widget14">
             <div class="kt-widget14__header kt-margin-b-14">
@@ -231,14 +231,35 @@ export default {
     data(){
         
         return{
-            baseUrl: window.baseUrl
+            baseUrl: window.baseUrl,
+            userType:''
         }
+    },
+
+    methods: {
+      getUser() {
+          axios
+        .get("/data/getCompanyInfo")
+        .then(response => {
+          
+		  
+      this.userType= response.data.userType;
+      
+        })
+        .catch(error => {
+          console.log(error);
+
+          toastr.error("Oops!", "Something goes wrong");
+        });
+      }
     },
     mounted() {
 
       $("#admin").addClass('menuActivo');
       $("#dashboard").removeClass('menuActivo');
       $("#innovations").removeClass('menuActivo');
+
+      this.getUser()
 
     }
 };
