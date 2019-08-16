@@ -1,6 +1,23 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/css/appLanding.css": "/css/appLanding.css",
-    "/js/appLanding.js": "/js/appLanding.js"
+    "/business.js": "/business.js",
+    "/company.js": "/company.js",
+    "/create-contact.js": "/create-contact.js",
+    "/create-profile.js": "/create-profile.js",
+    "/dashboard.js": "/dashboard.js",
+    "/edit-contact.js": "/edit-contact.js",
+    "/edit-idea.js": "/edit-idea.js",
+    "/idea-creation.js": "/idea-creation.js",
+    "/idea-index.js": "/idea-index.js",
+    "/normal-view.js": "/normal-view.js",
+    "/-view.js": "/-view.js",
+    "/reto-nuevo.js": "/reto-nuevo.js",
+    "/reto-publico.js": "/reto-publico.js",
+    "/reto-solucion.js": "/reto-solucion.js",
+    "/retos.js": "/retos.js",
+    "/share-innovation.js": "/share-innovation.js",
+    "/show-reto.js": "/show-reto.js",
+    "/work-teams.js": "/work-teams.js",
+    "/contactos.js": "/contactos.js"
 }

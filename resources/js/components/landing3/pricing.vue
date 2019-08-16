@@ -1,4 +1,6 @@
 <template>
+
+<keep-alive>
   <div class="hole">
     <v-app>
       <v-container>
@@ -29,7 +31,7 @@
                             <b>200</b> ideas
                             <br />
                             <br />
-                            <v-icon>mdi-square-inc-cash</v-icon> &nbsp; Gratis de por vida
+                            <v-icon>mdi-square-inc-cash</v-icon>&nbsp; Gratis de por vida
                           </v-card-text>
                           <v-card-actions>
                             <v-btn text @click="goRegister">Comenzar</v-btn>
@@ -65,8 +67,8 @@
                             <b>Ilimitadas</b>
                             <br />
                             <br />
-                            <v-icon>mdi-square-inc-cash</v-icon> &nbsp;
-5 USD / Por Usuario
+                            <v-icon>mdi-square-inc-cash</v-icon>&nbsp;
+                            5 USD / Por Usuario
                           </v-card-text>
                           <v-card-actions>
                             <v-btn text @click="goRegister">Comenzar</v-btn>
@@ -96,7 +98,7 @@
                             <b>200</b> ideas
                             <br />
                             <br />
-                            <v-icon>mdi-square-inc-cash</v-icon> &nbsp;Gratis de por vida
+                            <v-icon>mdi-square-inc-cash</v-icon>&nbsp;Gratis de por vida
                           </v-card-text>
                           <v-card-actions>
                             <v-btn text @click="goRegister">Comenzar</v-btn>
@@ -114,7 +116,7 @@
                             <b>500</b> ideas
                             <br />
                             <br />
-                            <v-icon>mdi-square-inc-cash</v-icon> &nbsp;2 USD / Por Usuario
+                            <v-icon>mdi-square-inc-cash</v-icon>&nbsp;2 USD / Por Usuario
                           </v-card-text>
                           <v-card-actions>
                             <v-btn text @click="goRegister">Comenzar</v-btn>
@@ -132,11 +134,11 @@
                             <b>Ilimitadas</b>
                             <br />
                             <br />
-                            <v-icon>mdi-square-inc-cash</v-icon> &nbsp;
-4 USD / Por Usuario
+                            <v-icon>mdi-square-inc-cash</v-icon>&nbsp;
+                            4 USD / Por Usuario
                           </v-card-text>
                           <v-card-actions>
-                            <v-btn text  @click="goRegister">Comenzar</v-btn>
+                            <v-btn text @click="goRegister">Comenzar</v-btn>
                           </v-card-actions>
                         </v-card>
                       </v-flex>
@@ -165,7 +167,7 @@
 
         <v-layout row>
           <v-flex>
-            <section id="plans-include" class="">
+            <section id="plans-include" class>
               <div class="container animated" data-animation="slideInUp">
                 <div class="row">
                   <div class="col-xs-12 content">
@@ -175,7 +177,7 @@
                 <div class="row">
                   <div class="advantages">
                     <div class="col-md-5 col-md-offset-4">
-                     <v-icon>mdi-face-agent</v-icon>
+                      <v-icon>mdi-face-agent</v-icon>
                       <span>
                         Atención 100% personalizada de nuestro
                         <br class="hide-mobile" />equipo de soporte
@@ -186,7 +188,7 @@
                       <span>Funciones personalizadas para su empresa</span>
                     </div>
                     <div class="col-md-5 col-md-offset-4">
-                     <v-icon>mdi-account-group-outline</v-icon>
+                      <v-icon>mdi-account-group-outline</v-icon>
                       <span>Gestión de Empleados (ERM)</span>
                     </div>
                   </div>
@@ -205,11 +207,7 @@
                     </p>
                   </div>
                   <div class="col-md animated" data-animation="slideInRight">
-                    <a
-                      
-                      class="pricing-cta"
-                      href="/register"
-                    >Comenzar Prueba Gratis</a>
+                    <a class="pricing-cta" href="/register">Comenzar Prueba Gratis</a>
                   </div>
                 </div>
               </div>
@@ -219,6 +217,10 @@
       </v-container>
     </v-app>
   </div>
+
+</keep-alive>
+  
+
 </template>
 
 <style>
@@ -235,13 +237,13 @@ export default {
       tab: null,
       pricingMensual: "",
       pricingAnual: "",
-      baseUrl: window.baseUrl,
+      baseUrl: window.baseUrl
     };
   },
 
   methods: {
     goRegister() {
-        window.location.href = baseUrl+"register"
+      window.location.href = baseUrl + "register";
     }
   },
 

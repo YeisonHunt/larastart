@@ -127,6 +127,8 @@
                         { name: 'Javascript', code: 'js' },
                         { name: 'Open Source', code: 'os' }
                     ],
+
+                asdasd: 'ESTA VISTA YA NO ESSSSSS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
                 
             }
         },
@@ -142,7 +144,13 @@
             }
             this.options.push(tag)
             this.value.push(tag)
-            }
+            },
+
+          
+        },// end methods
+
+        mounted () {
+            this.getRetos()
         },
     }
 </script>

@@ -19,10 +19,8 @@
                 }
             });
 		</script>
-		
 
-		
-		<link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">
+		<link rel="stylesheet" href="style.css">
 			<link rel="stylesheet" href="{{ asset('css/animate.css') }}"> <!-- Min -->
 			<link rel="stylesheet" href="{{ asset('css/hover-min.css') }}"> <!-- Min -->
 			<link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -30,7 +28,7 @@
 			<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
-			
+
 
 
             <!--begin::Global Theme Styles(used by all pages) -->
@@ -39,10 +37,10 @@
             <!--RTL version:<link href="../../assets/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
             <link href="{{asset('assets/demo/default/base/style.bundle.min.css')}}" rel="stylesheet" type="text/css" />
 
-           
+
             <link href="{{asset('assets/demo/default/skins/aside/dark.min.css')}}" rel="stylesheet" type="text/css" />
 
-        
+
 
             <!--end::Layout Skins -->
 			<link rel="icon" type="image/png" sizes="192x192" href="{{asset('modern-innova/images/features/faviconInnova.png')}}">
@@ -52,13 +50,20 @@
 			<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
 
 
-			<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+			
 
-
+			<style>
 		
 
+				body {
+				font-family: "Open Sans", "sans-serif" !important;
+				font-weight: 400 !important;
+				}
 
+		
+			</style>
 
+			
 
 
 
@@ -73,7 +78,7 @@
 
 	<!-- begin::Body -->
 	<body class="kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading
-	
+
 	">
 
 	<!-- If wanna minimize sidebar at beginning, use kt-aside--minimize  class on body tag -->
@@ -89,13 +94,13 @@
 			<div class="kt-header-mobile__logo">
 				<router-link to="/dashboard">
 
-						<img alt="Logo" src="{{asset('modern-innova/images/features/logoWhite.png')}}" height="100%" width="50%" />
+						<img alt="Logo" id="logoMovil" src="{{asset('modern-innova/images/features/logoWhite.png')}}" height="100%" width="50%" />
 					</router-link>
 
 			</div>
 			<div class="kt-header-mobile__toolbar">
 				<button class="kt-header-mobile__toggler kt-header-mobile__toggler--left" id="kt_aside_mobile_toggler"><span></span></button>
-			
+
 			</div>
 		</div>
 
@@ -110,12 +115,24 @@
 					<!-- begin:: Aside -->
 					<div class="kt-aside__brand kt-grid__item " id="kt_aside_brand">
 						<div class="kt-aside__brand-logo">
+
+							@if($logoVacio==1)
+
 							<router-link to="/dashboard">
-										<img alt="Logo" style="margin-top:20px; padding-right:2px;" src="{{asset('modern-innova/images/features/logoWhite.png')}}" height="62%" width="100%" />
-										
+										<img alt="Logo" id="logoDesktop" style="margin-top:20px; padding-right:2px;" src="{{asset('modern-innova/images/features/logoWhite.png')}}" height="62%" width="100%" />
+
 							</router-link>
-							<br/>
-							Creada por Asakaa.com
+							@else
+							<router-link to="/dashboard">
+								<img alt="Logo" id="logoDesktop" style="margin-top:20px; padding-right:2px; border-radius:10px;" src="{{$logo}}" height="35" width="132" />
+
+							</router-link>
+
+							@endif
+
+
+							<br/><br/>
+							&nbsp;  | Innova
 						</div>
 						<div class="kt-aside__brand-tools">
 
@@ -192,15 +209,15 @@
 
 									</li>-->
 
-									 <!--
+									 
 
 									<li class="kt-menu__item " aria-haspopup="true">
 
 
-                                        <router-link to="/goals" class="kt-menu__link " active-class="activeSubLink" ><i class="kt-menu__link-icon flaticon-interface-5"><span></span></i><span class="kt-menu__link-text">Goals</span></router-link>
+                                        <router-link to="/retos" class="kt-menu__link " active-class="activeSubLink" ><i id="retos" class="kt-menu__link-icon flaticon-interface-5"><span></span></i><span class="kt-menu__link-text">Retos</span></router-link>
 
 
-									</li>-->
+									</li>
 
 									<li class="kt-menu__item " aria-haspopup="true">
 
@@ -442,23 +459,23 @@
 									<!--begin: Search -->
 
 									<!--begin: Search -->
-									
+
 
 									<!--end: Search -->
 
 									<!--end: Search -->
 
-								
 
-								
+
+
 
 									<!--begin: User Bar -->
 									<div class="kt-header__topbar-item kt-header__topbar-item--user dropdown-toggle">
 										<div id="logMenu" style="" class="kt-header__topbar-wrapper dropdown-toggle" data-toggle="dropdown" data-offset="0px,0px" aria-haspopup="true"  aria-expanded="true">
 											<div class="kt-header__topbar-user">
-												
+
 												<span  id="nombreUsuario" class="kt-header__topbar-username kt-hidden-mobile text-primary">{{ Auth::user()->name }}</span>
-												
+
 
 												<!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
 												<span id="inicial1" class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold 	">Y</span>
@@ -469,7 +486,7 @@
 											<!--begin: Head -->
 											<div class="kt-user-card kt-user-card--skin-dark kt-notification-item-padding-x" style="background-image: url(../../../assets/media/misc/bg-1.jpg)">
 												<div class="kt-user-card__avatar">
-													
+
 
 													<!--use below badge element instead the user vavatar to display username's first letter(remove kt-hidden class to display it) -->
 													<span id="inicial2" class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success"></span>
@@ -478,7 +495,7 @@
 													{{ Auth::user()->name }} <br/>
 													{{Auth::user()->email}}
 												</div>
-												
+
 											</div>
 
 											<!--end: Head -->
@@ -539,7 +556,7 @@
 												</a>
 												<div class="kt-notification__custom">
 
-													
+
 
 												<a href="{{ route('logout') }}"  class="btn btn-label-brand btn-sm btn-bold"  onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
 														Cerrar Sesión
@@ -661,8 +678,8 @@
 		<!--begin::Global Theme Bundle(used by all pages) -->
 		<script src="{{asset('assets/vendors/base/vendors.bundle.min.js')}}" type="text/javascript"></script>
 		<script src="{{asset('assets/demo/default/base/scripts.bundle.min.js')}}" type="text/javascript"></script>
-		
-		 
+
+
 
 
 
@@ -670,7 +687,7 @@
 		<!--end::Page Vendors -->
 
 		<!--begin::Page Scripts(used by this page) -->
-		
+
 
 
 
@@ -690,11 +707,11 @@
 				//$('#logMenuDrop').attr('x-placement','bottom-end');
 
 				var nombre = $("#nombreUsuario").text();
-				
+
 
 				$("#inicial1").text(nombre.charAt(0));
 				$("#inicial2").text(nombre.charAt(0));
-				
+
 
 
 
@@ -702,7 +719,7 @@
 
 			});
 
-		</script> 
+		</script>
 
 		<script>
 
@@ -720,7 +737,7 @@
 
 		<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
 
-		
+
 
 
 

@@ -1,6 +1,7 @@
 <template>
     
-    <div class="hole">
+   <keep-alive>
+        <div class="hole">
         <v-app>
 
             <v-container fluid>
@@ -72,6 +73,8 @@
         </v-app>
     </div>
 
+   </keep-alive>
+   
 </template>
 
 <style>

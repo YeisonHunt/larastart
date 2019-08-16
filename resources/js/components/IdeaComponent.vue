@@ -205,7 +205,7 @@
 												</h3>
 												<div class="kt-widget19__shadow"></div>
 												<div class="kt-widget19__labels">
-													<a  class="btn btn-light  btn-pill  btn-sm ">Public</a>
+													<a  class="btn btn-light  btn-pill  btn-sm custom-btn">Empresarial</a>
 												</div>
 											</div>
 										</div>
@@ -444,6 +444,34 @@
 
 <style type="text/css">
 
+
+.custom-btn {
+  background: linear-gradient(105deg, #151B26, #1f2c45, #253d6b, #264582, #214791, #204ea8, #1a54c7, #1153d6, #2c57ad, #264174, #253d6b, #253d6b);
+  background-size: 400% 400%;
+  -webkit-animation: rainbow 5s ease infinite;
+  -z-animation: rainbow 5s ease infinite;
+  -o-animation: rainbow 5s ease infinite;
+  animation: rainbow 5s ease infinite alternate;
+  border: 0;
+
+  color: #fff !important;
+}
+@-webkit-keyframes rainbow {
+  0%{background-position:0% 100%}
+  100%{background-position:100% 0%}
+}
+@-moz-keyframes rainbow {
+  0%{background-position:0% 100%}
+  100%{background-position:100% 0%}
+}
+@-o-keyframes rainbow {
+  0%{background-position:0% 100%}
+  100%{background-position:100% 0%}
+}
+@keyframes rainbow { 
+  0%{background-position:0% 100%}
+  100%{background-position:100% 0%}
+}
 
 
 
@@ -975,6 +1003,8 @@ export default {
       $("#admin").removeClass('menuActivo');
       $("#dashboard").removeClass('menuActivo');
       $("#innovations").addClass('menuActivo');
+      $("#retos").removeClass('menuActivo');
+
   }
 };
 </script>

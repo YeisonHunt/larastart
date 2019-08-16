@@ -19,15 +19,37 @@
             <div class="kt-portlet__head-toolbar">
               <div class="kt-portlet__head-actions">
 
-                <button  v-if="!alreadyLiked(idea)"   @click="likeIdea"  class="btn btn-outline-primary btn-sm btn-icon pulse btn-icon-md " :class="{'largeBtn':large}">
-                  <i class="flaticon-like " ></i>
+                 <button  v-if="!alreadyLiked1(idea)"   @click="likeIdea('like')"  class="btn btn-outline-primary btn-sm btn-icon pulse btn-icon-md " :class="{'largeBtn':large}">
+                  <i class="flaticon2-arrow-up" ></i>
                   &nbsp; {{voteText}}
                 </button>
 
 
-                 <button  v-if="alreadyLiked(idea)"  @click="likeIdea" class="btn btn-primary btn-sm btn-icon pulse btn-icon-md " :class="{'largeBtn':large}">
-                  <i class="flaticon-like "  ></i>
+                 <button  v-if="alreadyLiked1(idea)"  @click="likeIdea('unlike')" class="btn btn-primary btn-sm btn-icon pulse btn-icon-md " :class="{'largeBtn':large}">
+                  <i class="flaticon2-arrow-up"  ></i>
                   &nbsp; {{likedText}}
+                 </button>
+
+                 <button  v-if="!alreadyLiked2(idea)"   @click="likeIdea('dislike')"  class="btn btn-outline-primary btn-sm btn-icon pulse btn-icon-md " :class="{'largeBtn':large}">
+                  <i class="flaticon2-arrow-down "  ></i>
+                  &nbsp; {{voteTextN}}
+                </button>
+
+
+                 <button  v-if="alreadyLiked2(idea)"  @click="likeIdea('undislike')" class="btn btn-primary btn-sm btn-icon pulse btn-icon-md " :class="{'largeBtn':large}">
+                  <i class="flaticon2-arrow-down"  ></i>
+                  &nbsp; {{likedTextN}}
+                 </button>
+
+                  <button  v-if="!alreadyLiked3(idea)"   @click="likeIdea('action')"  class="btn btn-outline-primary btn-sm btn-icon pulse btn-icon-md " :class="{'largeBtn':large}">
+                 <div style="padding:2px; font-size:0.8rem; "> Acción de mejora</div>
+                </button>
+
+
+                 <button  v-if="alreadyLiked3(idea)"  @click="likeIdea('unaction')" class="btn btn-primary btn-sm btn-icon pulse btn-icon-md " :class="{'largeBtn':large}">
+
+                 <div style="padding:2px; font-size:0.8rem; "> Acción de mejora</div>
+
                  </button>
 
 
@@ -37,6 +59,9 @@
             </div>
           </div>
           <!-- end portlet head-->
+
+          
+          <v-img :src="idea.img" aspect-ratio="4"></v-img>
 
           <div class="kt-portlet__body wrapText" id="ideaBody"  v-html="idea.body"></div>
 
@@ -340,6 +365,10 @@
 
 <style type="text/css">
 
+.toast-title {
+  color:white !important;
+}
+
 
 .fadeImg {
   
@@ -531,6 +560,26 @@
 </style>
 
 <script>
+
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": true,
+  "positionClass": "toast-top-center",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "4000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+
+
 export default {
   data() {
     return {
@@ -620,23 +669,13 @@ export default {
       }
     },
 
-    likesText: function(){
-      if(this.$mq=='sm'){
-        return '';
-      }else if(this.$mq=='md' || this.$mq=='lg'){
-        return 'likes'
-      }else {
-        return 'likes'
-      }
-    },
-
      voteText: function(){
       if(this.$mq=='sm'){
         return '';
       }else if(this.$mq=='md' || this.$mq=='lg'){
-        return 'Vote idea'
+        return 'Me gusta'
       }else {
-        return 'Vote idea'
+        return 'Me gusta'
       }
 
     },
@@ -645,37 +684,56 @@ export default {
       if(this.$mq=='sm'){
         return '';
       }else if(this.$mq=='md' || this.$mq=='lg'){
-        return 'Liked!'
+        return 'Me gusta'
       }else {
-        return 'Liked!'
+        return 'Me gusta'
       }
 
     },
 
-    
+     voteTextN: function(){
+      if(this.$mq=='sm'){
+        return '';
+      }else if(this.$mq=='md' || this.$mq=='lg'){
+        return 'Pulir +'
+      }else {
+        return 'Pulir +'
+      }
 
+    },
 
+    likedTextN: function(){
+      if(this.$mq=='sm'){
+        return '';
+      }else if(this.$mq=='md' || this.$mq=='lg'){
+        return 'Pulir +'
+      }else {
+        return 'Pulir +'
+      }
 
+    },
   },
 
   methods: {
 
    
     
-    alreadyLiked(idea){
+    
 
-      
+    alreadyLiked1(idea){
+
+
 
         if (this.likesPerIdea.length != 0) {
-        
+
 
         let foundLiked2 = false;
         try {
           this.likesPerIdea.forEach(function(el) {
-            if (el.user_id == window.user.id) {
-              
+            if (el.user_id == window.user.id && el.type=='like') {
+
               foundLiked2 = true;
-              
+
             }
           });
         } catch (e) {}
@@ -683,25 +741,96 @@ export default {
         this.foundLiked = foundLiked2;
         return foundLiked2;
       } else {
-        
+
         this.foundLiked=false;
 
         return false;
       }
-    },
 
-    likeIdea(){
+
+
+
+    }, // end alreadyLike(idea)
+		alreadyLiked2(idea){
+
+
+
+        if (this.likesPerIdea.length != 0) {
+
+
+        let foundLiked2 = false;
+        try {
+          this.likesPerIdea.forEach(function(el) {
+            if (el.user_id == window.user.id && el.type=='dislike') {
+
+              foundLiked2 = true;
+
+            }
+          });
+        } catch (e) {}
+
+        this.foundLiked = foundLiked2;
+        return foundLiked2;
+      } else {
+
+        this.foundLiked=false;
+
+        return false;
+      }
+
+
+
+
+    }, // end alreadyLike(idea)2
+
+		alreadyLiked3(idea){
+
+
+
+        if (this.likesPerIdea.length != 0) {
+
+
+        let foundLiked2 = false;
+        try {
+          this.likesPerIdea.forEach(function(el) {
+            if (el.user_id == window.user.id && el.type=='action') {
+
+              foundLiked2 = true;
+
+            }
+          });
+        } catch (e) {}
+
+        this.foundLiked = foundLiked2;
+        return foundLiked2;
+      } else {
+
+        this.foundLiked=false;
+
+        return false;
+      }
+
+
+
+
+    }, // end alreadyLike(idea)3
+
+
+
+    likeIdea(type){
 
    
 
       this.$Progress.start();
       // Submit the form via a POST request
 
+      this.formDesired.type = type;
+
       //this.form.editordata =  $('#kt_summernote_1').summernote('code');
       this.formDesired
         .post("/saveDesired")
         .then(response => {
-          toastr.success("Keep rating", "Innovation liked!.");
+          toastr.success("Gracias por la valoración.", "Sigue puntuando tus ideas favoritas.");
          
           this.likesPerIdea = response.data.desired;
         })

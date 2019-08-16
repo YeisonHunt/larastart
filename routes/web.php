@@ -24,11 +24,11 @@ Route::get('/innovations','AdminController@index')->name('innovations');
 Route::get('/users','AdminController@users')->name('users');
 
 Route::any('/saveIdea','IdeasController@store');
-Route::post('/saveIdea2','IdeasController@store2');
+Route::post('/saveIdea2','IdeasController@saveIdea2');
 Route::get('/ideas','IdeasController@index');
 
 Route::get('/getInnovations','IdeasController@index2');
-
+Route::get('/getRetos','IdeasController@getRetos');
 
 Route::delete('/deleteIdea/{id}','IdeasController@destroy');
 Route::any('/editIdea/{id}','IdeasController@update');

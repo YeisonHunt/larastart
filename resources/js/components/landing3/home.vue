@@ -1,8 +1,11 @@
 <template>
 
-<div class="hole">
+<keep-alive>
+  <div class="hole">
     
 </div>
+</keep-alive>
+
 </template>
 
 <style>

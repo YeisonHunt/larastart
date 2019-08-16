@@ -71,7 +71,7 @@
           <v-layout row v-else>
             <v-flex lg1 pb-3 ml-3 pt-3 style="margin-top:5px;" >
               <v-btn class="mx-2" fab dark small color="#576CFF" :to="{name:'global-ideas'}">
-                <v-icon>mdi-arrow-left</v-icon>
+                <v-icon>arrow_back</v-icon>
               </v-btn>
             </v-flex>
 
@@ -114,24 +114,34 @@
 
                 <v-card-actions>
                   <v-btn icon @click="goIdea(idea.id)">
-                    <v-icon>mdi-heart</v-icon>
+                    <v-icon>thumb_up</v-icon>
                   </v-btn>
                   {{likes}}
                   <v-btn icon @click.stop.prevent="vote(idea)">
-                    <v-icon>mdi-share-variant</v-icon>
+                    <v-icon>share</v-icon>
                   </v-btn>
                   <v-spacer></v-spacer>
 
                   <v-btn class="text-center" icon @click="show = !show">
-                    <v-icon>{{ show ? 'mdi-minus' : 'mdi-plus' }}</v-icon>
+                    <v-icon>{{ show ? 'expand_less' : 'expand_more' }}</v-icon>
                   </v-btn>
                 </v-card-actions>
 
                 <v-expand-transition>
                   <div v-show="show">
-                    <v-card-text>
-                      <div v-html="idea.body"></div>
-                    </v-card-text>
+                  
+
+                     <v-card
+                      
+                      class="mx-auto"
+                    >
+                     
+                      <v-card-text>
+
+                         <div v-html="idea.body"></div>
+                      </v-card-text>
+                      
+                    </v-card>
                   </div>
                 </v-expand-transition>
 

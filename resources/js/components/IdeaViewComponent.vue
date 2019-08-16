@@ -7,11 +7,11 @@
             <div class="kt-portlet__head-label">
               <router-link to="/innovations" class="btn btn-clean kt-margin-r-10">
                 <i style="padding-bottom:8px;" class="la la-arrow-left"></i>
-                <span class="kt-hidden-mobile">Back</span>
+                <span class="kt-hidden-mobile">Atrás</span>
               </router-link>
 
               <span class="kt-portlet__head-icon">
-                <i class="flaticon2-calendar-2"></i>
+                <i class="flaticon-light"></i>
               </span>
 
               <h3 class="kt-portlet__head-title">{{idea.title}}</h3>
@@ -19,16 +19,40 @@
             <div class="kt-portlet__head-toolbar">
               <div class="kt-portlet__head-actions">
 
-                <button  v-if="!alreadyLiked(idea)"   @click="likeIdea"  class="btn btn-outline-primary btn-sm btn-icon pulse btn-icon-md " :class="{'largeBtn':large}">
-                  <i class="flaticon-like " ></i>
+                <button  v-if="!alreadyLiked1(idea)"   @click="likeIdea('like')"  class="btn btn-outline-primary btn-sm btn-icon pulse btn-icon-md " :class="{'largeBtn':large}">
+                  <i class="flaticon2-arrow-up" ></i>
                   &nbsp; {{voteText}}
                 </button>
 
 
-                 <button  v-if="alreadyLiked(idea)"  @click="likeIdea" class="btn btn-primary btn-sm btn-icon pulse btn-icon-md " :class="{'largeBtn':large}">
-                  <i class="flaticon-like "  ></i>
+                 <button  v-if="alreadyLiked1(idea)"  @click="likeIdea('unlike')" class="btn btn-primary btn-sm btn-icon pulse btn-icon-md " :class="{'largeBtn':large}">
+                  <i class="flaticon2-arrow-up"  ></i>
                   &nbsp; {{likedText}}
                  </button>
+
+                 <button  v-if="!alreadyLiked2(idea)"   @click="likeIdea('dislike')"  class="btn btn-outline-primary btn-sm btn-icon pulse btn-icon-md " :class="{'largeBtn':large}">
+                  <i class="flaticon2-arrow-down "  ></i>
+                  &nbsp; {{voteTextN}}
+                </button>
+
+
+                 <button  v-if="alreadyLiked2(idea)"  @click="likeIdea('undislike')" class="btn btn-primary btn-sm btn-icon pulse btn-icon-md " :class="{'largeBtn':large}">
+                  <i class="flaticon2-arrow-down"  ></i>
+                  &nbsp; {{likedTextN}}
+                 </button>
+
+                  <button  v-if="!alreadyLiked3(idea)"   @click="likeIdea('action')"  class="btn btn-outline-primary btn-sm btn-icon pulse btn-icon-md " :class="{'largeBtn':large}">
+                 <div style="padding:2px; font-size:0.8rem; "> Acción de mejora</div>
+                </button>
+
+
+                 <button  v-if="alreadyLiked3(idea)"  @click="likeIdea('unaction')" class="btn btn-primary btn-sm btn-icon pulse btn-icon-md " :class="{'largeBtn':large}">
+
+                 <div style="padding:2px; font-size:0.8rem; "> Acción de mejora</div>
+
+                 </button>
+
+
 
 
 
@@ -47,6 +71,8 @@
             </div>
           </div>
           <!-- end portlet head-->
+
+          <v-img :src="idea.img" aspect-ratio="4"></v-img>
 
           <div class="kt-portlet__body wrapText" id="ideaBody"  v-html="idea.body"></div>
 
@@ -116,9 +142,9 @@
                                   class="form-inline"
                                 >
                                   <div class="form-group">
-                                    
+
                                     <textarea
-                                      
+
                                       v-model="form.body"
                                       class="form-control "
                                       style=" margin:10px; width:600px;  "
@@ -127,19 +153,19 @@
                                       required
                                     ></textarea>
                                     <br/>
-                                    
+
                                   </div>
 
-                                
-                                
+
+
                                 </form>
                                     </center>
                                   </div>
                                 </div>
 
-                               
 
-                                  <p>Nota: presionar tecla <b>Enter</b> para enviar comentario</p>
+
+                                  <p class="m-3">Nota: <b>Enter</b> para enviar nuevo comentario</p>
 
 
                                 <br>
@@ -207,7 +233,7 @@
 
                                           </i>
                                           &nbsp; &nbsp; &nbsp; &nbsp;
-    
+
                                           {{ ' '+ d.discussions.likes.length  }} {{likesText}}
                                         </a>
                                         &nbsp; &nbsp;
@@ -352,7 +378,7 @@
     <div class="row " v-else    >
 
       <div class="col-4"></div>
-      
+
       <div class="col-4">
         <router-link  to="/innovations" class="btn btn-primary">
 
@@ -362,18 +388,18 @@
 
       <div class="col-4"></div>
 
-     
+
 
       <div class="col-12 mt-5">
        <center>
           <h4 style=" margin-left:auto;
    margin-right:auto;
    display:block; color:white;">Sorry, it seems you don't have permission to see this idea.</h4>
-         </center> 
-      
+         </center>
+
             <img  height="80%" width="80%" class="mt-5 fadeImg"  :src="baseUrl +'img/forbidden.svg'" alt="" style="text-align:center; margin-left:10%;">
-   
-      
+
+
       </div>
     </div>
 
@@ -386,8 +412,13 @@
 <style type="text/css">
 
 
+.toast-title {
+  color:white !important;
+}
+
+
 .fadeImg {
-  
+
     -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
        -moz-animation: fadein 2s; /* Firefox < 16 */
         -ms-animation: fadein 2s; /* Internet Explorer */
@@ -491,7 +522,7 @@
 
 @media (max-width: 600px) {
       .VueStar__ground {
-      
+
       margin-left: 10px;
       margin-top: 10px;
     }
@@ -576,6 +607,26 @@
 </style>
 
 <script>
+
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": true,
+  "positionClass": "toast-top-center",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "4000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+
+
 export default {
   data() {
     return {
@@ -629,7 +680,8 @@ export default {
 
       formDesired:new Form({
         innovation_id: this.$route.params.id,
-        user_id: window.user.id
+        user_id: window.user.id,
+				type:'',
       })
 
     };
@@ -679,9 +731,9 @@ export default {
       if(this.$mq=='sm'){
         return '';
       }else if(this.$mq=='md' || this.$mq=='lg'){
-        return 'Vote idea'
+        return 'Me gusta'
       }else {
-        return 'Vote idea'
+        return 'Me gusta'
       }
 
     },
@@ -690,28 +742,50 @@ export default {
       if(this.$mq=='sm'){
         return '';
       }else if(this.$mq=='md' || this.$mq=='lg'){
-        return 'Liked!'
+        return 'Me gusta'
       }else {
-        return 'Liked!'
+        return 'Me gusta'
+      }
+
+    },
+
+     voteTextN: function(){
+      if(this.$mq=='sm'){
+        return '';
+      }else if(this.$mq=='md' || this.$mq=='lg'){
+        return 'Pulir +'
+      }else {
+        return 'Pulir +'
+      }
+
+    },
+
+    likedTextN: function(){
+      if(this.$mq=='sm'){
+        return '';
+      }else if(this.$mq=='md' || this.$mq=='lg'){
+        return 'Pulir +'
+      }else {
+        return 'Pulir +'
       }
 
     },
 
     puedoVer: function(){
-      
+
         if (this.permissions.length !=  0) { //validamos que exita la idea y luego si tengo permiso
-        
-       
+
+
         let iCanSee = false;
         let idUser = this.user.id;
         let idIdea = this.id;
        /* try {
           this.permissions.forEach(function(permission) {
             if (permission.permission_type == 'can view' && permission.id_user ==idUser && permision.id_idea== idIdea  ) {
-              
+
               iCanSee = true;
               console.log('times');
-              
+
             }
           });
         } catch (e) {
@@ -720,23 +794,23 @@ export default {
 
        var item = {};
        var permisos= this.permissions;
-     
-      
+
+
       for (let i = 0; i < permisos.length; i++) {
         item = permisos[i];
-        
+
         if((item.permission_type=='can view' || item.permission_type=='can view-edit'  ) && item.id_user ==idUser && item.id_idea== idIdea){
            iCanSee = true;
         }
-        
-        
+
+
       }
-      
+
 
         return iCanSee;
       } else {
-        
-      
+
+
 
         return false;
       }
@@ -744,20 +818,20 @@ export default {
     },
 
     puedoEditar: function(){
-      
+
         if (this.permissions.length !=  0) { //validamos que exita la idea y luego si tengo permiso
-        
-         
+
+
         let iCanSee = false;
         let idUser = this.user.id;
         let idIdea = this.id;
        /* try {
           this.permissions.forEach(function(permission) {
             if (permission.permission_type == 'can view' && permission.id_user ==idUser && permision.id_idea== idIdea  ) {
-              
+
               iCanSee = true;
               console.log('times');
-              
+
             }
           });
         } catch (e) {
@@ -766,23 +840,23 @@ export default {
 
        var item = {};
        var permisos= this.permissions;
-     
-      
+
+
       for (let i = 0; i < permisos.length; i++) {
         item = permisos[i];
-        
+
         if(item.permission_type=='can view-edit' && item.id_user ==idUser && item.id_idea== idIdea){
            iCanSee = true;
         }
-        
-        
+
+
       }
-      
+
 
         return iCanSee;
       } else {
-        
-        
+
+
 
         return false;
       }
@@ -795,22 +869,22 @@ export default {
 
   methods: {
 
-   
-    
-    alreadyLiked(idea){
 
-      
+
+    alreadyLiked1(idea){
+
+
 
         if (this.likesPerIdea.length != 0) {
-        
+
 
         let foundLiked2 = false;
         try {
           this.likesPerIdea.forEach(function(el) {
-            if (el.user_id == window.user.id) {
-              
+            if (el.user_id == window.user.id && el.type=='like') {
+
               foundLiked2 = true;
-              
+
             }
           });
         } catch (e) {}
@@ -818,31 +892,108 @@ export default {
         this.foundLiked = foundLiked2;
         return foundLiked2;
       } else {
-        
+
         this.foundLiked=false;
 
         return false;
       }
-    },
 
-    likeIdea(){
 
-   
+
+
+    }, // end alreadyLike(idea)
+		alreadyLiked2(idea){
+
+
+
+        if (this.likesPerIdea.length != 0) {
+
+
+        let foundLiked2 = false;
+        try {
+          this.likesPerIdea.forEach(function(el) {
+            if (el.user_id == window.user.id && el.type=='dislike') {
+
+              foundLiked2 = true;
+
+            }
+          });
+        } catch (e) {}
+
+        this.foundLiked = foundLiked2;
+        return foundLiked2;
+      } else {
+
+        this.foundLiked=false;
+
+        return false;
+      }
+
+
+
+
+    }, // end alreadyLike(idea)2
+
+		alreadyLiked3(idea){
+
+
+
+        if (this.likesPerIdea.length != 0) {
+
+
+        let foundLiked2 = false;
+        try {
+          this.likesPerIdea.forEach(function(el) {
+            if (el.user_id == window.user.id && el.type=='action') {
+
+              foundLiked2 = true;
+
+            }
+          });
+        } catch (e) {}
+
+        this.foundLiked = foundLiked2;
+        return foundLiked2;
+      } else {
+
+        this.foundLiked=false;
+
+        return false;
+      }
+
+
+
+
+    }, // end alreadyLike(idea)3
+
+
+
+    likeIdea(type){
+
+
 
       this.$Progress.start();
       // Submit the form via a POST request
+
+			this.formDesired.type = type;
 
       //this.form.editordata =  $('#kt_summernote_1').summernote('code');
       this.formDesired
         .post("/saveDesired")
         .then(response => {
-          toastr.success("Keep rating", "Innovation liked!.");
-         
+
+					if(type=='like' || type =='dislike' || type=='action'){
+						  toastr.success("Gracias por valorar la idea.", "Sigue puntuando tus ideas favoritas.");
+					}else {
+
+					}
+
+
           this.likesPerIdea = response.data.desired;
         })
         .catch(error => {
           console.log(error);
-        
+
           toastr.error("Oops!", "Something goes wrong");
         });
 
@@ -861,7 +1012,7 @@ export default {
         try {
           likeObject.forEach(function(elements) {
             if (elements.user_id == window.user.id) {
-            
+
               found = true;
             }
           });
@@ -875,7 +1026,7 @@ export default {
     },
 
     likeComment(idComment) {
-    
+
 
       this.formLike.comment_id = idComment;
       this.formLike.idea_id = this.id_idea_general;
@@ -946,7 +1097,7 @@ export default {
       this.form
         .post("/addComment")
         .then(response => {
-          toastr.success("Awesome!", "Comment added successfully.");
+          toastr.success("Genial!", "Gracias por dar tu opinión.");
           this.form.reset();
 
           this.discussionsFinal = response.data.discussions;
@@ -979,7 +1130,7 @@ export default {
       this.formChild
         .post("/addComment")
         .then(response => {
-          toastr.success("Awesome!", "Comment added successfully.");
+          //toastr.success("Awesome!", "Comment added successfully.");
           this.formChild.reset();
 
           this.discussionsFinal = response.data.discussions;
@@ -1004,7 +1155,7 @@ export default {
       this.formChild2
         .post("/addComment")
         .then(response => {
-          toastr.success("Awesome!", "Comment added successfully.");
+        toastr.success("Genial!", "Gracias por comentar.");
           this.formChild2.reset();
 
           $("#" + idComment).attr("style", "display:none");
@@ -1025,18 +1176,16 @@ export default {
     }
   },
   created() {
-    
-    
-    
+
+
+
   },
 
   mounted() {
-    
+
     this.loadUsers();
 
-    
+
   }
 };
 </script>
-
-

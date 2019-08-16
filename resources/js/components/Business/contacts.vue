@@ -309,12 +309,7 @@
 
 
 <style>
-@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 
-body {
-  font-family: "Open Sans", "sans-serif" !important;
-  font-weight: 400 !important;
-}
 
 h3,
 .letter,

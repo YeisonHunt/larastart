@@ -1,9 +1,9 @@
 
 <template>
-    
+
 
 				<div class="container-fluid">
-	
+
     					<div class="row" >
 								<div class="col-lg-1"></div>
 								<div class="col-lg-10 col-sm-12 col-md-10">
@@ -36,7 +36,7 @@
 																	<span class="kt-nav__link-text">Save &amp; continue</span>
 																</a>
 															</li>
-															
+
 															<li class="kt-nav__item">
 																<a href="#" class="kt-nav__link">
 																	<i class="kt-nav__link-icon flaticon2-add-1"></i>
@@ -49,7 +49,7 @@
 											</div>
 										</div>
 										<div class="kt-portlet__body blocked ">
-											
+
 												<div class="row">
 													<div class="col-xl-1"></div>
 													<div class="col-xl-11">
@@ -57,7 +57,7 @@
 															<div class="kt-section__body">
 																<h3 class="kt-section__title kt-section__title-lg ">Detalles de Idea</h3>
 
-																
+
 
 																<br>
 
@@ -85,14 +85,6 @@
 																<br>
 
 
-																<div class="form-group form-group-last row" v-if="form.type=='reto' && form.privacy=='me'">
-																<label class="col-3 col-form-label">A qué grupos va dirijido?</label>	
-															<div class="col-9">
-																	<label class="typo__label">Escoger equipos de trabajo</label>
-																	<multiselect v-model="value" tag-placeholder="Add this as new tag" placeholder="Search or add a tag" label="name" track-by="code" :options="options" :multiple="true" :taggable="true" @tag="addTag" :openDirection="'bottom'"  ></multiselect>
-															</div>
-                      
-																</div>
 																<br>
 
 																<div class="form-group row">
@@ -111,19 +103,19 @@
 																		<has-error :form="form" field="description" ></has-error>
 																	</div>
 																</div>
-															
+
 																<div class="form-group row">
-																	
+
 																	<label for="" style="margin-left:10px;">Descripción detallada</label>
 																	<div class="col-12">
-																		
-																		 <textarea id="kt_summernote_1"  
-																		 :class="{'is-invalid': form.errors.has('editordata')}" 
-																		      @change="updateRichText" v-model="form.editordata" 
+
+																		 <textarea id="kt_summernote_1"
+																		 :class="{'is-invalid': form.errors.has('editordata')}"
+																		      @change="updateRichText" v-model="form.editordata"
 																			   name="editordata" class="summernote richtext" ></textarea>
 
 																		<has-error :form="form" field="body" ></has-error>
-                                                                         
+
 																		<span class="form-text text-muted">El anterior editor enrriquecido de texto te permite escribir descripciones profesionales al alcance de tu mano. </span>
 																	</div>
 																</div>
@@ -132,7 +124,7 @@
 																	<div class="col-9">
 																		<div class="input-group">
 																			<div class="input-group-prepend"><span class="input-group-text"><i class="flaticon-photo-camera"></i></span></div>
-																			<input type="file"  accept="image/x-png, image/jpeg"   @change="onFilePicked" name="img" class="form-control"   :class="{'is-invalid': form.errors.has('img')}"   
+																			<input type="file"  accept="image/x-png, image/jpeg"   @change="onFilePicked" name="img" class="form-control"   :class="{'is-invalid': form.errors.has('img')}"
 																			placeholder="https://wwwmyawesomeideaimg.com/myimage.jpg" aria-describedby="basic-addon1" required>
 
 																			<has-error :form="form" field="img" ></has-error>
@@ -140,15 +132,15 @@
 																		<span class="form-text text-muted">Escoger una buena imágen hace que la idea sea más llamativa y fácil de comprender.</span>
 																	</div>
 																</div>
-																
+
 																<div class="form-group form-group-last row">
 																	<label class="col-3 col-form-label">Categoría</label>
 																	<div class="col-9">
 																		<div class="input-group">
-																			
+
 
 																			<select class="kt-selectpicker form-control "  :class="{'is-invalid': form.errors.has('category')}"        data-container="body"  name="category" id="kt-selectpicker1" v-model="form.category"  required>
-																				
+
 																				<option value="sustainability">Sostenibilidad</option>
 																				<option value="lifeandhealth">Vida & Salud </option>
 																				<option value="artandculture">Arte & Cultura</option>
@@ -171,28 +163,28 @@
 																</div>
 															</div>
 														</div>
-														
+
 														<div class="kt-section">
 															<div class="kt-section__body">
-													
-															
+
+
 																<div class="form-group row">
 																	<label class="col-3 col-form-label">Lenguaje</label>
 																	<div class="col-9">
 																		<select class="kt-selectpicker form-control " :class="{'is-invalid': form.errors.has('language')}"  name="language" id="kt-selectpicker2" v-model="form.language" required>
-																			
-																			
-																			
+
+
+
 																			<option value="en" selected >English</option>
-																		
+
 																			<option value="es">Español - Spanish</option>
-																			
+
 																		</select>
 
 																		<has-error :form="form" field="language" ></has-error>
 																	</div>
 																</div>
-																
+
 																<div class="form-group form-group-last row">
 																	<label class="col-3 col-form-label">Mostrar mi nombre en la idea?</label>
 																	<div class="col-9">
@@ -210,18 +202,38 @@
 																	</div>
 																</div>
 
-															
+																<br>
 
-																	
+																<div class="form-group form-group-last row">
+																	<label class="col-3 col-form-label">Mostrar votos en modo empresa?</label>
+																	<div class="col-9">
+																		<div class="kt-checkbox-inline">
+																			<label class="kt-checkbox">
+																				<input type="radio"  value="yes"  :class="{'is-invalid': form.errors.has('votes_privacy')}"	 name="votes_privacy" v-model="form.votes_privacy" > Si
+																				<span></span>
+																			</label>
+																			<label class="kt-checkbox">
+																				<input type="radio" value="no" :class="{'is-invalid': form.errors.has('votes_privacy')}" name="votes_privacy" v-model="form.votes_privacy" > Aún no
+																				<span></span>
+																			</label>
+																		<has-error :form="form" field="votes_privacy" ></has-error>
+																		</div>
+																	</div>
+																</div>
+
+
+
+
+
 
 
 															</div>
 														</div>
-														
+
 													</div>
-													
+
 												</div>
-											
+
 										</div>
 
 											<center>
@@ -236,14 +248,14 @@
 														<i style="padding-bottom:8px;" class="la la-check"></i>
 														<span class="kt-hidden-mobile">Guardar nueva idea</span>
 													</button>
-												
+
 												</div>
 											</div>
 											</center>
 
 											<br>
 
-											
+
 
 										</form>
 									</div>
@@ -253,10 +265,10 @@
 
 								<div class="col-lg-1"></div>
 
-							
+
 							</div>
 
-							
+
     </div>
 
 </template>
@@ -290,7 +302,7 @@ export default {
 
 	  data() {
             return  {
-			   
+
 			     value: [
                         { name: 'Equipo 1', code: 'js' }
                     ],
@@ -299,7 +311,7 @@ export default {
                         { name: 'Equipo 2', code: 'js' },
                         { name: 'Equipo 3', code: 'os' }
                     ],
-                
+
 			    user: window.User,
                 form: new Form({
                     id:'',
@@ -311,16 +323,17 @@ export default {
 					language:'es',
 					author:'anonymous',
 					privacy:'me',
-					type:'idea'
+					type:'idea',
+					votes_privacy:'no'
 
-                }) 
+                })
             }
 		},
-		
+
 	methods: {
 
 		onFilePicked(event) {
-			
+
 			const files = event.target.files;
 			let filename = files[0].name;
 
@@ -350,24 +363,24 @@ export default {
 
 			 this.$Progress.start();
 			  // Submit the form via a POST request
-			  
+
 			  	 this.form.editordata =  $('#kt_summernote_1').summernote('code');
                  this.form.post('/saveIdea2')
-                .then(({ data }) => { 
+                .then(({ data }) => {
 
-				 
+
 					this.$router.push('innovations');
                     toastr.success('Awesome!','New idea has appeared.')
 					this.form.reset();
-                    
+
 
 
                  }).catch(()=>{
-                    toastr.error('Oops!','Something goes wrong')    
+                    toastr.error('Oops!','Something goes wrong')
                  })
 
                 //$('#userCreationModal').modal('hide');
-                
+
                 this.$Progress.finish();
 		},
 
@@ -376,22 +389,22 @@ export default {
 			this.form.editordata =  $('textarea[name="editordata"]').html($('#kt_summernote_1').code());
 		},
 
-	
+
 
 
 	},
 
 
 	mounted() {
-		
+
 		var KTSummernoteDemo={init:function(){
-			
+
 			$("#kt_summernote_1").summernote(
 				{height:250
-				
-				
+
+
 				}
-				
+
 				);
 
 			//$('.kt-selectpicker').selectpicker();
@@ -400,29 +413,29 @@ export default {
 		    $('.dropdown-toggle').dropdown();
 
 
-		
 
-			
+
+
 
 		}};jQuery(document).ready(function()
-		
+
 		{
-			
+
 			KTSummernoteDemo.init();
-			
-		
+
+
 		}
-		
+
 		);
 
-		
+
 		}
 
-		
-	
+
+
 }
 
 
-	
-					
+
+
 </script>

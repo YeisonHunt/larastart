@@ -22,7 +22,14 @@
                   </div>
                   <div
                     class="alert-text"
-                  >La información colocada aquí como el logo se verá reflejada en las cuentas de usuarios.</div>
+                  >La información colocada aquí como el logo se verá reflejada en las cuentas de usuarios. <br/> <br>
+                  Nota: sabemos que los logos están generalmente en formato png o svg, pero al mezclarse con el color de fondo muchas veces no se ven. Innova recomienda
+                  utilizar la siguiente herramienta para transformar el formato de su logo a JPG antes de subirlo.
+                  
+                  <br>
+
+                  <a href="https://png2jpg.com/" target="_blank">Click aqui :PNG to JPG</a>
+                  </div>
                 </div>
               </div>
 
@@ -162,12 +169,15 @@ export default {
           this.companyForm.reset();
 
           this.getCompanyInfo();
+          window.location.reload(false); 
         })
         .catch(error => {
           toastr.error("Oops!", "Algo anda mal");
         });
 
       this.$Progress.finish();
+
+
     }, //end updateCompany
 
     getCompanyInfo() {

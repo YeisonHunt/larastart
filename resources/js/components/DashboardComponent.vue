@@ -15,12 +15,7 @@
 							
 						>
 							<v-card-title>
-							<v-icon
-								large
-								left
-							>
-								mdi-lightbulb
-							</v-icon>
+						
 							<span class="title font-weight-light">Innovaciones</span>
 							</v-card-title>
 
@@ -44,12 +39,7 @@
 							height="220"
 						>
 							<v-card-title>
-							<v-icon
-								large
-								left
-							>
-								mdi-image-filter-center-focus-strong
-							</v-icon>
+						
 							<span class="title font-weight-light">Retos</span>
 							</v-card-title>
 
@@ -73,12 +63,7 @@
 							height="220"
 						>
 							<v-card-title>
-							<v-icon
-								large
-								left
-							>
-								mdi-account-group
-							</v-icon>
+							
 							<span class="title font-weight-light">Grupos de trabajo</span>
 							</v-card-title>
 
@@ -97,40 +82,7 @@
 
 			<br>
 
-			<div class="row">
-				<div class="col-lg-4 col-sm-12">
-					
-
-						<v-card
-							class="mx-auto"
-							color="#9E9E9E "
-							dark
-							hover
-							height="220"
-						>
-							<v-card-title>
-							<v-icon
-								large
-								left
-							>
-								mdi-view-module
-							</v-icon>
-							<span class="title font-weight-light">+ módulos en</span>
-							</v-card-title>
-
-							<v-card-text class="headline font-weight-bold">
-							Asakaa Project Management
-							<br/>
-						
-							</v-card-text>
-
-						 <v-card-actions>
-					
-						<v-btn style="color:#9E9E9E ;" @click="goAsakaa" color="white">Explorar herramienta</v-btn>
-						</v-card-actions>
-						</v-card>
-				</div>
-			</div>
+		
 		</div>
 
 		
@@ -228,7 +180,8 @@ export default {
 	
       $("#admin").removeClass('menuActivo');
       $("#dashboard").addClass('menuActivo');
-      $("#innovations").removeClass('menuActivo');
+	  $("#innovations").removeClass('menuActivo');
+	  $("#retos").removeClass('menuActivo');
 	
   },
 

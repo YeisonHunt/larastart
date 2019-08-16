@@ -100,6 +100,7 @@
                   label="Filtrar ideas por categoría																			"
                   outline
                   color="#576CFF"
+                  append-icon="arrow_drop_down"
                  
                  
                 ></v-select>
@@ -162,11 +163,9 @@
                   <v-btn :to="{name:'view-idea',params:{id:idea.id}}" text color="deep-purple accent-4">Leer completa</v-btn>
                 
                   <v-spacer></v-spacer>
-                  <v-btn icon @click="goIdea(idea.id)">
-                    <v-icon>mdi-heart</v-icon>
-                  </v-btn>
+                
                   <v-btn icon @click.stop.prevent="vote(idea)">
-                    <v-icon>mdi-share-variant</v-icon>
+                    <v-icon>share</v-icon>
                   </v-btn>
                 </v-card-actions>
               </v-card>

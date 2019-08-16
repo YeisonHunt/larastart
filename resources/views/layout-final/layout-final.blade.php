@@ -42,6 +42,8 @@
     }
   </style>
   <link  href="{{asset('modern-innova/css/new_home.5db11bb9710cb72ec455a4f37baf3e2e.min.css')}}" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
  
 
 
@@ -200,7 +202,7 @@
           @auth
           <li class="register">
           <a id="register-header" class="register btn" href="{{route('innovations')}}">
-              Ir a dashboard
+              Ir al panel de innovación
             </a>
           </li>
 
@@ -208,9 +210,16 @@
          @else
          <li class="register">
           <a id="register-header" class="register btn" href="/register">
-            Comenzar
+            Registrarme
           </a>
         </li>
+
+        
+        <li class="login">
+            <a href="{{route('login')}}">
+              Iniciar sesión
+            </a>
+          </li>
 
 
           @endauth
@@ -219,11 +228,9 @@
             
 
 
-            <li class="login">
-              <a href="{{route('login')}}">
-                Ingresar
-              </a>
-            </li>
+
+
+
           </ul>
         </div>
       </div>

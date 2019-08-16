@@ -576,15 +576,18 @@ export default {
           toastr.success("Awesome!", "New contact has been added.");
           this.contactForm.reset();
           console.log(data.msg)
+          
+      this.$Progress.finish();
         })
         .catch((error) => {
           toastr.error("Oops!", "Something goes wrong");
           console.log(error)
+          
+      this.$Progress.finish();
         });
 
       //$('#userCreationModal').modal('hide');
 
-      this.$Progress.finish();
     }
   }
 };

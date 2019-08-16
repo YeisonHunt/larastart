@@ -1,53 +1,63 @@
 <template>
-  <div class="hole" style="min-height:80vh;">
+
+  <keep-alive>
+    <div class="hole" style="min-height:80vh;">
     <div class="row">
-      
-
-      <router-link v-if="userType=='admin'" :to="{name:'contacts'}" class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction hvr-float hvr-underline-from-center">
+      <router-link
+        v-if="userType=='admin'"
+        :to="{name:'contacts'}"
+        class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction hvr-float hvr-underline-from-center"
+      >
         <div class="kt-portlet kt-portlet--height-fluid">
           <div class="kt-widget14">
             <div class="kt-widget14__header kt-margin-b-14">
-              <h3 class="kt-widget14__title" >Mis usuarios de empresa</h3>
-              <span class="kt-widget14__desc">Maneja todos tus usuarios  corporativos aquí.</span>
+              <h3 class="kt-widget14__title">Mis usuarios de empresa</h3>
+              <span class="kt-widget14__desc">Maneja todos tus usuarios corporativos aquí.</span>
             </div>
 
-
-            <div class="kt-widget14__chart" >
-                
-                <img :src="baseUrl+'img/contact.svg'"  width="90%" height="90%" alt=""
+            <div class="kt-widget14__chart">
+              <img
+                :src="baseUrl+'img/contact.svg'"
+                width="90%"
+                height="90%"
+                alt
                 class="ml-3 animateOnHover"
-                >
+              />
             </div>
-
-
           </div>
         </div>
-      </router-link> <!-- end first col -->
+      </router-link>
+      <!-- end first col -->
 
-
-
-     <router-link v-if="userType=='admin'" :to="{name:'work-teams'}"  class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction hvr-float hvr-underline-from-center">
+      <router-link
+        v-if="userType=='admin'"
+        :to="{name:'work-teams'}"
+        class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction hvr-float hvr-underline-from-center"
+      >
         <div class="kt-portlet kt-portlet--height-fluid">
           <div class="kt-widget14">
             <div class="kt-widget14__header kt-margin-b-14">
-              <h3 class="kt-widget14__title" >Equipos de trabajo</h3>
-              <span class="kt-widget14__desc">Grupos de personas destinadas a funciones e innovaciones específicas.</span>
+              <h3 class="kt-widget14__title">Equipos de trabajo</h3>
+              <span
+                class="kt-widget14__desc"
+              >Grupos de personas destinadas a funciones e innovaciones específicas.</span>
             </div>
 
-
-            <div class="kt-widget14__chart" >
-                
-                <img :src="baseUrl+'img/team.svg'"  width="90%" height="90%" alt=""
+            <div class="kt-widget14__chart">
+              <img
+                :src="baseUrl+'img/team.svg'"
+                width="90%"
+                height="90%"
+                alt
                 class="ml-3 animateOnHover"
-                >
+              />
             </div>
-
-
           </div>
         </div>
-     </router-link> <!-- end first col -->
+      </router-link>
+      <!-- end first col -->
 
-     <router-link :to="{name:'retos'}" class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction  hvr-float hvr-underline-from-center">
+      <!-- <router-link :to="{name:'retos'}" class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction  hvr-float hvr-underline-from-center">
         <div class="kt-portlet kt-portlet--height-fluid">
           <div class="kt-widget14">
             <div class="kt-widget14__header kt-margin-b-14">
@@ -66,33 +76,34 @@
 
           </div>
         </div>
-    </router-link> <!-- end first col -->
+      </router-link>-->
 
-    
-     <router-link :to="{name:'company'}"  class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction hvr-float hvr-underline-from-center">
+      <router-link
+        :to="{name:'company'}"
+        class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction hvr-float hvr-underline-from-center"
+      >
         <div class="kt-portlet kt-portlet--height-fluid">
           <div class="kt-widget14">
             <div class="kt-widget14__header kt-margin-b-14">
-              <h3 class="kt-widget14__title" >Mi empresa</h3>
-              <span class="kt-widget14__desc">Aquí podrás modificar el nombre y el logo de la empresa, estos se verán reflejados en las cuentas de usuario que tengas a disposición.</span>
+              <h3 class="kt-widget14__title">Mi empresa</h3>
+              <span
+                class="kt-widget14__desc"
+              >Aquí podrás modificar el nombre y el logo de la empresa, estos se verán reflejados en las cuentas de usuario que tengas a disposición.</span>
             </div>
 
-
-            <div class="kt-widget14__chart" >
-                
-                <img :src="baseUrl+'img/company.svg'"  width="90%" height="90%" alt=""
+            <div class="kt-widget14__chart">
+              <img
+                :src="baseUrl+'img/company.svg'"
+                width="90%"
+                height="90%"
+                alt
                 class="ml-3 animateOnHover"
-                >
+              />
             </div>
-
-
           </div>
         </div>
-     </router-link> <!-- end first col -->
-
-
-
-    
+      </router-link>
+      <!-- end first col -->
 
       <!--
         <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction  hvr-float hvr-underline-from-center">
@@ -118,9 +129,7 @@
 
       -->
 
-    
-
-  <!--
+      <!--
     <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction  hvr-float hvr-underline-from-center">
         <div class="kt-portlet kt-portlet--height-fluid">
           <div class="kt-widget14">
@@ -144,7 +153,7 @@
 
       -->
 
-   <!--
+      <!--
     
          <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction  hvr-float hvr-underline-from-center">
         <div class="kt-portlet kt-portlet--height-fluid">
@@ -167,7 +176,7 @@
         </div>
       </div>-->
 
-<!--
+      <!--
         <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction  hvr-float hvr-underline-from-center">
         <div class="kt-portlet kt-portlet--height-fluid">
           <div class="kt-widget14">
@@ -187,80 +196,62 @@
 
           </div>
         </div>
-      </div> -->
-      
-
-    
-    
-
-
-    </div><!-- end row -->
-
+      </div>-->
+    </div>
+    <!-- end row -->
+  </div>
+  </keep-alive>
   
 
 
-
-
-    
-
-    
-  </div><!-- end hole -->
+  <!-- end hole -->
 </template>
 
 <style>
-
-
-
 .adminFunction {
-    cursor:pointer;
+  cursor: pointer;
 }
 
-html, body {
-    height: 100%;
-    width: 100%;
+html,
+body {
+  height: 100%;
+  width: 100%;
 }
-
-
-
 </style>
 
 
 <script>
 export default {
+  data() {
+    return {
+      baseUrl: window.baseUrl,
+      userType: ""
+    };
+  },
 
-    data(){
-        
-        return{
-            baseUrl: window.baseUrl,
-            userType:''
-        }
-    },
-
-    methods: {
-      getUser() {
-          axios
+  methods: {
+    getUser() {
+      axios
         .get("/data/getCompanyInfo")
         .then(response => {
-          
-		  
-      this.userType= response.data.userType;
-      
+          this.userType = response.data.userType;
         })
         .catch(error => {
           console.log(error);
 
           toastr.error("Oops!", "Something goes wrong");
         });
-      }
-    },
-    mounted() {
-
-      $("#admin").addClass('menuActivo');
-      $("#dashboard").removeClass('menuActivo');
-      $("#innovations").removeClass('menuActivo');
-
-      this.getUser()
-
     }
+  },
+  mounted() {
+    $("#admin").addClass("menuActivo");
+    $("#dashboard").removeClass("menuActivo");
+    $("#innovations").removeClass("menuActivo");
+    $("#retos").removeClass("menuActivo");
+
+    this.getUser();
+
+    console.log('business mounted');
+  }
 };
 </script>

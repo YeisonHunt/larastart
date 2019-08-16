@@ -10746,3 +10746,7 @@ td {
   color: #D5DCE0 !important;
 }
 
+.click:hover {
+  cursor: pointer;
+}
+
