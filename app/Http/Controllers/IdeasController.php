@@ -603,7 +603,8 @@ class IdeasController extends Controller
 
       $public = DB::table('innovations')->where('privacy','public')
 			->where('innovations.type','idea')
-			->join('users','innovations.created_by','users.id')
+            ->join('users','innovations.created_by','users.id')
+            ->where('innovations.created_by','!=',$userAuth->id)
 			->select('innovations.*','users.name as escrita')
 			->orderBy('created_at','DESC')->get();
 
