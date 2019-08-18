@@ -94,7 +94,7 @@ let routes = [
 	{ path: '/innovations', name:'ideaList', component: () => import(/* webpackChunkName: "idea-index" */ './components/IdeaComponent.vue') },
 	{ path: '/ideaCreation', name: 'innovations', component: () => import(/* webpackChunkName: "idea-creation" */ './components/IdeaCreationComponent.vue')},
 	{ path: '/solucion-reto/:id', name: 'solucion-reto', component: () => import(/* webpackChunkName: "reto-solucion" */ './components/Retos/SolucionReto.vue') },
-	{ path: '/innovations/:id', component: () => import(/* webpackChunkName: "normal-view" */ './components/IdeaViewComponent.vue')},
+	{ path: '/innovations/:id',  name:'ver-idea',  component: () => import(/* webpackChunkName: "normal-view" */ './components/IdeaViewComponent.vue')},
 	{ path: '/innovations/public/:id', component: () => import(/* webpackChunkName: "public-view" */ './components/PublicIdeaViewComponent.vue') },
 	{ path: '/innovationsEdit/:id', component: () => import(/* webpackChunkName: "edit-idea" */ './components/IdeaEditComponent.vue') },
 

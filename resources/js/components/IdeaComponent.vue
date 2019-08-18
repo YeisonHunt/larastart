@@ -32,27 +32,7 @@
 
       <div class="mb-3" >
 
-            <!--
-              <b-dropdown id="dropdown-1" text="Filter by Category" class="m-mb-2 " variant="primary">
-                <b-dropdown-item  v-on:click="filterIdeas('all')">All categories</b-dropdown-item>
-
-                <b-dropdown-item class="darkGray" v-on:click="filterIdeas('improvethis')" >Improve Asakaa.com</b-dropdown-item>
-                <b-dropdown-item class="darkGray" v-on:click="filterIdeas('sustainability')">Sustainability</b-dropdown-item>
-                <b-dropdown-item class="darkGray" v-on:click="filterIdeas('lifeandhealth')">Life & Health</b-dropdown-item>
-                <b-dropdown-item class="darkGray" v-on:click="filterIdeas('artandculture')">Art & Culture</b-dropdown-item>
-                <b-dropdown-item class="darkGray" v-on:click="filterIdeas('beautyandfaashion')">Beauty & Fashion</b-dropdown-item>
-                <b-dropdown-item class="darkGray" v-on:click="filterIdeas('homeandpets')">Home & Pets</b-dropdown-item>
-                <b-dropdown-item class="darkGray" v-on:click="filterIdeas('scienceandtechnology')">Science & Technology</b-dropdown-item>
-                <b-dropdown-item class="darkGray" v-on:click="filterIdeas('tourismandtravel')">Tourism & Travel</b-dropdown-item>
-                <b-dropdown-item class="darkGray" v-on:click="filterIdeas('transport')">Transport</b-dropdown-item>
-                <b-dropdown-item class="darkGray" v-on:click="filterIdeas('food')">Food</b-dropdown-item>
-                <b-dropdown-item class="darkGray" v-on:click="filterIdeas('politicsandsociety')">Politics & Society</b-dropdown-item>
-                <b-dropdown-item class="darkGray" v-on:click="filterIdeas('sportsandentertainment')">Sports & Entertainment</b-dropdown-item>
-                <b-dropdown-item class="darkGray" v-on:click="filterIdeas('businessandconsumer')">Business & Consumer</b-dropdown-item>
-
-
-              </b-dropdown>
-              -->
+          
 
         <vs-select
           class="selectExample "
@@ -217,7 +197,7 @@
 													</div>
 													<div class="kt-widget19__info">
 														<a v-if="idea.author='showme'" href="#" class="kt-widget19__username">
-															Por: <br/>&nbsp;
+															Por: {{idea.escrita}}<br/>&nbsp;
 														</a>
 
                             <a  v-else href="#" class="kt-widget19__username">
@@ -267,6 +247,11 @@
 										</div>
 									</div>
     </div>
+
+   
+
+
+
  
 
 
@@ -768,6 +753,7 @@ export default {
       ideas: {},
       publicIdeas:{},
       companyIdeas:{},
+      solutions:{},
 
       minHeight: '300px',
       baseUrl:window.baseUrl,
@@ -977,6 +963,7 @@ export default {
           this.publicIdeas = response.data.publicIdeas;
           this.user = response.data.user;
           this.companyIdeas = response.data.companyIdeas;
+        
           
         })
         .catch(error => {

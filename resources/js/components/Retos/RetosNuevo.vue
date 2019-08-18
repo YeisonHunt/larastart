@@ -302,7 +302,7 @@ export default {
 					category :'sustainability',
 					language:'es',
 					author:'showme',
-					privacy:'public',
+					privacy:'empresarial',
 					type:'reto'
 
                 }) 

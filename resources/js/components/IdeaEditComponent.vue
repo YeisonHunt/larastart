@@ -17,8 +17,8 @@
             <div class="kt-portlet__head kt-portlet__head--lg" style>
               <div class="kt-portlet__head-label">
                 <h3 class="kt-portlet__head-title">
-                  Create awesome ideas
-                  <small>to improve your company functions</small>
+                  Editando idea
+                  <small>...</small>
                 </h3>
               </div>
               <div class="kt-portlet__head-toolbar">
@@ -40,10 +40,10 @@
                 <div class="col-xl-8">
                   <div class="kt-section kt-section--first">
                     <div class="kt-section__body">
-                      <h3 class="kt-section__title kt-section__title-lg">Idea details</h3>
+                      <h3 class="kt-section__title kt-section__title-lg">Detalles de Idea</h3>
 
                       <div class="form-group row">
-                        <label class="col-3 col-form-label">Title</label>
+                        <label class="col-3 col-form-label">Título</label>
                         <div class="col-9">
                           <input
                             class="form-control"
@@ -56,8 +56,33 @@
                         </div>
                       </div>
 
+                      <br>
+
+                      <div class="form-group form-group-last row">
+																	<label class="col-3 col-form-label">Privacidad de la idea</label>
+																	<div class="col-9">
+																		<div class="kt-checkbox-inline">
+																			<label class="kt-checkbox">
+																				<input type="radio"  value="me"  :class="{'is-invalid': form.errors.has('privacy')}"	 name="privacy" v-model="form.privacy" > Privada (Solo para mi)
+																				<span></span>
+																			</label>
+
+																			<label class="kt-checkbox">
+																				<input type="radio"  value="empresarial"  :class="{'is-invalid': form.errors.has('privacy')}"	 name="privacy" v-model="form.privacy" > Privada (Empresarial)
+																				<span></span>
+																			</label>
+																			<label class="kt-checkbox">
+																				<input type="radio" value="public" :class="{'is-invalid': form.errors.has('privacy')}" name="privacy" v-model="form.privacy" > Hacerla pública
+																				<span></span>
+																			</label>
+																		<has-error :form="form" field="privacy" ></has-error>
+																		</div>
+																	</div>
+																</div>
+																<br>
+
                       <div class="form-group row">
-                        <label class="col-3 col-form-label">Description</label>
+                        <label class="col-3 col-form-label">Descripción corta</label>
                         <div class="col-9">
                           <textarea
                             class="form-control"
@@ -71,7 +96,7 @@
                       </div>
 
                       <div class="form-group row">
-                        <label for style="margin-left:10px;">Body</label>
+                        <label for style="margin-left:10px;">Descripción completa</label>
                         <div class="col-12">
                         <!--   <textarea id="mySummer" @change="updateRichText" v-model="form.editordata"  name="editordata" class="summernote richtext" ></textarea>-->
 
@@ -79,11 +104,11 @@
 
                           <span
                             class="form-text text-muted"
-                          >If you want to increase your idea rating and apreciation. Please use our below rich text editor.</span>
+                          >El módulo anterior hace que la idea se pueda escribir como un artículo profesional.</span>
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label class="col-3 col-form-label">Main Image</label>
+                        <label class="col-3 col-form-label">Imágen alusiva</label>
                         <div class="col-9">
                           <div class="input-group">
                             <div class="input-group-prepend">
@@ -92,49 +117,62 @@
                               </span>
                             </div>
                             <input
-                              type="text"
-                              v-model="form.img"
+                              type="file"
+                              accept="image/x-png, image/jpeg"
+                              @change="onFilePicked"
                               name="img"
                               class="form-control"
-                              placeholder="https://wwwmyawesomeideaimg.com/myimage.jpg"
+                             
                               aria-describedby="basic-addon1"
                               required
+                              ref="contactPhoto"
                             >
                           </div>
                           <span
                             class="form-text text-muted"
-                          >Choose an awesome image to get more likes for your idea.</span>
+                          >Escoge una imágen que represente la idea (<1MB)</span>
                         </div>
+
+                        
+                      </div>
+
+                      <br>
+
+                          <div class="form-group row">
+                        <label class="col-3 col-form-label">Previsualización Imágen</label>
+                        <div class="col-9">
+                         
+                           <v-img
+                            :src="form.img"
+                            height="225"
+                      
+                          ></v-img>
+                        </div>
+
+                        
                       </div>
 
                       <div class="form-group form-group-last row">
-                        <label class="col-3 col-form-label">Category</label>
+                        <label class="col-3 col-form-label">Categoría</label>
                         <div class="col-9">
                           <div class="input-group">
-                            <select
-                              class="kt-selectpicker form-control"
-                              data-live-search="true"
-                              data-container="body"
-                              data-size="6"
-                              name="category"
-                              id="kt-selectpicker1"
-                              v-model="form.category"
-                              required
-                            >
-                              <option value="improvethis" selected>Improve Asakaa.com</option>
-                              <option value="sustainability">Sustainability</option>
-                              <option value="lifeandhealth">Life & Health</option>
-                              <option value="artandculture">Art & Culture</option>
-                              <option value="beautyandfaashion">Beauty & Fashion</option>
-                              <option value="homeandpets">Home & Pets</option>
-                              <option value="scienceandtechnology">Science & Technology</option>
-                              <option value="tourismandtravel">Tourism & Travel</option>
-                              <option value="transport">Transport</option>
-                              <option value="food">Food</option>
-                              <option value="politicsandsociety">Politics & Society</option>
-                              <option value="sportsandentertainment">Sports & Entertainment</option>
-                              <option value="businessandconsumer">Business & Consumer</option>
-                            </select>
+                           
+
+																			<select class="kt-selectpicker form-control "  :class="{'is-invalid': form.errors.has('category')}"        data-container="body"  name="category" id="kt-selectpicker1" v-model="form.category"  required>
+
+																				<option value="sustainability">Sostenibilidad</option>
+																				<option value="lifeandhealth">Vida & Salud </option>
+																				<option value="artandculture">Arte & Cultura</option>
+																				<option value="beautyandfaashion">Moda & Belleza</option>
+																				<option value="homeandpets">Hogar & Mascotas</option>
+																				<option value="scienceandtechnology">Ciencia & Tecnología</option>
+																				<option value="tourismandtravel">Turismo & Viajes</option>
+																				<option value="transport">Transporte</option>
+																				<option value="food">Comida</option>
+																				<option value="politicsandsociety">Política & Sociedad</option>
+																				<option value="sportsandentertainment">Deporte & Entretenimiento</option>
+																				<option value="businessandconsumer">Negocios & Consumo</option>
+																			</select>
                           </div>
                         </div>
                       </div>
@@ -144,7 +182,7 @@
                   <div class="kt-section">
                     <div class="kt-section__body">
                       <div class="form-group row">
-                        <label class="col-3 col-form-label">Language</label>
+                        <label class="col-3 col-form-label">Lenguaje</label>
                         <div class="col-9">
                           <select
                             class="kt-selectpicker form-control"
@@ -153,15 +191,15 @@
                             v-model="form.language"
                             required
                           >
-                            <option value="en" selected>English</option>
+                            <option value="en" selected>Inglés</option>
 
-                            <option value="es">Español - Spanish</option>
+                            <option value="es">Español</option>
                           </select>
                         </div>
                       </div>
 
                       <div class="form-group form-group-last row">
-                        <label class="col-3 col-form-label">Author</label>
+                        <label class="col-3 col-form-label">Mostrar mi nombre en la idea?</label>
                         <div class="col-9">
                           <div class="kt-checkbox-inline">
                             <label class="kt-checkbox">
@@ -171,7 +209,7 @@
                                 checked="true"
                                 name="author"
                                 v-model="form.author"
-                              > Show my username
+                              > Si, mostrar.
                               <span></span>
                             </label>
                             <label class="kt-checkbox">
@@ -180,7 +218,7 @@
                                 value="anonymous"
                                 name="author"
                                 v-model="form.author"
-                              > Anonymous
+                              > Colocar anónimo(a).
                               <span></span>
                             </label>
                           </div>
@@ -198,12 +236,12 @@
               <div class="kt-portlet__head-toolbar">
                 <button type="button" class="btn btn-clean kt-margin-r-10" @click="$router.go(-1)">
                   <i style="padding-bottom:8px;" class="la la-arrow-left"></i>
-                  <span class="kt-hidden-mobile">Back</span>
+                  <span class="kt-hidden-mobile">Atrás</span>
                 </button>
                 <div class="btn-group">
                   <button class="btn btn-brand" type="submit" :disabled="form.busy">
                     <i style="padding-bottom:8px;" class="la la-check"></i>
-                    <span class="kt-hidden-mobile">Update</span>
+                    <span class="kt-hidden-mobile">Actualizar idea</span>
                   </button>
                 </div>
               </div>
@@ -351,6 +389,31 @@ export default {
   },
 
   methods: {
+
+    onPickFile() {
+      this.$refs.contactPhoto.click();
+    },
+
+    onFilePicked(event) {
+      const files = event.target.files;
+      let filename = files[0].name;
+
+      if (filename.lastIndexOf(".") <= 0) {
+        return alert("Please add a valid file");
+      }
+
+      const fileReader = new FileReader();
+      fileReader.addEventListener("load", () => {
+       
+        this.form.img = fileReader.result;
+      });
+      fileReader.readAsDataURL(files[0]);
+      this.form.img = files[0]; // file without any changes
+
+      // esta ultima es la que se envia
+    },
+
+
     loadIdea() {
       axios
         .get("/getInnovation/" + this.id)

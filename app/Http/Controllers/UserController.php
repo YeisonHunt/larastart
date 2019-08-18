@@ -58,6 +58,10 @@ class UserController extends Controller
        // dd($id);
 
         $businessJustSaved= DB::table('businesses')->where('randString',$request->randString)->first();
+        
+        $businessU = Business::find($businessJustSaved->id);
+        $businessU->created_by = $id;
+        $businessU->save();
 
         if(!empty($businessJustSaved)){
 

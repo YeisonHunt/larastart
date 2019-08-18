@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Business;
+use DB;
+use Auth;
 
 
 use Illuminate\Http\Request;
@@ -16,7 +18,36 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-    }
+	}
+	
+
+	public function getDataInfo(){
+
+		$companyId= Auth::user()->company_id;
+		$company = Business::find($companyId);
+		$creator_id = $company->created_by;
+
+		$iPublicas = DB::table('innovations')->where('type','idea')->where('privacy','public')->get();
+		$iPrivadas = DB::table('innovations')->where('type','idea')->where('privacy','empreasarial')->get();
+		$rPublicos = DB::table('innovations')->where('type','reto')->where('privacy','public')->get();
+		$rPrivados = DB::table('innovations')->where('type','reto')->where('privacy','empresarial')->get();
+		$tPublicos = DB::table('teams')->get();
+		$tPrivados = DB::table('teams')->where('creator_id',$creator_id)->get();
+		
+
+
+
+		return response()->json([
+
+			'iPublicas'=>count($iPublicas),
+			'iPrivadas'=>count($iPrivadas),
+			'rPublicos'=>count($rPublicos),
+			'rPrivados'=>count($rPrivados),
+			'tPublicos'=>count($tPublicos),
+			'tPrivados'=>count($tPrivados),
+
+		]);
+	}
 
 
     public function index(Request $request){

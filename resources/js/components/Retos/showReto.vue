@@ -67,10 +67,10 @@
 
           <div class="row">
               <div class="col-12">
-                  <v-expansion-panel>
+                  <v-expansion-panel expand v-model="expandido">
                       <v-expansion-panel-content>
                            <template v-slot:header>
-                                    <div>Soluciones Actuales</div>
+                                    <div>Soluciones Actuales  {{solutions.length}}</div>
                                 </template>
 
                                 <v-container fluid>
@@ -96,7 +96,7 @@
                 </v-card-text>
 
                 <v-card-actions>
-                  <v-btn :to="{name:'view-idea',params:{id:idea.id}}" text color="deep-purple accent-4">Leer completa</v-btn>
+                  <v-btn :to="{name:'ver-idea',params:{id:idea.id}}" dark text color="deep-purple accent-4">Leer completa</v-btn>
 
 
                 </v-card-actions>
@@ -642,6 +642,7 @@
 export default {
   data() {
     return {
+      expandido:[true],
       solutions:{},
       canIseeVar:false,
       permissions:{},

@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"blog":"blog","global-ideas":"global-ideas","idea-view":"idea-view","pricing":"pricing","products":"products","view-Business-contact-profile-vue":"view-Business-contact-profile-vue","view-Business-contacts-vue":"view-Business-contacts-vue","view-Business-create-contact-vue":"view-Business-create-contact-vue","view-Business-edit-contact-vue":"view-Business-edit-contact-vue","view-Business-mycompany-vue":"view-Business-mycompany-vue","view-Business-retos-vue":"view-Business-retos-vue","view-Business-work-teams-index-vue":"view-Business-work-teams-index-vue","view-BusinessComponent-vue":"view-BusinessComponent-vue","view-DashboardComponent-vue":"view-DashboardComponent-vue","view-ExampleComponent-vue":"view-ExampleComponent-vue","view-GoalComponent-vue":"view-GoalComponent-vue","view-IdeaComponent-vue":"view-IdeaComponent-vue","view-IdeaCreationComponent-vue":"view-IdeaCreationComponent-vue","view-IdeaEditComponent-vue":"view-IdeaEditComponent-vue","view-IdeaViewComponent-vue":"view-IdeaViewComponent-vue","view-ProjectComponent-vue":"view-ProjectComponent-vue","view-PublicIdeaViewComponent-vue":"view-PublicIdeaViewComponent-vue","view-ReportComponent-vue":"view-ReportComponent-vue","view-Retos-RetosIndex-vue":"view-Retos-RetosIndex-vue","view-Retos-RetosNuevo-vue":"view-Retos-RetosNuevo-vue","view-Retos-SolucionReto-vue":"view-Retos-SolucionReto-vue","view-Retos-showReto-vue":"view-Retos-showReto-vue","view-Retos-showRetoPublico-vue":"view-Retos-showRetoPublico-vue","view-ShareInnovationComponent-vue":"view-ShareInnovationComponent-vue","view-TimesheetComponent-vue":"view-TimesheetComponent-vue","view-html-editor-vue":"view-html-editor-vue","view-landing-publicIdeas-vue":"view-landing-publicIdeas-vue","view-landing-viewIdeaPublic-vue":"view-landing-viewIdeaPublic-vue","view-landing2-idea-view-vue":"view-landing2-idea-view-vue","view-landing2-index-vue":"view-landing2-index-vue","view-landing3-Preloader-vue":"view-landing3-Preloader-vue","view-quasarLanding-global-ideas-component-vue":"view-quasarLanding-global-ideas-component-vue"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"blog":"blog","global-ideas":"global-ideas","idea-view":"idea-view","pricing":"pricing","products":"products"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -196,7 +196,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1834,6 +1834,9 @@ module.exports = function isBuffer (obj) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -6328,7 +6331,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css":
 /*!***********************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vuetify/dist/vuetify.min.css ***!
+  !*** ./node_modules/css-loader??ref--7-1!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vuetify/dist/vuetify.min.css ***!
   \***********************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -37768,7 +37771,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "hole" })
+  return _c("keep-alive", [_c("div", { staticClass: "hole" })])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -89058,7 +89061,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_vue__;
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./vuetify.min.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css");
+var content = __webpack_require__(/*! !../../css-loader??ref--7-1!../../postcss-loader/src??ref--7-2!./vuetify.min.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -89167,13 +89170,6 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
 Vue.use(vuetify__WEBPACK_IMPORTED_MODULE_0___default.a);
-
-function loadView(view) {
-  return function () {
-    return __webpack_require__("./resources/js/components lazy recursive ^\\.\\/.*\\.vue$")("./".concat(view, ".vue"));
-  };
-}
-
 var routes = [{
   path: '/',
   name: 'home',
@@ -89390,188 +89386,6 @@ if (token) {
 
 /***/ }),
 
-/***/ "./resources/js/components lazy recursive ^\\.\\/.*\\.vue$":
-/*!*********************************************************************!*\
-  !*** ./resources/js/components lazy ^\.\/.*\.vue$ namespace object ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./Business/contact-profile.vue": [
-		"./resources/js/components/Business/contact-profile.vue",
-		"view-Business-contact-profile-vue"
-	],
-	"./Business/contacts.vue": [
-		"./resources/js/components/Business/contacts.vue",
-		"view-Business-contacts-vue"
-	],
-	"./Business/create-contact.vue": [
-		"./resources/js/components/Business/create-contact.vue",
-		"view-Business-create-contact-vue"
-	],
-	"./Business/edit-contact.vue": [
-		"./resources/js/components/Business/edit-contact.vue",
-		"view-Business-edit-contact-vue"
-	],
-	"./Business/mycompany.vue": [
-		"./resources/js/components/Business/mycompany.vue",
-		"view-Business-mycompany-vue"
-	],
-	"./Business/retos.vue": [
-		"./resources/js/components/Business/retos.vue",
-		"view-Business-retos-vue"
-	],
-	"./Business/work-teams-index.vue": [
-		"./resources/js/components/Business/work-teams-index.vue",
-		"view-Business-work-teams-index-vue"
-	],
-	"./BusinessComponent.vue": [
-		"./resources/js/components/BusinessComponent.vue",
-		"view-BusinessComponent-vue"
-	],
-	"./DashboardComponent.vue": [
-		"./resources/js/components/DashboardComponent.vue",
-		"view-DashboardComponent-vue"
-	],
-	"./ExampleComponent.vue": [
-		"./resources/js/components/ExampleComponent.vue",
-		"view-ExampleComponent-vue"
-	],
-	"./GoalComponent.vue": [
-		"./resources/js/components/GoalComponent.vue",
-		"view-GoalComponent-vue"
-	],
-	"./IdeaComponent.vue": [
-		"./resources/js/components/IdeaComponent.vue",
-		"view-IdeaComponent-vue"
-	],
-	"./IdeaCreationComponent.vue": [
-		"./resources/js/components/IdeaCreationComponent.vue",
-		"view-IdeaCreationComponent-vue"
-	],
-	"./IdeaEditComponent.vue": [
-		"./resources/js/components/IdeaEditComponent.vue",
-		"view-IdeaEditComponent-vue"
-	],
-	"./IdeaViewComponent.vue": [
-		"./resources/js/components/IdeaViewComponent.vue",
-		"view-IdeaViewComponent-vue"
-	],
-	"./ProjectComponent.vue": [
-		"./resources/js/components/ProjectComponent.vue",
-		"view-ProjectComponent-vue"
-	],
-	"./PublicIdeaViewComponent.vue": [
-		"./resources/js/components/PublicIdeaViewComponent.vue",
-		"view-PublicIdeaViewComponent-vue"
-	],
-	"./ReportComponent.vue": [
-		"./resources/js/components/ReportComponent.vue",
-		"view-ReportComponent-vue"
-	],
-	"./Retos/RetosIndex.vue": [
-		"./resources/js/components/Retos/RetosIndex.vue",
-		"view-Retos-RetosIndex-vue"
-	],
-	"./Retos/RetosNuevo.vue": [
-		"./resources/js/components/Retos/RetosNuevo.vue",
-		"view-Retos-RetosNuevo-vue"
-	],
-	"./Retos/SolucionReto.vue": [
-		"./resources/js/components/Retos/SolucionReto.vue",
-		"view-Retos-SolucionReto-vue"
-	],
-	"./Retos/showReto.vue": [
-		"./resources/js/components/Retos/showReto.vue",
-		"view-Retos-showReto-vue"
-	],
-	"./Retos/showRetoPublico.vue": [
-		"./resources/js/components/Retos/showRetoPublico.vue",
-		"view-Retos-showRetoPublico-vue"
-	],
-	"./ShareInnovationComponent.vue": [
-		"./resources/js/components/ShareInnovationComponent.vue",
-		"view-ShareInnovationComponent-vue"
-	],
-	"./TimesheetComponent.vue": [
-		"./resources/js/components/TimesheetComponent.vue",
-		"view-TimesheetComponent-vue"
-	],
-	"./html-editor.vue": [
-		"./resources/js/components/html-editor.vue",
-		"view-html-editor-vue"
-	],
-	"./landing/publicIdeas.vue": [
-		"./resources/js/components/landing/publicIdeas.vue",
-		"view-landing-publicIdeas-vue"
-	],
-	"./landing/viewIdeaPublic.vue": [
-		"./resources/js/components/landing/viewIdeaPublic.vue",
-		"view-landing-viewIdeaPublic-vue"
-	],
-	"./landing2/idea/view.vue": [
-		"./resources/js/components/landing2/idea/view.vue",
-		"view-landing2-idea-view-vue"
-	],
-	"./landing2/index.vue": [
-		"./resources/js/components/landing2/index.vue",
-		"view-landing2-index-vue"
-	],
-	"./landing3/Preloader.vue": [
-		"./resources/js/components/landing3/Preloader.vue",
-		"view-landing3-Preloader-vue"
-	],
-	"./landing3/blog.vue": [
-		"./resources/js/components/landing3/blog.vue",
-		"blog"
-	],
-	"./landing3/global-ideas.vue": [
-		"./resources/js/components/landing3/global-ideas.vue",
-		"global-ideas"
-	],
-	"./landing3/home.vue": [
-		"./resources/js/components/landing3/home.vue"
-	],
-	"./landing3/idea/view.vue": [
-		"./resources/js/components/landing3/idea/view.vue",
-		"idea-view"
-	],
-	"./landing3/pricing.vue": [
-		"./resources/js/components/landing3/pricing.vue",
-		"pricing"
-	],
-	"./landing3/products.vue": [
-		"./resources/js/components/landing3/products.vue",
-		"products"
-	],
-	"./quasarLanding/global-ideas-component.vue": [
-		"./resources/js/components/quasarLanding/global-ideas-component.vue",
-		"view-quasarLanding-global-ideas-component-vue"
-	]
-};
-function webpackAsyncContext(req) {
-	if(!__webpack_require__.o(map, req)) {
-		return Promise.resolve().then(function() {
-			var e = new Error("Cannot find module '" + req + "'");
-			e.code = 'MODULE_NOT_FOUND';
-			throw e;
-		});
-	}
-
-	var ids = map[req], id = ids[0];
-	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {
-		return __webpack_require__(id);
-	});
-}
-webpackAsyncContext.keys = function webpackAsyncContextKeys() {
-	return Object.keys(map);
-};
-webpackAsyncContext.id = "./resources/js/components lazy recursive ^\\.\\/.*\\.vue$";
-module.exports = webpackAsyncContext;
-
-/***/ }),
-
 /***/ "./resources/js/components/landing3/home.vue":
 /*!***************************************************!*\
   !*** ./resources/js/components/landing3/home.vue ***!
@@ -89641,26 +89455,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/sass/appLanding.scss":
-/*!****************************************!*\
-  !*** ./resources/sass/appLanding.scss ***!
-  \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 0:
-/*!***************************************************************************!*\
-  !*** multi ./resources/js/appLanding.js ./resources/sass/appLanding.scss ***!
-  \***************************************************************************/
+/***/ 1:
+/*!******************************************!*\
+  !*** multi ./resources/js/appLanding.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\larastart\resources\js\appLanding.js */"./resources/js/appLanding.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\larastart\resources\sass\appLanding.scss */"./resources/sass/appLanding.scss");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\larastart\resources\js\appLanding.js */"./resources/js/appLanding.js");
 
 
 /***/ })

@@ -481,10 +481,16 @@ class IdeasController extends Controller
         $userAuth = Auth::user();
 
         // Para halar las innovaciones por usuario, el determinante debe ser el id del usuario.
+
+
 				$ideas= DB::table('user__has__ideas')
 				->join('innovations','user__has__ideas.id_idea','innovations.id')
 				->where('user__has__ideas.id_user',$userAuth->id)
-				->where('innovations.type','idea')
+                ->where(function ($query) {
+                    $query->where('innovations.type', '=', 'solucion')
+                          ->orWhere('innovations.type', '=', 'idea');
+                })
+        
 				->select('user__has__ideas.*')
 				->orderBy('user__has__ideas.id','DESC')
 				->get();
@@ -501,7 +507,10 @@ class IdeasController extends Controller
 					$corporateIdeas = DB::table('innovations')
 					->where('company_id',$userAuth->company_id)
 					->where('privacy','empresarial')
-					->where('type','idea')
+                    ->where(function ($query) {
+                        $query->where('type', '=', 'solucion')
+                              ->orWhere('type', '=', 'idea');
+                    })
 					->where('created_by','!=',$userAuth->id)
 					->orderBy('created_at','DESC')
 					->get();
@@ -515,9 +524,11 @@ class IdeasController extends Controller
 
 									$checkLikesIdea = DB::table('desireds')->where('innovation_id',$idea->id)->get();
 
-									Log::info($checkLikesIdea);
+								
 
-									$ideaUser = DB::table('innovations')->where('id',$idea->id)->first();
+                                    $ideaUser = DB::table('innovations')->where('id',$idea->id)->first();
+                                    
+                                    $userIdea = User::find($idea->created_by);
 
 									$permissions = DB::table('user__has__ideas__permissions')->where('id_idea',$idea->id)->get();
 
@@ -537,7 +548,8 @@ class IdeasController extends Controller
 													'created_by'=>$ideaUser->created_by,
 													'created_at'=>$ideaUser->created_at,
 													'likes'=>$checkLikesIdea,
-													'permissions'=>$permissions
+                                                    'permissions'=>$permissions,
+                                                    'escrita'=>$userIdea->name
 
 
 											);
@@ -562,7 +574,8 @@ class IdeasController extends Controller
 													'created_by'=>$ideaUser->created_by,
 													'created_at'=>$ideaUser->created_at,
 													'likes'=>array(),
-													'permissions'=>$permissions
+                                                    'permissions'=>$permissions,
+                                                    'escrita'=>$userIdea->name
 
 
 											);
@@ -606,7 +619,7 @@ class IdeasController extends Controller
 
                 $checkLikesIdea = DB::table('desireds')->where('innovation_id',$idea->id_idea)->get();
 
-                $ideaUser = DB::table('innovations')->where('id',$idea->id_idea)->where('type','idea')->first();
+                $ideaUser = DB::table('innovations')->where('id',$idea->id_idea)->first();
 
                 $permissions = DB::table('user__has__ideas__permissions')->where('id_idea',$idea->id_idea)->get();
 
@@ -932,6 +945,9 @@ class IdeasController extends Controller
             // The user is logged in...
             $user= Auth::user();
         }
+
+
+        
 
 
         $permissions = DB::table('user__has__ideas__permissions')->where('id_idea',$idea->id)->where('id_user',$user->id)->get();

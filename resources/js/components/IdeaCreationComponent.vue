@@ -321,7 +321,7 @@ export default {
 					img:'',
 					category :'sustainability',
 					language:'es',
-					author:'anonymous',
+					author:'showme',
 					privacy:'me',
 					type:'idea',
 					votes_privacy:'no'
@@ -331,6 +331,16 @@ export default {
 		},
 
 	methods: {
+
+		checkUserType(){
+
+			if(user.account_type=='personal'){
+				this.form.privacy='empresarial'
+			}else {
+				this.form.privacy='empresarial'
+			}
+
+		},
 
 		onFilePicked(event) {
 
@@ -396,6 +406,8 @@ export default {
 
 
 	mounted() {
+
+		this.checkUserType()
 
 		var KTSummernoteDemo={init:function(){
 

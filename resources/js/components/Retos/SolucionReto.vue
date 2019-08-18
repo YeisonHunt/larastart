@@ -315,8 +315,8 @@ export default {
 					img:'',
 					category :'sustainability',
 					language:'es',
-					author:'anonymous',
-					privacy:'me',
+					author:'showme',
+					privacy:'empresarial',
                     type:'solucion',
                     reto_id:this.$route.params.id,
                     

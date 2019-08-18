@@ -90,6 +90,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     reserve: function reserve() {
@@ -119,176 +122,182 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "hole" },
-    [
-      _c(
-        "v-app",
-        [
-          _c(
-            "v-container",
-            { attrs: { fluid: "" } },
-            [
-              _c(
-                "v-layout",
-                { attrs: { row: "" } },
-                [
-                  _c(
-                    "v-flex",
-                    { attrs: { lg4: "", sm12: "" } },
-                    [
-                      _c(
-                        "v-card",
-                        {
-                          staticClass: "mx-auto my-12",
-                          attrs: {
-                            hover: "",
-                            ripple: "",
-                            loading: _vm.loading,
-                            "max-width": "374"
-                          }
-                        },
-                        [
-                          _c("v-img", {
+  return _c("keep-alive", [
+    _c(
+      "div",
+      { staticClass: "hole" },
+      [
+        _c(
+          "v-app",
+          [
+            _c(
+              "v-container",
+              { attrs: { fluid: "" } },
+              [
+                _c(
+                  "v-layout",
+                  { attrs: { row: "" } },
+                  [
+                    _c(
+                      "v-flex",
+                      { attrs: { lg4: "", sm12: "" } },
+                      [
+                        _c(
+                          "v-card",
+                          {
+                            staticClass: "mx-auto my-12",
                             attrs: {
-                              height: "250",
-                              src:
-                                "https://asakaa.com/newDesignFour/landing/ill.svg"
+                              hover: "",
+                              ripple: "",
+                              loading: _vm.loading,
+                              "max-width": "374"
                             }
-                          }),
-                          _vm._v(" "),
-                          _c("v-card-title", [_vm._v("Asakaa.com")]),
-                          _vm._v(" "),
-                          _c(
-                            "v-card-text",
-                            [
-                              _c(
-                                "v-layout",
-                                { attrs: { "align-center": "" } },
-                                [
-                                  _c("v-rating", {
+                          },
+                          [
+                            _c("v-img", {
+                              attrs: {
+                                height: "250",
+                                src:
+                                  "https://asakaa.com/newDesignFour/landing/ill.svg"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("v-card-title", [_vm._v("Asakaa.com")]),
+                            _vm._v(" "),
+                            _c(
+                              "v-card-text",
+                              [
+                                _c(
+                                  "v-layout",
+                                  { attrs: { "align-center": "" } },
+                                  [
+                                    _c("v-rating", {
+                                      attrs: {
+                                        value: 4.5,
+                                        color: "amber",
+                                        "half-increments": "",
+                                        dense: "",
+                                        size: "14",
+                                        readonly: ""
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "grey--text ml-4" },
+                                      [_vm._v("4.5 (413)")]
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "my-4 subtitle-1 black--text"
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                 $ • Gratis \n                             "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _vm._v(
+                                    "Plataforma para gestión de proyectos  especializada en productividad y organización de tareas."
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("v-divider", { staticClass: "mx-4" }),
+                            _vm._v(" "),
+                            _c(
+                              "v-card-text",
+                              [
+                                _c(
+                                  "div",
+                                  { staticClass: "title text--primary" },
+                                  [_vm._v("Funcionalidades")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-chip-group",
+                                  {
                                     attrs: {
-                                      value: 4.5,
-                                      color: "amber",
-                                      "half-increments": "",
-                                      dense: "",
-                                      size: "14",
-                                      readonly: ""
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "grey--text ml-4" },
-                                    [_vm._v("4.5 (413)")]
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "my-4 subtitle-1 black--text" },
-                                [
-                                  _vm._v(
-                                    "\n                                $ • Gratis \n                            "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("div", [
-                                _vm._v(
-                                  "Plataforma para gestión de proyectos  especializada en productividad y organización de tareas."
-                                )
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("v-divider", { staticClass: "mx-4" }),
-                          _vm._v(" "),
-                          _c(
-                            "v-card-text",
-                            [
-                              _c(
-                                "div",
-                                { staticClass: "title text--primary" },
-                                [_vm._v("Funcionalidades")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-chip-group",
-                                {
-                                  attrs: {
-                                    "active-class":
-                                      "deep-purple accent-4 white--text",
-                                    column: ""
-                                  },
-                                  model: {
-                                    value: _vm.selection,
-                                    callback: function($$v) {
-                                      _vm.selection = $$v
+                                      "active-class":
+                                        "deep-purple accent-4 white--text",
+                                      column: ""
                                     },
-                                    expression: "selection"
-                                  }
-                                },
-                                [
-                                  _c("v-chip", [_vm._v("Gantt")]),
-                                  _vm._v(" "),
-                                  _c("v-chip", [_vm._v("Kanban")]),
-                                  _vm._v(" "),
-                                  _c("v-chip", [_vm._v("Gestión de recursos")]),
-                                  _vm._v(" "),
-                                  _c("v-chip", [
-                                    _vm._v("Informes de productividad")
-                                  ])
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-card-actions",
-                            [
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: {
-                                    color: "deep-purple accent-4",
-                                    text: ""
+                                    model: {
+                                      value: _vm.selection,
+                                      callback: function($$v) {
+                                        _vm.selection = $$v
+                                      },
+                                      expression: "selection"
+                                    }
                                   },
-                                  on: { click: _vm.reserve }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                Visitar \n                            "
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
+                                  [
+                                    _c("v-chip", [_vm._v("Gantt")]),
+                                    _vm._v(" "),
+                                    _c("v-chip", [_vm._v("Kanban")]),
+                                    _vm._v(" "),
+                                    _c("v-chip", [
+                                      _vm._v("Gestión de recursos")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("v-chip", [
+                                      _vm._v("Informes de productividad")
+                                    ])
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-card-actions",
+                              [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    attrs: {
+                                      color: "deep-purple accent-4",
+                                      text: ""
+                                    },
+                                    on: { click: _vm.reserve }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                 Visitar \n                             "
+                                    )
+                                  ]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

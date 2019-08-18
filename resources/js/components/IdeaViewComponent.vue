@@ -630,6 +630,7 @@ toastr.options = {
 export default {
   data() {
     return {
+      company:{},
       canIseeVar:false,
       permissions:{},
       id: this.$route.params.id,
@@ -808,7 +809,13 @@ export default {
 
 
         return iCanSee;
-      } else {
+      }else if (this.user.company_id == this.idea.company_id){
+        return true;
+      }
+      
+      
+      
+      else {
 
 
 
@@ -1081,6 +1088,7 @@ export default {
           this.discussionsFinal = response.data.discussions;
           this.likesPerIdea = response.data.desired;
           this.permissions = response.data.permissions;
+          this.company = response.data.company;
 
           //console.log(response);
         })
