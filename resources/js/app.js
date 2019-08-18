@@ -91,7 +91,7 @@ let routes = [
 	{ path: '/dashboard', component: () => import(/* webpackChunkName: "dashboard" */ './components/DashboardComponent.vue')},
 
 	//{ path: '/projects', component: require('./components/ProjectComponent.vue').default },
-	{ path: '/innovations', name:'ideaList', component: () => import(/* webpackChunkName: "idea-index" */ './components/IdeaComponent.vue') },
+	{ path: '/innovations', name:'ideaList', component: require('./components/IdeaComponent.vue').default },
 	{ path: '/ideaCreation', name: 'innovations', component: () => import(/* webpackChunkName: "idea-creation" */ './components/IdeaCreationComponent.vue')},
 	{ path: '/solucion-reto/:id', name: 'solucion-reto', component: () => import(/* webpackChunkName: "reto-solucion" */ './components/Retos/SolucionReto.vue') },
 	{ path: '/innovations/:id',  name:'ver-idea',  component: () => import(/* webpackChunkName: "normal-view" */ './components/IdeaViewComponent.vue')},
