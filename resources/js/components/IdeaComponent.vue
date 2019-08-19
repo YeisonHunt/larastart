@@ -1,6 +1,98 @@
 <template>
 
 <div style="min-height:80vh;">
+
+
+<div class="modal fade bd-example-modal-lg" id="modalVotos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">  {{ megusta.length + pulirmas.length + acciondemejora.length }}  Votos</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <v-tabs
+          centered
+          color="cyan"
+          dark
+          icons-and-text
+        >
+          <v-tabs-slider color="yellow"></v-tabs-slider>
+
+          <v-tab href="#megusta">
+          {{ megusta.length  }}  Me gusta
+            <v-icon>arrow_upward</v-icon>
+          </v-tab>
+
+          <v-tab href="#pulirmas">
+            {{ pulirmas.length  }} Pulir más
+            <v-icon>arrow_downward</v-icon>
+          </v-tab>
+
+          <v-tab href="#acciondemejora">
+            {{ acciondemejora.length  }} Acción de mejora
+            <v-icon>arrow_drop_down_circle</v-icon>
+          </v-tab>
+
+          <v-tab-item
+           
+            :value="'megusta'"
+          >
+            <v-card flat>
+              <v-card-text>
+
+             <ul class="list-group" v-for="m in megusta" :key="m.id">
+              <li class="list-group-item">{{m.name}}</li>
+             
+            </ul>
+
+              </v-card-text>
+            </v-card>
+          </v-tab-item>
+
+            <v-tab-item
+           
+            :value="'pulirmas'"
+          >
+            <v-card flat>
+              <v-card-text>
+
+             <ul class="list-group" v-for="m in pulirmas" :key="m.id">
+              <li class="list-group-item">{{m.name}}</li>
+             
+            </ul>
+
+              </v-card-text>
+            </v-card>
+          </v-tab-item>
+
+            <v-tab-item
+           
+            :value="'acciondemejora'"
+          >
+            <v-card flat>
+              <v-card-text>
+
+            <ul class="list-group" v-for="m in acciondemejora" :key="m.id">
+              <li class="list-group-item">{{m.name}}</li>
+             
+            </ul>
+
+              </v-card-text>
+            </v-card>
+          </v-tab-item>
+
+
+        </v-tabs>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
   <div class="row" >
 
     <div class="col-lg-4"></div>
@@ -292,12 +384,12 @@
 														</span> -->
 													</div>
 													<div class="kt-widget19__stats">
-														<span class="kt-widget19__number kt-font-brand">
+													<span class="kt-widget19__number kt-font-brand">
 
-                              <router-link class="" v-bind:to="'/innovations/'+idea.id">{{idea.likes.length}}</router-link>
+                              <button @click="getVotes(idea.id)" >{{idea.likes.length}}</button>
 														</span>
 
-                          <router-link class="kt-widget19__comment" v-bind:to="'/innovations/public/'+idea.id">Votos</router-link>
+                          <button class="kt-widget19__comment" @click="getVotes(idea.id)"   >Votos</button>
 
 
 
@@ -367,10 +459,10 @@
 													<div class="kt-widget19__stats">
 														<span class="kt-widget19__number kt-font-brand">
 
-                              <router-link class="" v-bind:to="'/innovations/'+idea.id">{{idea.likes.length}}</router-link>
+                              <button @click="getVotes(idea.id)" >{{idea.likes.length}}</button>
 														</span>
 
-                          <router-link class="kt-widget19__comment" v-bind:to="'/innovations/'+idea.id">Votos</router-link>
+                          <button class="kt-widget19__comment" @click="getVotes(idea.id)"   >Votos</button>
 
 
 
@@ -730,6 +822,13 @@ body {
 export default {
   data() {
     return {
+      
+
+      megusta:{},
+      pulirmas:{},
+      acciondemejora:{},
+
+        
       editMode: false,
       select1:'all',
          options1:[
@@ -822,6 +921,29 @@ export default {
   methods: {
 
 
+    getVotes(id){
+
+      $("#modalVotos").modal("show");
+
+
+        axios.get("/getVotes/"+id).then(response => {
+
+          this.megusta = response.data.megusta;
+          this.pulirmas = response.data.pulirmas;
+          this.acciondemejora = response.data.acciondemejora;
+        
+        
+          
+        })
+        .catch(error => {
+          console.log(error);
+
+          toastr.error("Oops!", "Something goes wrong");
+        });
+
+
+
+    },
 
 
     filterIdeas(category){

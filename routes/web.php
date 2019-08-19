@@ -18,6 +18,8 @@ Route::get('/', function () {
 
 Route::post('/deleteInnovation','IdeasController@deleteInnovation');
 
+Route::get('/getVotes/{id}','IdeasController@getVotes');
+
 Route::get('/dashboard','AdminController@index')->name('admin');
 Route::get('/innovations','AdminController@index')->name('innovations');
 //Route::get('/dashboard2','AdminController@dashboard2')->name('dashboard2');

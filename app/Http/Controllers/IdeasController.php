@@ -26,6 +26,42 @@ class IdeasController extends Controller
         $this->middleware('auth');
     }
 
+
+    public function getVotes(Request $request,$id){
+
+        $megusta = DB::table('desireds')
+        ->join('users','desireds.user_id','users.id')
+        ->where('desireds.innovation_id',$id)
+        ->where('desireds.type','like')
+        ->orderBy('desireds.created_at','DESC')
+        ->select('users.*')
+        ->get();
+
+        $pulirmas = DB::table('desireds')
+        ->join('users','desireds.user_id','users.id')
+        ->where('desireds.innovation_id',$id)
+        ->where('desireds.type','dislike')
+        ->orderBy('desireds.created_at','DESC')
+        ->select('users.*')
+        ->get();
+
+        $acciondemejora = DB::table('desireds')
+        ->join('users','desireds.user_id','users.id')
+        ->where('desireds.innovation_id',$id)
+        ->where('desireds.type','action')
+        ->orderBy('desireds.created_at','DESC')
+        ->select('users.*')
+        ->get();
+
+        return response()->json([
+
+            'megusta'=>$megusta,
+            'pulirmas'=>$pulirmas,
+            'acciondemejora'=>$acciondemejora
+        ]);
+
+    }
+
     public function deleteInnovation(Request $request){
 
         //Borrar innovacion y user has innovation 
