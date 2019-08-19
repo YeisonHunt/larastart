@@ -214,7 +214,7 @@
                               <router-link class="" v-bind:to="'/innovations/'+idea.id">{{idea.likes.length}}</router-link>
 														</span>
 
-                          <router-link class="kt-widget19__comment" v-bind:to="'/innovations/public/'+idea.id">Votos</router-link>
+                          <router-link class="kt-widget19__comment" v-bind:to="'/innovations/'+idea.id">Votos</router-link>
 
 
 
@@ -232,11 +232,11 @@
 
 
                          <router-link class="btn btn-sm btn-label-brand btn-bold "
-                         v-bind:to="'/innovations/public/'+idea.id">Leer idea completa...</router-link>
+                         v-bind:to="'/innovations/'+idea.id">Leer idea completa...</router-link>
 
 
 
-                         <router-link v-bind:to="'/innovations/public/'+idea.id" class="btn btn-sm  btn-label-danger btn-bold pull-right ">Votar
+                         <router-link v-bind:to="'/innovations/'+idea.id" class="btn btn-sm  btn-label-danger btn-bold pull-right ">Votar
                          </router-link>
 
 
