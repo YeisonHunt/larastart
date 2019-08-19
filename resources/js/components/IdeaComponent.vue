@@ -317,6 +317,14 @@
                            <b>Fecha: </b>{{idea.created_at |humanDate}} <br>
                           {{idea.description | mediumText}}
 
+                            <hr style="
+                          border: 0;
+                          border-bottom: 1px dashed #ccc;
+                          background: #999 ;
+                        ">
+
+                         <p>Compartida con: {{idea.privacy | compartida}}</p>
+
 												</div>
 											</div>
 
@@ -400,6 +408,14 @@
                            <b>Fecha: </b>{{idea.created_at |humanDate}} <br>
                           {{idea.description | mediumText}}
 
+                            <hr style="
+                          border: 0;
+                          border-bottom: 1px dashed #ccc;
+                          background: #999;
+                        ">
+
+                         <p>Compartida con: {{idea.privacy | compartida}}</p>
+
 												</div>
 											</div>
 
@@ -469,9 +485,18 @@
 													</div>
 												</div>
 												<div class="kt-widget19__text">
+                          
 													<b>Category: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
                            <b>Date: </b>{{idea.created_at |humanDate}} <br>
                           {{idea.description | mediumText}}
+
+                        <hr style="
+                          border: 0;
+                          border-bottom: 1px dashed #ccc;
+                          background: #999;
+                        ">
+
+                         <p>Compartida con: {{idea.privacy | compartida}}</p>
 
 												</div>
 											</div>
@@ -552,13 +577,7 @@
 
 
 
-hr {
-  border: 0;
-  width: 100%;
-  color: #9E9E9E;
-  background-color: #9E9E9E;
-  height: 5px;
-}
+
 
 .imageOnly {
 

@@ -184,6 +184,26 @@ Vue.filter(
 
 Vue.filter(
 
+	'compartida',
+	function (privacidad) {
+
+		
+		if(privacidad=='personal'){
+
+			return 'Solo personal.'
+		}else if (privacidad=='empresarial'){
+			return 'Usuarios de mi empresa'
+		}else {
+			return 'Todos los usuarios.'
+		}
+
+	}
+
+);
+
+
+Vue.filter(
+
 	'cumple',
 	function (txtDate) {
 
