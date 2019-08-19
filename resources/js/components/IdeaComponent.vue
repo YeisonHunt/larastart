@@ -360,7 +360,7 @@
 													</div>
 													<div class="kt-widget19__info">
 														<a href="#" class="kt-widget19__username">
-														Escrita por mi &nbsp;persona
+														Escrita por mi 
 														</a>
 														
 													</div>
@@ -427,7 +427,7 @@
   <!-- end row -->
 </template>
 
-<style type="text/css">
+<style >
 
 
 .custom-btn {
