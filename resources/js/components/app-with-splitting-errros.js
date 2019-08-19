@@ -14,13 +14,14 @@ import { Form, HasError, AlertError } from 'vform'
 import moment from 'moment'
 import VueProgressBar from 'vue-progressbar'
 import Swal from 'sweetalert2'
-
+import Permissions from './mixins/Permissions'
 import VueStar from 'vue-star'
 import vueRandomPic from 'vue-random-pic'
 import VueMq from 'vue-mq'
 
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 //import SuiVue from 'semantic-ui-vue';
-import '@mdi/font/css/materialdesignicons.css'
+
 import Vuesax from 'vuesax'
 import Vuetify from 'vuetify-v1'
 
@@ -28,7 +29,7 @@ import Vuetify from 'vuetify-v1'
 
 
 
-import 'vuesax/dist/vuesax.css' 
+import 'vuesax/dist/vuesax.css'
 import 'vuetify-v1/dist/vuetify.min.css' // Ensure you are using css-loader
 
 
@@ -82,16 +83,18 @@ Vue.component('VueStar', VueStar)
 
 
 Vue.use(VueRouter)
+//Vue.use(SuiVue);  // ya no se utilizara debido a incompatibilidad con el dropdown
+
 
 
 let routes = [
 	{ path: '/dashboard', component: () => import(/* webpackChunkName: "dashboard" */ './components/DashboardComponent.vue')},
-	
+
 	//{ path: '/projects', component: require('./components/ProjectComponent.vue').default },
-	{ path: '/innovations', name:'ideaList', component: () => import(/* webpackChunkName: "idea-index" */ './components/IdeaComponent.vue') },
+	{ path: '/innovations', name:'ideaList', component: require('./components/IdeaComponent.vue').default },
 	{ path: '/ideaCreation', name: 'innovations', component: () => import(/* webpackChunkName: "idea-creation" */ './components/IdeaCreationComponent.vue')},
 	{ path: '/solucion-reto/:id', name: 'solucion-reto', component: () => import(/* webpackChunkName: "reto-solucion" */ './components/Retos/SolucionReto.vue') },
-	{ path: '/innovations/:id', component: () => import(/* webpackChunkName: "normal-view" */ './components/IdeaViewComponent.vue')},
+	{ path: '/innovations/:id',  name:'ver-idea',  component: () => import(/* webpackChunkName: "normal-view" */ './components/IdeaViewComponent.vue')},
 	{ path: '/innovations/public/:id', component: () => import(/* webpackChunkName: "public-view" */ './components/PublicIdeaViewComponent.vue') },
 	{ path: '/innovationsEdit/:id', component: () => import(/* webpackChunkName: "edit-idea" */ './components/IdeaEditComponent.vue') },
 
@@ -105,7 +108,7 @@ let routes = [
 	{ path: '/retos/ver-public/:id', name:'ver-reto-publico',  component: () => import(/* webpackChunkName: "reto-publico" */ './components/Retos/showRetoPublico.vue') },
 
 	{ path: '/business', name:'business',component: () => import(/* webpackChunkName: "business" */ './components/BusinessComponent.vue')},
-	{ path: '/business/users',name:'contacts', component: () => import(/* webpackChunkName: "contacts" */ './components/Business/contacts.vue') },
+	{ path: '/business/users',name:'contacts', component: () => import(/* webpackChunkName: "contactos" */ './components/Business/contacts.vue') },
 	{ path: '/business/users/create-contact',name:'create-contact', component: () => import(/* webpackChunkName: "create-contact" */ './components/Business/create-contact.vue') },
 	{ path: '/business/user-profile/:id',name:'contact', component: () => import(/* webpackChunkName: "create-profile" */ './components/Business/contact-profile.vue') },
 	{ path: '/business/edit-user/:id',name:'edit-contact', component: () => import(/* webpackChunkName: "edit-contact" */ './components/Business/edit-contact.vue') },
@@ -127,6 +130,38 @@ const router = new VueRouter({
 
 })
 
+Vue.filter(
+
+	'largeText',
+	function (text) {
+
+		let t = text.toString();
+		if (t.length > 95) {
+
+			let t2 = t.slice(0, 95).concat('...');
+			return t2;
+
+		} else {
+
+			let long= t.length;
+			let dif = 90 - long;
+
+			let t3 ='';
+
+			for (var i = 0; i < dif; i++) {
+
+				t3 = t3+ ' \xa0';
+			}
+
+
+
+			return t + t3;
+		}
+
+	}
+
+);
+
 
 Vue.filter(
 
@@ -137,12 +172,12 @@ Vue.filter(
 		var now = moment();
 
 		if (now > date) {
-		
+
 			return date.fromNow();
 		} else {
-			return date.startOf('day').fromNow();    
+			return date.startOf('day').fromNow();
 		}
-		
+
 	}
 
 );
@@ -153,10 +188,10 @@ Vue.filter(
 	function (txtDate) {
 
 			let temp = moment(txtDate,'YYYY-MM-DD').locale('es').format('MMMM DD')
-			
+
 			return temp.charAt(0).toUpperCase() + temp.slice(1);
-		
-	
+
+
 	}
 
 );
@@ -177,7 +212,7 @@ Vue.filter(
 	'dayDate',
 	function (txtDate) {
 
-		return moment(txtDate).day();	
+		return moment(txtDate).day();
 	}
 
 );
@@ -341,8 +376,3 @@ const app = new Vue({
 		iconfont: 'mdi', // default - only for display purposes
 	  },
 });
-
-
-
-
-
