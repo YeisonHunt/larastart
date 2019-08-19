@@ -95,7 +95,7 @@ let routes = [
 	{ path: '/ideaCreation', name: 'innovations', component: require('./components/IdeaCreationComponent.vue').default},
 	{ path: '/solucion-reto/:id', name: 'solucion-reto', component: require('./components/Retos/SolucionReto.vue').default },
 	{ path: '/innovations/:id',  name:'ver-idea',  component: require('./components/IdeaViewComponent.vue').default},
-	{ path: '/innovations/public/:id', component: require('./components/PublicIdeaViewComponent.vue') },
+	{ path: '/innovations/public/:id', component: require('./components/PublicIdeaViewComponent.vue').default },
 	{ path: '/innovationsEdit/:id', component: require('./components/IdeaEditComponent.vue').default },
 
 	//{ path: '/projects', component: require('./components/ProjectComponent.vue').default },

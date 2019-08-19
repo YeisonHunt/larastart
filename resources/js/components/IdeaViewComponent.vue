@@ -59,7 +59,7 @@
 
                 <router-link v-if="puedoEditar"
                   v-bind:to="'/innovationsEdit/'+this.id"
-                  class="btn btn-outline-danger btn-sm btn-icon btn-icon-md"
+                  class="btn btn-outline-warning btn-sm btn-icon btn-icon-md"
                 >
                   <i class="flaticon-edit"></i>
                 </router-link>
@@ -67,6 +67,13 @@
                 <router-link :to="'/shareInnovation/'+this.id" class="btn btn-outline-success btn-sm btn-icon btn-icon-md">
                   <i class="flaticon-share"></i>
                 </router-link>
+
+                <button v-if="puedoBorrar" @click="deleteIdea" class="btn btn-outline-danger btn-sm btn-icon btn-icon-md">
+                  <i class="flaticon-delete"></i>
+                </button>
+
+
+
               </div>
             </div>
           </div>
@@ -683,6 +690,10 @@ export default {
         innovation_id: this.$route.params.id,
         user_id: window.user.id,
 				type:'',
+      }),
+
+      deleteForm: new Form({
+        id:''
       })
 
     };
@@ -690,7 +701,14 @@ export default {
 
   computed: {
 
+    puedoBorrar: function(){
 
+      if(this.idea.created_by==this.user.id){
+        return true;
+      }else {
+        return false;
+      }
+    },
 
     updatedLastIdComment: function() {
       //console.log('Termino de enviar comentario. Ir a padre'+this.lastCommentId);
@@ -876,7 +894,58 @@ export default {
 
   methods: {
 
+    deleteIdea(){
 
+      var id = this.$route.params.id;
+
+       Swal.fire({
+        title: "Estas seguro(a)?",
+        text: "No será posible deshacer esta acción.",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, borrar idea."
+      }).then(result => {
+        if (result.value) {
+
+      this.$Progress.start();
+      // Submit the form via a POST request
+
+			this.deleteForm.id = id;
+
+      //this.form.editordata =  $('#kt_summernote_1').summernote('code');
+      this.deleteForm
+        .post("/deleteInnovation")
+        .then(response => {
+
+					if(response.data.estado=='OK'){
+            toastr.success('Bien','Idea borrada correctamente');
+          }else {
+            toastr.info('Oops','No se pudo completar el borrado.');
+          }
+
+          console.log(response.data.msg)
+
+           this.$Progress.finish();
+        })
+        .catch(error => {
+          console.log(error);
+
+          toastr.error("Oops!", "Something goes wrong");
+
+           this.$Progress.finish();
+        });
+
+      //$('#userCreationModal').modal('hide');
+
+     
+
+        }
+      });
+
+
+    },
 
     alreadyLiked1(idea){
 

@@ -139,7 +139,7 @@
               <br>
 
               <div class="comentarios">
-                <h5 style="text-align:center;">5 Comentarios</h5>
+                <h5 style="text-align:center;">Comentarios</h5>
                 <v-layout row>
                   <v-flex lg1>
                     <v-avatar

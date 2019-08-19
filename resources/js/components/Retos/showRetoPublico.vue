@@ -1,36 +1,31 @@
 <template>
   <div :class="{'container-fluid':mobile, 'container-fluid':large}">
-    <div class="row"  style="min-height:80vh;">
+    <div class="row" v-if="puedoVer" style="min-height:80vh;">
       <div class="col-lg-12 col-sm-12 col-md-12">
         <div class="kt-portlet mobilePortlet">
           <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
-              <router-link to="/innovations" class="btn btn-clean kt-margin-r-10">
+              <router-link to="/retos" class="btn btn-clean kt-margin-r-10">
                 <i style="padding-bottom:8px;" class="la la-arrow-left"></i>
                 <span class="kt-hidden-mobile">Back</span>
               </router-link>
 
               <span class="kt-portlet__head-icon">
-                <i class="flaticon2-calendar-2"></i>
+                <i class="flaticon-interface-5"></i>
               </span>
 
-              <h3 class="kt-portlet__head-title">{{idea.title}}</h3>
+              <h3 class="kt-portlet__head-title">Nombre del reto: {{idea.title}}</h3>
             </div>
             <div class="kt-portlet__head-toolbar">
               <div class="kt-portlet__head-actions">
 
-                <button  v-if="!alreadyLiked(idea)"   @click="likeIdea"  class="btn btn-outline-primary btn-sm btn-icon pulse btn-icon-md " :class="{'largeBtn':large}">
-                  <i class="flaticon-like " ></i>
-                  &nbsp; {{voteText}}
-                </button>
 
 
-                 <button  v-if="alreadyLiked(idea)"  @click="likeIdea" class="btn btn-primary btn-sm btn-icon pulse btn-icon-md " :class="{'largeBtn':large}">
-                  <i class="flaticon-like "  ></i>
-                  &nbsp; {{likedText}}
-                 </button>
 
 
+                <router-link :to="'/shareInnovation/'+this.id" class="btn btn-outline-success btn-sm btn-icon btn-icon-md">
+                  <i class="flaticon-share"></i>
+                </router-link>
 
 
               </div>
@@ -38,9 +33,82 @@
           </div>
           <!-- end portlet head-->
 
+              <v-img :src="idea.img" aspect-ratio="4"></v-img>
+
+
+
           <div class="kt-portlet__body wrapText" id="ideaBody"  v-html="idea.body"></div>
 
           <br>
+
+          <div class="container-fluid">
+               <div class="row">
+
+                   <div class="col-6" >
+                       <div class="kt-demo-icon click" @click="createSolution">
+														<div class="kt-demo-icon__preview">
+															<i class="flaticon-add"></i>
+														</div>
+														<div class="kt-demo-icon__class">
+															Proponer una idea para solucionar este reto </div>
+													</div>
+                   </div>
+
+          </div>
+
+          <br>
+
+
+
+          <div class="row">
+              <div class="col-12">
+                  <v-expansion-panel expand v-model="expandido">
+                      <v-expansion-panel-content>
+                           <template v-slot:header>
+                                    <div>Soluciones Actuales  {{solutions.length}}</div>
+                                </template>
+
+                                <v-container fluid>
+                                    <v-layout row>
+                                        <v-flex xs12 sm6 md2 lg4 xl3 pa-2  v-for="idea in solutions "   :key="idea.id"   >
+
+                                              <v-card width="90%" height="100%" class="mx-auto" hover>
+
+
+                <v-img :src=" idea.img" height="194"></v-img>
+
+                <v-card-text>
+
+                    <div class="headline">{{idea.title | uppercaseFirst}}</div>
+										<br>
+
+                   <div v-if="idea.privacy=='showme'">Escrita  por: {{idea.escrita}}</div>
+                   <div v-else>Escrita por :Anónimo(a)</div>
+
+                 {{idea.description | largeText}}
+
+                  <p> <b>Categoría: </b> {{idea.category | toCategory}}</p>
+                </v-card-text>
+
+                <v-card-actions>
+                  <v-btn :to="{name:'ver-idea',params:{id:idea.id}}" dark text color="deep-purple accent-4">Leer completa</v-btn>
+
+
+                </v-card-actions>
+              </v-card>
+                                        </v-flex>
+
+
+
+                                    </v-layout>
+                                </v-container>
+                      </v-expansion-panel-content>
+                  </v-expansion-panel>
+              </div>
+          </div>
+
+          </div>
+
 
           <div class="user-section">
             <div class="row">
@@ -94,35 +162,43 @@
                           <div class="comment-wrapper">
                             <div class="panel panel-info">
                               <div class="panel-body">
-                                <h5 class="ml-3 mt-5">Comments Section</h5>
+                                <h5 class="ml-3 mt-5">Nueva retroalimentación</h5>
 
-                                <form
+                                <div class="row">
+                                  <div class="col-lg-12 col-sm-12">
+                                    <center>
+                                       <form
                                   @submit.prevent="goLastComment"
                                   @keydown="form.onKeydown($event)"
+                                  @keyup.enter="goLastComment()"
                                   class="form-inline"
                                 >
                                   <div class="form-group">
+
                                     <textarea
+
                                       v-model="form.body"
-                                      class="form-control fit-width-input"
-                                      style=" margin:10px; overflow:hidden;  "
-                                      placeholder="Write a comment..."
+                                      class="form-control "
+                                      style=" margin:10px; width:600px;  "
+                                      placeholder="Algo para aportar?"
                                       rows="2"
                                       required
                                     ></textarea>
+                                    <br/>
+
                                   </div>
 
-                                  <div class="form-group">
-                                    <button
-                                      type="submit"
-                                      class="btn btn-primary form-control"
-                                      :disabled="form.busy"
-                                    >
-                                      Comment
-                                      <i class="flaticon-paper-plane"></i>
-                                    </button>
-                                  </div>
+
+
                                 </form>
+                                    </center>
+                                  </div>
+                                </div>
+
+
+
+                                  <p>Nota: presionar tecla <b>Enter</b> para enviar comentario</p>
+
 
                                 <br>
                                 <ul class="media-list">
@@ -189,7 +265,7 @@
 
                                           </i>
                                           &nbsp; &nbsp; &nbsp; &nbsp;
-    
+
                                           {{ ' '+ d.discussions.likes.length  }} {{likesText}}
                                         </a>
                                         &nbsp; &nbsp;
@@ -199,7 +275,7 @@
                                           <span>
                                             <i
                                               class="flaticon-reply normalFont links"
-                                            >&nbsp; {{d.childs.length}}  comments</i>
+                                            >&nbsp; {{d.childs.length}}   comments</i>
                                           </span>
                                         </a>
                                       </div>
@@ -331,6 +407,33 @@
       </div>
     </div>
 
+    <div class="row " v-else    >
+
+      <div class="col-4"></div>
+
+      <div class="col-4">
+        <router-link  to="/innovations" class="btn btn-primary">
+
+          Go back to innovations
+        </router-link>
+      </div>
+
+      <div class="col-4"></div>
+
+
+
+      <div class="col-12 mt-5">
+       <center>
+          <h4 style=" margin-left:auto;
+   margin-right:auto;
+   display:block; color:white;">Sorry, it seems you don't have permission to see this idea.</h4>
+         </center>
+
+            <img  height="80%" width="80%" class="mt-5 fadeImg"  :src="baseUrl +'img/forbidden.svg'" alt="" style="text-align:center; margin-left:10%;">
+
+
+      </div>
+    </div>
 
 
     <!-- end row -->
@@ -342,7 +445,7 @@
 
 
 .fadeImg {
-  
+
     -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
        -moz-animation: fadein 2s; /* Firefox < 16 */
         -ms-animation: fadein 2s; /* Internet Explorer */
@@ -446,7 +549,7 @@
 
 @media (max-width: 600px) {
       .VueStar__ground {
-      
+
       margin-left: 10px;
       margin-top: 10px;
     }
@@ -534,6 +637,8 @@
 export default {
   data() {
     return {
+      expandido:[true],
+      solutions:{},
       canIseeVar:false,
       permissions:{},
       id: this.$route.params.id,
@@ -546,6 +651,7 @@ export default {
       user: window.user,
       discussionsFinal: {},
       like: {},
+      soyCreador:false,
       containter: "",
       containerFluid: "",
       likesPerIdea:{},
@@ -652,7 +758,90 @@ export default {
 
     },
 
-    
+    puedoVer: function(){
+
+        if (this.permissions.length !=  0) { //validamos que exita la idea y luego si tengo permiso
+
+
+        let iCanSee = false;
+        let idUser = this.user.id;
+        let idIdea = this.id;
+
+       var item = {};
+       var permisos= this.permissions;
+
+
+      for (let i = 0; i < permisos.length; i++) {
+        item = permisos[i];
+
+        if((item.permission_type=='can view' || item.permission_type=='can view-edit'  ) && item.id_user ==idUser && item.id_idea== idIdea){
+           iCanSee = true;
+        }
+
+
+      }
+
+
+        return iCanSee;
+      } else if (this.idea.company_id==this.user.company_id ){
+          return true;
+      }
+
+
+      else {
+
+
+
+        return false;
+      }
+
+    },
+
+    puedoEditar: function(){
+
+        if (this.permissions.length !=  0) { //validamos que exita la idea y luego si tengo permiso
+
+
+        let iCanSee = false;
+        let idUser = this.user.id;
+        let idIdea = this.id;
+       /* try {
+          this.permissions.forEach(function(permission) {
+            if (permission.permission_type == 'can view' && permission.id_user ==idUser && permision.id_idea== idIdea  ) {
+
+              iCanSee = true;
+              console.log('times');
+
+            }
+          });
+        } catch (e) {
+          console.log(e);
+        }*/
+
+       var item = {};
+       var permisos= this.permissions;
+
+
+      for (let i = 0; i < permisos.length; i++) {
+        item = permisos[i];
+
+        if(item.permission_type=='can view-edit' && item.id_user ==idUser && item.id_idea== idIdea){
+           iCanSee = true;
+        }
+
+
+      }
+
+
+        return iCanSee;
+      } else {
+
+
+
+        return false;
+      }
+
+    },
 
 
 
@@ -660,22 +849,27 @@ export default {
 
   methods: {
 
-   
-    
+    createSolution(){
+
+        this.$router.push({name:'solucion-reto',params:{id:this.$route.params.id}})
+    } ,
+
+
+
     alreadyLiked(idea){
 
-      
+
 
         if (this.likesPerIdea.length != 0) {
-        
+
 
         let foundLiked2 = false;
         try {
           this.likesPerIdea.forEach(function(el) {
             if (el.user_id == window.user.id) {
-              
+
               foundLiked2 = true;
-              
+
             }
           });
         } catch (e) {}
@@ -683,7 +877,7 @@ export default {
         this.foundLiked = foundLiked2;
         return foundLiked2;
       } else {
-        
+
         this.foundLiked=false;
 
         return false;
@@ -692,7 +886,7 @@ export default {
 
     likeIdea(){
 
-   
+
 
       this.$Progress.start();
       // Submit the form via a POST request
@@ -702,12 +896,12 @@ export default {
         .post("/saveDesired")
         .then(response => {
           toastr.success("Keep rating", "Innovation liked!.");
-         
+
           this.likesPerIdea = response.data.desired;
         })
         .catch(error => {
           console.log(error);
-        
+
           toastr.error("Oops!", "Something goes wrong");
         });
 
@@ -726,7 +920,7 @@ export default {
         try {
           likeObject.forEach(function(elements) {
             if (elements.user_id == window.user.id) {
-            
+
               found = true;
             }
           });
@@ -740,7 +934,7 @@ export default {
     },
 
     likeComment(idComment) {
-    
+
 
       this.formLike.comment_id = idComment;
       this.formLike.idea_id = this.id_idea_general;
@@ -796,6 +990,11 @@ export default {
           this.likesPerIdea = response.data.desired;
           this.permissions = response.data.permissions;
 
+          this.solutions= response.data.solutions;
+
+            if(response.data.idea.created_by == response.data.user.id){
+                this.soyCreador=true;
+            }
           //console.log(response);
         })
         .catch(error => {
@@ -890,17 +1089,16 @@ export default {
     }
   },
   created() {
-    
-    
-    
+
+
+
   },
 
   mounted() {
-    
+
     this.loadUsers();
+
 
   }
 };
 </script>
-
-

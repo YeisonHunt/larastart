@@ -26,6 +26,42 @@ class IdeasController extends Controller
         $this->middleware('auth');
     }
 
+    public function deleteInnovation(Request $request){
+
+        //Borrar innovacion y user has innovation 
+        $idIdea = intval($request->id);
+
+        $user = Auth::user();
+        $innovation = Innovation::find($idIdea);
+        $innovation->delete();
+
+        $relacion = DB::table('user__has__ideas')->where('id_idea',$idIdea)->delete();
+       
+
+        $permisos = DB::table('user__has__ideas__permissions')->where('id_idea',$idIdea)->delete();
+       
+
+        $votos = DB::table('desireds')->where('innovation_id',$idIdea)->delete();
+       
+
+        $comentarios = DB::table('comments')->where('task_id',$idIdea)->delete();
+      
+
+        Log::info('todo borrado correctamente');
+
+
+
+
+
+        return response()->json([
+
+                'estado'=>'OK',
+                'msg'=>'Idea borrada correctamente'
+        ]);
+
+
+    }
+
     public function updatePermissionPerId(Request $request){
 
         $p = User_Has_Ideas_Permission::find($request->id);
@@ -883,7 +919,7 @@ class IdeasController extends Controller
         $user = Auth::user();
 
 
-				if(empty($request->reto_id)){
+            if(empty($request->reto_id)){
 					$retoId = 0;
 				}else {
 					$retoId = $request->reto_id;

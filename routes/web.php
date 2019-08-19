@@ -16,7 +16,7 @@ Route::get('/', function () {
 })->name('raiz');
 
 
-
+Route::post('/deleteInnovation','IdeasController@deleteInnovation');
 
 Route::get('/dashboard','AdminController@index')->name('admin');
 Route::get('/innovations','AdminController@index')->name('innovations');

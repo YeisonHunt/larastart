@@ -124,6 +124,7 @@
                                 <form
                                   @submit.prevent="goLastComment"
                                   @keydown="form.onKeydown($event)"
+                                  @keyup.enter="goLastComment()"
                                   class="form-inline"
                                 >
                                   <div class="form-group">
@@ -137,16 +138,8 @@
                                     ></textarea>
                                   </div>
 
-                                  <div class="form-group">
-                                    <button
-                                      type="submit"
-                                      class="btn btn-primary form-control"
-                                      :disabled="form.busy"
-                                    >
-                                      Comment
-                                      <i class="flaticon-paper-plane"></i>
-                                    </button>
-                                  </div>
+
+
                                 </form>
 
                                 <br>

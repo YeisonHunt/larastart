@@ -24,7 +24,7 @@
 												<div class="btn-group">
 													<button  class="btn btn-brand" type="submit" :disabled="form.busy">
 														<i style="padding-bottom:8px;" class="la la-check"></i>
-														<span class="kt-hidden-mobile">Guardar idea</span>
+														<span class="kt-hidden-mobile">Publicar idea</span>
 													</button>
 													<button type="button" class="btn btn-brand dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 													</button>
@@ -125,11 +125,11 @@
 																		<div class="input-group">
 																			<div class="input-group-prepend"><span class="input-group-text"><i class="flaticon-photo-camera"></i></span></div>
 																			<input type="file"  accept="image/x-png, image/jpeg"   @change="onFilePicked" name="img" class="form-control"   :class="{'is-invalid': form.errors.has('img')}"
-																			placeholder="https://wwwmyawesomeideaimg.com/myimage.jpg" aria-describedby="basic-addon1" required>
+																			placeholder="https://wwwmyawesomeideaimg.com/myimage.jpg" aria-describedby="basic-addon1" >
 
 																			<has-error :form="form" field="img" ></has-error>
 																		</div>
-																		<span class="form-text text-muted">Escoger una buena imágen hace que la idea sea más llamativa y fácil de comprender.</span>
+																		<span class="form-text text-muted">En caso de no escoger una imágen propia, se generará una al azar.</span>
 																	</div>
 																</div>
 
@@ -246,7 +246,7 @@
 												<div class="btn-group">
 													<button  class="btn btn-brand" type="submit" :disabled="form.busy">
 														<i style="padding-bottom:8px;" class="la la-check"></i>
-														<span class="kt-hidden-mobile">Guardar nueva idea</span>
+														<span class="kt-hidden-mobile">Publicar nueva idea</span>
 													</button>
 
 												</div>
@@ -371,6 +371,12 @@ export default {
 
 		createUser(){
 
+			let random = Math.floor(Math.random() * 1000) + 1;
+
+			if(this.form.img == ""){
+				this.form.img= 'https://picsum.photos/id/'+random/'450/450';
+			}
+
 			 this.$Progress.start();
 			  // Submit the form via a POST request
 
@@ -380,7 +386,7 @@ export default {
 
 
 					this.$router.push('innovations');
-                    toastr.success('Awesome!','New idea has appeared.')
+                    toastr.success('Genial!','Una nueva idea ha aparecido.')
 					this.form.reset();
 
 
