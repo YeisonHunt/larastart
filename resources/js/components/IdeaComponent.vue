@@ -303,11 +303,10 @@
 													<div class="kt-widget19__stats">
 														<span class="kt-widget19__number kt-font-brand">
 
-                              <router-link class="" v-bind:to="'/innovations/'+idea.id">{{idea.likes.length}}</router-link>
+                              <button @click="getVotes(idea.id)" >{{idea.likes.length}}</button>
 														</span>
 
-                          <router-link class="kt-widget19__comment" v-bind:to="'/innovations/'+idea.id">Votos</router-link>
-
+                          <button class="kt-widget19__comment" @click="getVotes(idea.id)"   >Votos</button>
 
 
 													</div>
