@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::post('/deleteInnovation','IdeasController@deleteInnovation');
 
 Route::get('/getVotes/{id}','IdeasController@getVotes');
+Route::post('/getPuntos','UserController@getPuntos');
 
 Route::get('/dashboard','AdminController@index')->name('admin')->middleware('auth');
 Route::get('/innovations','AdminController@index')->name('innovations');

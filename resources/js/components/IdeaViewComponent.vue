@@ -921,6 +921,7 @@ export default {
 
 					if(response.data.estado=='OK'){
             toastr.success('Bien','Idea borrada correctamente');
+            this.$router.push({name:'ideaList'});
           }else {
             toastr.info('Oops','No se pudo completar el borrado.');
           }
@@ -1059,7 +1060,7 @@ export default {
         .then(response => {
 
 					if(type=='like' || type =='dislike' || type=='action'){
-						  toastr.success("Gracias por valorar la idea.", "Sigue puntuando tus ideas favoritas.");
+						  toastr.success("Gracias por valorar la idea.", "+ 1 punto");
 					}else {
 
 					}

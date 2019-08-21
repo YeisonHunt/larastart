@@ -16,6 +16,19 @@ use App\UserHasBusiness;
 class UserController extends Controller
 {
 
+
+    public function getPuntos(){
+
+        $user= Auth::user();
+
+        $puntos =  DB::table('puntos')->where('user_id',$user->id)->sum('numero');
+       
+
+        return response()->json([
+            'puntos'=>$puntos
+        ]);
+    }
+
 	public function store(Request $request){
 
 

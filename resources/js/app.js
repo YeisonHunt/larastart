@@ -88,6 +88,7 @@ Vue.use(VueRouter)
 
 
 let routes = [
+	{ path: '/profile',name:'profile', component: require('./components/profile.vue').default},
 	{ path: '/dashboard', component: require('./components/DashboardComponent.vue').default},
 
 	//{ path: '/projects', component: require('./components/ProjectComponent.vue').default },

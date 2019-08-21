@@ -419,7 +419,7 @@ export default {
 
 
 					this.$router.push('innovations');
-                    toastr.success('Genial!','Una nueva idea ha aparecido.')
+                    toastr.success('+ 5 puntos!','Una nueva idea ha aparecido.')
 					this.form.reset();
 
 

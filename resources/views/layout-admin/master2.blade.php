@@ -526,14 +526,14 @@
 													<div class="kt-notification__item-icon">
 														<i class="flaticon2-calendar-3 kt-font-success"></i>
 													</div>
-													<div class="kt-notification__item-details">
+												<router-link :to="{name:'profile'}" class="kt-notification__item-details">
 														<div class="kt-notification__item-title kt-font-bold">
 															Mi perfil
 														</div>
 														<div class="kt-notification__item-time">
 															Configuraciones de cuenta
 														</div>
-													</div>
+													</router-link>
 												</a>
 												<a href="#" class="kt-notification__item">
 													<div class="kt-notification__item-icon">

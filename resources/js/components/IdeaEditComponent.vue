@@ -415,6 +415,7 @@ export default {
 
 
     loadIdea() {
+      
       axios
         .get("/getInnovation/" + this.id)
         .then(response => {

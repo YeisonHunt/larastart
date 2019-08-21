@@ -12,6 +12,7 @@ use App\User;
 use App\Discussion;
 use DB;
 use App\Desired;
+use App\Punto;
 
 use App\User_Has_Idea;
 use App\User_Has_Ideas_Permission;
@@ -81,6 +82,9 @@ class IdeasController extends Controller
        
 
         $comentarios = DB::table('comments')->where('task_id',$idIdea)->delete();
+
+
+        $punto = DB::table('puntos')->where('idea_id',$idIdea)->where('user_id',$user->id)->where('tipo','creacion_idea')->delete();
       
 
         Log::info('todo borrado correctamente');
@@ -863,15 +867,28 @@ class IdeasController extends Controller
 
     public function vote(Request $request){
 
+        $user= Auth::user();
+
+        $innovacion = Innovation::find(intval($request->innovation_id));
+
 
         $finder = DB::table('desireds')->where('user_id',$request->user_id)
         ->where('innovation_id',$request->innovation_id)->first();
 
+        $puntos = DB::table('puntos')->where('user_id',$user->id)->where('idea_id',$request->innovation_id)
+        ->where('tipo','votar_idea')->get();
+
 				$type= $request->type;
 
 				if(!empty($finder)){
+
 					$like= Desired::find($finder->id);
-					$like->delete();
+                    $like->delete();
+                    
+                    if(!empty($puntos)){
+                        $puntos = DB::table('puntos')->where('user_id',$user->id)->where('idea_id',$request->innovation_id)
+                            ->where('tipo','votar_idea')->delete();
+                    }
 				}
 
 				if($type=='like'){
@@ -880,37 +897,61 @@ class IdeasController extends Controller
 					$like->innovation_id = $request->innovation_id;
 					$like->user_id    = $request->user_id;
 					$like->type='like';
-					$like->save();
+                    $like->save();
+                    
+                    $punto = Punto::create([
+                        'numero'=>1,
+                        'tipo'=>'votar_idea',
+                        'user_id'=>$user->id,
+                        'idea_id'=>$request->innovation_id
+                    ]);
+
+                    $punto2 = Punto::create([
+                        'numero'=>1,
+                        'tipo'=>'votar_idea',
+                        'user_id'=>$innovacion->created_by,
+                        'idea_id'=>$request->innovation_id
+                    ]);
 
 					
 				}elseif($type=='unlike' || $type =='undislike' || $type=='unaction'){
 
 
 				}elseif($type=='dislike'){
+
 					$like = new Desired();
 					$like->innovation_id = $request->innovation_id;
 					$like->user_id    = $request->user_id;
 					$like->type='dislike';
-					$like->save();
+                    $like->save();
+                    
+                    $punto = Punto::create([
+                        'numero'=>1,
+                        'tipo'=>'votar_idea',
+                        'user_id'=>$user->id,
+                        'idea_id'=>$request->innovation_id
+                    ]);
 
 
 				}elseif($type=='action'){
+
 					$like = new Desired();
 					$like->innovation_id = $request->innovation_id;
 					$like->user_id    = $request->user_id;
 					$like->type='action';
-					$like->save();
+                    $like->save();
+                    
+                    $punto = Punto::create([
+                        'numero'=>1,
+                        'tipo'=>'votar_idea',
+                        'user_id'=>$user->id,
+                        'idea_id'=>$request->innovation_id
+                    ]);
 
 
 				}else {
 
 				}
-
-
-
-
-
-
 
 
             $desired = DB::table('desireds')->where('innovation_id',$request->innovation_id)->get();
@@ -992,6 +1033,31 @@ class IdeasController extends Controller
             'reto_id'=>$retoId,
             'votes_privacy'=>$request->votes_privacy
         ]);
+
+        if($request->type=='idea')
+        {
+            $punto = Punto::create([
+
+                'numero'=>5,
+                'tipo'=>'creacion_idea',
+                'user_id'=>$user->id,
+                'idea_id'=>$idea->id
+    
+            ]);
+        }elseif($request->type=='reto'){
+            $punto = Punto::create([
+
+                'numero'=>10,
+                'tipo'=>'creacion_reto',
+                'user_id'=>$user->id,
+                'idea_id'=>$idea->id
+    
+            ]);
+        }else {
+
+        }
+
+       
 
 
 
