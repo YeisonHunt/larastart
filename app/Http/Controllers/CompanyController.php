@@ -21,6 +21,7 @@ class CompanyController extends Controller
 
      public function getCompanyInfo(Request $request){
 
+            if(Auth::check()){
 
             $user = Auth::user();
 
@@ -57,6 +58,12 @@ class CompanyController extends Controller
                     'userType'=>'employee'
                 ]);
             }
+
+        }else{
+            return respone()->json([
+				'msg','loginRequired'
+			]);
+        }
 
     }
 

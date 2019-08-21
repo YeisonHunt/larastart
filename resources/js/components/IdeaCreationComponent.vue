@@ -303,6 +303,36 @@ export default {
 	  data() {
             return  {
 
+				fotos:[
+					'1.svg',
+					'2.svg',
+					'3.svg',
+					'4.svg',
+					'5.svg',
+					'6.svg',
+					'7.svg',
+					'8.jpg',
+					'9.jpg',
+					'10.jpg',
+					'11.svg',
+					'12.svg',
+					'13.jpg',
+					'14.svg',
+					'15.svg',
+					'16.svg',
+					'17.svg',
+					'18.svg',
+					'19.svg',
+					'20.svg',
+					'21.svg',
+					'22.svg',
+					'23.svg',
+					'24.svg',
+					'25.svg',
+					'26.svg',
+					'27.svg',
+
+				],
 			     value: [
                         { name: 'Equipo 1', code: 'js' }
                     ],
@@ -312,7 +342,8 @@ export default {
                         { name: 'Equipo 3', code: 'os' }
                     ],
 
-			    user: window.User,
+				user: window.User,
+				baseUrl: window.baseUrl,
                 form: new Form({
                     id:'',
                     title: '',
@@ -374,7 +405,9 @@ export default {
 			let random = Math.floor(Math.random() * 1000) + 1;
 
 			if(this.form.img == ""){
-				this.form.img= 'https://picsum.photos/id/'+random/'450/450';
+
+				let random = Math.floor(Math.random() * 26);
+				this.form.img= this.baseUrl+'images/'+this.fotos[random];
 			}
 
 			 this.$Progress.start();

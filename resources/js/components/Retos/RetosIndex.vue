@@ -331,10 +331,16 @@ export default {
       axios
         .get("/getRetos")
         .then(response => {
+
+            if(response.data.msg=='loginRequired'){
+            window.location.href = baseUrl+'login';
+          }else {
           this.privateRetos = response.data.privateRetos;
           this.companyRetos = response.data.companyRetos;
           this.publicRetos = response.data.publicRetos;
           this.user = response.data.user;
+
+          }
         })
         .catch(error => {
           console.log(error);

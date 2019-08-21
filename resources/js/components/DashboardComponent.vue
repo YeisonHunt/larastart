@@ -112,12 +112,20 @@ export default {
       axios
         .get("/getDataInfo")
         .then(response => {
+
+          
+          if(response.data.msg=='loginRequired'){
+            window.location.href = baseUrl+'login';
+          }else {
           this.iPublicas = response.data.iPublicas;
           this.iPrivadas = response.data.iPrivadas;
           this.rPublicos = response.data.rPublicos;
           this.rPrivados = response.data.rPrivados;
           this.tPublicos = response.data.tPublicos;
           this.tPrivados = response.data.tPrivados;
+          }
+
+
         })
         .catch(error => {
           console.log(error);

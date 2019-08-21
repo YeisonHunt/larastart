@@ -44,6 +44,17 @@
   <link  href="{{asset('modern-innova/css/new_home.5db11bb9710cb72ec455a4f37baf3e2e.min.css')}}" rel="stylesheet">
 
   <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124651178-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-124651178-3');
+</script>
+
  
 
 

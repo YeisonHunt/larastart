@@ -124,7 +124,7 @@
                               class="form-control"
                              
                               aria-describedby="basic-addon1"
-                              required
+                              
                               ref="contactPhoto"
                             >
                           </div>
@@ -259,7 +259,7 @@
       <div class="col-4"></div>
 
       <div class="col-4">
-        <router-link to="/innovations" class="btn btn-primary">Go back to innovations</router-link>
+        <router-link to="/innovations" class="btn btn-primary">Ir a innovaciones</router-link>
       </div>
 
       <div class="col-4"></div>

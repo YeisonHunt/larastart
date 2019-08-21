@@ -20,7 +20,7 @@ Route::post('/deleteInnovation','IdeasController@deleteInnovation');
 
 Route::get('/getVotes/{id}','IdeasController@getVotes');
 
-Route::get('/dashboard','AdminController@index')->name('admin');
+Route::get('/dashboard','AdminController@index')->name('admin')->middleware('auth');
 Route::get('/innovations','AdminController@index')->name('innovations');
 //Route::get('/dashboard2','AdminController@dashboard2')->name('dashboard2');
 Route::get('/users','AdminController@users')->name('users');
@@ -118,6 +118,7 @@ Route::get('/assets/assets/app/custom/login/login-v1.js',function(){
 Route::get('/assets/vendors/base/purify.js.map',function(){
     return redirect()->route('admin');
 });
+
 Route::get('/login/{provider}','SocialAuthController@redirectToProvider');
 Route::get('/login/{provider}/callback','SocialAuthController@handleProviderCallback');
 

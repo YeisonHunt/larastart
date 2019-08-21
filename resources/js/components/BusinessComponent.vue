@@ -234,7 +234,13 @@ export default {
       axios
         .get("/data/getCompanyInfo")
         .then(response => {
-          this.userType = response.data.userType;
+
+          if(response.data.msg=='loginRequired'){
+            window.location.href = baseUrl+'login';
+          }else {
+            this.userType = response.data.userType;
+          }
+          
         })
         .catch(error => {
           console.log(error);

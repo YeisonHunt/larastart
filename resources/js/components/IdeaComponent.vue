@@ -1099,10 +1099,16 @@ export default {
 
       axios.get("/getInnovations").then(response => {
 
+         if(response.data.msg=='loginRequired'){
+            window.location.href = baseUrl+'login';
+          }else{
+
           this.ideas = response.data.ideas;
           this.publicIdeas = response.data.publicIdeas;
           this.user = response.data.user;
           this.companyIdeas = response.data.companyIdeas;
+
+          }
         
           
         })

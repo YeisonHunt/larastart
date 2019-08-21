@@ -23,6 +23,9 @@ class AdminController extends Controller
 
 	public function getDataInfo(){
 
+		
+        if (Auth::check()) {
+
 		$companyId= Auth::user()->company_id;
 		$company = Business::find($companyId);
 		$creator_id = $company->created_by;
@@ -47,6 +50,12 @@ class AdminController extends Controller
 			'tPrivados'=>count($tPrivados),
 
 		]);
+		}
+		else {
+			return respone()->json([
+				'msg','loginRequired'
+			]);
+		}
 	}
 
 

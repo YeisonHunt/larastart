@@ -268,6 +268,7 @@ class IdeasController extends Controller
 
 		public function getRetos(){
 
+            if(Auth::check()){
 
 			        $userAuth = Auth::user();
 
@@ -541,7 +542,13 @@ class IdeasController extends Controller
 									'user'=>$userAuth,
 
 
-			        ]);
+                    ]);
+                    
+                    }else {
+                        return respone()->json([
+                            'msg','loginRequired'
+                        ]);
+                    }
 
 		}// end getRetos
 
@@ -549,7 +556,7 @@ class IdeasController extends Controller
 
         // De aqui se estan trayendo las innovaciones.
 
-
+        if (Auth::check()) {
         $userAuth = Auth::user();
 
         // Para halar las innovaciones por usuario, el determinante debe ser el id del usuario.
@@ -840,6 +847,14 @@ class IdeasController extends Controller
 
 
         ]);
+
+
+    }else {
+        return respone()->json([
+            'msg','loginRequired'
+        ]);
+    }
+
     }
 
     /*
