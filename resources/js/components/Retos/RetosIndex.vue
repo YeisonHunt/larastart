@@ -112,7 +112,7 @@
 													<div class="kt-widget19__stats">
 														<span class="kt-widget19__number kt-font-brand">
 
-                              <router-link class="" v-bind:to="'/retos/ver/'+idea.id">{{idea.likes.length}}</router-link>
+                              <router-link class="" v-bind:to="'/retos/ver/'+idea.id">{{idea.solutions.length}}</router-link>
 														</span>
 
                           <router-link class="kt-widget19__comment" v-bind:to="'/retos/ver/'+idea.id">Soluciones</router-link>
@@ -189,7 +189,7 @@
 													<div class="kt-widget19__stats">
 														<span class="kt-widget19__number kt-font-brand">
 
-                              <router-link class="" v-bind:to="'/retos/ver-public/'+idea.id">{{idea.likes.length}}</router-link>
+                              <router-link class="" v-bind:to="'/retos/ver-public/'+idea.id">{{idea.solutions.length}}</router-link>
 														</span>
 
                           <router-link class="kt-widget19__comment" v-bind:to="'/retos/ver-public/'+idea.id">Soluciones</router-link>
@@ -260,7 +260,7 @@
 													<div class="kt-widget19__stats">
 														<span class="kt-widget19__number kt-font-brand">
 
-                              <router-link class="" v-bind:to="'/retos/ver/'+idea.id">{{idea.likes.length}}</router-link>
+                              <router-link class="" v-bind:to="'/retos/ver/'+idea.id">{{idea.solutions.length}}</router-link>
 														</span>
 
                           <router-link class="kt-widget19__comment" v-bind:to="'/retos/ver/'+idea.id">Soluciones</router-link>
