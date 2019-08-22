@@ -253,7 +253,7 @@
 													</div>
 													<div class="kt-widget19__info">
 														<a href="#" class="kt-widget19__username">
-														Escrita por mi 
+														Escrito por mi 
 														</a>
 
 													</div>
@@ -339,6 +339,8 @@ export default {
           this.companyRetos = response.data.companyRetos;
           this.publicRetos = response.data.publicRetos;
           this.user = response.data.user;
+
+          console.log(response.data.privateRetos)
 
           }
         })

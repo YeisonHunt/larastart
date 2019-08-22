@@ -279,11 +279,11 @@ class IdeasController extends Controller
 			        // Para halar las innovaciones por usuario, el determinante debe ser el id del usuario.
 			        $ideas= DB::table('user__has__ideas')
 							->join('innovations','user__has__ideas.id_idea','innovations.id')
-			        ->where('user__has__ideas.id_user',$userAuth->id)
+			                ->where('user__has__ideas.id_user',$userAuth->id)
 							->where('innovations.type','reto')
 							->select('user__has__ideas.*')
 							->orderBy('user__has__ideas.id','DESC')
-			        ->get();
+			                ->get();
 
 
 
