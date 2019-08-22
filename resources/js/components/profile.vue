@@ -4,7 +4,7 @@
 
                <div class="row">
                    <div class="col-12">
-                       <h6>Perfil de usuario - Configuraciones</h6>
+                       <h6>Perfil de usuario</h6>
                        <br/>
                        <h3>Cambiar configuración de cuenta</h3>
 
@@ -21,7 +21,7 @@
                             
                             icons-and-text
                             >
-                            <v-tabs-slider color="yellow"></v-tabs-slider>
+                            <v-tabs-slider color="blue"></v-tabs-slider>
 
                             <v-tab href="#general">
                             GENERAL

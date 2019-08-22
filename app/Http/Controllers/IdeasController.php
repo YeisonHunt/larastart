@@ -1340,6 +1340,7 @@ class IdeasController extends Controller
         $idea->language = $request->language;
         $idea->category = $request->category;
         $idea->author = $request->author;
+        $idea->privacy = $request->privacy;
 
 
         $idea->save();
