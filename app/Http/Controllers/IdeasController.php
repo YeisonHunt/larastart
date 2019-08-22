@@ -413,7 +413,7 @@ class IdeasController extends Controller
                             $permissions = DB::table('user__has__ideas__permissions')->where('id_idea',$idea->id_idea)->get();
                             
                               
-                            $solutions = DB::table('innovations')->where('reto_id',$idea->id)
+                            $solutions = DB::table('innovations')->where('reto_id',$idea->id_idea)
                             ->join('users','users.id','innovations.created_by')
                             ->select('innovations.*','users.name as escrita')
                             ->orderBy('innovations.created_at','DESC')

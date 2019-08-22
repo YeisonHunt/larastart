@@ -340,7 +340,7 @@ export default {
           this.publicRetos = response.data.publicRetos;
           this.user = response.data.user;
 
-          console.log(response.data.privateRetos)
+          //console.log(response.data.privateRetos)
 
           }
         })
