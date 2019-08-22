@@ -189,10 +189,10 @@
 													<div class="kt-widget19__stats">
 														<span class="kt-widget19__number kt-font-brand">
 
-                              <router-link class="" v-bind:to="'/retos/ver-public/'+idea.id">{{idea.solutions.length}}</router-link>
+                              <router-link class="" v-bind:to="'/retos/ver/'+idea.id">{{idea.solutions.length}}</router-link>
 														</span>
 
-                          <router-link class="kt-widget19__comment" v-bind:to="'/retos/ver-public/'+idea.id">Soluciones</router-link>
+                          <router-link class="kt-widget19__comment" v-bind:to="'/retos/ver/'+idea.id">Soluciones</router-link>
 
 
 
@@ -210,7 +210,7 @@
 
 
                          <router-link class="btn btn-sm btn-label-brand btn-bold "
-                         v-bind:to="'/retos/ver-public/'+idea.id">Aportar solución...</router-link>
+                         v-bind:to="'/retos/ver/'+idea.id">Aportar solución...</router-link>
 
 
 

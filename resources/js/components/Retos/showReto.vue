@@ -790,6 +790,8 @@ export default {
         return iCanSee;
       } else if (this.idea.company_id==this.user.company_id ){
           return true;
+      } else if (this.idea.privacy=='public'){
+        return true;
       }
 
 
