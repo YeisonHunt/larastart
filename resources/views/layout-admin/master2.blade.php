@@ -5,7 +5,7 @@
 	<!-- begin::Head -->
 	<head>
 		<meta charset="utf-8" />
-		<title> Innova | Inicio </title>
+		<title> Innova | Dashboard </title>
 		<meta name="description" content="Innovation gun for every awesome company">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -68,6 +68,24 @@
 					
 					background-repeat: repeat !important;
 				}
+
+				.kt-menu__item:hover  {
+					background-color: #272D37 !important;
+					}
+
+					.kt-menu__link-icon {
+					color:#646F79 !important;
+					}
+
+					.menuActivo {
+					color:#D5DCE0 !important;
+					}
+
+					.activeSubLink {
+						background-color: #444951 !important;
+						color:#D5DCE0 !important;
+						}
+
 
 		
 			</style>
@@ -618,8 +636,12 @@
 
 
 							@yield('content')
+							<transition name="fade">
+                            <router-view>
 
-                            <router-view></router-view>
+							</router-view>
+
+							</transition>
 
                              <!-- set progressbar -->
 							 <vue-progress-bar></vue-progress-bar>

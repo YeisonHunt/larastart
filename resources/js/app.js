@@ -351,7 +351,7 @@ Vue.filter(
 
 
 const options = {
-	color: '#0080FF',
+	color: '#FAB200',
 	failedColor: '#874b4b',
 	thickness: '5px',
 	transition: {

@@ -1148,6 +1148,8 @@ export default {
       $("#innovations").addClass('menuActivo');
       $("#retos").removeClass('menuActivo');
 
+      $(document).attr("title", "Innova | Innovaciones");
+
   }
 };
 </script>

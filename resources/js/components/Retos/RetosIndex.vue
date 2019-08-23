@@ -358,11 +358,16 @@ export default {
     }
   },
   mounted() {
-    this.getRetos();
+   
     $("#admin").removeClass("menuActivo");
     $("#dashboard").removeClass("menuActivo");
     $("#innovations").removeClass("menuActivo");
     $("#retos").addClass("menuActivo");
-  }
+    $(document).attr("title", "Innova | Retos");
+  },
+
+  created () {
+     this.getRetos();
+  },
 };
 </script>

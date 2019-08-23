@@ -109,6 +109,8 @@ export default {
 
   methods: {
     getDataInfo() {
+
+        this.$Progress.start();
       axios
         .get("/getDataInfo")
         .then(response => {
@@ -116,6 +118,7 @@ export default {
           
           if(response.data.msg=='loginRequired'){
             window.location.href = baseUrl+'login';
+              this.$Progress.finish();
           }else {
           this.iPublicas = response.data.iPublicas;
           this.iPrivadas = response.data.iPrivadas;
@@ -123,12 +126,14 @@ export default {
           this.rPrivados = response.data.rPrivados;
           this.tPublicos = response.data.tPublicos;
           this.tPrivados = response.data.tPrivados;
+            this.$Progress.finish();
           }
 
 
         })
         .catch(error => {
           console.log(error);
+            this.$Progress.finish();
 
           toastr.error("Oops!", "Something goes wrong");
         });
@@ -148,6 +153,8 @@ export default {
     $("#dashboard").addClass("menuActivo");
     $("#innovations").removeClass("menuActivo");
     $("#retos").removeClass("menuActivo");
+    $(document).attr("title", "Innova | Dashboard");
+
   }
 };
 </script>
