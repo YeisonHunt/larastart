@@ -73,40 +73,40 @@
                                     <div>Soluciones Actuales  {{solutions.length}}</div>
                                 </template>
 
-                                <v-container fluid>
-                                    <v-layout row>
-                                        <v-flex xs12 sm6 md2 lg4 xl3 pa-2  v-for="idea in solutions "   :key="idea.id"   >
-
-                                              <v-card width="90%" height="100%" class="mx-auto" hover>
-
-
-                <v-img :src=" idea.img" height="194"></v-img>
-
-                <v-card-text>
-
-                    <div class="headline">{{idea.title | uppercaseFirst}}</div>
-										<br>
-
-                   <div v-if="idea.privacy=='showme'">Escrita  por: {{idea.escrita}}</div>
-                   <div v-else>Escrita por :Anónimo(a)</div>
-
-                 {{idea.description | largeText}}
-
-                  <p> <b>Categoría: </b> {{idea.category | toCategory}}</p>
-                </v-card-text>
-
-                <v-card-actions>
-                  <v-btn :to="{name:'ver-idea',params:{id:idea.id}}" dark text color="deep-purple accent-4">Leer completa</v-btn>
-
-
-                </v-card-actions>
-              </v-card>
-                                        </v-flex>
+                               <div class="container-fluid">
+                                 <div class="row">
+                                   <div class="col-sm-6 col-lg-4 col-xl-4 col-md-3 " style="padding-top:20px;"  v-for="idea in solutions "   :key="idea.id">
+                                     
 
 
 
-                                    </v-layout>
-                                </v-container>
+                                              <v-card height="100%" class="mx-auto" hover>
+
+
+                                      <v-img :src=" idea.img" height="194"></v-img>
+
+                                      <v-card-text>
+
+                                          <div class="headline">{{idea.title | uppercaseFirst}}</div>
+                                          <br>
+
+                                        <div v-if="idea.privacy=='showme'">Escrita  por: {{idea.escrita}}</div>
+                                        <div v-else>Escrita por :Anónimo(a)</div>
+
+                                      {{idea.description | largeText}}
+
+                                        <p> <b>Categoría: </b> {{idea.category | toCategory}}</p>
+                                      </v-card-text>
+
+                                      <v-card-actions>
+                                        <v-btn :to="{name:'ver-idea',params:{id:idea.id}}" dark text color="deep-purple accent-4">Leer completa</v-btn>
+
+
+                                      </v-card-actions>
+                                    </v-card>
+                                   </div>
+                                 </div>
+                               </div>
                       </v-expansion-panel-content>
                   </v-expansion-panel>
               </div>
