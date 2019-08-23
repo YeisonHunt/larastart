@@ -1097,10 +1097,15 @@ export default {
     loadUsers() {
       // podemos usar this.form.get but we are gonna use axios
 
+      this.$Progress.start();
+
       axios.get("/getInnovations").then(response => {
 
          if(response.data.msg=='loginRequired'){
             window.location.href = baseUrl+'login';
+
+            this.$Progress.finish();
+
           }else{
 
           this.ideas = response.data.ideas;
@@ -1108,12 +1113,17 @@ export default {
           this.user = response.data.user;
           this.companyIdeas = response.data.companyIdeas;
 
+          this.$Progress.finish();
+
+
           }
         
           
         })
         .catch(error => {
           console.log(error);
+          this.$Progress.finish();
+
 
           toastr.error("Oops!", "Something goes wrong");
         });

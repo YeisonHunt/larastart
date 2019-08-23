@@ -328,6 +328,8 @@ export default {
 
   methods: {
     getRetos() {
+
+       this.$Progress.start();
       axios
         .get("/getRetos")
         .then(response => {
@@ -340,12 +342,16 @@ export default {
           this.publicRetos = response.data.publicRetos;
           this.user = response.data.user;
 
+          this.$Progress.finish();
+
           //console.log(response.data.privateRetos)
 
           }
         })
         .catch(error => {
           console.log(error);
+
+          this.$Progress.finish();
 
           toastr.error("Oops!", "Something goes wrong");
         });

@@ -138,7 +138,7 @@
 																		<div class="input-group">
 																			<div class="input-group-prepend"><span class="input-group-text"><i class="flaticon-photo-camera"></i></span></div>
 																			<input type="file"  accept="image/x-png, image/jpeg"   @change="onFilePicked" name="img" class="form-control"   :class="{'is-invalid': form.errors.has('img')}"   
-																			placeholder="https://wwwmyawesomeideaimg.com/myimage.jpg" aria-describedby="basic-addon1" required>
+																			placeholder="https://wwwmyawesomeideaimg.com/myimage.jpg" aria-describedby="basic-addon1" >
 
 																			<has-error :form="form" field="img" ></has-error>
 																		</div>
@@ -295,6 +295,38 @@ export default {
 
 	  data() {
             return  {
+
+				baseUrl: window.baseUrl,
+				fotos:[
+					'1.svg',
+					'2.svg',
+					'3.svg',
+					'4.svg',
+					'5.svg',
+					'6.svg',
+					'7.svg',
+					'8.jpg',
+					'9.jpg',
+					'10.jpg',
+					'11.svg',
+					'12.svg',
+					'13.jpg',
+					'14.svg',
+					'15.svg',
+					'16.svg',
+					'17.svg',
+					'18.svg',
+					'19.svg',
+					'20.svg',
+					'21.svg',
+					'22.svg',
+					'23.svg',
+					'24.svg',
+					'25.svg',
+					'26.svg',
+					'27.svg',
+
+				],
 			   
 			     value: [
                         { name: 'Equipo 1', code: 'js' }
@@ -355,6 +387,14 @@ export default {
 		},
 
 		createUser(){
+
+			let random = Math.floor(Math.random() * 1000) + 1;
+
+			if(this.form.img == ""){
+
+				let random = Math.floor(Math.random() * 26);
+				this.form.img= this.baseUrl+'images/'+this.fotos[random];
+			}
 
 			 this.$Progress.start();
 			  // Submit the form via a POST request

@@ -231,19 +231,28 @@ export default {
 
   methods: {
     getUser() {
+
+      this.$Progress.start();
+
       axios
         .get("/data/getCompanyInfo")
         .then(response => {
 
           if(response.data.msg=='loginRequired'){
             window.location.href = baseUrl+'login';
+            this.$Progress.finish();
+
           }else {
             this.userType = response.data.userType;
+            this.$Progress.finish();
+
           }
           
         })
         .catch(error => {
           console.log(error);
+          this.$Progress.finish();
+
 
           toastr.error("Oops!", "Something goes wrong");
         });
