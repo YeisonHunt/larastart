@@ -30,11 +30,11 @@ let routes = [
 
 	{ path: '/',name:'home', component: require('./components/landing3/home.vue').default},
 	,
-	{ path: '/global-ideas',name:'global-ideas', component: () => import(/* webpackChunkName: "global-ideas" */ './components/landing3/global-ideas.vue')},
-	{ path: '/products',name:'products', component: () => import(/* webpackChunkName: "products" */ './components/landing3/products.vue')},
-	{ path: '/pricing',name:'pricing', component: () => import(/* webpackChunkName: "pricing" */ './components/landing3/pricing.vue')},
-	{ path: '/blog',name:'blog', component: () => import(/* webpackChunkName: "blog" */ './components/landing3/blog.vue')},
-	{ path: '/global-ideas/view/:id',name:'view-idea', component:() => import(/* webpackChunkName: "idea-view" */ './components/landing3/idea/view.vue') },
+	{ path: '/global-ideas',name:'global-ideas', component: require('./components/landing3/global-ideas.vue').default},
+	{ path: '/products',name:'products', component: require('./components/landing3/products.vue').default},
+	{ path: '/pricing',name:'pricing', component: require('./components/landing3/pricing.vue').default},
+	{ path: '/blog',name:'blog', component: require('./components/landing3/blog.vue').default},
+	{ path: '/global-ideas/view/:id',name:'view-idea', component:require('./components/landing3/idea/view.vue').default },
 
 
 
