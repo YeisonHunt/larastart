@@ -20,7 +20,7 @@
             });
 		</script>
 
-		<link rel="stylesheet" href="style.css">
+		
 			<link rel="stylesheet" href="{{ asset('css/animate.css') }}"> <!-- Min -->
 			<link rel="stylesheet" href="{{ asset('css/hover-min.css') }}"> <!-- Min -->
 			<link rel="stylesheet" href="{{ asset('css/app.css') }}">

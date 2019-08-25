@@ -222,7 +222,7 @@ Vue.filter(
 	'humanDate',
 	function (txtDate) {
 
-		return moment(txtDate).format('MMMM Do YYYY');
+		return moment(txtDate).locale('es').format('MMMM Do YYYY');
 	}
 
 );

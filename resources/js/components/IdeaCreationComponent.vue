@@ -11,7 +11,7 @@
 									<!--begin::Portlet-->
 									<div class="kt-portlet kt-portlet--last kt-portlet--head-lg kt-portlet--responsive-mobile myForm " id="kt_page_portlet">
 
-										<form class="kt-form" id="kt_form" @submit.prevent="createUser" @keydown="form.onKeydown($event)">
+										<form enctype="multipart/form-data" class="kt-form" id="kt_form" @submit.prevent="createUser" @keydown="form.onKeydown($event)">
 										<div class="kt-portlet__head kt-portlet__head--lg" style="">
 											<div class="kt-portlet__head-label">
 												<h3 class="kt-portlet__head-title">Crea ideas geniales  <small>para solucionar problemas en tu empresa y en el mundo.</small></h3>
@@ -340,7 +340,8 @@ export default {
                         { name: 'Equipo 1', code: 'vu' },
                         { name: 'Equipo 2', code: 'js' },
                         { name: 'Equipo 3', code: 'os' }
-                    ],
+					],
+				imagen:'',
 
 				user: window.User,
 				baseUrl: window.baseUrl,
@@ -377,6 +378,7 @@ export default {
 
 			const files = event.target.files;
 			let filename = files[0].name;
+			this.image = event.target.files[0];
 
 			if (filename.lastIndexOf(".") <= 0) {
 				return alert("Please add a valid file");
@@ -385,7 +387,7 @@ export default {
 			const fileReader = new FileReader();
 			fileReader.addEventListener("load", () => {
 				//this.contactPhoto = fileReader.result;
-				this.form.img = fileReader.result;
+				//this.form.img = fileReader.result;
 			});
 			fileReader.readAsDataURL(files[0]);
 			//this.contactPhotoImg = files[0]; // file without any changes
@@ -402,25 +404,31 @@ export default {
 
 		createUser(){
 
-			let random = Math.floor(Math.random() * 1000) + 1;
+			 const config = {
+                    headers: { 'content-type': 'multipart/form-data' }
+                }
+			 let formData = new FormData();
+                formData.append('image', this.image);
+ 
+
+			/*let random = Math.floor(Math.random() * 1000) + 1;
 
 			if(this.form.img == ""){
 
 				let random = Math.floor(Math.random() * 26);
 				this.form.img= this.baseUrl+'images/'+this.fotos[random];
-			}
+			}*/
 
 			 this.$Progress.start();
 			  // Submit the form via a POST request
 
 			  	 this.form.editordata =  $('#kt_summernote_1').summernote('code');
-                 this.form.post('/saveIdea2')
-                .then(({ data }) => {
-
-
-					this.$router.push('innovations');
+                 axios.post('/saveIdea2', formData, config)
+                .then(function (response) {
+					console.log(response.data.success)
+					/*this.$router.push('innovations');
                     toastr.success('+ 5 puntos!','Una nueva idea ha aparecido.')
-					this.form.reset();
+					this.form.reset(); */
 
 
 

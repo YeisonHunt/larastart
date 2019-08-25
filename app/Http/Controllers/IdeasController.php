@@ -873,7 +873,7 @@ class IdeasController extends Controller
             'ideas'=>$ideasAll,
             'publicIdeas'=>$ideasAllPublic,
             'user'=>$userAuth,
-						'companyIdeas'=>$ideasAllCorporate,
+			'companyIdeas'=>$ideasAllCorporate,
 
 
         ]);
@@ -1029,6 +1029,26 @@ class IdeasController extends Controller
 
     }
 
+    function compress($source, $destination, $quality) {
+
+		$info = getimagesize($source);
+
+		if ($info['mime'] == 'image/jpeg'){
+				$image = imagecreatefromjpeg($source);
+				imagejpeg($image, $destination,60);
+		}elseif($info['mime'] == 'image/png'){
+				$image = imagecreatefrompng($source);
+				imageAlphaBlending($image, true);
+                
+				imagepng($image, $destination,7);
+		} else {
+				imagejpeg($image, $destination, 60);
+		}
+
+
+		return $destination;
+	}
+
     public function saveIdea2(Request $request)
     {
 
@@ -1041,7 +1061,20 @@ class IdeasController extends Controller
 					$retoId = 0;
 				}else {
 					$retoId = $request->reto_id;
-				}
+                }
+                
+        // Seccion de guardado de imagen // 
+
+                $newImage = $this->compress($request->image,'test.'.$request->image->getClientOriginalExtension());
+           
+                $imageName = time().'.'.$request->image->getClientOriginalExtension();
+                $newImage->storeAs('public', $imageName);
+                return response()->json(['success'=>'You have successfully upload image.']);
+            
+
+        // Fin Seccion de guardado de imagen //
+
+        /*
 
         $idea=  Innovation::create([
 
@@ -1103,6 +1136,8 @@ class IdeasController extends Controller
 
 
         Log::info('Innovation creada correctamente');
+
+        */
 
 
     }
