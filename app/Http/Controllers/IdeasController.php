@@ -1122,11 +1122,7 @@ class IdeasController extends Controller
                 }
 
                
-              
-                
-            
-              
-       
+         
 
 
         if($request->type=='idea')

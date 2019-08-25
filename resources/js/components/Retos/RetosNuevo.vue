@@ -124,12 +124,12 @@
 																	<div class="col-9">
 																		<div class="input-group">
 																			<div class="input-group-prepend"><span class="input-group-text"><i class="flaticon-photo-camera"></i></span></div>
-																			<input type="file"  accept="image/x-png, image/jpeg"   @change="onFilePicked" name="img" class="form-control"   :class="{'is-invalid': form.errors.has('img')}"   
+																			<input type="file"  accept="image/x-png, image/jpeg"   :id="'retoImagen'"   @change="onFilePicked" name="img" class="form-control"   :class="{'is-invalid': form.errors.has('img')}"   
 																			placeholder="https://wwwmyawesomeideaimg.com/myimage.jpg" aria-describedby="basic-addon1" >
 
 																			<has-error :form="form" field="img" ></has-error>
 																		</div>
-																		<span class="form-text text-muted">Escoger una buena imágen hace que el presente reto sea más llamativo y fácil de comprender.</span>
+																		<span class="form-text text-muted">(Tamaño menor a 3M).</span>
 																	</div>
 																</div>
 																
@@ -322,7 +322,7 @@ export default {
                         { name: 'Equipo 2', code: 'js' },
                         { name: 'Equipo 3', code: 'os' }
                     ],
-                
+				image:'',
 				user: window.User,
 				baseUrl: window.baseUrl,
                 form: new Form({
@@ -345,22 +345,31 @@ export default {
 
 		onFilePicked(event) {
 			
-			const files = event.target.files;
+			 const files = event.target.files;
 			let filename = files[0].name;
+			
+			let imagenTemporal = event.target.files[0];
+			let mbSize = imagenTemporal.size/1024/1024;
+			mbSize = mbSize.toFixed(2);
+			
 
 			if (filename.lastIndexOf(".") <= 0) {
-				return alert("Please add a valid file");
+				alert("Añadir un archivo válido!");
+			}
+			
+			this.image = event.target.files[0];
+			
+
+			if(mbSize>3){
+				
+				alert('La imágen no puede ser mayor a 3 megas');
+
+				document.getElementById('retoImagen').value = null;
+				//window.fileInputForm.reset();
+				
+
 			}
 
-			const fileReader = new FileReader();
-			fileReader.addEventListener("load", () => {
-				//this.contactPhoto = fileReader.result;
-				this.form.img = fileReader.result;
-			});
-			fileReader.readAsDataURL(files[0]);
-			//this.contactPhotoImg = files[0]; // file without any changes
-
-			// esta ultima es la que se envia
     },
 
 		testFun(){
@@ -372,35 +381,64 @@ export default {
 
 		createUser(){
 
-			let random = Math.floor(Math.random() * 1000) + 1;
+		const config = {
+        headers: { "content-type": "multipart/form-data" }
+      };
+      let formData = new FormData();
 
-			if(this.form.img == ""){
+      let random = Math.floor(Math.random() * 1000) + 1;
 
-				let random = Math.floor(Math.random() * 26);
-				this.form.img= this.baseUrl+'images/'+this.fotos[random];
-			}
+      if (this.image == "") {
+        let random = Math.floor(Math.random() * 26);
+        this.form.img = this.baseUrl + "images/" + this.fotos[random];
 
-			 this.$Progress.start();
-			  // Submit the form via a POST request
-			  
-			  	 this.form.editordata =  $('#kt_summernote_1').summernote('code');
-                 this.form.post('/saveIdea2')
-                .then(({ data }) => { 
+		formData.append("img", this.form.img);
+	
+        formData.append("title", this.form.title);
+        formData.append("description", this.form.description);
+        formData.append("editordata", $("#kt_summernote_1").summernote("code"));
+        formData.append("category", this.form.category);
+        formData.append("language", this.form.language);
+        formData.append("author", this.form.author);
+        formData.append("privacy", this.form.privacy);
+        formData.append("type", 'reto');
+        formData.append("votes_privacy", this.form.votes_privacy);
+      } else {
 
-				 
-					this.$router.push({name:'retos'});
-                    toastr.success('+ 10 puntos','Reto creado satisfactoriamente.')
-					this.form.reset();
-                    
 
+		formData.append("image", this.image);
 
-                 }).catch(()=>{
-                    toastr.error('Oops!','Algo anda mal.')    
-                 })
+        formData.append("title", this.form.title);
+        formData.append("description", this.form.description);
+        formData.append("editordata", $("#kt_summernote_1").summernote("code"));
+        formData.append("category", this.form.category);
+        formData.append("language", this.form.language);
+        formData.append("author", this.form.author);
+        formData.append("privacy", this.form.privacy);
+        formData.append("type", 'reto');
+        formData.append("votes_privacy", this.form.votes_privacy);
+      }
 
-                //$('#userCreationModal').modal('hide');
-                
-                this.$Progress.finish();
+      this.$Progress.start();
+      // Submit the form via a POST request
+
+      this.form.editordata = $("#kt_summernote_1").summernote("code");
+      axios
+        .post("/saveIdea2", formData, config)
+        .then(({ data }) => { 
+		
+		  toastr.success('+ 10 puntos','Reto creado satisfactoriamente.')
+		  this.form.reset();
+		  this.$router.push({name:'retos'});
+        })
+        .catch((error) => {
+			console.log(error)
+          toastr.error("Oops!", "Something goes wrong");
+        });
+
+      //$('#userCreationModal').modal('hide');
+
+      this.$Progress.finish();
 		},
 
 		updateRichText(){

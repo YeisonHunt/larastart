@@ -195,7 +195,7 @@
                           </div>
                           <span
                             class="form-text text-muted"
-                          >En caso de no escoger una imágen propia, se generará una al azar.</span>
+                          >Imágen alusiva a la idea (Tamaño menor a 3M).</span>
                         </div>
                       </div>
 
@@ -528,7 +528,8 @@ export default {
         .post("/saveIdea2", formData, config)
         .then(({ data }) => { 
 		
-		
+		  toastr.success('+ 5 puntos','Idea creada satisfactoriamente.')
+		  this.form.reset();
 		  this.$router.push({name:'ideaList'});
         })
         .catch((error) => {
