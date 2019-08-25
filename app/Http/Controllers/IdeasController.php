@@ -16,6 +16,8 @@ use App\Punto;
 
 use App\User_Has_Idea;
 use App\User_Has_Ideas_Permission;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 
 class IdeasController extends Controller
@@ -1063,35 +1065,69 @@ class IdeasController extends Controller
 					$retoId = $request->reto_id;
                 }
                 
-        // Seccion de guardado de imagen // 
-
-                $newImage = $this->compress($request->image,'test.'.$request->image->getClientOriginalExtension());
+       
+                if($request->img==''){
+                    $cover = $request->image;
            
-                $imageName = time().'.'.$request->image->getClientOriginalExtension();
-                $newImage->storeAs('public', $imageName);
-                return response()->json(['success'=>'You have successfully upload image.']);
+                    $imageName = time().'.'.$request->image->getClientOriginalExtension();
+                    //$request->image->storeAs('images', $imageName);
+    
+                    Storage::disk('public')->put($imageName,File::get($cover));
+    
+                    $url = Storage::url($imageName);
+                    $env_url = substr_replace(env('APP_URL'),"", -1);
+                    $imgUrl = $env_url.$url;
+
+                    Log::info('Imagen cargada');
+
+                   $idea=  Innovation::create([
+
+                        'title'=>$request->title,
+                        'description'=>$request->description,
+                        'body'=>$request->editordata,
+                        'img'=>$imgUrl,
+                        'category'=>$request->category,
+                        'language'=>$request->language,
+                        'author'=>$request->author,
+                        'privacy'=>$request->privacy,
+                       'company_id'=>$user->company_id,
+                        'created_by'=>$user->id,
+                    'type'=>$request->type,
+                    'reto_id'=>$retoId,
+                    'votes_privacy'=>$request->votes_privacy
+                ]); 
+
+                    
+                } else {
+                    
+                    Log::info('Imagen predeterminada');
+                    
+                   $idea=  Innovation::create([
+
+                        'title'=>$request->title,
+                        'description'=>$request->description,
+                        'body'=>$request->editordata,
+                        'img'=>$request->img,
+                        'category'=>$request->category,
+                        'language'=>$request->language,
+                        'author'=>$request->author,
+                        'privacy'=>$request->privacy,
+                    'company_id'=>$user->company_id,
+                        'created_by'=>$user->id,
+                    'type'=>$request->type,
+                    'reto_id'=>$retoId,
+                    'votes_privacy'=>$request->votes_privacy
+                ]); 
+
+                }
+
+               
+              
+                
             
+              
+       
 
-        // Fin Seccion de guardado de imagen //
-
-        /*
-
-        $idea=  Innovation::create([
-
-             'title'=>$request->title,
-             'description'=>$request->description,
-             'body'=>$request->editordata,
-             'img'=>$request->img,
-             'category'=>$request->category,
-             'language'=>$request->language,
-             'author'=>$request->author,
-             'privacy'=>$request->privacy,
-            'company_id'=>$user->company_id,
-             'created_by'=>$user->id,
-            'type'=>$request->type,
-            'reto_id'=>$retoId,
-            'votes_privacy'=>$request->votes_privacy
-        ]);
 
         if($request->type=='idea')
         {
@@ -1135,10 +1171,11 @@ class IdeasController extends Controller
 
 
 
-        Log::info('Innovation creada correctamente');
-
-        */
-
+        
+    
+        return response()->json([
+            'ok'=>'ok'
+        ]);
 
     }
 
