@@ -1144,7 +1144,18 @@ class IdeasController extends Controller
                 'idea_id'=>$idea->id
     
             ]);
-        }else {
+        }elseif($request->type=='solucion'){
+            $punto = Punto::create([
+
+                'numero'=>5,
+                'tipo'=>'creacion_solucion',
+                'user_id'=>$user->id,
+                'idea_id'=>$idea->id
+    
+            ]);
+        }
+        
+        else {
 
         }
 

@@ -61,6 +61,10 @@
 				font-weight: 400 !important;
 				}
 
+				.note-group-select-from-files {
+					display: none !important;
+					}
+
 				.myFondo2 {
 					background-color: #F5F7FC !important;
   

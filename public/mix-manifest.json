@@ -2,10 +2,5 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/appLanding.css": "/css/appLanding.css",
-    "/js/appLanding.js": "/js/appLanding.js",
-    "/blog.js": "/blog.js",
-    "/global-ideas.js": "/global-ideas.js",
-    "/idea-view.js": "/idea-view.js",
-    "/pricing.js": "/pricing.js",
-    "/products.js": "/products.js"
+    "/js/appLanding.js": "/js/appLanding.js"
 }
