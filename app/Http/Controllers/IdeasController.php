@@ -20,6 +20,11 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
 
+//Real time
+
+use App\Events\InnovationCreated;
+
+
 class IdeasController extends Controller
 {
 
@@ -1175,6 +1180,11 @@ class IdeasController extends Controller
         $nuevoLinkUserTask->id_user = $user->id;
         $nuevoLinkUserTask->id_idea = $idea->id;
         $nuevoLinkUserTask->save();
+
+        // Aquí irá lo de real time 
+
+        event( new InnovationCreated);
+        // Primero normal y luego con encolamiento
 
 
 

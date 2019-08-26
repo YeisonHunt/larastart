@@ -12,7 +12,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class InnovationCreated
+class InnovationCreated implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -23,10 +23,18 @@ class InnovationCreated
      *
      * @return void
      */
+
+     /*
     public function __construct(Innovation $idea)
     {
         $this->idea = $idea;
-    }
+    } */
+
+    public function __construct()
+    {
+       
+    } 
+        
 
     /**
      * Get the channels the event should broadcast on.
@@ -35,6 +43,11 @@ class InnovationCreated
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('new-innovation');
+        return ['new-idea-channel'];
     }
+
+    public function broadcastAs()
+  {
+      return 'new-idea-event';
+  }
 }
