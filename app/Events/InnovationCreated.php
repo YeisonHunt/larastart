@@ -16,7 +16,7 @@ class InnovationCreated implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $idea;
+    //public $idea;
 
     /**
      * Create a new event instance.
@@ -48,6 +48,10 @@ class InnovationCreated implements ShouldBroadcast
 
     public function broadcastAs()
   {
-      return 'new-idea-event';
+      return 'InnovationCreated';
   }
+
+   public function broadcastWith(){
+       return ['message'=>'Real time babe'];
+   }
 }

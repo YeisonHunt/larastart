@@ -1150,6 +1150,15 @@ export default {
 
       $(document).attr("title", "Innova | Innovaciones");
 
+      //Real time listener
+
+      Echo.channel('new-idea-channel')
+          .listen('.InnovationCreated', (e)=>{
+
+            this.loadUsers()
+            console.log('OMG Real time bro!');
+          });
+
   }
 };
 </script>

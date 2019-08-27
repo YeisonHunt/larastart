@@ -26,7 +26,7 @@
 			<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
 			<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-			<script src="https://js.pusher.com/5.0/pusher.min.js"></script>
+			<!--<script src="https://js.pusher.com/5.0/pusher.min.js"></script>-->
 
 
 
@@ -693,17 +693,22 @@
 	<script>
 
 		// Enable pusher logging - don't include this in production
-		Pusher.logToConsole = true;
+	/*	Pusher.logToConsole = true;
 	
 		var pusher = new Pusher('85a84e588cd2ffdcaed1', {
 		  cluster: 'mt1',
 		  forceTLS: true
 		});
+
+
+		window.Pusher = pusher;
 	
 		var channel = pusher.subscribe('my-channel');
 		channel.bind('my-event', function(data) {
 		  alert(JSON.stringify(data));
-		});
+		}); */
+
+
 	  </script>
 
 

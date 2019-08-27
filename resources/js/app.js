@@ -396,4 +396,5 @@ const app = new Vue({
 	icons: {
 		iconfont: 'mdi', // default - only for display purposes
 	  },
+	
 });

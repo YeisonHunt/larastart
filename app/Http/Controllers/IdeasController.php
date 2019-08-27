@@ -1183,7 +1183,7 @@ class IdeasController extends Controller
 
         // Aquí irá lo de real time 
 
-        event( new InnovationCreated);
+        broadcast(new InnovationCreated);
         // Primero normal y luego con encolamiento
 
 
