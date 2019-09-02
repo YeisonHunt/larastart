@@ -12,6 +12,7 @@ window.Vue = require('vue');
 import VueRouter from 'vue-router'
 import { Form, HasError, AlertError } from 'vform'
 import moment from 'moment'
+require ('moment/locale/es.js') 
 import VueProgressBar from 'vue-progressbar'
 import Swal from 'sweetalert2'
 import Permissions from './mixins/Permissions'
@@ -34,6 +35,7 @@ import datePicker from 'vue-bootstrap-datetimepicker';
 import 'vuesax/dist/vuesax.css'
 import 'vuetify-v1/dist/vuetify.min.css' // Ensure you are using css-loader
 
+moment.locale('es')
 
 Vue.use(datePicker);
 Vue.use(Vuesax, {
@@ -164,6 +166,8 @@ Vue.filter(
 	}
 
 );
+
+
 
 Vue.filter(
 

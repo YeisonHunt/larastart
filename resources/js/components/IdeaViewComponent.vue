@@ -79,7 +79,18 @@
           </div>
           <!-- end portlet head-->
 
-          <v-img :src="idea.img" aspect-ratio="4"></v-img>
+          <v-img :src="'/'+idea.img" aspect-ratio="4" :lazy-src="`https://picsum.photos/10/6?image=${5 + 10}`">
+           <template v-slot:placeholder>
+                    <v-layout
+                      fill-height
+                      align-center
+                      justify-center
+                      ma-0
+                    >
+                      <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                    </v-layout>
+                  </template>
+          </v-img>
 
           <div class="kt-portlet__body wrapText" id="ideaBody"  v-html="idea.body"></div>
 
@@ -113,7 +124,7 @@
                               href="#"
                               class="btn btn-sm btn-label-brand"
                               v-if="idea.author=='showme'"
-                            >Contact user</a>
+                            >Tiempo de lectura : {{tiempoLectura}}</a>
 
                             <div class="kt-widget4__info" v-if="idea.author=='anonymous'">
                               <a href="#" class="kt-widget4__username">Anonymous User</a>
@@ -124,7 +135,7 @@
                               href="#"
                               class="btn btn-sm btn-label-brand"
                               v-if="idea.author=='anonymous'"
-                            >Contact user</a>
+                            >Tiempo de lectura : {{tiempoLectura}}</a>
                           </div>
                         </div>
                       </div>
@@ -714,6 +725,33 @@ export default {
 
   computed: {
 
+
+    tiempoLectura: function(){
+
+      var textHtml = this.extractContent(this.idea.body);
+
+      var cuenta  = parseInt(this.idea.title.length) + parseInt(this.idea.description.length) + parseInt(textHtml.length);
+
+      var rate = cuenta/160;
+
+      //console.log(cuenta)
+
+      //return cuenta;
+
+      //return   moment().startOf('day').add(rate, 'minutes').format('m:ss');;
+      
+
+      let tiempo = moment.duration(rate,'minutes').humanize().toString();
+      
+      let converted = tiempo.replace("seconds",'segundos').replace('minutes','minutos').replace('a few','Unos pocos');
+
+      return converted;
+           
+
+
+      
+    },
+
     puedoBorrar: function(){
 
       if(this.idea.created_by==this.user.id){
@@ -907,6 +945,13 @@ export default {
 
   methods: {
 
+
+     extractContent(html) {
+
+    return (new DOMParser).parseFromString(html, "text/html") . 
+        documentElement . textContent;
+
+    },
     deleteIdea(){
 
       var id = this.$route.params.id;
