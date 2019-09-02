@@ -78,10 +78,11 @@
 																	<label class="col-3 col-form-label">Privacidad de la idea</label>
 																	<div class="col-9">
 																		<div class="kt-checkbox-inline">
+																			<!--
 																			<label class="kt-checkbox">
 																				<input type="radio"  value="me"  :class="{'is-invalid': form.errors.has('privacy')}"	 name="privacy" v-model="form.privacy" > Privada (Solo para mi)
 																				<span></span>
-																			</label>
+																			</label> -->
 
 																			<label class="kt-checkbox">
 																				<input type="radio"  value="empresarial"  :class="{'is-invalid': form.errors.has('privacy')}"	 name="privacy" v-model="form.privacy" > Privada (Empresarial)

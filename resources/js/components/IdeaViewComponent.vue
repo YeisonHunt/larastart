@@ -145,7 +145,7 @@
                                        <form
                                   @submit.prevent="goLastComment"
                                   @keydown="form.onKeydown($event)"
-                                  @keyup.enter="goLastComment()"
+                                 
                                   class="form-inline"
                                 >
                                   <div class="form-group">
@@ -155,10 +155,12 @@
                                       v-model="form.body"
                                       class="form-control "
                                       style=" margin:10px; width:600px;  "
-                                      placeholder="Algo para aportar?"
+                                      placeholder="Añade un nuevo comentario"
                                       rows="2"
                                       required
                                     ></textarea>
+
+                                    <button type="button" @click="goLastComment" class="btn btn-brand btn-elevate btn-circle btn-icon"><i class="flaticon2-paper-plane"></i></button>
                                     <br/>
 
                                   </div>
@@ -346,15 +348,26 @@
                                         @keydown="formChild2.onKeydown($event)"
                                         class="form"
                                       >
-                                        <div class="form-group">
-                                          <input
+                                        <div class="form">
+                                          <div class="row">
+                                            <div class="col-5">
+                                               <input
                                             type="text"
                                             :id="'texto'+d.discussions.id"
-                                            class="form-control child-response-input"
+                                            class="form-control half-input"
                                             v-model="formChild2.body"
-                                            placeholder="Write a reply... Enter key to send"
+                                            placeholder="Añade un comentario"
+                                            style=" margin-left:50px;"
                                           >
+                                            </div>
+                                            <div class="col-6">
+                                              <button type="button" @click="sendChild2Comment(d.discussions.id)" class="btn btn-brand btn-elevate btn-circle btn-icon"><i class="flaticon2-paper-plane"></i></button>
+                                            </div>
+                                          </div>
+                                         
+                                          
                                         </div>
+                                        
                                       </form>
                                     </div>
                                   </li>

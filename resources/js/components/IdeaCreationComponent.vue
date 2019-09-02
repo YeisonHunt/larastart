@@ -418,7 +418,7 @@ export default {
         category: "sustainability",
         language: "es",
         author: "showme",
-        privacy: "me",
+        privacy: "public",
         type: "idea",
         votes_privacy: "no"
       })
@@ -430,7 +430,7 @@ export default {
       if (user.account_type == "personal") {
         this.form.privacy = "empresarial";
       } else {
-        this.form.privacy = "empresarial";
+        this.form.privacy = "public";
       }
 	},
 	

@@ -90,6 +90,18 @@
 						color:#D5DCE0 !important;
 						}
 
+						.half-input {
+						width:90%;
+						}
+
+						@media screen  and (min-width: 320px) and (max-width: 400px) { 
+
+						.half-input {
+							width:30% !important;
+						}
+						}
+
+
 
 		
 			</style>

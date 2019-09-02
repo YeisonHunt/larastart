@@ -372,19 +372,19 @@ export default {
       selected: [],
       nextId: 11,
       currentPage: 1,
-      pageSize: 5,
+      pageSize: 10,
       optionsPageSize: [
-        {
-          text: "5",
-          value: 5
-        },
         {
           text: "10",
           value: 10
         },
         {
-          text: "25",
-          value: 25
+          text: "20",
+          value: 20
+        },
+        {
+          text: "50",
+          value: 50
         }
       ],
       users: [],

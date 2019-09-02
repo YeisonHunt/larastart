@@ -201,6 +201,51 @@
 																		</div>
 																	</div>
 																</div>
+																<br>
+
+																<div class="form-group form-group-last row">
+																	<label class="col-3 col-form-label">Fecha límite</label>
+																	<div class="col-5">
+																		<div class="kt-checkbox-inline" >
+																			<label class="kt-checkbox">
+																				<input type="radio"  value="none"    :class="{'is-invalid': form.errors.has('date')}"	 name="selected" v-model="selected" > Indefinida
+																				<span></span>
+																			</label>
+																			<label class="kt-checkbox">
+																				<input type="radio" value="date" :class="{'is-invalid': form.errors.has('date')}" name="selected" v-model="selected" >Activar fecha límite →
+																				<span></span>
+																			</label>
+																		<has-error :form="form" field="date" ></has-error>
+																		</div>
+																	</div>
+
+																	<div class="col-3">
+
+																		<div class="input-group date">
+
+																		<!--
+																			<div class="input-group date">
+
+																		<input type="text"  @change="checkFecha"  class="form-control" data-provide="datepicker" name="fecha"  placeholder="Fecha límite" id="datepicka" autocomplete="off" :disabled="selected=='none'" :required="selected=='date'" v-model="form.fecha" >		
+																	
+																		<div class="input-group-append">
+																			<span class="input-group-text">
+																				<i class="la la-clock-o"></i>
+																			</span>
+																		</div>
+																	</div> -->
+
+																	<date-picker v-model="form.fecha" :config="options" :disabled="selected=='none'" :required="selected=='date'" ></date-picker>
+
+																		<div class="input-group-append">
+																			<span class="input-group-text">
+																				<i class="la la-clock-o"></i>
+																			</span>
+																		</div>
+																		</div>
+
+																	</div>
+																</div>
 
 															
 
@@ -325,6 +370,7 @@ export default {
 				image:'',
 				user: window.User,
 				baseUrl: window.baseUrl,
+				selected:'none',
                 form: new Form({
                     id:'',
                     title: '',
@@ -335,13 +381,58 @@ export default {
 					language:'es',
 					author:'showme',
 					privacy:'empresarial',
-					type:'reto'
+					type:'reto',
+					fecha:'',
 
-                }) 
+				}),
+				
+				options: {
+				format: 'DD/MM/YYYY',
+				useCurrent: false,
+				minDate:  moment(new Date()).add(1,'days'),
+				}    
             }
 		},
+
+	computed: {
+
+
+		fechaValidador(){
+
+			if(this.form.fecha != ''){
+				//document.getElementById("datepicka").required = true;
+				//document.getElementById("datepicka").disabled = false;
+				return true;
+
+			}else{
+				//document.getElementById("datepicka").required = false;
+				//document.getElementById("datepicka").disabled = true;
+
+				return false;
+
+			}
+		},
+
+		checkDate() {
+			
+			if(this.selected = 'date'){
+				//document.getElementById("datepicka").required = true;
+				//document.getElementById("datepicka").disabled = false;
+				return false;
+
+			}else{
+				//document.getElementById("datepicka").required = false;
+				//document.getElementById("datepicka").disabled = true;
+
+				return true;
+
+			}
+			},
+	},
 		
 	methods: {
+
+			
 
 		onFilePicked(event) {
 			
@@ -401,7 +492,8 @@ export default {
         formData.append("language", this.form.language);
         formData.append("author", this.form.author);
         formData.append("privacy", this.form.privacy);
-        formData.append("type", 'reto');
+		formData.append("type", 'reto');
+		formData.append("fecha",this.form.fecha);
         formData.append("votes_privacy", this.form.votes_privacy);
       } else {
 
@@ -415,7 +507,8 @@ export default {
         formData.append("language", this.form.language);
         formData.append("author", this.form.author);
         formData.append("privacy", this.form.privacy);
-        formData.append("type", 'reto');
+		formData.append("type", 'reto');
+		formData.append("fecha",this.form.fecha);
         formData.append("votes_privacy", this.form.votes_privacy);
       }
 
@@ -447,7 +540,27 @@ export default {
 		},
 
 	
+	checkFecha(){
 
+		
+		  var date = new Date();
+			
+			var currentDate = document.getElementById('datepicka').value;
+			var dateChoosed = moment(currentDate,'DD/MM/YYYY');
+
+
+			 console.log($('#datepicka').val());
+			
+				var now = moment();
+
+				if (now > date) {
+					toastr.error("Oops!", "La fecha límite debe de estar en un día futuro.");	
+				}
+
+
+				}
+
+	
 
 	},
 
@@ -467,7 +580,10 @@ export default {
 			//$('.kt-selectpicker').selectpicker();
 
 			$("#content").summernote();
-		    $('.dropdown-toggle').dropdown();
+			$('.dropdown-toggle').dropdown();
+
+		
+				
 
 
 		

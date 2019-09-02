@@ -95,25 +95,26 @@
 
   <div class="row" >
 
-    <div class="col-lg-4"></div>
+    <div class="col-6">
+
+       <div class="form-group" style="">
+            <label>Busca alguna idea </label>
+            <div class="kt-input-icon kt-input-icon--left">
+              <input type="text" class="form-control"  id="generalSearch" />
+              <span class="kt-input-icon__icon kt-input-icon__icon--left">
+                <span>
+                  <i class="la la-search"></i>
+                </span>
+              </span>
+            </div>
+          </div>
+
+    </div>
 
 
      
 
-    <div class="col-lg-2 col-sm-2" >
-     <span class="kt-switch kt-switch--info ">
-							
-
-                              <v-checkbox
-          v-model="public"
-          label="Mostrar Ideas globales"
-          color="#7F8AE5"
-        ></v-checkbox>
-
-     </span>
-
-    </div>
-
+    
 
 
 
@@ -122,7 +123,7 @@
 
 
 
-      <div class="mb-3" >
+      <div class="mt-2" >
 
           
 
@@ -142,10 +143,14 @@
     <div class="col-lg-1"></div>
 
     <div class="col-lg-3 col-sm-2 col-md-4 mt-4 ">
-      <router-link to="/ideaCreation" >
+
+      <div  class="mt-2">
+         <router-link to="/ideaCreation" >
          <vs-button color="primary" type="gradient"  icon="add">Añadir nueva idea de innovación</vs-button>
       </router-link>
 
+      </div>
+     
       
             
 
@@ -255,16 +260,146 @@
       </div>
     </div>
     <!--end::Modal-->
+  <br>
 
 
    <!-- Mis ideas seccion -->
 
+   <div class="col-12">
+      <v-tabs
+    fixed-tabs
 
-<br>
-   <!-- Fin seccion mis ideas -->
+    icons-and-text
+  >
+    <v-tabs-slider color="purple darken-4"></v-tabs-slider>
 
-    
-    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12"  v-for="idea in companyIdeas "
+    <v-tab href="#personales">
+      Personales
+      <v-icon>person_pin</v-icon>
+    </v-tab>
+
+    <v-tab href="#empresariales">
+      Empresariales
+      <v-icon>business</v-icon>
+    </v-tab>
+
+    <v-tab href="#publicas">
+      Públicas
+      <v-icon>public</v-icon>
+    </v-tab>
+
+    <v-tab-item
+  
+      :value="'personales'"
+    >
+      <v-card >
+        <br>
+
+        
+                               <div class="container-fluid">
+                                 <div class="row">
+
+           <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12"  v-for="idea in filteredIdeas "
+            :key="ideas.id"     >
+
+            <div class="kt-portlet kt-portlet--height-fluid kt-widget19  hvr-underline-from-center">
+                          <div class="kt-portlet__body kt-portlet__body--fit">
+                            <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides imageCard "
+
+                                          v-bind:style='{ backgroundImage: "url(" + idea.img + ")", }'  >
+                              <h3 class="kt-widget19__title kt-font-light">
+                                {{idea.title | shortText | uppercaseFirst}}
+                              </h3>
+                              <div class="kt-widget19__shadow"></div>
+                              <div class="kt-widget19__labels" style="background-color:white; border-radius:5px;">
+                                <a href="#" class="btn btn-label-light-o2 btn-bold btn-sm " style="color:#7a7f87; ">Personal </a>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="kt-portlet__body">
+                            <div class="kt-widget19__wrapper">
+                              <div class="kt-widget19__content">
+                                <div class="kt-widget19__userpic">
+                                  <img :src="idea.img" height="50" width="50">
+                                </div>
+                                <div class="kt-widget19__info">
+                                  <a href="#" class="kt-widget19__username">
+                                  Escrita por mi 
+                                  </a>
+                                  
+                                </div>
+                                <div class="kt-widget19__stats">
+                                  <span class="kt-widget19__number kt-font-brand">
+
+                                    <button @click="getVotes(idea.id)" >{{idea.likes.length}}</button>
+                                  </span>
+
+                                <button class="kt-widget19__comment" @click="getVotes(idea.id)"   >Votos</button>
+
+
+
+                                </div>
+                              </div>
+                              <div class="kt-widget19__text">
+                                
+                                <b>Category: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
+                                <b>Date: </b>{{idea.created_at |humanDate}} <br>
+                                {{idea.description | mediumText}}
+
+                              <hr style="
+                                border: 0;
+                                border-bottom: 1px dashed #ccc;
+                                background: #999;
+                              ">
+
+                              <p>Compartida con: {{idea.privacy | compartida}}</p>
+
+                              </div>
+                            </div>
+
+                            <div class="kt-widget19__action">
+
+
+                              <router-link class="btn btn-sm btn-label-brand btn-bold "
+                              v-bind:to="'/innovations/'+idea.id">Leer idea completa...</router-link>
+
+
+
+                              <router-link v-bind:to="'/innovations/'+idea.id" class="btn btn-sm  btn-label-danger btn-bold pull-right ">Votar
+                              </router-link>
+
+
+                            </div>
+
+
+
+                          </div>
+                        </div>
+                 </div>
+
+                </div>
+              </div>
+
+
+
+
+      </v-card>
+    </v-tab-item>
+
+    <v-tab-item
+  
+      :value="'empresariales'"
+    >
+      <v-card >
+        <br>
+
+        
+        
+                               <div class="container-fluid">
+                                 <div class="row">
+
+
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12"  v-for="idea in companyIdeas "
       :key="ideas.id"     >
 
       <div class="kt-portlet kt-portlet--height-fluid kt-widget19  hvr-underline-from-center">
@@ -347,15 +482,28 @@
 									</div>
     </div>
 
-   
+                                 </div>
+                               </div>
 
 
+      </v-card>
+    </v-tab-item>
 
- 
+    <v-tab-item
+  
+      :value="'publicas'"
+    >
+      <v-card >
+        <br>
+
+        
+        
+                               <div class="container-fluid">
+                                 <div class="row">
 
 
-    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12"  v-for="idea in filteredPublic "
-      :key="ideas.id"    v-if="public" >
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12"  v-for="idea in filteredPublic "
+      :key="ideas.id"     >
 
       <div class="kt-portlet kt-portlet--height-fluid kt-widget19  hvr-underline-from-center">
 										<div class="kt-portlet__body kt-portlet__body--fit">
@@ -438,89 +586,40 @@
 									</div>
     </div>
 
+                                 </div>
+                               </div>
+
+
+
+      </v-card>
+    </v-tab-item>
+  </v-tabs>
+   </div>
+
+ 
+
+<br>
+
+
+   <!-- Fin seccion mis ideas -->
+
+    
+    
+
+   
+
+
+
+ 
+
+
+    
 
 
 
 
-    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12"  v-for="idea in filteredIdeas "
-      :key="ideas.id"     >
 
-      <div class="kt-portlet kt-portlet--height-fluid kt-widget19  hvr-underline-from-center">
-										<div class="kt-portlet__body kt-portlet__body--fit">
-											<div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides imageCard "
-
-                                    v-bind:style='{ backgroundImage: "url(" + idea.img + ")", }'  >
-												<h3 class="kt-widget19__title kt-font-light">
-													{{idea.title | shortText | uppercaseFirst}}
-												</h3>
-												<div class="kt-widget19__shadow"></div>
-												<div class="kt-widget19__labels" style="background-color:white; border-radius:5px;">
-													<a href="#" class="btn btn-label-light-o2 btn-bold btn-sm " style="color:#7a7f87; ">Personal </a>
-												</div>
-											</div>
-										</div>
-										<div class="kt-portlet__body">
-											<div class="kt-widget19__wrapper">
-												<div class="kt-widget19__content">
-													<div class="kt-widget19__userpic">
-														<img :src="idea.img" height="50" width="50">
-													</div>
-													<div class="kt-widget19__info">
-														<a href="#" class="kt-widget19__username">
-														Escrita por mi 
-														</a>
-														
-													</div>
-													<div class="kt-widget19__stats">
-														<span class="kt-widget19__number kt-font-brand">
-
-                              <button @click="getVotes(idea.id)" >{{idea.likes.length}}</button>
-														</span>
-
-                          <button class="kt-widget19__comment" @click="getVotes(idea.id)"   >Votos</button>
-
-
-
-													</div>
-												</div>
-												<div class="kt-widget19__text">
-                          
-													<b>Category: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
-                           <b>Date: </b>{{idea.created_at |humanDate}} <br>
-                          {{idea.description | mediumText}}
-
-                        <hr style="
-                          border: 0;
-                          border-bottom: 1px dashed #ccc;
-                          background: #999;
-                        ">
-
-                         <p>Compartida con: {{idea.privacy | compartida}}</p>
-
-												</div>
-											</div>
-
-											<div class="kt-widget19__action">
-
-
-                         <router-link class="btn btn-sm btn-label-brand btn-bold "
-                         v-bind:to="'/innovations/'+idea.id">Leer idea completa...</router-link>
-
-
-
-                         <router-link v-bind:to="'/innovations/'+idea.id" class="btn btn-sm  btn-label-danger btn-bold pull-right ">Votar
-                         </router-link>
-
-
-											</div>
-
-
-
-										</div>
-									</div>
-    </div>
-
-
+ 
 
 
 
@@ -1155,8 +1254,8 @@ export default {
       Echo.channel('new-idea-channel')
           .listen('.InnovationCreated', (e)=>{
 
-            this.loadUsers()
-            console.log('OMG Real time bro!');
+            this.loadUsers();
+            
           });
 
   }

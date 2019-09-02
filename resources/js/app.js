@@ -27,13 +27,15 @@ import Vuetify from 'vuetify-v1'
 
 // index.js or main.js
 
+import datePicker from 'vue-bootstrap-datetimepicker';
+
 
 
 import 'vuesax/dist/vuesax.css'
 import 'vuetify-v1/dist/vuetify.min.css' // Ensure you are using css-loader
 
 
-
+Vue.use(datePicker);
 Vue.use(Vuesax, {
 	theme:{
 	  colors:{
@@ -159,6 +161,30 @@ Vue.filter(
 			return t + t3;
 		}
 
+	}
+
+);
+
+Vue.filter(
+
+	'limite',
+	function (txtDate) {
+
+		if(txtDate=='sinlimite'){
+			return 'Sin límite';
+		}else {
+			
+			var date = moment(txtDate,"DD/MM/YYYY");
+			var now = moment();
+			
+			var restantes =  date.diff(now, 'days');
+			
+
+			return restantes + ' días restantes.'
+	
+		}
+
+	
 	}
 
 );

@@ -123,7 +123,8 @@
 												</div>
 												<div class="kt-widget19__text">
 													<b>Categoría: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
-                           <b>Fecha: </b>{{idea.created_at |humanDate}} <br>
+                           
+                              <b>Fecha límite: </b>{{idea.fecha |limite}}  <br>
                           {{idea.description | mediumText}}
 
 												</div>
@@ -200,7 +201,7 @@
 												</div>
 												<div class="kt-widget19__text">
 													<b>Categoría: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
-                           <b>Fecha: </b>{{idea.created_at |humanDate}} <br>
+                             <b>Fecha límite: </b>{{idea.fecha |limite}} <br/>
                           {{idea.description | mediumText}}
 
 												</div>
@@ -270,8 +271,14 @@
 													</div>
 												</div>
 												<div class="kt-widget19__text">
-													<b>Category: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
-                           <b>Date: </b>{{idea.created_at |humanDate}} <br>
+													<b>Categoría: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
+
+
+                           <b>Fecha límite: </b>{{idea.fecha |limite}} 
+                           
+                           <br>
+
+
                           {{idea.description | mediumText}}
 
 												</div>

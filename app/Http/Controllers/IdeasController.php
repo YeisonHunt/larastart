@@ -287,7 +287,8 @@ class IdeasController extends Controller
 			        $ideas= DB::table('user__has__ideas')
 							->join('innovations','user__has__ideas.id_idea','innovations.id')
 			                ->where('user__has__ideas.id_user',$userAuth->id)
-							->where('innovations.type','reto')
+                            ->where('innovations.type','reto')
+                            ->where('innovations.created_by',$userAuth->id)
 							->select('user__has__ideas.*')
 							->orderBy('user__has__ideas.id','DESC')
 			                ->get();
@@ -345,7 +346,8 @@ class IdeasController extends Controller
 																'likes'=>$checkLikesIdea,
 																'permissions'=>$permissions,
                                                                 'escrita'=>$escrita->name,
-                                                                'solutions'=>$solutions
+                                                                'solutions'=>$solutions,
+                                                                'fecha'=>$ideaUser->fecha
 
 
 														);
@@ -370,7 +372,8 @@ class IdeasController extends Controller
 																'likes'=>array(),
 																'permissions'=>$permissions,
                                                                 'escrita'=>$escrita->name,
-                                                                'solutions'=>$solutions
+                                                                'solutions'=>$solutions,
+                                                                'fecha'=>$ideaUser->fecha
 
 
 														);
@@ -443,7 +446,8 @@ class IdeasController extends Controller
 			                        'created_at'=>$ideaUser->created_at,
 			                        'likes'=>$checkLikesIdea,
                                     'permissions'=>$permissions,
-                                    'solutions'=>$solutions
+                                    'solutions'=>$solutions,
+                                    'fecha'=>$ideaUser->fecha
 
 
 			                    );
@@ -467,7 +471,8 @@ class IdeasController extends Controller
 			                        'created_at'=>$ideaUser->created_at,
 			                        'likes'=>$likesIdea,
                                     'permissions'=>$permissions,
-                                    'solutions'=>$solutions
+                                    'solutions'=>$solutions,
+                                    'fecha'=>$ideaUser->fecha
 
 
 			                    );
@@ -523,7 +528,8 @@ class IdeasController extends Controller
 			                        'likes'=>$checkLikesIdea,
 			                        'permissions'=>$permissions,
                                     'escrita'=>$idea->escrita,
-                                    'solutions'=>$solutions
+                                    'solutions'=>$solutions,
+                                    'fecha'=>$ideaUser->fecha
 
 
 			                    );
@@ -548,7 +554,8 @@ class IdeasController extends Controller
 			                        'likes'=>$likesIdea,
 			                        'permissions'=>$permissions,
                                     'escrita'=>$idea->escrita,
-                                    'solutions'=>$solutions
+                                    'solutions'=>$solutions,
+                                    'fecha'=>$ideaUser->fecha
 
 
 			                    );
@@ -1099,7 +1106,8 @@ class IdeasController extends Controller
                         'created_by'=>$user->id,
                     'type'=>$request->type,
                     'reto_id'=>$retoId,
-                    'votes_privacy'=>$request->votes_privacy
+                    'votes_privacy'=>$request->votes_privacy,
+                    'fecha'=>$request->fecha
                 ]); 
 
                     
@@ -1121,7 +1129,8 @@ class IdeasController extends Controller
                         'created_by'=>$user->id,
                     'type'=>$request->type,
                     'reto_id'=>$retoId,
-                    'votes_privacy'=>$request->votes_privacy
+                    'votes_privacy'=>$request->votes_privacy,
+                    'fecha'=>$request->fecha
                 ]); 
 
                 }
