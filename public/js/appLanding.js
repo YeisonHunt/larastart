@@ -1962,6 +1962,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     source: String
@@ -49778,8 +49790,46 @@ var render = function() {
                                 attrs: {
                                   src: _vm.baseUrl + "images/empty.svg",
                                   height: "400",
+                                  "lazy-src":
+                                    "https://picsum.photos/10/6?image=" +
+                                    (5 + 10),
                                   contain: ""
-                                }
+                                },
+                                scopedSlots: _vm._u(
+                                  [
+                                    {
+                                      key: "placeholder",
+                                      fn: function() {
+                                        return [
+                                          _c(
+                                            "v-layout",
+                                            {
+                                              attrs: {
+                                                "fill-height": "",
+                                                "align-center": "",
+                                                "justify-center": "",
+                                                "ma-0": ""
+                                              }
+                                            },
+                                            [
+                                              _c("v-progress-circular", {
+                                                attrs: {
+                                                  indeterminate: "",
+                                                  color: "grey lighten-5"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        ]
+                                      },
+                                      proxy: true
+                                    }
+                                  ],
+                                  null,
+                                  false,
+                                  1258913907
+                                )
                               }),
                               _vm._v(" "),
                               _c("br"),

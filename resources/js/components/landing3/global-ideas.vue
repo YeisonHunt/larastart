@@ -118,7 +118,19 @@
 
           <v-layout v-if="filteredIdeas.length<=0">
             <v-flex>
-              <v-img :src="baseUrl+'images/empty.svg'" height="400" contain></v-img>
+              <v-img :src="baseUrl+'images/empty.svg'" height="400" :lazy-src="`https://picsum.photos/10/6?image=${5 + 10}`" contain>
+               <template v-slot:placeholder>
+                    <v-layout
+                      fill-height
+                      align-center
+                      justify-center
+                      ma-0
+                    >
+                      <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                    </v-layout>
+                  </template>
+              
+              </v-img>
               <br />
               <br />
               <v-banner two-line>

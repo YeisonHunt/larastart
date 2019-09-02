@@ -79,7 +79,7 @@
           </div>
           <!-- end portlet head-->
 
-          <v-img :src="'/'+idea.img" aspect-ratio="4" :lazy-src="`https://picsum.photos/10/6?image=${5 + 10}`">
+          <v-img :src="idea.img" aspect-ratio="4" :lazy-src="`https://picsum.photos/10/6?image=${5 + 10}`">
            <template v-slot:placeholder>
                     <v-layout
                       fill-height
