@@ -82,7 +82,7 @@
                     <div class="headline">{{idea.title | uppercaseFirst}}</div>
 										<br>
 
-                   <div v-if="idea.privacy=='showme'">Escrita  por: {{idea.escrita}}</div>
+                   <div v-if="idea.author=='showme'">Escrita  por: {{idea.escrita}}</div>
                    <div v-else>Escrita por :Anónimo(a)</div>
 
                  {{idea.description | largeText}}

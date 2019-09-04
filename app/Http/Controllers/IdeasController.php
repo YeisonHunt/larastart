@@ -1441,11 +1441,42 @@ class IdeasController extends Controller
         ->get();
 
 
-				$solutions = DB::table('innovations')->where('reto_id',$idea->id)
-				->join('users','users.id','innovations.created_by')
-				->select('innovations.*','users.name as escrita')
-				->orderBy('innovations.created_at','DESC')
-				->get();
+        $solutions = DB::table('innovations')->where('reto_id',$idea->id)
+        ->join('users','users.id','innovations.created_by')
+        ->select('innovations.*','users.name as escrita')
+        ->orderBy('innovations.created_at','DESC')
+        ->get();
+
+        /* 
+          Categorias Personalizadas
+        */
+
+        
+        $user12= auth()->user();
+        $allCategories = DB::table('cats')->where('company_id',$user12->company_id)->get();
+
+        $tempObj= array(
+            'label'=>'Categorías Personalizadas',
+            'options'=>$allCategories
+        );
+
+        $categorias = array();    
+        
+
+        array_push($categorias,$tempObj);
+
+           $options = DB::table('cats')->where('company_id',0)->get();
+
+
+        $categoriasPredefinidas = array(
+
+            'label'=>'Categorías Predefinidas',
+            'options'=>$options
+        );
+
+        array_push($categorias,$categoriasPredefinidas);
+                
+
 
 
 
@@ -1456,7 +1487,8 @@ class IdeasController extends Controller
             'discussions'=>$discussions,
             'desired'=>$desired,
             'othersPermissions'=>$othersPermissions,
-						'solutions'=>$solutions
+            'solutions'=>$solutions,
+            'cats'=>$categorias
         ]);
 
         //return $idea;

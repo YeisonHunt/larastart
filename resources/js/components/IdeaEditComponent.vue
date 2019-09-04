@@ -158,9 +158,15 @@
                           <div class="input-group">
                            
 
-																			<select class="kt-selectpicker form-control "  :class="{'is-invalid': form.errors.has('category')}"        data-container="body"  name="category" id="kt-selectpicker1" v-model="form.category"  required>
+																			<select class="kt-selectpicker form-control "  :class="{'is-invalid': form.errors.has('category')}"    
+                                          data-container="body"  name="category" id="kt-selectpicker1" v-model="form.category"  required>
 
-																				<option value="sustainability">Sostenibilidad</option>
+                                           <optgroup :label="cat.label" v-for="cat in cats" :key="cat.id">
+                                            <option :value="c.id+c.name" v-for="c in cat.options" :key="c.id">{{ c.name |toCategory}}</option>
+                                          
+                                          </optgroup>
+
+																		<!--		<option value="sustainability">Sostenibilidad</option>
 																				<option value="lifeandhealth">Vida & Salud </option>
 																				<option value="artandculture">Arte & Cultura</option>
 																				<option value="beautyandfaashion">Moda & Belleza</option>
@@ -171,7 +177,9 @@
 																				<option value="food">Comida</option>
 																				<option value="politicsandsociety">Política & Sociedad</option>
 																				<option value="sportsandentertainment">Deporte & Entretenimiento</option>
-																				<option value="businessandconsumer">Negocios & Consumo</option>
+																				<option value="businessandconsumer">Negocios & Consumo</option> -->
+
+
 																			</select>
                           </div>
                         </div>
@@ -328,6 +336,7 @@ export default {
     return {
       id: this.$route.params.id,
       idea: null,
+      cats:{},
       permissions: {},
       user: window.user,
       baseUrl: window.baseUrl,
@@ -426,6 +435,7 @@ export default {
           this.form.language = response.data.idea.language;
           this.form.author = response.data.idea.author;
           this.form.privacy = response.data.idea.privacy;
+          this.cats = response.data.cats;
 
           this.form.editordata = response.data.idea.body;
           this.permissions = response.data.permissions;
