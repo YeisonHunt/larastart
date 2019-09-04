@@ -103,6 +103,33 @@
           </div>
         </div>
       </router-link>
+
+      <router-link
+        v-if="userType=='admin'"
+        :to="{name:'categories'}"
+        class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction hvr-float hvr-underline-from-center"
+      >
+        <div class="kt-portlet kt-portlet--height-fluid">
+          <div class="kt-widget14">
+            <div class="kt-widget14__header kt-margin-b-14">
+              <h3 class="kt-widget14__title">Categorías Personalizadas</h3>
+              <span
+                class="kt-widget14__desc"
+              >Crea categerías especializadas para tu empresa, tus productos y tus servicios. Esto sirve para ayudar a organizar las ideas de innovación en grupos específicos.</span>
+            </div>
+
+            <div class="kt-widget14__chart">
+              <img
+                :src="baseUrl+'img/category.svg'"
+                width="90%"
+                height="90%"
+                alt
+                class="ml-3 animateOnHover"
+              />
+            </div>
+          </div>
+        </div>
+      </router-link>
       <!-- end first col -->
 
       <!--

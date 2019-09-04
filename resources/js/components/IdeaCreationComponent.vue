@@ -212,18 +212,28 @@
                               v-model="form.category"
                               required
                             >
-                              <option value="sustainability">Sostenibilidad</option>
-                              <option value="lifeandhealth">Vida & Salud</option>
-                              <option value="artandculture">Arte & Cultura</option>
-                              <option value="beautyandfaashion">Moda & Belleza</option>
-                              <option value="homeandpets">Hogar & Mascotas</option>
-                              <option value="scienceandtechnology">Ciencia & Tecnología</option>
-                              <option value="tourismandtravel">Turismo & Viajes</option>
-                              <option value="transport">Transporte</option>
-                              <option value="food">Comida</option>
-                              <option value="politicsandsociety">Política & Sociedad</option>
-                              <option value="sportsandentertainment">Deporte & Entretenimiento</option>
-                              <option value="businessandconsumer">Negocios & Consumo</option>
+                               <optgroup :label="cat.label" v-for="cat in cats" :key="cat.id">
+                                  <option :value="c.id+c.name" v-for="c in cat.options" :key="c.id">{{ c.name |toCategory}}</option>
+                                 
+                                 </optgroup>
+
+                             <!-- 
+                                  <optgroup label="Categorías predefinidas">
+                                  <option value="sustainability">Sostenibilidad</option>
+                                  <option value="lifeandhealth">Vida & Salud</option>
+                                  <option value="artandculture">Arte & Cultura</option>
+                                  <option value="beautyandfaashion">Moda & Belleza</option>
+                                  <option value="homeandpets">Hogar & Mascotas</option>
+                                  <option value="scienceandtechnology">Ciencia & Tecnología</option>
+                                  <option value="tourismandtravel">Turismo & Viajes</option>
+                                  <option value="transport">Transporte</option>
+                                  <option value="food">Comida</option>
+                                  <option value="politicsandsociety">Política & Sociedad</option>
+                                  <option value="sportsandentertainment">Deporte & Entretenimiento</option>
+                                  <option value="businessandconsumer">Negocios & Consumo</option>
+                              </optgroup> -->
+
+
                             </select>
                             <has-error :form="form" field="category"></has-error>
                           </div>
@@ -406,6 +416,7 @@ export default {
         { name: "Equipo 3", code: "os" }
       ],
       image: "",
+      cats:{},
 
       user: window.User,
       baseUrl: window.baseUrl,
@@ -415,7 +426,7 @@ export default {
         description: "",
         editordata: "",
         img: "",
-        category: "sustainability",
+        category: "12sustainability",
         language: "es",
         author: "showme",
         privacy: "public",
@@ -529,28 +540,41 @@ export default {
         .then(({ data }) => { 
 		
 		  toastr.success('+ 5 puntos','Idea creada satisfactoriamente.')
-		  this.form.reset();
+      this.form.reset();
+      this.$Progress.finish();
 		  this.$router.push({name:'ideaList'});
         })
         .catch((error) => {
 			console.log(error)
           toastr.error("Oops!", "Something goes wrong");
+          this.$Progress.finish();
         });
 
       //$('#userCreationModal').modal('hide');
 
-      this.$Progress.finish();
+      
     },
 
     updateRichText() {
       this.form.editordata = $('textarea[name="editordata"]').html(
         $("#kt_summernote_1").code()
       );
+    },
+    brignPersonalizedCategories(){
+
+      axios.get('/brignPersonalizedCategories')
+            .then(response=>{
+              this.cats = response.data.categories
+            })
+            .catch(error=>{
+              console.log(error)
+            });
     }
   },
 
   mounted() {
     this.checkUserType();
+    this.brignPersonalizedCategories()
 
     var KTSummernoteDemo = {
       init: function() {

@@ -11,12 +11,15 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('layout-final.layout-final');
-})->name('raiz');
+})->name('raiz'); */
 
 
 Route::post('/deleteInnovation','IdeasController@deleteInnovation');
+
+Route::post('/saveCategory','CategoryController@save');
+Route::post('/deleteCategory/{id}','CategoryController@deleteCategory');
 
 Route::get('/getVotes/{id}','IdeasController@getVotes');
 Route::post('/getPuntos','UserController@getPuntos');
@@ -31,6 +34,8 @@ Route::any('/saveIdea','IdeasController@store');
 Route::post('/saveIdea2','IdeasController@saveIdea2');
 Route::get('/ideas','IdeasController@index');
 
+
+Route::post('/getCategories','CategoryController@getCategories');
 Route::get('/getInnovations','IdeasController@index2');
 Route::get('/getRetos','IdeasController@getRetos');
 
@@ -114,6 +119,8 @@ Route::get('/assets/assets/app/custom/login/login-v1.js',function(){
     return redirect()->route('admin');
 });
 
+Route::get('/brignPersonalizedCategories','CategoryController@brignPersonalizedCategories');
+
 
 
 Route::get('/assets/vendors/base/purify.js.map',function(){
@@ -129,15 +136,56 @@ Route::any('/products','PublicController@publicIdeas');
 Route::any('/pricing','PublicController@publicIdeas');
 Route::any('/blog','PublicController@publicIdeas');
 Route::any('/global-ideas/view/{id}','PublicController@publicIdeas');
-
-
-
-
-
-
 Route::post('/data/updateCompanyInfo','CompanyController@updateCompanyInfo');
 Route::get('/data/getCompanyInfo','CompanyController@getCompanyInfo');
+
+
+/* Rutas controladas por VueJS */
+
 //Route::get('{path}',"AdminController@users")->where( 'path', '([A-z\d-\/_.]+)?' );
-Route::get('/{any}', 'AdminController@users')->where('any', '.*');
+
+
+Route::get('/profile',"AdminController@users");
+Route::get('/innovations',"AdminController@users")->name('innovations');
+Route::get('/ideaCreation',"AdminController@users");
+Route::get('/solucion-reto/{id}',"AdminController@users");
+Route::get('/innovations/{id}',"AdminController@users");
+Route::get('/innovations/public/{id}',"AdminController@users");
+Route::get('/retos',"AdminController@users");
+Route::get('/retos/nuevo',"AdminController@users");
+Route::get('/retos/ver/{id}',"AdminController@users");
+Route::get('/retos/ver-public/{id}',"AdminController@users");
+Route::get('/business',"AdminController@users");
+Route::get('/business/users',"AdminController@users");
+Route::get('/business/users/create-contact',"AdminController@users");
+Route::get('/business/user-profile/{id}',"AdminController@users");
+Route::get('/business/edit-user/{id}',"AdminController@users");
+Route::get('/business/work-teams',"AdminController@users");
+Route::get('/business/company',"AdminController@users");
+Route::get('/shareInnovation/{id}',"AdminController@users");
+Route::get('/categories',"AdminController@users");
+
+
+
+/* Rutas usadas por pagina de bienvenida */ 
+
+
+
+Route::get('/global-ideas',"PublicController@publicIdeas");
+Route::get('/products',"PublicController@publicIdeas");
+Route::get('/pricing',"PublicController@publicIdeas");
+Route::get('/blog',"PublicController@publicIdeas");
+Route::get('/global-ideas/view/{id}',"PublicController@publicIdeas");
+Route::get('/',"PublicController@publicIdeas")->name('raiz');
+
+
+
+
+/* Fin de rutas controladas por VueJS */
+
+
+
+
+//Route::get('/{any}', 'AdminController@users')->where('any', '.*');
 
 //Route::resource('innovations', 'InnovationController');

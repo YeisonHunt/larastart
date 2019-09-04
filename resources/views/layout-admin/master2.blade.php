@@ -101,7 +101,9 @@
 						}
 						}
 
-
+						body.modal-open {
+						overflow: visible !important;
+					}				
 
 		
 			</style>
@@ -807,7 +809,7 @@
 
 		<script>
 
-			window.baseUrl = '<?php echo (env('APP_URL')); ?>';
+			window.baseUrl = '{{(env('APP_URL')) }}';
 
 			@auth
 			window.user = {!! json_encode(Auth::user(),true)  !!};

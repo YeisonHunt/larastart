@@ -429,7 +429,7 @@ export default {
 
     vote(idea) {
       this.dialog = true;
-      this.linkToIdea = this.baseUrl + "public-ideas/view/" + idea.id;
+      this.linkToIdea = this.baseUrl + "global-ideas/view/" + idea.id;
       this.ideaImg = idea.img;
     },
 

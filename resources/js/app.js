@@ -23,7 +23,8 @@ import VueMq from 'vue-mq'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 //import SuiVue from 'semantic-ui-vue';
 
-import Vuesax from 'vuesax'
+import es from 'vuetify-v1/es5/locale/es.js';
+
 import Vuetify from 'vuetify-v1'
 
 // index.js or main.js
@@ -32,29 +33,25 @@ import datePicker from 'vue-bootstrap-datetimepicker';
 
 
 
-import 'vuesax/dist/vuesax.css'
 import 'vuetify-v1/dist/vuetify.min.css' // Ensure you are using css-loader
 
-moment.locale('es')
+
 
 Vue.use(datePicker);
-Vue.use(Vuesax, {
-	theme:{
-	  colors:{
-		primary:'#5b3cc4',
-		success:'rgb(23, 201, 100)',
-		danger:'rgb(242, 19, 93)',
-		warning:'rgb(255, 130, 0)',
-		dark:'rgb(36, 33, 69)'
-	  }
-	}
-  })
+
   Vue.use(Vuetify, {
 	theme: {
 	  primary: '#5b3cc4', // #E53935
 	  primary2: '#5b3cc4', // #E53935
 	  secondary: '#FFCFF2', // #FFCDD2
 	  accent: '#3F51B5' // #3F51B5
+	},
+	lang: {
+		locales: {
+			es,
+	
+		},
+		current: 'es'
 	}
   })
 
@@ -124,6 +121,7 @@ let routes = [
 
 
 	{ path: '/shareInnovation/:id', component: require('./components/ShareInnovationComponent.vue').default },
+	{ path: '/categories', name:'categories', component: require('./components/Categories.vue').default },
 
 
 
@@ -301,47 +299,95 @@ Vue.filter(
 );
 
 
+
 Vue.filter(
 
 	'toCategory',
 	function (category) {
 
 		let t = category.toString();
-		if (t == 'improvethis') {
 
-			let t2 = 'Mejorar Asakaa.com';
-			return t2;
 
-		} else if (t == 'sustainability') {
-			return 'Sostenibilidad';
-		} else if (t == 'lifeandhealth') {
-			return 'Vida & Salud';
-		} else if (t == 'artandculture') {
-			return 'Arte & Cultura';
-		} else if (t == 'beautyandfaashion') {
-			return 'Belleza & Moda';
-		} else if (t == 'homeandpets') {
-			return 'Hogar & Mascotas';
-		} else if (t == 'scienceandtechnology') {
-			return 'Ciencia & Tecnología';
-		}
-		else if (t == 'tourismandtravel') {
-			return 'Turismo & Viajes';
-		} else if (t == 'transport') {
-			return 'Transporte';
-		} else if (t == 'food') {
-			return 'Comida';
-		} else if (t == 'politicsandsociety') {
-			return 'Política & Sociedad';
-		} else if (t == 'sportsandentertainment') {
-			return 'Deporte & Entretenimiento';
-		} else if (t == 'businessandconsumer') {
-			return 'Negocios';
+		if(/\d/.test(t)){
+			//Has number
+
+			t = t.replace(/\d+/g, '');
+
+			if (t == 'improvethis') {
+
+				let t2 = 'Mejorar Asakaa.com';
+				return t2;
+	
+			} else if (t == 'sustainability') {
+				return 'Sostenibilidad';
+			} else if (t == 'lifeandhealth') {
+				return 'Vida & Salud';
+			} else if (t == 'artandculture') {
+				return 'Arte & Cultura';
+			} else if (t == 'beautyandfashion') {
+				return 'Belleza & Moda';
+			} else if (t == 'homeandpets') {
+				return 'Hogar & Mascotas';
+			} else if (t == 'scienceandtechnology') {
+				return 'Ciencia & Tecnología';
+			}
+			else if (t == 'tourismandtravel') {
+				return 'Turismo & Viajes';
+			} else if (t == 'transport') {
+				return 'Transporte';
+			} else if (t == 'food') {
+				return 'Comida';
+			} else if (t == 'politicsandsociety') {
+				return 'Política & Sociedad';
+			} else if (t == 'sportsandentertainment') {
+				return 'Deporte & Entretenimiento';
+			} else if (t == 'businessandconsumer') {
+				return 'Negocios';
+			}
+	
+			else {
+				return t;
+			}
+
+		}else {
+			if (t == 'improvethis') {
+
+				let t2 = 'Mejorar Asakaa.com';
+				return t2;
+	
+			} else if (t == 'sustainability') {
+				return 'Sostenibilidad';
+			} else if (t == 'lifeandhealth') {
+				return 'Vida & Salud';
+			} else if (t == 'artandculture') {
+				return 'Arte & Cultura';
+			} else if (t == 'beautyandfaashion') {
+				return 'Belleza & Moda';
+			} else if (t == 'homeandpets') {
+				return 'Hogar & Mascotas';
+			} else if (t == 'scienceandtechnology') {
+				return 'Ciencia & Tecnología';
+			}
+			else if (t == 'tourismandtravel') {
+				return 'Turismo & Viajes';
+			} else if (t == 'transport') {
+				return 'Transporte';
+			} else if (t == 'food') {
+				return 'Comida';
+			} else if (t == 'politicsandsociety') {
+				return 'Política & Sociedad';
+			} else if (t == 'sportsandentertainment') {
+				return 'Deporte & Entretenimiento';
+			} else if (t == 'businessandconsumer') {
+				return 'Negocios';
+			}
+	
+			else {
+				return t;
+			}
 		}
 
-		else {
-			return 'General';
-		}
+		
 
 	}
 

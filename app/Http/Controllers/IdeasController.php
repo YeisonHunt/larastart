@@ -880,14 +880,44 @@ class IdeasController extends Controller
         }
 
 
-				Log::info('info traida correctamente');
+
+        //Categorias 
+        $user= auth()->user();
+        $allCategories = DB::table('cats')->where('company_id',$user->company_id)->get();
+
+        $tempObj= array(
+            'label'=>'Categorías Personalizadas',
+            'options'=>$allCategories
+        );
+
+        $categorias = array();    
+        
+
+        array_push($categorias,$tempObj);
+
+   
+       
+
+        
+        $options = DB::table('cats')->where('company_id',0)->get();
+
+
+        $categoriasPredefinidas = array(
+
+            'label'=>'Categorías Predefinidas',
+            'options'=>$options
+        );
+
+        array_push($categorias,$categoriasPredefinidas);
+        //Fin categorias
 
         return response()->json([
 
             'ideas'=>$ideasAll,
             'publicIdeas'=>$ideasAllPublic,
             'user'=>$userAuth,
-			'companyIdeas'=>$ideasAllCorporate,
+            'companyIdeas'=>$ideasAllCorporate,
+            'cats'=>$categorias
 
 
         ]);

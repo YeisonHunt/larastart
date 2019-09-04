@@ -56,6 +56,7 @@
         "vue-progressbar": "^0.7.5",
         "vue-random-pic": "^1.0.0",
         "vue-router": "^3.0.5",
+        "vue-select": "^3.1.0",
         "vue-star": "0.0.4",
         "vue2-perfect-scrollbar": "^1.2.1",
         "vuesax": "^3.8.75",

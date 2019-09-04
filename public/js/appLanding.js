@@ -2769,7 +2769,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     vote: function vote(idea) {
       this.dialog = true;
-      this.linkToIdea = this.baseUrl + "public-ideas/view/" + idea.id;
+      this.linkToIdea = this.baseUrl + "global-ideas/view/" + idea.id;
       this.ideaImg = idea.img;
     },
     goAdmin: function goAdmin() {

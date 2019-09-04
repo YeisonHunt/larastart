@@ -123,31 +123,45 @@
 
 
 
-      <div class="mt-2" >
+      <div class="" style="margin-top:1px;" >
+        <label for="picka">Categorías</label>
+           <div class="input-group">
+             
+                            <select
+                              class="kt-selectpicker form-control"
+                              :class="{'is-invalid': form.errors.has('category')}"
+                              data-container="body"
+                              name="category"
+                              id="picka"
+                              v-model="select1"
+                              required
+                            >
+                            <option value="all">Todas</option>
+                               <optgroup :label="cat.label" v-for="cat in cats" :key="cat.id">
+                                 
+                                  <option :value="c.id+c.name" v-for="c in cat.options" :key="c.id">{{ c.name |toCategory}}</option>
+                                 
+                                 </optgroup>
 
-          
+                            
 
-        <vs-select
-          class="selectExample "
-          label="Categorías"
-          v-model="select1"
-          >
-          <vs-select-item :key="index" :value="item.value" :text="item.text" v-for="item,index in options1" />
-        </vs-select>
+                            </select>
+            </div>
+
 
     </div>
 
 
     </div>
 
-    <div class="col-lg-1"></div>
+   
 
     <div class="col-lg-3 col-sm-2 col-md-4 mt-4 ">
 
-      <div  class="mt-2">
-         <router-link to="/ideaCreation" >
-         <vs-button color="primary" type="gradient"  icon="add">Añadir nueva idea de innovación</vs-button>
-      </router-link>
+      <div  class="">
+       
+
+       <v-btn color="#3F51B5"  :to="'/ideaCreation'" dark>Añadir nueva idea de innovación</v-btn>
 
       </div>
      
@@ -158,107 +172,7 @@
     <!-- end first column 12 -->
 
     <!--begin::Modal-->
-    <div
-      class="modal fade"
-      id="userCreationModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalTitle">Creating new idea</h5>
-            <button
-              type="button"
-              id="closeBtnModal"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form
-              class="kt-form"
-              @submit.prevent="editMode ? editIdea() : createUser() "
-              @keydown="form.onKeydown($event)"
-            >
-              <div class="kt-portlet__body">
-                <div class="form-group form-group-last">
-                  <div class="alert alert-secondary" role="alert">
-                    <div class="alert-icon">
-                      <i class="flaticon-add-circular-button kt-font-brand" id="iconBrand"></i>
-                    </div>
-                    <div
-                      class="alert-text"
-                      id="modalSubtitle"
-                    >This VueJS component creates an awesome user idea a flash!</div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label>Idea</label>
-                  <input
-                    v-model="form.ideatxt"
-                    :class="{'is-invalid': form.errors.has('ideatxt')}"
-                    id="ideatxt"
-                    type="text"
-                    class="form-control"
-                    name="ideatxt"
-                    aria-describedby="emailHelp"
-                    placeholder="Short idea title"
-                  >
-                  <has-error :form="form" field="ideatxt"></has-error>
-                </div>
-
-                <div class="form-group">
-                  <label>Description</label>
-                  <input
-                    v-model="form.bugorfeaturetxt"
-                    :class="{'is-invalid': form.errors.has('bugorfeaturetxt')}"
-                    type="text"
-                    class="form-control"
-                    name="bugorfeaturetxt"
-                    aria-describedby="emailHelp"
-                    placeholder="Idea body..."
-                  >
-                  <has-error :form="form" field="bugorfeaturetxt"></has-error>
-
-                  <span class="form-text text-muted">We'll never share your idea with anyone else.</span>
-                </div>
-
-                <div class="form-group">
-                  <label>Img URL</label>
-                  <input
-                    v-model="form.img"
-                    :class="{'is-invalid': form.errors.has('img')}"
-                    id="img"
-                    type="text"
-                    class="form-control"
-                    name="img"
-                    placeholder="Image URL..."
-                  >
-                  <has-error :form="form" field="img"></has-error>
-                </div>
-              </div>
-              <div class="kt-portlet__foot float-right">
-                <div class="kt-form__actions">
-                  <button
-                    type="submit"
-                    :disabled="form.busy"
-                    id="modalBtn"
-                    class="btn btn-primary"
-                  >Save Idea</button>
-                  <button type="reset" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-
-                  <!-- i can use v-show="editMode" -->
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+   
     <!--end::Modal-->
   <br>
 
@@ -299,7 +213,7 @@
                                <div class="container-fluid">
                                  <div class="row">
 
-           <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12"  v-for="idea in filteredIdeas "
+           <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12"  v-for="idea in filteredPersonal "
             :key="ideas.id"     >
 
             <div class="kt-portlet kt-portlet--height-fluid kt-widget19  hvr-underline-from-center">
@@ -399,7 +313,7 @@
                                  <div class="row">
 
 
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12"  v-for="idea in companyIdeas "
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12"  v-for="idea in filteredEmpresarial "
       :key="ideas.id"     >
 
       <div class="kt-portlet kt-portlet--height-fluid kt-widget19  hvr-underline-from-center">
@@ -630,7 +544,7 @@
   </div>
 
 
-  <div class="row" v-if="filteredIdeas.length==0"   >
+  <div class="row" v-if="filteredPersonal.length==0"   >
 
     <img v-bind:src="baseUrl +'img/empty.svg'" alt="" style="width:auto;
     height:auto;
@@ -970,6 +884,8 @@ export default {
       publicIdeas:{},
       companyIdeas:{},
       solutions:{},
+      category:'all',
+      cats:{},
 
       minHeight: '300px',
       baseUrl:window.baseUrl,
@@ -987,12 +903,16 @@ export default {
   },
 
   computed:{
-    filteredIdeas: function() {
+    filteredPersonal: function() {
+
+      
 
       if(this.select1=='all'){
 
         return this.ideas;
       }else{
+
+
 
         return this.ideas.filter((idea)=>{
 
@@ -1016,6 +936,28 @@ export default {
       }else{
 
         return this.publicIdeas.filter((idea)=>{
+
+        if(idea.category==this.select1){
+          return true;
+        }else {
+          return false;
+        }
+      } );
+
+      }
+
+
+
+    },
+
+    filteredEmpresarial: function() {
+
+      if(this.select1=='all'){
+
+        return this.companyIdeas;
+      }else{
+
+        return this.companyIdeas.filter((idea)=>{
 
         if(idea.category==this.select1){
           return true;
@@ -1203,7 +1145,7 @@ export default {
          if(response.data.msg=='loginRequired'){
             window.location.href = baseUrl+'login';
 
-            this.$Progress.finish();
+            this.$Progress.finish();// Este nunca va a servir porque es rechazado antes.
 
           }else{
 
@@ -1211,6 +1153,7 @@ export default {
           this.publicIdeas = response.data.publicIdeas;
           this.user = response.data.user;
           this.companyIdeas = response.data.companyIdeas;
+          this.cats = response.data.cats;
 
           this.$Progress.finish();
 
