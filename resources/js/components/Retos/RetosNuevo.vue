@@ -140,8 +140,13 @@
 																			
 
 																			<select class="kt-selectpicker form-control "  :class="{'is-invalid': form.errors.has('category')}"        data-container="body"  name="category" id="kt-selectpicker1" v-model="form.category"  required>
+
+																				<optgroup :label="cat.label" v-for="cat in cats" :key="cat.id">
+																					<option :value="c.id+c.name" v-for="c in cat.options" :key="c.id">{{ c.name |toCategory}}</option>
+																					
+																				</optgroup>
 																				
-																				<option value="sustainability">Sostenibilidad</option>
+																				<!--<option value="sustainability">Sostenibilidad</option>
 																				<option value="lifeandhealth">Vida & Salud </option>
 																				<option value="artandculture">Arte & Cultura</option>
 																				<option value="beautyandfaashion">Moda & Belleza</option>
@@ -152,7 +157,11 @@
 																				<option value="food">Comida</option>
 																				<option value="politicsandsociety">Política & Sociedad</option>
 																				<option value="sportsandentertainment">Deporte & Entretenimiento</option>
-																				<option value="businessandconsumer">Negocios & Consumo</option>
+																				<option value="businessandconsumer">Negocios & Consumo</option>-->
+
+
+
+
 																			</select>
 																			<has-error :form="form" field="category" ></has-error>
 
@@ -377,7 +386,7 @@ export default {
 					description:'',
 					editordata   : '',
 					img:'',
-					category :'sustainability',
+					category :'1sustainability',
 					language:'es',
 					author:'showme',
 					privacy:'empresarial',
@@ -385,6 +394,7 @@ export default {
 					fecha:'',
 
 				}),
+				cats:{},
 				
 				options: {
 				format: 'DD/MM/YYYY',
@@ -558,7 +568,23 @@ export default {
 				}
 
 
-				}
+				},
+
+		getCategories(){
+			
+     
+                axios.get("/brignPersonalizedCategories")
+                    .then(response => {
+                    this.cats = response.data.categories;
+                
+                    })
+                    .catch(error => {
+                    console.log(error);
+                    });
+
+                    
+            
+		}
 
 	
 
@@ -566,6 +592,12 @@ export default {
 
 
 	mounted() {
+
+
+		this.getCategories()
+
+
+
 		
 		var KTSummernoteDemo={init:function(){
 			

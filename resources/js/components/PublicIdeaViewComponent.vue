@@ -61,7 +61,12 @@
           <!-- end portlet head-->
 
           
-          <v-img :src="idea.img" aspect-ratio="4"></v-img>
+          <!--<v-img :src="idea.img" aspect-ratio="4"></v-img>-->
+
+           <div class="images "  v-viewer >
+                <img :src="idea.img" class="imgFit">
+          </div>
+
 
           <div class="kt-portlet__body wrapText" id="ideaBody"  v-html="idea.body"></div>
 

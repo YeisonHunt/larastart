@@ -30,7 +30,8 @@ import Vuetify from 'vuetify-v1'
 // index.js or main.js
 
 import datePicker from 'vue-bootstrap-datetimepicker';
-
+import Viewer from 'v-viewer'
+import 'viewerjs/dist/viewer.css'
 
 
 import 'vuetify-v1/dist/vuetify.min.css' // Ensure you are using css-loader
@@ -38,7 +39,7 @@ import 'vuetify-v1/dist/vuetify.min.css' // Ensure you are using css-loader
 
 
 Vue.use(datePicker);
-
+Vue.use(Viewer);
   Vue.use(Vuetify, {
 	theme: {
 	  primary: '#5b3cc4', // #E53935

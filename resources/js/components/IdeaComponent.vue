@@ -161,7 +161,9 @@
       <div  class="">
        
 
-       <v-btn color="#3F51B5"  :to="'/ideaCreation'" dark>Añadir nueva idea de innovación</v-btn>
+       <v-btn color="#3F51B5"  :to="'/ideaCreation'" dark>
+        <v-icon left>add</v-icon>
+       Nueva idea</v-btn>
 
       </div>
      
@@ -188,17 +190,17 @@
     <v-tabs-slider color="purple darken-4"></v-tabs-slider>
 
     <v-tab href="#personales">
-      Personales
+     {{filteredPersonal.length}} Personales 
       <v-icon>person_pin</v-icon>
     </v-tab>
 
     <v-tab href="#empresariales">
-      Empresariales
+      {{filteredEmpresarial.length}} Empresariales 
       <v-icon>business</v-icon>
     </v-tab>
 
     <v-tab href="#publicas">
-      Públicas
+     {{filteredPublic.length}} Públicas 
       <v-icon>public</v-icon>
     </v-tab>
 
@@ -260,13 +262,7 @@
                                 <b>Date: </b>{{idea.created_at |humanDate}} <br>
                                 {{idea.description | mediumText}}
 
-                              <hr style="
-                                border: 0;
-                                border-bottom: 1px dashed #ccc;
-                                background: #999;
-                              ">
-
-                              <p>Compartida con: {{idea.privacy | compartida}}</p>
+                           
 
                               </div>
                             </div>
@@ -365,13 +361,7 @@
                            <b>Fecha: </b>{{idea.created_at |humanDate}} <br>
                           {{idea.description | mediumText}}
 
-                            <hr style="
-                          border: 0;
-                          border-bottom: 1px dashed #ccc;
-                          background: #999 ;
-                        ">
-
-                         <p>Compartida con: {{idea.privacy | compartida}}</p>
+                          
 
 												</div>
 											</div>
@@ -469,13 +459,7 @@
                            <b>Fecha: </b>{{idea.created_at |humanDate}} <br>
                           {{idea.description | mediumText}}
 
-                            <hr style="
-                          border: 0;
-                          border-bottom: 1px dashed #ccc;
-                          background: #999;
-                        ">
-
-                         <p>Compartida con: {{idea.privacy | compartida}}</p>
+                          
 
 												</div>
 											</div>
@@ -886,6 +870,7 @@ export default {
       solutions:{},
       category:'all',
       cats:{},
+     
 
       minHeight: '300px',
       baseUrl:window.baseUrl,

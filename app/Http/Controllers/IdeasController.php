@@ -289,6 +289,7 @@ class IdeasController extends Controller
 			                ->where('user__has__ideas.id_user',$userAuth->id)
                             ->where('innovations.type','reto')
                             ->where('innovations.created_by',$userAuth->id)
+                            ->where('innovations.privacy', '=', 'me')
 							->select('user__has__ideas.*')
 							->orderBy('user__has__ideas.id','DESC')
 			                ->get();
@@ -305,7 +306,7 @@ class IdeasController extends Controller
 								->where('company_id',$userAuth->company_id)
 								->where('privacy','empresarial')
 								->where('type','reto')
-								->where('created_by','!=',$userAuth->id)
+							
 								->orderBy('created_at','DESC')
 								->get();
 
@@ -402,7 +403,7 @@ class IdeasController extends Controller
 			      $public = DB::table('innovations')->where('innovations.privacy','public')
 						->where('innovations.type','reto')
 						->join('users','innovations.created_by','users.id')
-						->where('innovations.created_by','!=',$userAuth->id)
+						
 						->select('innovations.*','users.name as escrita')
 						->orderBy('created_at','DESC')->get();
 
@@ -573,17 +574,48 @@ class IdeasController extends Controller
 			        }else {
 			            $ideasAllPublic=array();
 
-			        }
+                    }
+                    
+                      //Categorias 
+                        $user= auth()->user();
+                        $allCategories = DB::table('cats')->where('company_id',$user->company_id)->get();
+
+                        $tempObj= array(
+                            'label'=>'Categorías Personalizadas',
+                            'options'=>$allCategories
+                        );
+
+                        $categorias = array();    
+                        
+
+                        array_push($categorias,$tempObj);
+
+                
+                    
+
+                        
+                        $options = DB::table('cats')->where('company_id',0)->get();
 
 
-							Log::info('info traida correctamente');
+                        $categoriasPredefinidas = array(
+
+                            'label'=>'Categorías Predefinidas',
+                            'options'=>$options
+                        );
+
+                        array_push($categorias,$categoriasPredefinidas);
+                        //Fin categorias
+
+
+						
 
 			        return response()->json([
 
 			            'privateRetos'=>$ideasAll,
 			            'publicRetos'=>$ideasAllPublic,
 									'companyRetos'=>$ideasAllCorporate,
-									'user'=>$userAuth,
+                                    'user'=>$userAuth,
+                                    'categories'=>$categorias
 
 
                     ]);
@@ -608,12 +640,13 @@ class IdeasController extends Controller
 
 				$ideas= DB::table('user__has__ideas')
 				->join('innovations','user__has__ideas.id_idea','innovations.id')
-				->where('user__has__ideas.id_user',$userAuth->id)
+                ->where('user__has__ideas.id_user',$userAuth->id)
+                ->where('innovations.privacy', '=', 'me')
                 ->where(function ($query) {
                     $query->where('innovations.type', '=', 'solucion')
                           ->orWhere('innovations.type', '=', 'idea');
+                          
                 })
-        
 				->select('user__has__ideas.*')
 				->orderBy('user__has__ideas.id','DESC')
 				->get();
@@ -634,7 +667,6 @@ class IdeasController extends Controller
                         $query->where('type', '=', 'solucion')
                               ->orWhere('type', '=', 'idea');
                     })
-					->where('created_by','!=',$userAuth->id)
 					->orderBy('created_at','DESC')
 					->get();
 
@@ -727,7 +759,6 @@ class IdeasController extends Controller
       $public = DB::table('innovations')->where('privacy','public')
 			->where('innovations.type','idea')
             ->join('users','innovations.created_by','users.id')
-            ->where('innovations.created_by','!=',$userAuth->id)
 			->select('innovations.*','users.name as escrita')
 			->orderBy('created_at','DESC')->get();
 

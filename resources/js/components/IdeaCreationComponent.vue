@@ -295,34 +295,9 @@
 
                       <br />
 
-                      <div class="form-group form-group-last row">
-                        <label class="col-3 col-form-label">Mostrar votos en modo empresa?</label>
-                        <div class="col-9">
-                          <div class="kt-checkbox-inline">
-                            <label class="kt-checkbox">
-                              <input
-                                type="radio"
-                                value="yes"
-                                :class="{'is-invalid': form.errors.has('votes_privacy')}"
-                                name="votes_privacy"
-                                v-model="form.votes_privacy"
-                              /> Si
-                              <span></span>
-                            </label>
-                            <label class="kt-checkbox">
-                              <input
-                                type="radio"
-                                value="no"
-                                :class="{'is-invalid': form.errors.has('votes_privacy')}"
-                                name="votes_privacy"
-                                v-model="form.votes_privacy"
-                              /> Aún no
-                              <span></span>
-                            </label>
-                            <has-error :form="form" field="votes_privacy"></has-error>
-                          </div>
-                        </div>
-                      </div>
+                   
+
+
                     </div>
                   </div>
                 </div>
@@ -426,10 +401,10 @@ export default {
         description: "",
         editordata: "",
         img: "",
-        category: "12sustainability",
+        category: "1sustainability",
         language: "es",
         author: "showme",
-        privacy: "public",
+        privacy: "empresarial",
         type: "idea",
         votes_privacy: "no"
       })
@@ -441,7 +416,7 @@ export default {
       if (user.account_type == "personal") {
         this.form.privacy = "empresarial";
       } else {
-        this.form.privacy = "public";
+        this.form.privacy = "empresarial";
       }
 	},
 	

@@ -79,7 +79,7 @@
           </div>
           <!-- end portlet head-->
 
-          <v-img :src="idea.img" aspect-ratio="4" :lazy-src="`https://picsum.photos/10/6?image=${5 + 10}`">
+         <!-- <v-img :src="idea.img" aspect-ratio="4" :lazy-src="`https://picsum.photos/10/6?image=${5 + 10}`">
            <template v-slot:placeholder>
                     <v-layout
                       fill-height
@@ -90,7 +90,13 @@
                       <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
                     </v-layout>
                   </template>
-          </v-img>
+          </v-img> -->
+
+          <div class="images "  v-viewer >
+                <img :src="idea.img" class="imgFit">
+          </div>
+
+
 
           <div class="kt-portlet__body wrapText" id="ideaBody"  v-html="idea.body"></div>
 
@@ -441,6 +447,8 @@
 </template>
 
 <style type="text/css">
+
+
 
 
 .toast-title {
