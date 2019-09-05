@@ -191,17 +191,17 @@
 
     <v-tab href="#empresariales">
      {{filteredEmpresarial.length}} Empresariales 
-      <v-icon>person_pin</v-icon>
+      <v-icon>business</v-icon>
     </v-tab>
 
     <v-tab href="#publicas">
       {{filteredPublic.length}} Publicas 
-      <v-icon>business</v-icon>
+      <v-icon> public</v-icon>
     </v-tab>
 
     <v-tab href="#personales">
-     {{filteredPersonal.length}} Personales 
-      <v-icon>public</v-icon>
+     {{filteredPersonal.length}} Ideas en borrador 
+      <v-icon>person_pin</v-icon>
     </v-tab>
 
     <v-tab-item
@@ -330,7 +330,7 @@
 												</h3>
 												<div class="kt-widget19__shadow"></div>
 												<div class="kt-widget19__labels">
-													<a  class="btn btn-light  btn-pill  btn-sm ">Public</a>
+													<a  class="btn btn-light  btn-pill  btn-sm ">Pública</a>
 												</div>
 											</div>
 										</div>
@@ -429,7 +429,7 @@
                               </h3>
                               <div class="kt-widget19__shadow"></div>
                               <div class="kt-widget19__labels" style="background-color:white; border-radius:5px;">
-                                <a href="#" class="btn btn-label-light-o2 btn-bold btn-sm " style="color:#7a7f87; ">Personal </a>
+                                <a href="#" class="btn btn-label-light-o2 btn-bold btn-sm " style="color:#7a7f87; ">Borrador </a>
                               </div>
                             </div>
                           </div>

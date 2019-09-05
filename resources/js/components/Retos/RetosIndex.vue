@@ -123,17 +123,17 @@
 
               <v-tab href="#empresariales">
               {{filteredEmpresarial.length}} Empresariales 
-                <v-icon>person_pin</v-icon>
+                <v-icon>business</v-icon>
               </v-tab>
 
               <v-tab href="#publicos">
                 {{filteredPublic.length}} Públicos 
-                <v-icon>business</v-icon>
+                <v-icon>public</v-icon>
               </v-tab>
 
               <v-tab href="#personales">
-              {{filteredPersonal.length}} Personales 
-                <v-icon>public</v-icon>
+              {{filteredPersonal.length}} Retos en borrador 
+                <v-icon>person_pin</v-icon>
               </v-tab>
 
               <v-tab-item
@@ -349,7 +349,7 @@
 												</h3>
 												<div class="kt-widget19__shadow"></div>
 												<div class="kt-widget19__labels" style="background-color:white; border-radius:5px;">
-													<a href="#" class="btn btn-label-light-o2 btn-bold btn-sm " style="color:#7a7f87; ">Personal </a>
+													<a href="#" class="btn btn-label-light-o2 btn-bold btn-sm " style="color:#7a7f87; ">Borrador </a>
 												</div>
 											</div>
 										</div>
