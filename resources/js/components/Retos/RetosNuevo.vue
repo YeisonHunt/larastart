@@ -66,7 +66,7 @@
 																	<div class="col-9">
 																		<div class="kt-checkbox-inline">
 																			<label class="kt-checkbox">
-																				<input type="radio"  value="me"  :class="{'is-invalid': form.errors.has('privacy')}"	 name="privacy" v-model="form.privacy" > Privado (Solo para mi)
+																				<input type="radio"  value="me"  :class="{'is-invalid': form.errors.has('privacy')}"	 name="privacy" v-model="form.privacy" > Borrador (Solo para mi)
 																				<span></span>
 																			</label>
 

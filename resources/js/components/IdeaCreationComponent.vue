@@ -85,7 +85,7 @@
                                 :class="{'is-invalid': form.errors.has('privacy')}"
                                 name="privacy"
                                 v-model="form.privacy"
-                              /> Privada (Solo para mi)
+                              /> Borrador (Solo para mi)
                               <span></span>
                             </label>
 
