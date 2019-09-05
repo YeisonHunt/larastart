@@ -13,6 +13,10 @@
                 {{iPublicas}} públicas.
                 <br />
                 {{iPrivadas}} privadas.
+
+                <br />
+
+                {{iEmpresariales}} empresariales.
               </v-card-text>
 
               <v-card-actions>
@@ -34,6 +38,8 @@
                 {{rPublicos}} públicos.
                 <br />
                 {{rPrivados}} privados.
+                 <br />
+                 {{rEmpresariales}} empresariales.
               </v-card-text>
 
               <v-card-actions>
@@ -45,7 +51,7 @@
               </v-card-actions>
             </v-card>
           </div>
-          <div class="col-lg-4 col-sm-12">
+        <!--  <div class="col-lg-4 col-sm-12">
             <v-card class="mx-auto" color="#A24DDC" dark hover height="220">
               <v-card-title>
                 <span class="title font-weight-light">Grupos de trabajo</span>
@@ -65,7 +71,7 @@
                 >Ver mis grupos</v-btn>
               </v-card-actions>
             </v-card>
-          </div>
+          </div> -->
         </div>
 
         <br />
@@ -103,7 +109,9 @@ export default {
       rPublicos: '',
       rPrivados: '',
       tPublicos: '',
-      tPrivados: ''
+      tPrivados: '',
+      iEmpresariales:'',
+      rEmpresariales:'',
     };
   },
 
@@ -122,8 +130,10 @@ export default {
           }else {
           this.iPublicas = response.data.iPublicas;
           this.iPrivadas = response.data.iPrivadas;
+          this.iEmpresariales = response.data.iEmpresariales;
           this.rPublicos = response.data.rPublicos;
           this.rPrivados = response.data.rPrivados;
+          this.rEmpresariales = response.data.rEmpresariales;
           this.tPublicos = response.data.tPublicos;
           this.tPrivados = response.data.tPrivados;
             this.$Progress.finish();

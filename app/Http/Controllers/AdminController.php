@@ -30,10 +30,45 @@ class AdminController extends Controller
 		$company = Business::find($companyId);
 		$creator_id = $company->created_by;
 
-		$iPublicas = DB::table('innovations')->where('type','idea')->where('privacy','public')->get();
-		$iPrivadas = DB::table('innovations')->where('type','idea')->where('privacy','empreasarial')->get();
-		$rPublicos = DB::table('innovations')->where('type','reto')->where('privacy','public')->get();
-		$rPrivados = DB::table('innovations')->where('type','reto')->where('privacy','empresarial')->get();
+		$iPublicas = DB::table('innovations')->where(function ($query) {
+			$query->where('innovations.type', '=', 'solucion')
+				  ->orWhere('innovations.type', '=', 'idea');
+				  
+		})->where('privacy','public')->get();
+		$iPrivadas = DB::table('innovations')->where(function ($query) {
+			$query->where('innovations.type', '=', 'solucion')
+				  ->orWhere('innovations.type', '=', 'idea');
+				  
+		})->where('privacy','empresarial')->get();
+
+		$iEmpresariales = DB::table('innovations')->where(function ($query) {
+			$query->where('innovations.type', '=', 'solucion')
+				  ->orWhere('innovations.type', '=', 'idea');
+				  
+		})->where('privacy','empresarial')->get();
+
+
+		$rPublicos = DB::table('innovations')->where(function ($query) {
+			$query->where('innovations.type', '=', 'reto');
+				  
+				  
+		})->where('privacy','public')->get();
+		$rPrivados = DB::table('innovations')->where(function ($query) {
+			$query->where('innovations.type', '=', 'reto');
+				
+				  
+		})->where('privacy','empresarial')->get();
+
+		$rEmpresariales = DB::table('innovations')->where(function ($query) {
+			$query->where('innovations.type', '=', 'reto');
+				  
+				  
+		})->where('privacy','empresarial')->get();
+
+
+
+
+
 		$tPublicos = DB::table('teams')->get();
 		$tPrivados = DB::table('teams')->where('creator_id',$creator_id)->get();
 		
@@ -44,8 +79,10 @@ class AdminController extends Controller
 
 			'iPublicas'=>count($iPublicas),
 			'iPrivadas'=>count($iPrivadas),
+			'iEmpresariales'=>count($iEmpresariales),
 			'rPublicos'=>count($rPublicos),
 			'rPrivados'=>count($rPrivados),
+			'rEmpresariales'=>count($rEmpresariales),
 			'tPublicos'=>count($tPublicos),
 			'tPrivados'=>count($tPrivados),
 
