@@ -121,111 +121,20 @@
             >
               <v-tabs-slider color="purple darken-4"></v-tabs-slider>
 
-              <v-tab href="#personales">
-              {{filteredPersonal.length}} Personales 
+              <v-tab href="#empresariales">
+              {{filteredEmpresarial.length}} Empresariales 
                 <v-icon>person_pin</v-icon>
               </v-tab>
 
-              <v-tab href="#empresariales">
-                {{filteredEmpresarial.length}} Empresariales 
+              <v-tab href="#publicos">
+                {{filteredPublic.length}} Públicos 
                 <v-icon>business</v-icon>
               </v-tab>
 
-              <v-tab href="#publicos">
-              {{filteredPublic.length}} Públicas 
+              <v-tab href="#personales">
+              {{filteredPersonal.length}} Personales 
                 <v-icon>public</v-icon>
               </v-tab>
-
-              <v-tab-item
-            
-                :value="'personales'"
-              >
-                <v-card >
-             <br>
-
-        
-                               <div class="container-fluid">
-                                 <div class="row">
-                                   
-    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12"  v-for="idea in filteredPersonal "
-      :key="idea.id"     >
-
-      <div class="kt-portlet kt-portlet--height-fluid kt-widget19  hvr-underline-from-center">
-										<div class="kt-portlet__body kt-portlet__body--fit">
-											<div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides imageCard "
-
-                                    v-bind:style='{ backgroundImage: "url(" + idea.img + ")", }'  >
-												<h3 class="kt-widget19__title kt-font-light">
-													{{idea.title | shortText | uppercaseFirst}}
-												</h3>
-												<div class="kt-widget19__shadow"></div>
-												<div class="kt-widget19__labels" style="background-color:white; border-radius:5px;">
-													<a href="#" class="btn btn-label-light-o2 btn-bold btn-sm " style="color:#7a7f87; ">Personal </a>
-												</div>
-											</div>
-										</div>
-										<div class="kt-portlet__body">
-											<div class="kt-widget19__wrapper">
-												<div class="kt-widget19__content">
-													<div class="kt-widget19__userpic">
-														<img :src="idea.img" height="50" width="50">
-													</div>
-													<div class="kt-widget19__info">
-														<a href="#" class="kt-widget19__username">
-														Escrito por mi 
-														</a>
-
-													</div>
-													<div class="kt-widget19__stats">
-														<span class="kt-widget19__number kt-font-brand">
-
-                              <router-link class="" v-bind:to="'/retos/ver/'+idea.id">{{idea.solutions.length}}</router-link>
-														</span>
-
-                          <router-link class="kt-widget19__comment" v-bind:to="'/retos/ver/'+idea.id">Soluciones</router-link>
-
-
-
-													</div>
-												</div>
-												<div class="kt-widget19__text">
-													<b>Categoría: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
-
-
-                           <b>Fecha límite: </b>{{idea.fecha |limite}} 
-                           
-                           <br>
-
-
-                          {{idea.description | mediumText}}
-
-												</div>
-											</div>
-
-											<div class="kt-widget19__action">
-
-
-                         <router-link class="btn btn-sm btn-label-brand btn-bold "
-                         v-bind:to="'/retos/ver/'+idea.id">Aportar solución...</router-link>
-
-
-
-
-
-											</div>
-
-
-
-										</div>
-									</div>
-    </div><!-- fin ideas privadas -->
-
-                                 </div>
-                               </div>
-
-                               
-              </v-card>
-            </v-tab-item>
 
               <v-tab-item
             
@@ -237,7 +146,9 @@
         
                                <div class="container-fluid">
                                  <div class="row">
-                                   <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12"  v-for="idea in filteredEmpresarial "
+      
+
+       <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12"  v-for="idea in filteredEmpresarial "
       :key="idea.id"     >
 
       <div class="kt-portlet kt-portlet--height-fluid kt-widget19  hvr-underline-from-center">
@@ -319,7 +230,6 @@
               </v-card>
             </v-tab-item>
 
-
               <v-tab-item
             
                 :value="'publicos'"
@@ -330,8 +240,8 @@
         
                                <div class="container-fluid">
                                  <div class="row">
+                                
 
-                                   
     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12"  v-for="idea in filteredPublic "
       :key="ideas.id"     >
 
@@ -406,6 +316,100 @@
 									</div>
     </div>
 
+
+                                 </div>
+                               </div>
+
+                               
+              </v-card>
+            </v-tab-item>
+
+
+              <v-tab-item
+            
+                :value="'personales'"
+              >
+                <v-card >
+             <br>
+
+        
+                               <div class="container-fluid">
+                                 <div class="row">
+                                                                
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12"  v-for="idea in filteredPersonal "
+      :key="idea.id"     >
+
+      <div class="kt-portlet kt-portlet--height-fluid kt-widget19  hvr-underline-from-center">
+										<div class="kt-portlet__body kt-portlet__body--fit">
+											<div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides imageCard "
+
+                                    v-bind:style='{ backgroundImage: "url(" + idea.img + ")", }'  >
+												<h3 class="kt-widget19__title kt-font-light">
+													{{idea.title | shortText | uppercaseFirst}}
+												</h3>
+												<div class="kt-widget19__shadow"></div>
+												<div class="kt-widget19__labels" style="background-color:white; border-radius:5px;">
+													<a href="#" class="btn btn-label-light-o2 btn-bold btn-sm " style="color:#7a7f87; ">Personal </a>
+												</div>
+											</div>
+										</div>
+										<div class="kt-portlet__body">
+											<div class="kt-widget19__wrapper">
+												<div class="kt-widget19__content">
+													<div class="kt-widget19__userpic">
+														<img :src="idea.img" height="50" width="50">
+													</div>
+													<div class="kt-widget19__info">
+														<a href="#" class="kt-widget19__username">
+														Escrito por mi 
+														</a>
+
+													</div>
+													<div class="kt-widget19__stats">
+														<span class="kt-widget19__number kt-font-brand">
+
+                              <router-link class="" v-bind:to="'/retos/ver/'+idea.id">{{idea.solutions.length}}</router-link>
+														</span>
+
+                          <router-link class="kt-widget19__comment" v-bind:to="'/retos/ver/'+idea.id">Soluciones</router-link>
+
+
+
+													</div>
+												</div>
+												<div class="kt-widget19__text">
+													<b>Categoría: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
+
+
+                           <b>Fecha límite: </b>{{idea.fecha |limite}} 
+                           
+                           <br>
+
+
+                          {{idea.description | mediumText}}
+
+												</div>
+											</div>
+
+											<div class="kt-widget19__action">
+
+
+                         <router-link class="btn btn-sm btn-label-brand btn-bold "
+                         v-bind:to="'/retos/ver/'+idea.id">Aportar solución...</router-link>
+
+
+
+
+
+											</div>
+
+
+
+										</div>
+									</div>
+    </div><!-- fin ideas privadas -->
+                                   
+    
                                  </div>
                                </div>
 

@@ -5,10 +5,10 @@
         <div class="kt-portlet mobilePortlet">
           <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
-              <router-link to="/innovations" class="btn btn-clean kt-margin-r-10">
+              <button  @click="$router.go(-1)"  class="btn btn-clean kt-margin-r-10">
                 <i style="padding-bottom:8px;" class="la la-arrow-left"></i>
                 <span class="kt-hidden-mobile">Atrás</span>
-              </router-link>
+              </button>
 
               <span class="kt-portlet__head-icon">
                 <i class="flaticon-light"></i>
