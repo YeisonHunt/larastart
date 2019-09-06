@@ -17,6 +17,15 @@
         </div>
         
       </div>
+
+      <br>
+      <div class="row">
+        <div class="col-lg-12">
+          <h4>Retos por semana</h4>
+          <br>
+          <line-chart :data="retosSemana"></line-chart>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -30,6 +39,7 @@ export default {
            
            ideas:{},
            retos:{},
+           retosSemana:{}
           
       }
     },
@@ -38,7 +48,7 @@ export default {
         axios.get('/getData').then(
             response => {
          
-
+                this.retosSemana = response.data.sumaSemanal
                 this.ideas = response.data.ideas
                 this.retos = response.data.retos
             }

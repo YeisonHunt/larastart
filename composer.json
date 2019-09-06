@@ -16,6 +16,7 @@
         "laravel/socialite": "^4.1",
         "laravel/tinker": "^1.0",
         "league/flysystem-cached-adapter": "^1.0",
+        "nesbot/carbon": "^2.24",
         "pusher/pusher-php-server": "^4.0",
         "spatie/laravel-permission": "^2.37"
     },

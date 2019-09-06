@@ -1,0 +1,7 @@
+6 Sep 2019
+
+1. Gráficos por número de ideas, retos y soluciones semanales. Los gráficos semanales
+   se hacen por días y se grafica el número de retos por día, para cambiar de semana 
+   se hace una solicitud entre esos días y se re - renderiza el gráfico. Por defecto se ubica 
+   en la semana actual.
+
