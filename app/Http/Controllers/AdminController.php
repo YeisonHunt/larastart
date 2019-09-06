@@ -26,26 +26,33 @@ class AdminController extends Controller
 		
         if (Auth::check()) {
 
+			$user= auth()->user();
+
 		$companyId= Auth::user()->company_id;
 		$company = Business::find($companyId);
 		$creator_id = $company->created_by;
 
 		$iPublicas = DB::table('innovations')->where(function ($query) {
-			$query->where('innovations.type', '=', 'solucion')
-				  ->orWhere('innovations.type', '=', 'idea');
+			$query->where('innovations.type', '=', 'idea');
+				  
 				  
 		})->where('privacy','public')->get();
+
 		$iPrivadas = DB::table('innovations')->where(function ($query) {
 			$query->where('innovations.type', '=', 'solucion')
 				  ->orWhere('innovations.type', '=', 'idea');
 				  
-		})->where('privacy','me')->get();
+		})->where('privacy','me')
+		->where('created_by',$user->id)
+		->get();
 
 		$iEmpresariales = DB::table('innovations')->where(function ($query) {
 			$query->where('innovations.type', '=', 'solucion')
 				  ->orWhere('innovations.type', '=', 'idea');
 				  
-		})->where('privacy','empresarial')->get();
+		})->where('privacy','empresarial')
+		->where('company_id',$companyId)
+		->get();
 
 
 		$rPublicos = DB::table('innovations')->where(function ($query) {
