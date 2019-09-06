@@ -64,13 +64,17 @@ class AdminController extends Controller
 			$query->where('innovations.type', '=', 'reto');
 				
 				  
-		})->where('privacy','me')->get();
+		})->where('privacy','me')
+		->where('created_by',$user->id)
+		->get();
 
 		$rEmpresariales = DB::table('innovations')->where(function ($query) {
 			$query->where('innovations.type', '=', 'reto');
 				  
 				  
-		})->where('privacy','empresarial')->get();
+		})->where('privacy','empresarial')
+		->where('company_id',$companyId)
+		->get();
 
 
 
