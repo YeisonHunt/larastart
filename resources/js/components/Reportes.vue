@@ -21,7 +21,7 @@
       <br>
       <div class="row">
         <div class="col-lg-12">
-          <h4>Retos por semana</h4>
+          <h4>Ideas por semana</h4>
           <br>
           <line-chart :data="retosSemana"></line-chart>
         </div>

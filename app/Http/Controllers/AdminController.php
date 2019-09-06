@@ -282,13 +282,41 @@ class AdminController extends Controller
 		$company_id = auth()->user()->company_id;
 		
 
-		$sumaLunes = count(DB::table('innovations')->where('type','reto')->where('company_id',$company_id)->whereDate('created_at',$monday->toDateString())->get());
-		$sumaMartes = count(DB::table('innovations')->where('type','reto')->where('company_id',$company_id)->whereDate('created_at',$tuesday->toDateString())->get());
-		$sumaMiercoles = count(DB::table('innovations')->where('type','reto')->where('company_id',$company_id)->whereDate('created_at',$wednesday->toDateString())->get());
-		$sumaJueves = count(DB::table('innovations')->where('type','reto')->where('company_id',$company_id)->whereDate('created_at',$thursday->toDateString())->get());
-		$sumaViernes = count(DB::table('innovations')->where('type','reto')->where('company_id',$company_id)->whereDate('created_at',$friday->toDateString())->get());
-		$sumaSabado = count(DB::table('innovations')->where('type','reto')->where('company_id',$company_id)->whereDate('created_at',$saturday->toDateString())->get());
-		$sumaDomingo = count(DB::table('innovations')->where('type','reto')->where('company_id',$company_id)->whereDate('created_at',$sunday->toDateString())->get());
+		$sumaLunes = count(DB::table('innovations')->where(function ($query) {
+			$query->where('innovations.type', '=', 'solucion')
+				->orWhere('innovations.type', '=', 'idea');
+
+		})->where('company_id',$company_id)->whereDate('created_at',$monday->toDateString())->get());
+		$sumaMartes = count(DB::table('innovations')->where(function ($query) {
+			$query->where('innovations.type', '=', 'solucion')
+				->orWhere('innovations.type', '=', 'idea');
+
+		})->where('company_id',$company_id)->whereDate('created_at',$tuesday->toDateString())->get());
+		$sumaMiercoles = count(DB::table('innovations')->where(function ($query) {
+			$query->where('innovations.type', '=', 'solucion')
+				->orWhere('innovations.type', '=', 'idea');
+
+		})->where('company_id',$company_id)->whereDate('created_at',$wednesday->toDateString())->get());
+		$sumaJueves = count(DB::table('innovations')->where(function ($query) {
+			$query->where('innovations.type', '=', 'solucion')
+				->orWhere('innovations.type', '=', 'idea');
+
+		})->where('company_id',$company_id)->whereDate('created_at',$thursday->toDateString())->get());
+		$sumaViernes = count(DB::table('innovations')->where(function ($query) {
+			$query->where('innovations.type', '=', 'solucion')
+				->orWhere('innovations.type', '=', 'idea');
+
+		})->where('company_id',$company_id)->whereDate('created_at',$friday->toDateString())->get());
+		$sumaSabado = count(DB::table('innovations')->where(function ($query) {
+			$query->where('innovations.type', '=', 'solucion')
+				->orWhere('innovations.type', '=', 'idea');
+
+		})->where('company_id',$company_id)->whereDate('created_at',$saturday->toDateString())->get());
+		$sumaDomingo = count(DB::table('innovations')->where(function ($query) {
+			$query->where('innovations.type', '=', 'solucion')
+				->orWhere('innovations.type', '=', 'idea');
+
+		})->where('company_id',$company_id)->whereDate('created_at',$sunday->toDateString())->get());
 
 		Log::info($sumaViernes);
 
