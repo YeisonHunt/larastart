@@ -106,6 +106,105 @@ class AdminController extends Controller
 		}
 	}
 
+	public function getData(){
+
+		
+        if (Auth::check()) {
+
+			$user= auth()->user();
+
+		$companyId= Auth::user()->company_id;
+		$company = Business::find($companyId);
+		$creator_id = $company->created_by;
+
+		$iPublicas = DB::table('innovations')->where(function ($query) {
+			$query->where('innovations.type', '=', 'idea');
+				  
+				  
+		})->where('privacy','public')->get();
+
+		$iPrivadas = DB::table('innovations')->where(function ($query) {
+			$query->where('innovations.type', '=', 'solucion')
+				  ->orWhere('innovations.type', '=', 'idea');
+				  
+		})->where('privacy','me')
+		->where('created_by',$user->id)
+		->get();
+
+		$iEmpresariales = DB::table('innovations')->where(function ($query) {
+			$query->where('innovations.type', '=', 'solucion')
+				  ->orWhere('innovations.type', '=', 'idea');
+				  
+		})->where('privacy','empresarial')
+		->where('company_id',$companyId)
+		->get();
+
+
+		$rPublicos = DB::table('innovations')->where(function ($query) {
+			$query->where('innovations.type', '=', 'reto');
+				  
+				  
+		})->where('privacy','public')->get();
+		$rPrivados = DB::table('innovations')->where(function ($query) {
+			$query->where('innovations.type', '=', 'reto');
+				
+				  
+		})->where('privacy','me')
+		->where('created_by',$user->id)
+		->get();
+
+		$rEmpresariales = DB::table('innovations')->where(function ($query) {
+			$query->where('innovations.type', '=', 'reto');
+				  
+				  
+		})->where('privacy','empresarial')
+		->where('company_id',$companyId)
+		->get();
+
+
+
+
+
+		$tPublicos = DB::table('teams')->get();
+		$tPrivados = DB::table('teams')->where('creator_id',$creator_id)->get();
+
+		$ideas = array(
+
+			'Ideas Públicas'=>count($iPublicas),
+			'Ideas Privadas'=>count($iPrivadas),
+			'Ideas Empresariales'=>count($iEmpresariales),
+			
+		);
+
+		$retos = array(
+
+			'Retos Públicos'=>count($rPublicos),
+			'Retos Privados'=>count($rPrivados),
+			'Retos Empresariales'=>count($rEmpresariales),
+			
+		);
+
+		
+		
+		
+
+
+
+		return response()->json([
+
+			
+			'ideas'=>$ideas,
+			'retos'=>$retos
+
+		]);
+		}
+		else {
+			return respone()->json([
+				'msg','loginRequired'
+			]);
+		}
+	}
+
 
     public function index(Request $request){
 

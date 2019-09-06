@@ -132,6 +132,33 @@
       </router-link>
       <!-- end first col -->
 
+      <router-link
+        v-if="userType=='admin'"
+        :to="{name:'reportes'}"
+        class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction hvr-float hvr-underline-from-center"
+      >
+        <div class="kt-portlet kt-portlet--height-fluid">
+          <div class="kt-widget14">
+            <div class="kt-widget14__header kt-margin-b-14">
+              <h3 class="kt-widget14__title">Reportes & Gráficas</h3>
+              <span
+                class="kt-widget14__desc"
+              >Reportes gráficos de datos basados en ideas y retos.</span>
+            </div>
+
+            <div class="kt-widget14__chart">
+              <img
+                :src="baseUrl+'img/hologram.svg'"
+                width="90%"
+                height="90%"
+                alt
+                class="ml-3 animateOnHover"
+              />
+            </div>
+          </div>
+        </div>
+      </router-link>
+
       <!--
         <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3 adminFunction  hvr-float hvr-underline-from-center">
         <div class="kt-portlet kt-portlet--height-fluid">

@@ -29,6 +29,7 @@ Route::get('/innovations','AdminController@index')->name('innovations');
 //Route::get('/dashboard2','AdminController@dashboard2')->name('dashboard2');
 Route::get('/users','AdminController@users')->name('users');
 Route::get('/getDataInfo','AdminController@getDataInfo');
+Route::get('/getData','AdminController@getData');
 
 Route::any('/saveIdea','IdeasController@store');
 Route::post('/saveIdea2','IdeasController@saveIdea2');
@@ -164,7 +165,7 @@ Route::get('/business/work-teams',"AdminController@users");
 Route::get('/business/company',"AdminController@users");
 Route::get('/shareInnovation/{id}',"AdminController@users");
 Route::get('/categories',"AdminController@users");
-
+Route::get('/reportes',"AdminController@users");
 
 
 /* Rutas usadas por pagina de bienvenida */ 

@@ -20,12 +20,19 @@ import VueStar from 'vue-star'
 import vueRandomPic from 'vue-random-pic'
 import VueMq from 'vue-mq'
 
+
+
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 //import SuiVue from 'semantic-ui-vue';
 
 import es from 'vuetify-v1/es5/locale/es.js';
 
 import Vuetify from 'vuetify-v1'
+
+import Chartkick from 'vue-chartkick'
+import Chart from 'chart.js'
+
+Vue.use(Chartkick.use(Chart))
 
 // index.js or main.js
 
@@ -128,6 +135,12 @@ let routes = [
 
 	{ path: '/shareInnovation/:id', component: require('./components/ShareInnovationComponent.vue').default },
 	{ path: '/categories', name:'categories', component: require('./components/Categories.vue').default },
+
+
+	{ path: '/reportes', name:'reportes', component: require('./components/Reportes.vue').default },
+
+
+	
 
 
 
