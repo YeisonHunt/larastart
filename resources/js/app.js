@@ -33,6 +33,11 @@ import datePicker from 'vue-bootstrap-datetimepicker';
 import Viewer from 'v-viewer'
 import 'viewerjs/dist/viewer.css'
 
+import Vuesax from 'vuesax'
+
+import 'vuesax/dist/vuesax.css' //Vuesax styles
+Vue.use(Vuesax)
+
 
 import 'vuetify-v1/dist/vuetify.min.css' // Ensure you are using css-loader
 
