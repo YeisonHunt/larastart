@@ -39,7 +39,7 @@ class AdminController extends Controller
 			$query->where('innovations.type', '=', 'solucion')
 				  ->orWhere('innovations.type', '=', 'idea');
 				  
-		})->where('privacy','empresarial')->get();
+		})->where('privacy','me')->get();
 
 		$iEmpresariales = DB::table('innovations')->where(function ($query) {
 			$query->where('innovations.type', '=', 'solucion')
@@ -57,7 +57,7 @@ class AdminController extends Controller
 			$query->where('innovations.type', '=', 'reto');
 				
 				  
-		})->where('privacy','empresarial')->get();
+		})->where('privacy','me')->get();
 
 		$rEmpresariales = DB::table('innovations')->where(function ($query) {
 			$query->where('innovations.type', '=', 'reto');
