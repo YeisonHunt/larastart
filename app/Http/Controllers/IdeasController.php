@@ -626,7 +626,17 @@ class IdeasController extends Controller
                         ]);
                     }
 
-		}// end getRetos
+        }// end getRetos
+        
+        public function generateRandomString($length = 5) {
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+            return $randomString;
+        }
 
     public function index2(){
 
@@ -634,6 +644,11 @@ class IdeasController extends Controller
 
         if (Auth::check()) {
         $userAuth = Auth::user();
+
+
+        $actualizarUsuario = User::find(intval($userAuth->id));
+        $actualizarUsuario->actualizador = $this->generateRandomString(5);
+        $actualizarUsuario->save();
 
         // Para halar las innovaciones por usuario, el determinante debe ser el id del usuario.
 

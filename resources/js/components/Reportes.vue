@@ -26,6 +26,45 @@
           <line-chart :data="retosSemana"></line-chart>
         </div>
       </div>
+
+        <br>
+
+      <div class="row">
+        <div class="col-12">
+          <h4>Ingresos empleados por semana</h4>
+
+          <br>
+          <line-chart :data="usuariosSemana"></line-chart>
+
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row">
+        <div class="col-12">
+          <h4>Votos por semana</h4>
+
+          <br>
+          <line-chart :data="votosSemana"></line-chart>
+
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row">
+        <div class="col-12">
+          <h4>Comentarios por semana</h4>
+
+          <br>
+          <line-chart :data="comentariosSemana"></line-chart>
+
+        </div>
+      </div>
+
+    
+
     </div>
   </div>
 </template>
@@ -39,7 +78,10 @@ export default {
            
            ideas:{},
            retos:{},
-           retosSemana:{}
+           retosSemana:{},
+           usuariosSemana:{},
+           comentariosSemana:{},
+           votosSemana:{},
           
       }
     },
@@ -51,6 +93,9 @@ export default {
                 this.retosSemana = response.data.sumaSemanal
                 this.ideas = response.data.ideas
                 this.retos = response.data.retos
+                this.usuariosSemana  = response.data.usuariosSemana
+                this.votosSemana = response.data.votosSemana
+                this.comentariosSemana = response.data.comentariosSemana
             }
         ).catch(error =>{
             console.log(error)

@@ -162,13 +162,19 @@ class AdminController extends Controller
             );
 
 			
-			$sumaSemanal = $this->retosSemana();
+            $sumaSemanal = $this->retosSemana();
+            $usuariosSemana =$this->usuariosSemana();
+            $votosSemana = $this->votosSemana();
+            $comentariosSemana =$this->comentariosSemana();
 
             return response()->json([
 
                 'ideas' => $ideas,
 				'retos' => $retos,
-				'sumaSemanal'=>$sumaSemanal
+                'sumaSemanal'=>$sumaSemanal,
+                'usuariosSemana'=>$usuariosSemana,
+                'votosSemana'=>$votosSemana,
+                'comentariosSemana'=>$comentariosSemana
 
             ]);
         } else {
@@ -176,7 +182,436 @@ class AdminController extends Controller
                 'msg', 'loginRequired',
             ]);
         }
-	}
+    }
+
+    
+    public function comentariosSemana(){
+
+        $actualDate= Carbon::now();
+
+        
+
+        $date1 = Carbon::now();
+        $date2 = Carbon::now();
+        $date3 = Carbon::now();
+        $date4 = Carbon::now();
+        $date5 = Carbon::now();
+        $date6 = Carbon::now();
+        $date7 = Carbon::now();
+
+      
+        
+        
+        $nD = $date1->dayOfWeekIso;
+
+      
+        if($nD==1){
+            //Lunes
+
+            $monday = $date1;
+            $tuesday = $date2->addDay();
+            $wednesday = $date3->addDays(2);
+            $thursday= $date4->addDays(3);
+            $friday= $date5->addDays(4);
+            $saturday= $date6->addDays(5);
+            $sunday= $date7->addDays(6);
+
+        }elseif(intval($nD==2)){
+            //Martes
+            $monday = $date1->subDay();
+            $tuesday = $date2;
+            $wednesday = $date3->addDay();
+            $thursday= $date4->addDays(2);
+            $friday= $date5->addDays(3);
+            $saturday= $date6->addDays(4);
+            $sunday= $date7->addDays(5);
+
+        }
+        elseif(intval($nD==3)){
+            //Miercoles
+            
+            $monday = $date1->subDays(2);
+            $tuesday = $date2->subDay();
+            $wednesday = $date3;
+            $thursday= $date4->addDay();
+            $friday= $date5->addDays(2);
+            $saturday= $date6->addDays(3);
+            $sunday= $date7->addDays(4);
+
+           
+
+        }elseif($nD==4){
+            //Jueves
+            $monday = $date1->subDays(3);
+            $tuesday = $date2->subDays(2);
+            $wednesday = $date3->subDay();
+            $thursday= $date4;
+            $friday= $date5->addDay();
+            $saturday= $date6->addDays(2);
+            $sunday= $date7->addDays(3);
+        }elseif($nD==5){
+            //Viernes
+            $monday = $date1->subDays(4);
+            $tuesday = $date2->subDays(3);
+            $wednesday = $date3->subDays(2);
+            $thursday= $date4->subDay();
+            $friday= $date5;
+            $saturday= $date6->addDay();
+            $sunday= $date7->addDays(2);
+        }elseif($nD==6){
+            //Sabado
+            $monday = $date1->subDays(5);
+            $tuesday = $date2->subDays(4);
+            $wednesday = $date3->subDays(3);
+            $thursday= $date4->subDays(2);
+            $friday= $date5->subDay();
+            $saturday= $date6;
+            $sunday= $date7->addDay();
+        }else{
+            //Domingo
+            $monday = $date1->subDays(6);
+            $tuesday = $date2->subDays(5);
+            $wednesday = $date3->subDays(4);
+            $thursday= $date4->subDays(3);
+            $friday= $date5->subDays(2);
+            $saturday= $date6->subDay();
+            $sunday= $date7;
+		}
+
+
+		$company_id = auth()->user()->company_id;
+		
+
+        $sumaLunes = count(DB::table('users')
+        ->join('discussions','users.id','=','discussions.user_id')     
+        ->where('users.company_id',$company_id)->whereDate('discussions.created_at',$monday->toDateString())->get());
+
+        $sumaMartes = count(DB::table('users')
+        ->join('discussions','users.id','=','discussions.user_id')     
+        ->where('users.company_id',$company_id)->whereDate('discussions.created_at',$tuesday->toDateString())->get());
+
+        $sumaMiercoles = count(DB::table('users')
+        ->join('discussions','users.id','=','discussions.user_id')     
+        ->where('users.company_id',$company_id)->whereDate('discussions.created_at',$wednesday->toDateString())->get());
+
+        $sumaJueves = count(DB::table('users')
+        ->join('discussions','users.id','=','discussions.user_id')     
+        ->where('users.company_id',$company_id)->whereDate('discussions.created_at',$thursday->toDateString())->get());
+
+        $sumaViernes = count(DB::table('users')
+        ->join('discussions','users.id','=','discussions.user_id')     
+        ->where('users.company_id',$company_id)->whereDate('discussions.created_at',$friday->toDateString())->get());
+
+        $sumaSabado = count(DB::table('users')
+        ->join('discussions','users.id','=','discussions.user_id')     
+        ->where('users.company_id',$company_id)->whereDate('discussions.created_at',$saturday->toDateString())->get());
+
+        $sumaDomingo = count(DB::table('users')
+        ->join('discussions','users.id','=','discussions.user_id')     
+        ->where('users.company_id',$company_id)->whereDate('discussions.created_at',$sunday->toDateString())->get());
+
+
+
+
+		$usuariosSemana = array(
+
+			'Lunes '.$monday->day.' '.ucfirst($monday->locale('es')->monthName)   =>$sumaLunes,
+			'Martes'=>$sumaMartes,
+			'Miércoles'=>$sumaMiercoles,
+			'Jueves'=>$sumaJueves,
+			'Viernes'=>$sumaViernes,
+			'Sábado'=>$sumaSabado,
+			'Domingo '.$sunday->day.' '.ucfirst($sunday->locale('es')->monthName)  =>$sumaDomingo,
+		);
+
+		return $usuariosSemana;
+
+        
+
+
+    }
+
+     
+
+    public function votosSemana(){
+
+        $actualDate= Carbon::now();
+
+        
+
+        $date1 = Carbon::now();
+        $date2 = Carbon::now();
+        $date3 = Carbon::now();
+        $date4 = Carbon::now();
+        $date5 = Carbon::now();
+        $date6 = Carbon::now();
+        $date7 = Carbon::now();
+
+      
+        
+        
+        $nD = $date1->dayOfWeekIso;
+
+      
+        if($nD==1){
+            //Lunes
+
+            $monday = $date1;
+            $tuesday = $date2->addDay();
+            $wednesday = $date3->addDays(2);
+            $thursday= $date4->addDays(3);
+            $friday= $date5->addDays(4);
+            $saturday= $date6->addDays(5);
+            $sunday= $date7->addDays(6);
+
+        }elseif(intval($nD==2)){
+            //Martes
+            $monday = $date1->subDay();
+            $tuesday = $date2;
+            $wednesday = $date3->addDay();
+            $thursday= $date4->addDays(2);
+            $friday= $date5->addDays(3);
+            $saturday= $date6->addDays(4);
+            $sunday= $date7->addDays(5);
+
+        }
+        elseif(intval($nD==3)){
+            //Miercoles
+            
+            $monday = $date1->subDays(2);
+            $tuesday = $date2->subDay();
+            $wednesday = $date3;
+            $thursday= $date4->addDay();
+            $friday= $date5->addDays(2);
+            $saturday= $date6->addDays(3);
+            $sunday= $date7->addDays(4);
+
+           
+
+        }elseif($nD==4){
+            //Jueves
+            $monday = $date1->subDays(3);
+            $tuesday = $date2->subDays(2);
+            $wednesday = $date3->subDay();
+            $thursday= $date4;
+            $friday= $date5->addDay();
+            $saturday= $date6->addDays(2);
+            $sunday= $date7->addDays(3);
+        }elseif($nD==5){
+            //Viernes
+            $monday = $date1->subDays(4);
+            $tuesday = $date2->subDays(3);
+            $wednesday = $date3->subDays(2);
+            $thursday= $date4->subDay();
+            $friday= $date5;
+            $saturday= $date6->addDay();
+            $sunday= $date7->addDays(2);
+        }elseif($nD==6){
+            //Sabado
+            $monday = $date1->subDays(5);
+            $tuesday = $date2->subDays(4);
+            $wednesday = $date3->subDays(3);
+            $thursday= $date4->subDays(2);
+            $friday= $date5->subDay();
+            $saturday= $date6;
+            $sunday= $date7->addDay();
+        }else{
+            //Domingo
+            $monday = $date1->subDays(6);
+            $tuesday = $date2->subDays(5);
+            $wednesday = $date3->subDays(4);
+            $thursday= $date4->subDays(3);
+            $friday= $date5->subDays(2);
+            $saturday= $date6->subDay();
+            $sunday= $date7;
+		}
+
+
+		$company_id = auth()->user()->company_id;
+		
+
+        $sumaLunes = count(DB::table('users')
+        ->join('desireds','users.id','=','desireds.user_id')     
+        ->where('users.company_id',$company_id)->whereDate('desireds.created_at',$monday->toDateString())->get());
+
+        $sumaMartes = count(DB::table('users')
+        ->join('desireds','users.id','=','desireds.user_id')     
+        ->where('users.company_id',$company_id)->whereDate('desireds.created_at',$tuesday->toDateString())->get());
+
+        $sumaMiercoles = count(DB::table('users')
+        ->join('desireds','users.id','=','desireds.user_id')     
+        ->where('users.company_id',$company_id)->whereDate('desireds.created_at',$wednesday->toDateString())->get());
+
+        $sumaJueves = count(DB::table('users')
+        ->join('desireds','users.id','=','desireds.user_id')     
+        ->where('users.company_id',$company_id)->whereDate('desireds.created_at',$thursday->toDateString())->get());
+
+        $sumaViernes = count(DB::table('users')
+        ->join('desireds','users.id','=','desireds.user_id')     
+        ->where('users.company_id',$company_id)->whereDate('desireds.created_at',$friday->toDateString())->get());
+
+        $sumaSabado = count(DB::table('users')
+        ->join('desireds','users.id','=','desireds.user_id')     
+        ->where('users.company_id',$company_id)->whereDate('desireds.created_at',$saturday->toDateString())->get());
+
+        $sumaDomingo = count(DB::table('users')
+        ->join('desireds','users.id','=','desireds.user_id')     
+        ->where('users.company_id',$company_id)->whereDate('desireds.created_at',$sunday->toDateString())->get());
+
+
+
+
+		$usuariosSemana = array(
+
+			'Lunes '.$monday->day.' '.ucfirst($monday->locale('es')->monthName)   =>$sumaLunes,
+			'Martes'=>$sumaMartes,
+			'Miércoles'=>$sumaMiercoles,
+			'Jueves'=>$sumaJueves,
+			'Viernes'=>$sumaViernes,
+			'Sábado'=>$sumaSabado,
+			'Domingo '.$sunday->day.' '.ucfirst($sunday->locale('es')->monthName)  =>$sumaDomingo,
+		);
+
+		return $usuariosSemana;
+
+        
+
+        
+
+
+    }
+
+
+
+    
+
+    public function usuariosSemana(){
+
+        $actualDate= Carbon::now();
+
+        
+
+        $date1 = Carbon::now();
+        $date2 = Carbon::now();
+        $date3 = Carbon::now();
+        $date4 = Carbon::now();
+        $date5 = Carbon::now();
+        $date6 = Carbon::now();
+        $date7 = Carbon::now();
+
+      
+        
+        
+        $nD = $date1->dayOfWeekIso;
+
+      
+        if($nD==1){
+            //Lunes
+
+            $monday = $date1;
+            $tuesday = $date2->addDay();
+            $wednesday = $date3->addDays(2);
+            $thursday= $date4->addDays(3);
+            $friday= $date5->addDays(4);
+            $saturday= $date6->addDays(5);
+            $sunday= $date7->addDays(6);
+
+        }elseif(intval($nD==2)){
+            //Martes
+            $monday = $date1->subDay();
+            $tuesday = $date2;
+            $wednesday = $date3->addDay();
+            $thursday= $date4->addDays(2);
+            $friday= $date5->addDays(3);
+            $saturday= $date6->addDays(4);
+            $sunday= $date7->addDays(5);
+
+        }
+        elseif(intval($nD==3)){
+            //Miercoles
+            
+            $monday = $date1->subDays(2);
+            $tuesday = $date2->subDay();
+            $wednesday = $date3;
+            $thursday= $date4->addDay();
+            $friday= $date5->addDays(2);
+            $saturday= $date6->addDays(3);
+            $sunday= $date7->addDays(4);
+
+           
+
+        }elseif($nD==4){
+            //Jueves
+            $monday = $date1->subDays(3);
+            $tuesday = $date2->subDays(2);
+            $wednesday = $date3->subDay();
+            $thursday= $date4;
+            $friday= $date5->addDay();
+            $saturday= $date6->addDays(2);
+            $sunday= $date7->addDays(3);
+        }elseif($nD==5){
+            //Viernes
+            $monday = $date1->subDays(4);
+            $tuesday = $date2->subDays(3);
+            $wednesday = $date3->subDays(2);
+            $thursday= $date4->subDay();
+            $friday= $date5;
+            $saturday= $date6->addDay();
+            $sunday= $date7->addDays(2);
+        }elseif($nD==6){
+            //Sabado
+            $monday = $date1->subDays(5);
+            $tuesday = $date2->subDays(4);
+            $wednesday = $date3->subDays(3);
+            $thursday= $date4->subDays(2);
+            $friday= $date5->subDay();
+            $saturday= $date6;
+            $sunday= $date7->addDay();
+        }else{
+            //Domingo
+            $monday = $date1->subDays(6);
+            $tuesday = $date2->subDays(5);
+            $wednesday = $date3->subDays(4);
+            $thursday= $date4->subDays(3);
+            $friday= $date5->subDays(2);
+            $saturday= $date6->subDay();
+            $sunday= $date7;
+		}
+
+
+		$company_id = auth()->user()->company_id;
+		
+
+        $sumaLunes = count(DB::table('users')->where('company_id',$company_id)->whereDate('updated_at',$monday->toDateString())->get());
+        $sumaMartes = count(DB::table('users')->where('company_id',$company_id)->whereDate('updated_at',$tuesday->toDateString())->get());
+        $sumaMiercoles = count(DB::table('users')->where('company_id',$company_id)->whereDate('updated_at',$wednesday->toDateString())->get());
+        $sumaJueves = count(DB::table('users')->where('company_id',$company_id)->whereDate('updated_at',$thursday->toDateString())->get());
+        $sumaViernes = count(DB::table('users')->where('company_id',$company_id)->whereDate('updated_at',$friday->toDateString())->get());
+        $sumaSabado = count(DB::table('users')->where('company_id',$company_id)->whereDate('updated_at',$saturday->toDateString())->get());
+        $sumaDomingo = count(DB::table('users')->where('company_id',$company_id)->whereDate('updated_at',$sunday->toDateString())->get());
+        
+
+		
+
+
+
+		$usuariosSemana = array(
+
+			'Lunes '.$monday->day.' '.ucfirst($monday->locale('es')->monthName)   =>$sumaLunes,
+			'Martes'=>$sumaMartes,
+			'Miércoles'=>$sumaMiercoles,
+			'Jueves'=>$sumaJueves,
+			'Viernes'=>$sumaViernes,
+			'Sábado'=>$sumaSabado,
+			'Domingo '.$sunday->day.' '.ucfirst($sunday->locale('es')->monthName)  =>$sumaDomingo,
+		);
+
+		return $usuariosSemana;
+
+        
+
+
+    }
 	
 	public function retosSemana(){
 
@@ -318,7 +753,7 @@ class AdminController extends Controller
 
 		})->where('company_id',$company_id)->whereDate('created_at',$sunday->toDateString())->get());
 
-		Log::info($sumaViernes);
+		
 
 
 

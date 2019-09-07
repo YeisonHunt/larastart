@@ -686,9 +686,9 @@
 										2019&nbsp;&copy;&nbsp;<a href="#"  class="kt-link">Innova</a>
 									</div>
 									<div class="kt-footer__menu">
-										<a href="#" target="_blank" class="kt-footer__menu-link kt-link">Sobre Nosotros</a>
+										<!--<a href="#" target="_blank" class="kt-footer__menu-link kt-link">Sobre Nosotros</a>
 										<a href="#" target="_blank" class="kt-footer__menu-link kt-link">Equipo</a>
-										<a href="#" target="_blank" class="kt-footer__menu-link kt-link">Contacto</a>
+										<a href="#" target="_blank" class="kt-footer__menu-link kt-link">Contacto</a>-->
 									</div>
 								</div>
 
