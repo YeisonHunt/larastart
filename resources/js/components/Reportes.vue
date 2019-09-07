@@ -23,7 +23,7 @@
         <div class="col-lg-12">
           <h4>Ideas por semana</h4>
           <br>
-          <line-chart :data="retosSemana"></line-chart>
+          <line-chart :data="retosSemana" :download="true"></line-chart>
         </div>
       </div>
 
@@ -34,7 +34,7 @@
           <h4>Ingresos empleados por semana</h4>
 
           <br>
-          <line-chart :data="usuariosSemana"></line-chart>
+          <line-chart :data="usuariosSemana" :download="true"></line-chart>
 
         </div>
       </div>
@@ -46,7 +46,7 @@
           <h4>Votos por semana</h4>
 
           <br>
-          <line-chart :data="votosSemana"></line-chart>
+          <line-chart :data="votosSemana" :download="true"></line-chart>
 
         </div>
       </div>
@@ -58,7 +58,7 @@
           <h4>Comentarios por semana</h4>
 
           <br>
-          <line-chart :data="comentariosSemana"></line-chart>
+          <line-chart :data="comentariosSemana" :download="true"></line-chart>
 
         </div>
       </div>
