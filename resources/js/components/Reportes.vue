@@ -20,17 +20,17 @@
 
       <br>
       <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12" style="background-color:white;">
           <h4>Ideas por semana</h4>
           <br>
-          <area-chart :data="retosSemana" :download="true"></area-chart>
+          <area-chart :data="retosSemana" :download="true" :library="{backgroundColor: '#fff'}"></area-chart>
         </div>
       </div>
 
         <br>
 
       <div class="row">
-        <div class="col-12">
+        <div class="col-12" style="background-color:white;">
           <h4>Ingresos empleados por semana</h4>
 
           <br>
@@ -42,7 +42,7 @@
       <br>
 
       <div class="row">
-        <div class="col-12">
+        <div class="col-12" style="background-color:white;">
           <h4>Votos por semana</h4>
 
           <br>
@@ -54,7 +54,7 @@
       <br>
 
       <div class="row">
-        <div class="col-12">
+        <div class="col-12" style="background-color:white;">
           <h4>Comentarios por semana</h4>
 
           <br>
