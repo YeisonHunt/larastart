@@ -1,1 +1,2867 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{11:function(t,i,s){var n=s(50);"string"==typeof n&&(n=[[t.i,n,""]]);var e={hmr:!0,transform:void 0,insertInto:void 0};s(3)(n,e);n.locals&&(t.exports=n.locals)},253:function(t,i,s){"use strict";s.r(i);function n(t,i,s){return i in t?Object.defineProperty(t,i,{value:s,enumerable:!0,configurable:!0,writable:!0}):t[i]=s,t}toastr.options={closeButton:!1,debug:!1,newestOnTop:!1,progressBar:!0,positionClass:"toast-top-center",preventDuplicates:!1,onclick:null,showDuration:"300",hideDuration:"1000",timeOut:"4000",extendedTimeOut:"1000",showEasing:"swing",hideEasing:"linear",showMethod:"fadeIn",hideMethod:"fadeOut"};var e={data:function(){var t;return n(t={company:{},canIseeVar:!1,permissions:{},id:this.$route.params.id,idea:{},editMode:!1,ideas:{},user:window.User,userIdea:{},liked:""},"user",window.user),n(t,"discussionsFinal",{}),n(t,"like",{}),n(t,"containter",""),n(t,"containerFluid",""),n(t,"likesPerIdea",{}),n(t,"foundLiked",!1),n(t,"baseUrl",window.baseUrl),n(t,"randomNumber",Math.floor(100*Math.random())),n(t,"lastCommentId",""),n(t,"id_idea_general",this.$route.params.id),n(t,"form",new Form({user_id:window.user.id,idea_id:this.$route.params.id,body:"",discussion_parent_id:0})),n(t,"formChild",new Form({user_id:window.user.id,idea_id:this.$route.params.id,body:"",discussion_parent_id:""})),n(t,"formChild2",new Form({user_id:window.user.id,idea_id:this.$route.params.id,body:"",discussion_parent_id:""})),n(t,"formLike",new Form({user_id:window.user.id,comment_id:"",idea_id:this.$route.params.id})),n(t,"formDesired",new Form({innovation_id:this.$route.params.id,user_id:window.user.id,type:""})),n(t,"deleteForm",new Form({id:""})),t},computed:{tiempoLectura:function(){var t=this.extractContent(this.idea.body),i=(parseInt(this.idea.title.length)+parseInt(this.idea.description.length)+parseInt(t.length))/160;return moment.duration(i,"minutes").humanize().toString().replace("seconds","segundos").replace("minutes","minutos").replace("a few","Unos pocos")},puedoBorrar:function(){return this.idea.created_by==this.user.id},updatedLastIdComment:function(){},randomNumber2:function(){return Math.floor(100*Math.random())},mobile:function(){return"sm"==this.$mq},large:function(){return"md"==this.$mq||"lg"==this.$mq},likesText:function(){return"sm"==this.$mq?"":("md"==this.$mq||this.$mq,"likes")},voteText:function(){return"sm"==this.$mq?"":("md"==this.$mq||this.$mq,"Me gusta")},likedText:function(){return"sm"==this.$mq?"":("md"==this.$mq||this.$mq,"Me gusta")},voteTextN:function(){return"sm"==this.$mq?"":("md"==this.$mq||this.$mq,"Pulir +")},likedTextN:function(){return"sm"==this.$mq?"":("md"==this.$mq||this.$mq,"Pulir +")},puedoVer:function(){if(0!=this.permissions.length){for(var t=!1,i=this.user.id,s=this.id,n={},e=this.permissions,a=0;a<e.length;a++)"can view"!=(n=e[a]).permission_type&&"can view-edit"!=n.permission_type||n.id_user!=i||n.id_idea!=s||(t=!0);return t}return this.user.company_id==this.idea.company_id},puedoEditar:function(){if(0!=this.permissions.length){for(var t=!1,i=this.user.id,s=this.id,n={},e=this.permissions,a=0;a<e.length;a++)"can view-edit"==(n=e[a]).permission_type&&n.id_user==i&&n.id_idea==s&&(t=!0);return t}return!1}},methods:{extractContent:function(t){return(new DOMParser).parseFromString(t,"text/html").documentElement.textContent},deleteIdea:function(){var t=this,i=this.$route.params.id;Swal.fire({title:"Estas seguro(a)?",text:"No será posible deshacer esta acción.",type:"warning",showCancelButton:!0,confirmButtonColor:"#3085d6",cancelButtonColor:"#d33",confirmButtonText:"Si, borrar idea."}).then(function(s){s.value&&(t.$Progress.start(),t.deleteForm.id=i,t.deleteForm.post("/deleteInnovation").then(function(i){"OK"==i.data.estado?(toastr.success("Bien","Idea borrada correctamente"),t.$router.push({name:"ideaList"})):toastr.info("Oops","No se pudo completar el borrado."),console.log(i.data.msg),t.$Progress.finish()}).catch(function(i){console.log(i),toastr.error("Oops!","Something goes wrong"),t.$Progress.finish()}))})},alreadyLiked1:function(t){if(0!=this.likesPerIdea.length){var i=!1;try{this.likesPerIdea.forEach(function(t){t.user_id==window.user.id&&"like"==t.type&&(i=!0)})}catch(t){}return this.foundLiked=i,i}return this.foundLiked=!1,!1},alreadyLiked2:function(t){if(0!=this.likesPerIdea.length){var i=!1;try{this.likesPerIdea.forEach(function(t){t.user_id==window.user.id&&"dislike"==t.type&&(i=!0)})}catch(t){}return this.foundLiked=i,i}return this.foundLiked=!1,!1},alreadyLiked3:function(t){if(0!=this.likesPerIdea.length){var i=!1;try{this.likesPerIdea.forEach(function(t){t.user_id==window.user.id&&"action"==t.type&&(i=!0)})}catch(t){}return this.foundLiked=i,i}return this.foundLiked=!1,!1},likeIdea:function(t){var i=this;this.$Progress.start(),this.formDesired.type=t,this.formDesired.post("/saveDesired").then(function(s){"like"!=t&&"dislike"!=t&&"action"!=t||toastr.success("Gracias por valorar la idea.","+ 1 punto"),i.likesPerIdea=s.data.desired}).catch(function(t){console.log(t),toastr.error("Oops!","Something goes wrong")}),this.$Progress.finish()},checkLiked:function(t){if(0!=t.length){var i=!1;try{t.forEach(function(t){t.user_id==window.user.id&&(i=!0)})}catch(t){}return i}return this.liked=!1,!1},likeComment:function(t){var i=this;this.formLike.comment_id=t,this.formLike.idea_id=this.id_idea_general,this.$Progress.start(),this.formLike.post("/saveLike").then(function(t){toastr.success("Keep innovating","Thanks for the feedback."),i.formLike.comment_id="",i.formLike.idea_id="",i.discussionsFinal=t.data.discussions}).catch(function(t){console.log(t),i.formLike.comment_id="",i.formLike.idea_id="",toastr.error("Oops!","Something goes wrong")}),this.$Progress.finish()},addChild:function(t){$("#"+t).attr("style","display:block"),document.getElementById("texto"+t).focus()},checkChilds:function(t){return t.childs.length>0},loadUsers:function(){var t=this;axios.get("/getInnovation/"+this.id).then(function(i){t.idea=i.data.idea,t.userIdea=i.data.user,t.discussionsFinal=i.data.discussions,t.likesPerIdea=i.data.desired,t.permissions=i.data.permissions,t.company=i.data.company}).catch(function(t){console.log(t)})},sendComment:function(){var t=this;this.$Progress.start(),this.form.post("/addComment").then(function(i){toastr.success("Genial!","Gracias por dar tu opinión."),t.form.reset(),t.discussionsFinal=i.data.discussions,t.likesPerIdea=i.data.desired}).catch(function(t){console.log(t),toastr.error("Oops!","Something goes wrong")}),this.$Progress.finish()},goLastComment:function(){this.sendComment()},sendChildComment:function(t){var i=this;this.$Progress.start(),this.formChild.discussion_parent_id=t,this.formChild.post("/addComment").then(function(t){i.formChild.reset(),i.discussionsFinal=t.data.discussions,i.likesPerIdea=t.data.desired}).catch(function(){toastr.error("Oops!","Something goes wrong")}),this.$Progress.finish()},sendChild2Comment:function(t){var i=this;this.$Progress.start(),this.formChild2.discussion_parent_id=t,this.formChild2.post("/addComment").then(function(s){toastr.success("Genial!","Gracias por comentar."),i.formChild2.reset(),$("#"+t).attr("style","display:none"),i.discussionsFinal=s.data.discussions,i.likesPerIdea=s.data.desired}).catch(function(t){console.log(t),toastr.error("Oops!","Something goes wrong")}),this.$Progress.finish()}},created:function(){},mounted:function(){this.loadUsers()}},a=(s(49),s(1)),r=Object(a.a)(e,function(){var t=this,i=t.$createElement,s=t._self._c||i;return s("div",{class:{"container-fluid":t.mobile,"container-fluid":t.large}},[t.puedoVer?s("div",{staticClass:"row",staticStyle:{"min-height":"80vh"}},[s("div",{staticClass:"col-lg-12 col-sm-12 col-md-12"},[s("div",{staticClass:"kt-portlet mobilePortlet"},[s("div",{staticClass:"kt-portlet__head"},[s("div",{staticClass:"kt-portlet__head-label"},[s("button",{staticClass:"btn btn-clean kt-margin-r-10",on:{click:function(i){return t.$router.go(-1)}}},[s("i",{staticClass:"la la-arrow-left",staticStyle:{"padding-bottom":"8px"}}),t._v(" "),s("span",{staticClass:"kt-hidden-mobile"},[t._v("Atrás")])]),t._v(" "),t._m(0),t._v(" "),s("h3",{staticClass:"kt-portlet__head-title"},[t._v(t._s(t.idea.title))])]),t._v(" "),s("div",{staticClass:"kt-portlet__head-toolbar"},[s("div",{staticClass:"kt-portlet__head-actions"},[t.alreadyLiked1(t.idea)?t._e():s("button",{staticClass:"btn btn-outline-primary btn-sm btn-icon pulse btn-icon-md ",class:{largeBtn:t.large},on:{click:function(i){return t.likeIdea("like")}}},[s("i",{staticClass:"flaticon2-arrow-up"}),t._v("\n                  "+t._s(t.voteText)+"\n              ")]),t._v(" "),t.alreadyLiked1(t.idea)?s("button",{staticClass:"btn btn-primary btn-sm btn-icon pulse btn-icon-md ",class:{largeBtn:t.large},on:{click:function(i){return t.likeIdea("unlike")}}},[s("i",{staticClass:"flaticon2-arrow-up"}),t._v("\n                  "+t._s(t.likedText)+"\n               ")]):t._e(),t._v(" "),t.alreadyLiked2(t.idea)?t._e():s("button",{staticClass:"btn btn-outline-primary btn-sm btn-icon pulse btn-icon-md ",class:{largeBtn:t.large},on:{click:function(i){return t.likeIdea("dislike")}}},[s("i",{staticClass:"flaticon2-arrow-down "}),t._v("\n                  "+t._s(t.voteTextN)+"\n              ")]),t._v(" "),t.alreadyLiked2(t.idea)?s("button",{staticClass:"btn btn-primary btn-sm btn-icon pulse btn-icon-md ",class:{largeBtn:t.large},on:{click:function(i){return t.likeIdea("undislike")}}},[s("i",{staticClass:"flaticon2-arrow-down"}),t._v("\n                  "+t._s(t.likedTextN)+"\n               ")]):t._e(),t._v(" "),t.alreadyLiked3(t.idea)?t._e():s("button",{staticClass:"btn btn-outline-primary btn-sm btn-icon pulse btn-icon-md ",class:{largeBtn:t.large},on:{click:function(i){return t.likeIdea("action")}}},[s("div",{staticStyle:{padding:"2px","font-size":"0.8rem"}},[t._v(" Acción de mejora")])]),t._v(" "),t.alreadyLiked3(t.idea)?s("button",{staticClass:"btn btn-primary btn-sm btn-icon pulse btn-icon-md ",class:{largeBtn:t.large},on:{click:function(i){return t.likeIdea("unaction")}}},[s("div",{staticStyle:{padding:"2px","font-size":"0.8rem"}},[t._v(" Acción de mejora")])]):t._e(),t._v(" "),t.puedoEditar?s("router-link",{staticClass:"btn btn-outline-warning btn-sm btn-icon btn-icon-md",attrs:{to:"/innovationsEdit/"+this.id}},[s("i",{staticClass:"flaticon-edit"})]):t._e(),t._v(" "),s("router-link",{staticClass:"btn btn-outline-success btn-sm btn-icon btn-icon-md",attrs:{to:"/shareInnovation/"+this.id}},[s("i",{staticClass:"flaticon-share"})]),t._v(" "),t.puedoBorrar?s("button",{staticClass:"btn btn-outline-danger btn-sm btn-icon btn-icon-md",on:{click:t.deleteIdea}},[s("i",{staticClass:"flaticon-delete"})]):t._e()],1)])]),t._v(" "),s("div",{directives:[{name:"viewer",rawName:"v-viewer"}],staticClass:"images "},[s("img",{staticClass:"imgFit",attrs:{src:t.idea.img}})]),t._v(" "),s("div",{staticClass:"kt-portlet__body wrapText",attrs:{id:"ideaBody"},domProps:{innerHTML:t._s(t.idea.body)}}),t._v(" "),s("br"),t._v(" "),s("div",{staticClass:"user-section"},[s("div",{staticClass:"row"},[s("div",{staticClass:"col-12"},[s("div",{staticClass:"kt-portlet kt-portlet--tabs kt-portlet--height-fluid"},[s("div",{staticClass:"kt-portlet__body"},[s("div",{staticClass:"tab-content"},[s("div",{staticClass:"tab-pane active",attrs:{id:"kt_widget4_tab1_content"}},[s("div",{staticClass:"kt-widget4"},[s("div",{staticClass:"kt-widget4__item"},[t._m(1),t._v(" "),"showme"==t.idea.author?s("div",{staticClass:"kt-widget4__info"},[s("a",{staticClass:"kt-widget4__username",attrs:{href:"#"}},[t._v(t._s(t.userIdea.name))]),t._v(" "),s("p",{staticClass:"kt-widget4__text"},[t._v(t._s(t.userIdea.email))])]):t._e(),t._v(" "),"showme"==t.idea.author?s("a",{staticClass:"btn btn-sm btn-label-brand",attrs:{href:"#"}},[t._v("Tiempo de lectura : "+t._s(t.tiempoLectura))]):t._e(),t._v(" "),"anonymous"==t.idea.author?s("div",{staticClass:"kt-widget4__info"},[s("a",{staticClass:"kt-widget4__username",attrs:{href:"#"}},[t._v("Anonymous User")]),t._v(" "),s("p",{staticClass:"kt-widget4__text"},[t._v("Visual Designer, Google Inc")])]):t._e(),t._v(" "),"anonymous"==t.idea.author?s("a",{staticClass:"btn btn-sm btn-label-brand",attrs:{href:"#"}},[t._v("Tiempo de lectura : "+t._s(t.tiempoLectura))]):t._e()])])])]),t._v(" "),s("br"),t._v(" "),s("div",{staticClass:"comments-section"},[s("div",{staticClass:"row bootstrap snippets"},[s("div",{staticClass:"col-12"},[s("div",{staticClass:"comment-wrapper"},[s("div",{staticClass:"panel panel-info"},[s("div",{staticClass:"panel-body"},[s("h5",{staticClass:"ml-3 mt-5"},[t._v("Nueva retroalimentación")]),t._v(" "),s("div",{staticClass:"row"},[s("div",{staticClass:"col-lg-12 col-sm-12"},[s("center",[s("form",{staticClass:"form-inline",on:{submit:function(i){return i.preventDefault(),t.goLastComment(i)},keydown:function(i){return t.form.onKeydown(i)}}},[s("div",{staticClass:"form-group"},[s("textarea",{directives:[{name:"model",rawName:"v-model",value:t.form.body,expression:"form.body"}],staticClass:"form-control ",staticStyle:{margin:"10px",width:"600px"},attrs:{placeholder:"Añade un nuevo comentario",rows:"2",required:""},domProps:{value:t.form.body},on:{input:function(i){i.target.composing||t.$set(t.form,"body",i.target.value)}}}),t._v(" "),s("button",{staticClass:"btn btn-brand btn-elevate btn-circle btn-icon",attrs:{type:"button"},on:{click:t.goLastComment}},[s("i",{staticClass:"flaticon2-paper-plane"})]),t._v(" "),s("br")])])])],1)]),t._v(" "),t._m(2),t._v(" "),s("br"),t._v(" "),s("ul",{staticClass:"media-list"},[t._l(t.discussionsFinal,function(i){return s("li",{key:t.discussionsFinal.id,staticClass:"media",attrs:{id:"padre"+i.discussions.id}},[s("a",{staticClass:"pull-left",attrs:{href:"#"}},[s("img",{staticClass:"imgCircle",attrs:{src:"https://picsum.photos/100?random="+i.discussions.id,alt:""}})]),t._v(" "),s("div",{staticClass:"media-body"},[s("span",{staticClass:"text-muted pull-right mr-5"},[s("h6",{staticClass:"text-muted"},[t._v(t._s(t._f("humanDate2")(i.discussions.created_at)))])]),t._v(" "),s("strong",{staticClass:"text-success"},[t._v(" "+t._s(i.discussions.name))]),t._v(" "),s("p",{staticClass:"biggerFont"},[t._v(t._s(i.discussions.body))]),t._v(" "),s("div",{staticClass:"icons"},[s("a",{staticClass:"animated bounce",on:{click:function(s){return t.likeComment(i.discussions.id)}}},[s("i",{staticClass:"normalFont links biggerIcons",staticStyle:{display:"inline"}},[t.checkLiked(i.discussions.likes)?s("vue-star",{attrs:{animate:"animated  normalFont links",color:"#ccc"}},[s("a",{staticClass:"fas fa-thumbs-up",staticStyle:{color:"#4285F4"},attrs:{slot:"icon"},slot:"icon"})]):s("vue-star",{attrs:{animate:"animated bounce normalFont links",color:"#4285F4"}},[s("a",{staticClass:"fas fa-thumbs-up",staticStyle:{color:"gray"},attrs:{slot:"icon"},slot:"icon"})])],1),t._v("\n                                               \n\n                                        "+t._s(" "+i.discussions.likes.length)+" "+t._s(t.likesText)+"\n                                      ")]),t._v("\n                                         \n                                      "),s("a",{on:{click:function(s){return t.addChild(i.discussions.id)}}},[s("span",[s("i",{staticClass:"flaticon-reply normalFont links"},[t._v("  "+t._s(i.childs.length)+"   comments")])])])])]),t._v(" "),s("br"),t._v(" "),s("br"),t._v(" "),t._l(i.childs,function(n){return s("div",{key:n.id,staticClass:"media sub"},[s("a",{staticClass:"pull-left"},[s("img",{staticClass:"imgCircle",attrs:{src:"https://picsum.photos/110?random="+n.id,alt:""}})]),t._v(" "),s("div",{staticClass:"media-body"},[s("span",{staticClass:"text-muted pull-right mr-5"},[s("h6",{staticClass:"text-muted"},[t._v(t._s(t._f("humanDate2")(n.created_at)))])]),t._v(" "),s("strong",{staticClass:"text-success"},[t._v(" "+t._s(n.name))]),t._v(" "),s("p",{staticClass:"biggerFont"},[t._v(t._s(n.body))]),t._v(" "),s("div",{staticClass:"icons"},[s("a",{staticClass:"animated bounce",on:{click:function(i){return t.likeComment(n.id)}}},[s("i",{staticClass:"normalFont links biggerIcons",staticStyle:{display:"inline"}},[t.checkLiked(n.likes)?s("vue-star",{attrs:{animate:"animated  normalFont links",color:"#ccc"}},[s("a",{staticClass:"fas fa-thumbs-up",staticStyle:{color:"#4285F4"},attrs:{slot:"icon"},slot:"icon"})]):s("vue-star",{attrs:{animate:"animated bounce normalFont links",color:"#4285F4"}},[s("a",{staticClass:"fas fa-thumbs-up",staticStyle:{color:"gray"},attrs:{slot:"icon"},slot:"icon"})])],1),t._v("\n                                                 \n                                          "+t._s(" "+n.likes.length)+" "+t._s(t.likesText)+"\n                                        ")]),t._v("\n                                           \n                                        "),s("a",{on:{click:function(s){return t.addChild(i.discussions.id)}}},[t._m(3,!0)])])])])}),t._v(" "),(t.checkChilds(i),t._e()),t._v(" "),s("div",{staticClass:"childComment",staticStyle:{display:"none"},attrs:{id:i.discussions.id}},[s("form",{staticClass:"form",on:{submit:function(s){return s.preventDefault(),t.sendChild2Comment(i.discussions.id)},keydown:function(i){return t.formChild2.onKeydown(i)}}},[s("div",{staticClass:"form"},[s("div",{staticClass:"row"},[s("div",{staticClass:"col-5"},[s("input",{directives:[{name:"model",rawName:"v-model",value:t.formChild2.body,expression:"formChild2.body"}],staticClass:"form-control half-input",staticStyle:{"margin-left":"50px"},attrs:{type:"text",id:"texto"+i.discussions.id,placeholder:"Añade un comentario"},domProps:{value:t.formChild2.body},on:{input:function(i){i.target.composing||t.$set(t.formChild2,"body",i.target.value)}}})]),t._v(" "),s("div",{staticClass:"col-6"},[s("button",{staticClass:"btn btn-brand btn-elevate btn-circle btn-icon",attrs:{type:"button"},on:{click:function(s){return t.sendChild2Comment(i.discussions.id)}}},[s("i",{staticClass:"flaticon2-paper-plane"})])])])])])])],2)}),t._v(" "),s("br"),t._v(" "),s("br"),t._v(" "),s("br")],2)])])])])])])])])])])])])])]):s("div",{staticClass:"row "},[s("div",{staticClass:"col-4"}),t._v(" "),s("div",{staticClass:"col-4"},[s("router-link",{staticClass:"btn btn-primary",attrs:{to:"/innovations"}},[t._v("\n\n        Go back to innovations\n      ")])],1),t._v(" "),s("div",{staticClass:"col-4"}),t._v(" "),s("div",{staticClass:"col-12 mt-5"},[s("center",[s("h4",{staticStyle:{"margin-left":"auto","margin-right":"auto",display:"block",color:"white"}},[t._v("Sorry, it seems you don't have permission to see this idea.")])]),t._v(" "),s("img",{staticClass:"mt-5 fadeImg",staticStyle:{"text-align":"center","margin-left":"10%"},attrs:{height:"80%",width:"80%",src:t.baseUrl+"img/forbidden.svg",alt:""}})],1)])])},[function(){var t=this.$createElement,i=this._self._c||t;return i("span",{staticClass:"kt-portlet__head-icon"},[i("i",{staticClass:"flaticon-light"})])},function(){var t=this.$createElement,i=this._self._c||t;return i("div",{staticClass:"kt-widget4__pic kt-widget4__pic--pic"},[i("img",{attrs:{src:"https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png",height:"40",width:"130",alt:""}})])},function(){var t=this.$createElement,i=this._self._c||t;return i("p",{staticClass:"m-3"},[this._v("Nota: "),i("b",[this._v("Enter")]),this._v(" para enviar nuevo comentario")])},function(){var t=this.$createElement,i=this._self._c||t;return i("span",[i("i",{staticClass:"flaticon-reply normalFont links"})])}],!1,null,null,null);i.default=r.exports},49:function(t,i,s){"use strict";var n=s(11);s.n(n).a},50:function(t,i,s){(t.exports=s(2)(!1)).push([t.i,"\n.toast-title {\r\n  color:white !important;\n}\n.fadeImg {\r\n\r\n    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */ /* Firefox < 16 */ /* Internet Explorer */ /* Opera < 12.1 */\r\n            animation: fadein 2s;\n}\n@keyframes fadein {\nfrom { opacity: 0;\n}\nto   { opacity: 1;\n}\n}\r\n\r\n/* Firefox < 16 */\r\n\r\n/* Safari, Chrome and Opera > 12.1 */\n@-webkit-keyframes fadein {\nfrom { opacity: 0;\n}\nto   { opacity: 1;\n}\n}\r\n\r\n/* Internet Explorer */\r\n\r\n/* Opera < 12.1 */\n.noEscondido {\r\n  display:block !important;\n}\n.escondido {\r\n  display:none;\n}\n.largeBtn {\r\n  width:100px !important;\n}\n.pulse {\r\n  --color: #1164c5;\r\n  --hover: #1164c5;\n}\n.pulse:hover,\r\n.pulse:focus {\r\n  -webkit-animation: pulse 3s infinite;\r\n          animation: pulse 3s infinite;\r\n  box-shadow: 0 0 0 2em rgba(255, 255, 255, 0);\n}\n@-webkit-keyframes pulse {\n0% {\r\n    box-shadow: 0 0 0 0 var(--hover);\n}\n}\n@keyframes pulse {\n0% {\r\n    box-shadow: 0 0 0 0 var(--hover);\n}\n}\n.wrapText {\r\n  word-wrap: break-word !important;\n}\n.VueStar__decoration {\r\n  width: 50px;\r\n  height: 50px;\r\n  position: absolute;\n}\n.biggerIcons {\r\n  font-size: 1.5em !important;\n}\n.VueStar__icon {\r\n  position: static !important;\r\n  z-index: 0;\r\n  height: 30px;\r\n  width: 20px;\n}\n.VueStar__ground {\r\n  width: 1px;\r\n  height: 1px;\r\n  margin-left: 60px;\r\n  margin-top: 10px;\n}\n@media (max-width: 600px) {\n.VueStar__ground {\r\n\r\n      margin-left: 10px;\r\n      margin-top: 10px;\n}\n}\n.auxiliarVueStar {\r\n   margin-left: 5px;\n}\n.icons {\r\n  margin-left: 10px;\n}\n.media-list {\r\n  padding-left: 0;\n}\n.links {\r\n  cursor: pointer;\n}\n.center {\r\n  margin-right: 10px !important;\n}\n.fit-width-input {\r\n  width: 30vw !important;\n}\n.child-response-input {\r\n  margin-left: 70px;\r\n  position: relative;\r\n  width: 70% !important;\n}\n.biggerFont {\r\n  font-size: 1.1em;\r\n  padding-left: 30px !important;\r\n  margin-left: 40px !important;\n}\n.biggerFont2 {\r\n  font-size: 1.1em;\n}\n.normalFont {\r\n  font-style: normal !important;\r\n  font-size: 1.05em;\r\n  color: grey;\n}\n.normalFont:hover {\r\n  color: #4286f4;\n}\n.sub {\r\n  padding-left: 70px;\n}\n.imgCircle {\r\n  border-radius: 30px;\n}\n.media {\r\n  display: block;\n}\n.allHeight {\r\n  height: 100vh !important;\n}\n.comment-wrapper .media-list .media img {\r\n  width: 64px;\r\n  height: 64px;\r\n  border: 2px solid #e5e7e8;\n}\n.comment-wrapper .media-list .media {\r\n  border-bottom: 1px dashed #efefef;\r\n  margin-bottom: 25px;\n}\r\n",""])}}]);
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["IdeaViewChunk"],{
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/IdeaViewComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/IdeaViewComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": true,
+  "positionClass": "toast-top-center",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "4000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    var _ref;
+
+    return _ref = {
+      company: {},
+      canIseeVar: false,
+      permissions: {},
+      id: this.$route.params.id,
+      idea: {},
+      editMode: false,
+      ideas: {},
+      user: window.User,
+      userIdea: {},
+      liked: ""
+    }, _defineProperty(_ref, "user", window.user), _defineProperty(_ref, "discussionsFinal", {}), _defineProperty(_ref, "like", {}), _defineProperty(_ref, "containter", ""), _defineProperty(_ref, "containerFluid", ""), _defineProperty(_ref, "likesPerIdea", {}), _defineProperty(_ref, "foundLiked", false), _defineProperty(_ref, "baseUrl", window.baseUrl), _defineProperty(_ref, "randomNumber", Math.floor(Math.random() * 100)), _defineProperty(_ref, "lastCommentId", ""), _defineProperty(_ref, "id_idea_general", this.$route.params.id), _defineProperty(_ref, "form", new Form({
+      user_id: window.user.id,
+      idea_id: this.$route.params.id,
+      body: "",
+      discussion_parent_id: 0
+    })), _defineProperty(_ref, "formChild", new Form({
+      user_id: window.user.id,
+      idea_id: this.$route.params.id,
+      body: "",
+      discussion_parent_id: ""
+    })), _defineProperty(_ref, "formChild2", new Form({
+      user_id: window.user.id,
+      idea_id: this.$route.params.id,
+      body: "",
+      discussion_parent_id: ""
+    })), _defineProperty(_ref, "formLike", new Form({
+      user_id: window.user.id,
+      comment_id: "",
+      idea_id: this.$route.params.id
+    })), _defineProperty(_ref, "formDesired", new Form({
+      innovation_id: this.$route.params.id,
+      user_id: window.user.id,
+      type: ''
+    })), _defineProperty(_ref, "deleteForm", new Form({
+      id: ''
+    })), _ref;
+  },
+  computed: {
+    tiempoLectura: function tiempoLectura() {
+      var textHtml = this.extractContent(this.idea.body);
+      var cuenta = parseInt(this.idea.title.length) + parseInt(this.idea.description.length) + parseInt(textHtml.length);
+      var rate = cuenta / 160; //console.log(cuenta)
+      //return cuenta;
+      //return   moment().startOf('day').add(rate, 'minutes').format('m:ss');;
+
+      var tiempo = moment.duration(rate, 'minutes').humanize().toString();
+      var converted = tiempo.replace("seconds", 'segundos').replace('minutes', 'minutos').replace('a few', 'Unos pocos');
+      return converted;
+    },
+    puedoBorrar: function puedoBorrar() {
+      if (this.idea.created_by == this.user.id) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    updatedLastIdComment: function updatedLastIdComment() {//console.log('Termino de enviar comentario. Ir a padre'+this.lastCommentId);
+      //document.getElementById('padre'+this.lastCommentId).focus();
+      //console.log('Se marmat');
+    },
+    randomNumber2: function randomNumber2() {
+      return Math.floor(Math.random() * 100);
+    },
+    mobile: function mobile() {
+      if (this.$mq == "sm") {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    large: function large() {
+      if (this.$mq == "md" || this.$mq == "lg") {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    likesText: function likesText() {
+      if (this.$mq == 'sm') {
+        return '';
+      } else if (this.$mq == 'md' || this.$mq == 'lg') {
+        return 'likes';
+      } else {
+        return 'likes';
+      }
+    },
+    voteText: function voteText() {
+      if (this.$mq == 'sm') {
+        return '';
+      } else if (this.$mq == 'md' || this.$mq == 'lg') {
+        return 'Me gusta';
+      } else {
+        return 'Me gusta';
+      }
+    },
+    likedText: function likedText() {
+      if (this.$mq == 'sm') {
+        return '';
+      } else if (this.$mq == 'md' || this.$mq == 'lg') {
+        return 'Me gusta';
+      } else {
+        return 'Me gusta';
+      }
+    },
+    voteTextN: function voteTextN() {
+      if (this.$mq == 'sm') {
+        return '';
+      } else if (this.$mq == 'md' || this.$mq == 'lg') {
+        return 'Pulir +';
+      } else {
+        return 'Pulir +';
+      }
+    },
+    likedTextN: function likedTextN() {
+      if (this.$mq == 'sm') {
+        return '';
+      } else if (this.$mq == 'md' || this.$mq == 'lg') {
+        return 'Pulir +';
+      } else {
+        return 'Pulir +';
+      }
+    },
+    puedoVer: function puedoVer() {
+      if (this.permissions.length != 0) {
+        //validamos que exita la idea y luego si tengo permiso
+        var iCanSee = false;
+        var idUser = this.user.id;
+        var idIdea = this.id;
+        /* try {
+           this.permissions.forEach(function(permission) {
+             if (permission.permission_type == 'can view' && permission.id_user ==idUser && permision.id_idea== idIdea  ) {
+                 iCanSee = true;
+               console.log('times');
+               }
+           });
+         } catch (e) {
+           console.log(e);
+         }*/
+
+        var item = {};
+        var permisos = this.permissions;
+
+        for (var i = 0; i < permisos.length; i++) {
+          item = permisos[i];
+
+          if ((item.permission_type == 'can view' || item.permission_type == 'can view-edit') && item.id_user == idUser && item.id_idea == idIdea) {
+            iCanSee = true;
+          }
+        }
+
+        return iCanSee;
+      } else if (this.user.company_id == this.idea.company_id) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    puedoEditar: function puedoEditar() {
+      if (this.permissions.length != 0) {
+        //validamos que exita la idea y luego si tengo permiso
+        var iCanSee = false;
+        var idUser = this.user.id;
+        var idIdea = this.id;
+        /* try {
+           this.permissions.forEach(function(permission) {
+             if (permission.permission_type == 'can view' && permission.id_user ==idUser && permision.id_idea== idIdea  ) {
+                 iCanSee = true;
+               console.log('times');
+               }
+           });
+         } catch (e) {
+           console.log(e);
+         }*/
+
+        var item = {};
+        var permisos = this.permissions;
+
+        for (var i = 0; i < permisos.length; i++) {
+          item = permisos[i];
+
+          if (item.permission_type == 'can view-edit' && item.id_user == idUser && item.id_idea == idIdea) {
+            iCanSee = true;
+          }
+        }
+
+        return iCanSee;
+      } else {
+        return false;
+      }
+    }
+  },
+  methods: {
+    extractContent: function extractContent(html) {
+      return new DOMParser().parseFromString(html, "text/html").documentElement.textContent;
+    },
+    deleteIdea: function deleteIdea() {
+      var _this = this;
+
+      var id = this.$route.params.id;
+      Swal.fire({
+        title: "Estas seguro(a)?",
+        text: "No será posible deshacer esta acción.",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, borrar idea."
+      }).then(function (result) {
+        if (result.value) {
+          _this.$Progress.start(); // Submit the form via a POST request
+
+
+          _this.deleteForm.id = id; //this.form.editordata =  $('#kt_summernote_1').summernote('code');
+
+          _this.deleteForm.post("/deleteInnovation").then(function (response) {
+            if (response.data.estado == 'OK') {
+              toastr.success('Bien', 'Idea borrada correctamente');
+
+              _this.$router.push({
+                name: 'ideaList'
+              });
+            } else {
+              toastr.info('Oops', 'No se pudo completar el borrado.');
+            }
+
+            console.log(response.data.msg);
+
+            _this.$Progress.finish();
+          })["catch"](function (error) {
+            console.log(error);
+            toastr.error("Oops!", "Something goes wrong");
+
+            _this.$Progress.finish();
+          }); //$('#userCreationModal').modal('hide');
+
+        }
+      });
+    },
+    alreadyLiked1: function alreadyLiked1(idea) {
+      if (this.likesPerIdea.length != 0) {
+        var foundLiked2 = false;
+
+        try {
+          this.likesPerIdea.forEach(function (el) {
+            if (el.user_id == window.user.id && el.type == 'like') {
+              foundLiked2 = true;
+            }
+          });
+        } catch (e) {}
+
+        this.foundLiked = foundLiked2;
+        return foundLiked2;
+      } else {
+        this.foundLiked = false;
+        return false;
+      }
+    },
+    // end alreadyLike(idea)
+    alreadyLiked2: function alreadyLiked2(idea) {
+      if (this.likesPerIdea.length != 0) {
+        var foundLiked2 = false;
+
+        try {
+          this.likesPerIdea.forEach(function (el) {
+            if (el.user_id == window.user.id && el.type == 'dislike') {
+              foundLiked2 = true;
+            }
+          });
+        } catch (e) {}
+
+        this.foundLiked = foundLiked2;
+        return foundLiked2;
+      } else {
+        this.foundLiked = false;
+        return false;
+      }
+    },
+    // end alreadyLike(idea)2
+    alreadyLiked3: function alreadyLiked3(idea) {
+      if (this.likesPerIdea.length != 0) {
+        var foundLiked2 = false;
+
+        try {
+          this.likesPerIdea.forEach(function (el) {
+            if (el.user_id == window.user.id && el.type == 'action') {
+              foundLiked2 = true;
+            }
+          });
+        } catch (e) {}
+
+        this.foundLiked = foundLiked2;
+        return foundLiked2;
+      } else {
+        this.foundLiked = false;
+        return false;
+      }
+    },
+    // end alreadyLike(idea)3
+    likeIdea: function likeIdea(type) {
+      var _this2 = this;
+
+      this.$Progress.start(); // Submit the form via a POST request
+
+      this.formDesired.type = type; //this.form.editordata =  $('#kt_summernote_1').summernote('code');
+
+      this.formDesired.post("/saveDesired").then(function (response) {
+        if (type == 'like' || type == 'dislike' || type == 'action') {
+          toastr.success("Gracias por valorar la idea.", "+ 1 punto");
+        } else {}
+
+        _this2.likesPerIdea = response.data.desired;
+      })["catch"](function (error) {
+        console.log(error);
+        toastr.error("Oops!", "Something goes wrong");
+      }); //$('#userCreationModal').modal('hide');
+
+      this.$Progress.finish();
+    },
+    checkLiked: function checkLiked(likeObject) {
+      //if(likeObject.)
+      if (likeObject.length != 0) {
+        var scoped = this;
+        var found = false;
+
+        try {
+          likeObject.forEach(function (elements) {
+            if (elements.user_id == window.user.id) {
+              found = true;
+            }
+          });
+        } catch (e) {}
+
+        return found;
+      } else {
+        this.liked = false;
+        return false;
+      }
+    },
+    likeComment: function likeComment(idComment) {
+      var _this3 = this;
+
+      this.formLike.comment_id = idComment;
+      this.formLike.idea_id = this.id_idea_general;
+      this.$Progress.start(); // Submit the form via a POST request
+      //this.form.editordata =  $('#kt_summernote_1').summernote('code');
+
+      this.formLike.post("/saveLike").then(function (response) {
+        toastr.success("Keep innovating", "Thanks for the feedback.");
+        _this3.formLike.comment_id = "";
+        _this3.formLike.idea_id = "";
+        _this3.discussionsFinal = response.data.discussions;
+      })["catch"](function (error) {
+        console.log(error);
+        _this3.formLike.comment_id = "";
+        _this3.formLike.idea_id = "";
+        toastr.error("Oops!", "Something goes wrong");
+      }); //$('#userCreationModal').modal('hide');
+
+      this.$Progress.finish(); //this.discussionsFinal.discussions.push();
+    },
+    addChild: function addChild(idPadre) {
+      $("#" + idPadre).attr("style", "display:block");
+      document.getElementById("texto" + idPadre).focus();
+    },
+    checkChilds: function checkChilds(padre) {
+      if (padre.childs.length > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    loadUsers: function loadUsers() {
+      var _this4 = this;
+
+      // podemos usar this.form.get but we are gonna use axios
+      axios.get("/getInnovation/" + this.id).then(function (response) {
+        _this4.idea = response.data.idea;
+        _this4.userIdea = response.data.user;
+        _this4.discussionsFinal = response.data.discussions;
+        _this4.likesPerIdea = response.data.desired;
+        _this4.permissions = response.data.permissions;
+        _this4.company = response.data.company; //console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    sendComment: function sendComment() {
+      var _this5 = this;
+
+      this.$Progress.start(); // Submit the form via a POST request
+      //this.form.editordata =  $('#kt_summernote_1').summernote('code');
+
+      this.form.post("/addComment").then(function (response) {
+        toastr.success("Genial!", "Gracias por dar tu opinión.");
+
+        _this5.form.reset();
+
+        _this5.discussionsFinal = response.data.discussions; //this.lastCommentId = response.data.lastCommentId;
+
+        _this5.likesPerIdea = response.data.desired;
+      })["catch"](function (error) {
+        console.log(error);
+        toastr.error("Oops!", "Something goes wrong");
+      }); //$('#userCreationModal').modal('hide');
+
+      this.$Progress.finish();
+    },
+    goLastComment: function goLastComment() {
+      this.sendComment();
+    },
+    sendChildComment: function sendChildComment(idComment) {
+      var _this6 = this;
+
+      this.$Progress.start(); // Submit the form via a POST request
+      //this.form.editordata =  $('#kt_summernote_1').summernote('code');
+
+      this.formChild.discussion_parent_id = idComment;
+      this.formChild.post("/addComment").then(function (response) {
+        //toastr.success("Awesome!", "Comment added successfully.");
+        _this6.formChild.reset();
+
+        _this6.discussionsFinal = response.data.discussions;
+        _this6.likesPerIdea = response.data.desired;
+      })["catch"](function () {
+        toastr.error("Oops!", "Something goes wrong");
+      }); //$('#userCreationModal').modal('hide');
+
+      this.$Progress.finish();
+    },
+    sendChild2Comment: function sendChild2Comment(idComment) {
+      var _this7 = this;
+
+      this.$Progress.start(); // Submit the form via a POST request
+      //this.form.editordata =  $('#kt_summernote_1').summernote('code');
+
+      this.formChild2.discussion_parent_id = idComment;
+      this.formChild2.post("/addComment").then(function (response) {
+        toastr.success("Genial!", "Gracias por comentar.");
+
+        _this7.formChild2.reset();
+
+        $("#" + idComment).attr("style", "display:none");
+        _this7.discussionsFinal = response.data.discussions;
+        _this7.likesPerIdea = response.data.desired; // document.getElementById('padre'+response.data.lastCommentId).focus();
+      })["catch"](function (error) {
+        console.log(error);
+        toastr.error("Oops!", "Something goes wrong");
+      }); //$('#userCreationModal').modal('hide');
+
+      this.$Progress.finish();
+    }
+  },
+  created: function created() {},
+  mounted: function mounted() {
+    this.loadUsers();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/IdeaViewComponent.vue?vue&type=style&index=0&lang=css&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/IdeaViewComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.toast-title {\r\n  color:white !important;\n}\n.fadeImg {\r\n\r\n    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */ /* Firefox < 16 */ /* Internet Explorer */ /* Opera < 12.1 */\r\n            animation: fadein 2s;\n}\n@keyframes fadein {\nfrom { opacity: 0;\n}\nto   { opacity: 1;\n}\n}\r\n\r\n/* Firefox < 16 */\r\n\r\n/* Safari, Chrome and Opera > 12.1 */\n@-webkit-keyframes fadein {\nfrom { opacity: 0;\n}\nto   { opacity: 1;\n}\n}\r\n\r\n/* Internet Explorer */\r\n\r\n/* Opera < 12.1 */\n.noEscondido {\r\n  display:block !important;\n}\n.escondido {\r\n  display:none;\n}\n.largeBtn {\r\n  width:100px !important;\n}\n.pulse {\r\n  --color: #1164c5;\r\n  --hover: #1164c5;\n}\n.pulse:hover,\r\n.pulse:focus {\r\n  -webkit-animation: pulse 3s infinite;\r\n          animation: pulse 3s infinite;\r\n  box-shadow: 0 0 0 2em rgba(255, 255, 255, 0);\n}\n@-webkit-keyframes pulse {\n0% {\r\n    box-shadow: 0 0 0 0 var(--hover);\n}\n}\n@keyframes pulse {\n0% {\r\n    box-shadow: 0 0 0 0 var(--hover);\n}\n}\n.wrapText {\r\n  word-wrap: break-word !important;\n}\n.VueStar__decoration {\r\n  width: 50px;\r\n  height: 50px;\r\n  position: absolute;\n}\n.biggerIcons {\r\n  font-size: 1.5em !important;\n}\n.VueStar__icon {\r\n  position: static !important;\r\n  z-index: 0;\r\n  height: 30px;\r\n  width: 20px;\n}\n.VueStar__ground {\r\n  width: 1px;\r\n  height: 1px;\r\n  margin-left: 60px;\r\n  margin-top: 10px;\n}\n@media (max-width: 600px) {\n.VueStar__ground {\r\n\r\n      margin-left: 10px;\r\n      margin-top: 10px;\n}\n}\n.auxiliarVueStar {\r\n   margin-left: 5px;\n}\n.icons {\r\n  margin-left: 10px;\n}\n.media-list {\r\n  padding-left: 0;\n}\n.links {\r\n  cursor: pointer;\n}\n.center {\r\n  margin-right: 10px !important;\n}\n.fit-width-input {\r\n  width: 30vw !important;\n}\n.child-response-input {\r\n  margin-left: 70px;\r\n  position: relative;\r\n  width: 70% !important;\n}\n.biggerFont {\r\n  font-size: 1.1em;\r\n  padding-left: 30px !important;\r\n  margin-left: 40px !important;\n}\n.biggerFont2 {\r\n  font-size: 1.1em;\n}\n.normalFont {\r\n  font-style: normal !important;\r\n  font-size: 1.05em;\r\n  color: grey;\n}\n.normalFont:hover {\r\n  color: #4286f4;\n}\n.sub {\r\n  padding-left: 70px;\n}\n.imgCircle {\r\n  border-radius: 30px;\n}\n.media {\r\n  display: block;\n}\n.allHeight {\r\n  height: 100vh !important;\n}\n.comment-wrapper .media-list .media img {\r\n  width: 64px;\r\n  height: 64px;\r\n  border: 2px solid #e5e7e8;\n}\n.comment-wrapper .media-list .media {\r\n  border-bottom: 1px dashed #efefef;\r\n  margin-bottom: 25px;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/IdeaViewComponent.vue?vue&type=style&index=0&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/IdeaViewComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--7-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/vue-loader/lib??vue-loader-options!./IdeaViewComponent.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/IdeaViewComponent.vue?vue&type=style&index=0&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/IdeaViewComponent.vue?vue&type=template&id=64478a74&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/IdeaViewComponent.vue?vue&type=template&id=64478a74& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { class: { "container-fluid": _vm.mobile, "container-fluid": _vm.large } },
+    [
+      _vm.puedoVer
+        ? _c(
+            "div",
+            { staticClass: "row", staticStyle: { "min-height": "80vh" } },
+            [
+              _c("div", { staticClass: "col-lg-12 col-sm-12 col-md-12" }, [
+                _c("div", { staticClass: "kt-portlet mobilePortlet" }, [
+                  _c("div", { staticClass: "kt-portlet__head" }, [
+                    _c("div", { staticClass: "kt-portlet__head-label" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-clean kt-margin-r-10",
+                          on: {
+                            click: function($event) {
+                              return _vm.$router.go(-1)
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "la la-arrow-left",
+                            staticStyle: { "padding-bottom": "8px" }
+                          }),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "kt-hidden-mobile" }, [
+                            _vm._v("Atrás")
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c("h3", { staticClass: "kt-portlet__head-title" }, [
+                        _vm._v(_vm._s(_vm.idea.title))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "kt-portlet__head-toolbar" }, [
+                      _c(
+                        "div",
+                        { staticClass: "kt-portlet__head-actions" },
+                        [
+                          !_vm.alreadyLiked1(_vm.idea)
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-outline-primary btn-sm btn-icon pulse btn-icon-md ",
+                                  class: { largeBtn: _vm.large },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.likeIdea("like")
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "flaticon2-arrow-up"
+                                  }),
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(_vm.voteText) +
+                                      "\n              "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.alreadyLiked1(_vm.idea)
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-primary btn-sm btn-icon pulse btn-icon-md ",
+                                  class: { largeBtn: _vm.large },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.likeIdea("unlike")
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "flaticon2-arrow-up"
+                                  }),
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(_vm.likedText) +
+                                      "\n               "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          !_vm.alreadyLiked2(_vm.idea)
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-outline-primary btn-sm btn-icon pulse btn-icon-md ",
+                                  class: { largeBtn: _vm.large },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.likeIdea("dislike")
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "flaticon2-arrow-down "
+                                  }),
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(_vm.voteTextN) +
+                                      "\n              "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.alreadyLiked2(_vm.idea)
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-primary btn-sm btn-icon pulse btn-icon-md ",
+                                  class: { largeBtn: _vm.large },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.likeIdea("undislike")
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "flaticon2-arrow-down"
+                                  }),
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(_vm.likedTextN) +
+                                      "\n               "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          !_vm.alreadyLiked3(_vm.idea)
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-outline-primary btn-sm btn-icon pulse btn-icon-md ",
+                                  class: { largeBtn: _vm.large },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.likeIdea("action")
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticStyle: {
+                                        padding: "2px",
+                                        "font-size": "0.8rem"
+                                      }
+                                    },
+                                    [_vm._v(" Acción de mejora")]
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.alreadyLiked3(_vm.idea)
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-primary btn-sm btn-icon pulse btn-icon-md ",
+                                  class: { largeBtn: _vm.large },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.likeIdea("unaction")
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticStyle: {
+                                        padding: "2px",
+                                        "font-size": "0.8rem"
+                                      }
+                                    },
+                                    [_vm._v(" Acción de mejora")]
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.puedoEditar
+                            ? _c(
+                                "router-link",
+                                {
+                                  staticClass:
+                                    "btn btn-outline-warning btn-sm btn-icon btn-icon-md",
+                                  attrs: { to: "/innovationsEdit/" + this.id }
+                                },
+                                [_c("i", { staticClass: "flaticon-edit" })]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c(
+                            "router-link",
+                            {
+                              staticClass:
+                                "btn btn-outline-success btn-sm btn-icon btn-icon-md",
+                              attrs: { to: "/shareInnovation/" + this.id }
+                            },
+                            [_c("i", { staticClass: "flaticon-share" })]
+                          ),
+                          _vm._v(" "),
+                          _vm.puedoBorrar
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-outline-danger btn-sm btn-icon btn-icon-md",
+                                  on: { click: _vm.deleteIdea }
+                                },
+                                [_c("i", { staticClass: "flaticon-delete" })]
+                              )
+                            : _vm._e()
+                        ],
+                        1
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      directives: [{ name: "viewer", rawName: "v-viewer" }],
+                      staticClass: "images "
+                    },
+                    [
+                      _c("img", {
+                        staticClass: "imgFit",
+                        attrs: { src: _vm.idea.img }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", {
+                    staticClass: "kt-portlet__body wrapText",
+                    attrs: { id: "ideaBody" },
+                    domProps: { innerHTML: _vm._s(_vm.idea.body) }
+                  }),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "user-section" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-12" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "kt-portlet kt-portlet--tabs kt-portlet--height-fluid"
+                          },
+                          [
+                            _c("div", { staticClass: "kt-portlet__body" }, [
+                              _c("div", { staticClass: "tab-content" }, [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "tab-pane active",
+                                    attrs: { id: "kt_widget4_tab1_content" }
+                                  },
+                                  [
+                                    _c("div", { staticClass: "kt-widget4" }, [
+                                      _c(
+                                        "div",
+                                        { staticClass: "kt-widget4__item" },
+                                        [
+                                          _vm._m(1),
+                                          _vm._v(" "),
+                                          _vm.idea.author == "showme"
+                                            ? _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "kt-widget4__info"
+                                                },
+                                                [
+                                                  _c(
+                                                    "a",
+                                                    {
+                                                      staticClass:
+                                                        "kt-widget4__username",
+                                                      attrs: { href: "#" }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          _vm.userIdea.name
+                                                        )
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "p",
+                                                    {
+                                                      staticClass:
+                                                        "kt-widget4__text"
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          _vm.userIdea.email
+                                                        )
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _vm.idea.author == "showme"
+                                            ? _c(
+                                                "a",
+                                                {
+                                                  staticClass:
+                                                    "btn btn-sm btn-label-brand",
+                                                  attrs: { href: "#" }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "Tiempo de lectura : " +
+                                                      _vm._s(_vm.tiempoLectura)
+                                                  )
+                                                ]
+                                              )
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _vm.idea.author == "anonymous"
+                                            ? _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "kt-widget4__info"
+                                                },
+                                                [
+                                                  _c(
+                                                    "a",
+                                                    {
+                                                      staticClass:
+                                                        "kt-widget4__username",
+                                                      attrs: { href: "#" }
+                                                    },
+                                                    [_vm._v("Anonymous User")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "p",
+                                                    {
+                                                      staticClass:
+                                                        "kt-widget4__text"
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "Visual Designer, Google Inc"
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _vm.idea.author == "anonymous"
+                                            ? _c(
+                                                "a",
+                                                {
+                                                  staticClass:
+                                                    "btn btn-sm btn-label-brand",
+                                                  attrs: { href: "#" }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "Tiempo de lectura : " +
+                                                      _vm._s(_vm.tiempoLectura)
+                                                  )
+                                                ]
+                                              )
+                                            : _vm._e()
+                                        ]
+                                      )
+                                    ])
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("br"),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "comments-section" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "row bootstrap snippets" },
+                                  [
+                                    _c("div", { staticClass: "col-12" }, [
+                                      _c(
+                                        "div",
+                                        { staticClass: "comment-wrapper" },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "panel panel-info" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "panel-body" },
+                                                [
+                                                  _c(
+                                                    "h5",
+                                                    {
+                                                      staticClass: "ml-3 mt-5"
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "Nueva retroalimentación"
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "row" },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "col-lg-12 col-sm-12"
+                                                        },
+                                                        [
+                                                          _c("center", [
+                                                            _c(
+                                                              "form",
+                                                              {
+                                                                staticClass:
+                                                                  "form-inline",
+                                                                on: {
+                                                                  submit: function(
+                                                                    $event
+                                                                  ) {
+                                                                    $event.preventDefault()
+                                                                    return _vm.goLastComment(
+                                                                      $event
+                                                                    )
+                                                                  },
+                                                                  keydown: function(
+                                                                    $event
+                                                                  ) {
+                                                                    return _vm.form.onKeydown(
+                                                                      $event
+                                                                    )
+                                                                  }
+                                                                }
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "form-group"
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "textarea",
+                                                                      {
+                                                                        directives: [
+                                                                          {
+                                                                            name:
+                                                                              "model",
+                                                                            rawName:
+                                                                              "v-model",
+                                                                            value:
+                                                                              _vm
+                                                                                .form
+                                                                                .body,
+                                                                            expression:
+                                                                              "form.body"
+                                                                          }
+                                                                        ],
+                                                                        staticClass:
+                                                                          "form-control ",
+                                                                        staticStyle: {
+                                                                          margin:
+                                                                            "10px",
+                                                                          width:
+                                                                            "600px"
+                                                                        },
+                                                                        attrs: {
+                                                                          placeholder:
+                                                                            "Añade un nuevo comentario",
+                                                                          rows:
+                                                                            "2",
+                                                                          required:
+                                                                            ""
+                                                                        },
+                                                                        domProps: {
+                                                                          value:
+                                                                            _vm
+                                                                              .form
+                                                                              .body
+                                                                        },
+                                                                        on: {
+                                                                          input: function(
+                                                                            $event
+                                                                          ) {
+                                                                            if (
+                                                                              $event
+                                                                                .target
+                                                                                .composing
+                                                                            ) {
+                                                                              return
+                                                                            }
+                                                                            _vm.$set(
+                                                                              _vm.form,
+                                                                              "body",
+                                                                              $event
+                                                                                .target
+                                                                                .value
+                                                                            )
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    ),
+                                                                    _vm._v(" "),
+                                                                    _c(
+                                                                      "button",
+                                                                      {
+                                                                        staticClass:
+                                                                          "btn btn-brand btn-elevate btn-circle btn-icon",
+                                                                        attrs: {
+                                                                          type:
+                                                                            "button"
+                                                                        },
+                                                                        on: {
+                                                                          click:
+                                                                            _vm.goLastComment
+                                                                        }
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "i",
+                                                                          {
+                                                                            staticClass:
+                                                                              "flaticon2-paper-plane"
+                                                                          }
+                                                                        )
+                                                                      ]
+                                                                    ),
+                                                                    _vm._v(" "),
+                                                                    _c("br")
+                                                                  ]
+                                                                )
+                                                              ]
+                                                            )
+                                                          ])
+                                                        ],
+                                                        1
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _vm._m(2),
+                                                  _vm._v(" "),
+                                                  _c("br"),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "ul",
+                                                    {
+                                                      staticClass: "media-list"
+                                                    },
+                                                    [
+                                                      _vm._l(
+                                                        _vm.discussionsFinal,
+                                                        function(d) {
+                                                          return _c(
+                                                            "li",
+                                                            {
+                                                              key:
+                                                                _vm
+                                                                  .discussionsFinal
+                                                                  .id,
+                                                              staticClass:
+                                                                "media",
+                                                              attrs: {
+                                                                id:
+                                                                  "padre" +
+                                                                  d.discussions
+                                                                    .id
+                                                              }
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "a",
+                                                                {
+                                                                  staticClass:
+                                                                    "pull-left",
+                                                                  attrs: {
+                                                                    href: "#"
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _c("img", {
+                                                                    staticClass:
+                                                                      "imgCircle",
+                                                                    attrs: {
+                                                                      src:
+                                                                        "https://picsum.photos/100?random=" +
+                                                                        d
+                                                                          .discussions
+                                                                          .id,
+                                                                      alt: ""
+                                                                    }
+                                                                  })
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "media-body"
+                                                                },
+                                                                [
+                                                                  _c(
+                                                                    "span",
+                                                                    {
+                                                                      staticClass:
+                                                                        "text-muted pull-right mr-5"
+                                                                    },
+                                                                    [
+                                                                      _c(
+                                                                        "h6",
+                                                                        {
+                                                                          staticClass:
+                                                                            "text-muted"
+                                                                        },
+                                                                        [
+                                                                          _vm._v(
+                                                                            _vm._s(
+                                                                              _vm._f(
+                                                                                "humanDate2"
+                                                                              )(
+                                                                                d
+                                                                                  .discussions
+                                                                                  .created_at
+                                                                              )
+                                                                            )
+                                                                          )
+                                                                        ]
+                                                                      )
+                                                                    ]
+                                                                  ),
+                                                                  _vm._v(" "),
+                                                                  _c(
+                                                                    "strong",
+                                                                    {
+                                                                      staticClass:
+                                                                        "text-success"
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        " " +
+                                                                          _vm._s(
+                                                                            d
+                                                                              .discussions
+                                                                              .name
+                                                                          )
+                                                                      )
+                                                                    ]
+                                                                  ),
+                                                                  _vm._v(" "),
+                                                                  _c(
+                                                                    "p",
+                                                                    {
+                                                                      staticClass:
+                                                                        "biggerFont"
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        _vm._s(
+                                                                          d
+                                                                            .discussions
+                                                                            .body
+                                                                        )
+                                                                      )
+                                                                    ]
+                                                                  ),
+                                                                  _vm._v(" "),
+                                                                  _c(
+                                                                    "div",
+                                                                    {
+                                                                      staticClass:
+                                                                        "icons"
+                                                                    },
+                                                                    [
+                                                                      _c(
+                                                                        "a",
+                                                                        {
+                                                                          staticClass:
+                                                                            "animated bounce",
+                                                                          on: {
+                                                                            click: function(
+                                                                              $event
+                                                                            ) {
+                                                                              return _vm.likeComment(
+                                                                                d
+                                                                                  .discussions
+                                                                                  .id
+                                                                              )
+                                                                            }
+                                                                          }
+                                                                        },
+                                                                        [
+                                                                          _c(
+                                                                            "i",
+                                                                            {
+                                                                              staticClass:
+                                                                                "normalFont links biggerIcons",
+                                                                              staticStyle: {
+                                                                                display:
+                                                                                  "inline"
+                                                                              }
+                                                                            },
+                                                                            [
+                                                                              _vm.checkLiked(
+                                                                                d
+                                                                                  .discussions
+                                                                                  .likes
+                                                                              )
+                                                                                ? _c(
+                                                                                    "vue-star",
+                                                                                    {
+                                                                                      attrs: {
+                                                                                        animate:
+                                                                                          "animated  normalFont links",
+                                                                                        color:
+                                                                                          "#ccc"
+                                                                                      }
+                                                                                    },
+                                                                                    [
+                                                                                      _c(
+                                                                                        "a",
+                                                                                        {
+                                                                                          staticClass:
+                                                                                            "fas fa-thumbs-up",
+                                                                                          staticStyle: {
+                                                                                            color:
+                                                                                              "#4285F4"
+                                                                                          },
+                                                                                          attrs: {
+                                                                                            slot:
+                                                                                              "icon"
+                                                                                          },
+                                                                                          slot:
+                                                                                            "icon"
+                                                                                        }
+                                                                                      )
+                                                                                    ]
+                                                                                  )
+                                                                                : _c(
+                                                                                    "vue-star",
+                                                                                    {
+                                                                                      attrs: {
+                                                                                        animate:
+                                                                                          "animated bounce normalFont links",
+                                                                                        color:
+                                                                                          "#4285F4"
+                                                                                      }
+                                                                                    },
+                                                                                    [
+                                                                                      _c(
+                                                                                        "a",
+                                                                                        {
+                                                                                          staticClass:
+                                                                                            "fas fa-thumbs-up",
+                                                                                          staticStyle: {
+                                                                                            color:
+                                                                                              "gray"
+                                                                                          },
+                                                                                          attrs: {
+                                                                                            slot:
+                                                                                              "icon"
+                                                                                          },
+                                                                                          slot:
+                                                                                            "icon"
+                                                                                        }
+                                                                                      )
+                                                                                    ]
+                                                                                  )
+                                                                            ],
+                                                                            1
+                                                                          ),
+                                                                          _vm._v(
+                                                                            "\n                                               \n\n                                        " +
+                                                                              _vm._s(
+                                                                                " " +
+                                                                                  d
+                                                                                    .discussions
+                                                                                    .likes
+                                                                                    .length
+                                                                              ) +
+                                                                              " " +
+                                                                              _vm._s(
+                                                                                _vm.likesText
+                                                                              ) +
+                                                                              "\n                                      "
+                                                                          )
+                                                                        ]
+                                                                      ),
+                                                                      _vm._v(
+                                                                        "\n                                         \n                                      "
+                                                                      ),
+                                                                      _c(
+                                                                        "a",
+                                                                        {
+                                                                          on: {
+                                                                            click: function(
+                                                                              $event
+                                                                            ) {
+                                                                              return _vm.addChild(
+                                                                                d
+                                                                                  .discussions
+                                                                                  .id
+                                                                              )
+                                                                            }
+                                                                          }
+                                                                        },
+                                                                        [
+                                                                          _c(
+                                                                            "span",
+                                                                            [
+                                                                              _c(
+                                                                                "i",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "flaticon-reply normalFont links"
+                                                                                },
+                                                                                [
+                                                                                  _vm._v(
+                                                                                    "  " +
+                                                                                      _vm._s(
+                                                                                        d
+                                                                                          .childs
+                                                                                          .length
+                                                                                      ) +
+                                                                                      "   comments"
+                                                                                  )
+                                                                                ]
+                                                                              )
+                                                                            ]
+                                                                          )
+                                                                        ]
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c("br"),
+                                                              _vm._v(" "),
+                                                              _c("br"),
+                                                              _vm._v(" "),
+                                                              _vm._l(
+                                                                d.childs,
+                                                                function(sub) {
+                                                                  return _c(
+                                                                    "div",
+                                                                    {
+                                                                      key:
+                                                                        sub.id,
+                                                                      staticClass:
+                                                                        "media sub"
+                                                                    },
+                                                                    [
+                                                                      _c(
+                                                                        "a",
+                                                                        {
+                                                                          staticClass:
+                                                                            "pull-left"
+                                                                        },
+                                                                        [
+                                                                          _c(
+                                                                            "img",
+                                                                            {
+                                                                              staticClass:
+                                                                                "imgCircle",
+                                                                              attrs: {
+                                                                                src:
+                                                                                  "https://picsum.photos/110?random=" +
+                                                                                  sub.id,
+                                                                                alt:
+                                                                                  ""
+                                                                              }
+                                                                            }
+                                                                          )
+                                                                        ]
+                                                                      ),
+                                                                      _vm._v(
+                                                                        " "
+                                                                      ),
+                                                                      _c(
+                                                                        "div",
+                                                                        {
+                                                                          staticClass:
+                                                                            "media-body"
+                                                                        },
+                                                                        [
+                                                                          _c(
+                                                                            "span",
+                                                                            {
+                                                                              staticClass:
+                                                                                "text-muted pull-right mr-5"
+                                                                            },
+                                                                            [
+                                                                              _c(
+                                                                                "h6",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "text-muted"
+                                                                                },
+                                                                                [
+                                                                                  _vm._v(
+                                                                                    _vm._s(
+                                                                                      _vm._f(
+                                                                                        "humanDate2"
+                                                                                      )(
+                                                                                        sub.created_at
+                                                                                      )
+                                                                                    )
+                                                                                  )
+                                                                                ]
+                                                                              )
+                                                                            ]
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " "
+                                                                          ),
+                                                                          _c(
+                                                                            "strong",
+                                                                            {
+                                                                              staticClass:
+                                                                                "text-success"
+                                                                            },
+                                                                            [
+                                                                              _vm._v(
+                                                                                " " +
+                                                                                  _vm._s(
+                                                                                    sub.name
+                                                                                  )
+                                                                              )
+                                                                            ]
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " "
+                                                                          ),
+                                                                          _c(
+                                                                            "p",
+                                                                            {
+                                                                              staticClass:
+                                                                                "biggerFont"
+                                                                            },
+                                                                            [
+                                                                              _vm._v(
+                                                                                _vm._s(
+                                                                                  sub.body
+                                                                                )
+                                                                              )
+                                                                            ]
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " "
+                                                                          ),
+                                                                          _c(
+                                                                            "div",
+                                                                            {
+                                                                              staticClass:
+                                                                                "icons"
+                                                                            },
+                                                                            [
+                                                                              _c(
+                                                                                "a",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "animated bounce",
+                                                                                  on: {
+                                                                                    click: function(
+                                                                                      $event
+                                                                                    ) {
+                                                                                      return _vm.likeComment(
+                                                                                        sub.id
+                                                                                      )
+                                                                                    }
+                                                                                  }
+                                                                                },
+                                                                                [
+                                                                                  _c(
+                                                                                    "i",
+                                                                                    {
+                                                                                      staticClass:
+                                                                                        "normalFont links biggerIcons",
+                                                                                      staticStyle: {
+                                                                                        display:
+                                                                                          "inline"
+                                                                                      }
+                                                                                    },
+                                                                                    [
+                                                                                      _vm.checkLiked(
+                                                                                        sub.likes
+                                                                                      )
+                                                                                        ? _c(
+                                                                                            "vue-star",
+                                                                                            {
+                                                                                              attrs: {
+                                                                                                animate:
+                                                                                                  "animated  normalFont links",
+                                                                                                color:
+                                                                                                  "#ccc"
+                                                                                              }
+                                                                                            },
+                                                                                            [
+                                                                                              _c(
+                                                                                                "a",
+                                                                                                {
+                                                                                                  staticClass:
+                                                                                                    "fas fa-thumbs-up",
+                                                                                                  staticStyle: {
+                                                                                                    color:
+                                                                                                      "#4285F4"
+                                                                                                  },
+                                                                                                  attrs: {
+                                                                                                    slot:
+                                                                                                      "icon"
+                                                                                                  },
+                                                                                                  slot:
+                                                                                                    "icon"
+                                                                                                }
+                                                                                              )
+                                                                                            ]
+                                                                                          )
+                                                                                        : _c(
+                                                                                            "vue-star",
+                                                                                            {
+                                                                                              attrs: {
+                                                                                                animate:
+                                                                                                  "animated bounce normalFont links",
+                                                                                                color:
+                                                                                                  "#4285F4"
+                                                                                              }
+                                                                                            },
+                                                                                            [
+                                                                                              _c(
+                                                                                                "a",
+                                                                                                {
+                                                                                                  staticClass:
+                                                                                                    "fas fa-thumbs-up",
+                                                                                                  staticStyle: {
+                                                                                                    color:
+                                                                                                      "gray"
+                                                                                                  },
+                                                                                                  attrs: {
+                                                                                                    slot:
+                                                                                                      "icon"
+                                                                                                  },
+                                                                                                  slot:
+                                                                                                    "icon"
+                                                                                                }
+                                                                                              )
+                                                                                            ]
+                                                                                          )
+                                                                                    ],
+                                                                                    1
+                                                                                  ),
+                                                                                  _vm._v(
+                                                                                    "\n                                                 \n                                          " +
+                                                                                      _vm._s(
+                                                                                        " " +
+                                                                                          sub
+                                                                                            .likes
+                                                                                            .length
+                                                                                      ) +
+                                                                                      " " +
+                                                                                      _vm._s(
+                                                                                        _vm.likesText
+                                                                                      ) +
+                                                                                      "\n                                        "
+                                                                                  )
+                                                                                ]
+                                                                              ),
+                                                                              _vm._v(
+                                                                                "\n                                           \n                                        "
+                                                                              ),
+                                                                              _c(
+                                                                                "a",
+                                                                                {
+                                                                                  on: {
+                                                                                    click: function(
+                                                                                      $event
+                                                                                    ) {
+                                                                                      return _vm.addChild(
+                                                                                        d
+                                                                                          .discussions
+                                                                                          .id
+                                                                                      )
+                                                                                    }
+                                                                                  }
+                                                                                },
+                                                                                [
+                                                                                  _vm._m(
+                                                                                    3,
+                                                                                    true
+                                                                                  )
+                                                                                ]
+                                                                              )
+                                                                            ]
+                                                                          )
+                                                                        ]
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                                }
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _vm.checkChilds(
+                                                                d
+                                                              ) && 1 == 2
+                                                                ? _c(
+                                                                    "div",
+                                                                    {
+                                                                      staticClass:
+                                                                        "childComment"
+                                                                    },
+                                                                    [
+                                                                      _c(
+                                                                        "form",
+                                                                        {
+                                                                          staticClass:
+                                                                            "form",
+                                                                          on: {
+                                                                            submit: function(
+                                                                              $event
+                                                                            ) {
+                                                                              $event.preventDefault()
+                                                                              return _vm.sendChildComment(
+                                                                                d
+                                                                                  .discussions
+                                                                                  .id
+                                                                              )
+                                                                            },
+                                                                            keydown: function(
+                                                                              $event
+                                                                            ) {
+                                                                              return _vm.formChild.onKeydown(
+                                                                                $event
+                                                                              )
+                                                                            }
+                                                                          }
+                                                                        },
+                                                                        [
+                                                                          _c(
+                                                                            "div",
+                                                                            {
+                                                                              staticClass:
+                                                                                "form-group"
+                                                                            },
+                                                                            [
+                                                                              _c(
+                                                                                "input",
+                                                                                {
+                                                                                  directives: [
+                                                                                    {
+                                                                                      name:
+                                                                                        "model",
+                                                                                      rawName:
+                                                                                        "v-model",
+                                                                                      value:
+                                                                                        _vm
+                                                                                          .formChild
+                                                                                          .body,
+                                                                                      expression:
+                                                                                        "formChild.body"
+                                                                                    }
+                                                                                  ],
+                                                                                  staticClass:
+                                                                                    "form-control child-response-input",
+                                                                                  attrs: {
+                                                                                    type:
+                                                                                      "text",
+                                                                                    placeholder:
+                                                                                      "Write a reply... Enter key to send"
+                                                                                  },
+                                                                                  domProps: {
+                                                                                    value:
+                                                                                      _vm
+                                                                                        .formChild
+                                                                                        .body
+                                                                                  },
+                                                                                  on: {
+                                                                                    input: function(
+                                                                                      $event
+                                                                                    ) {
+                                                                                      if (
+                                                                                        $event
+                                                                                          .target
+                                                                                          .composing
+                                                                                      ) {
+                                                                                        return
+                                                                                      }
+                                                                                      _vm.$set(
+                                                                                        _vm.formChild,
+                                                                                        "body",
+                                                                                        $event
+                                                                                          .target
+                                                                                          .value
+                                                                                      )
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              )
+                                                                            ]
+                                                                          )
+                                                                        ]
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                                : _vm._e(),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "childComment",
+                                                                  staticStyle: {
+                                                                    display:
+                                                                      "none"
+                                                                  },
+                                                                  attrs: {
+                                                                    id:
+                                                                      d
+                                                                        .discussions
+                                                                        .id
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _c(
+                                                                    "form",
+                                                                    {
+                                                                      staticClass:
+                                                                        "form",
+                                                                      on: {
+                                                                        submit: function(
+                                                                          $event
+                                                                        ) {
+                                                                          $event.preventDefault()
+                                                                          return _vm.sendChild2Comment(
+                                                                            d
+                                                                              .discussions
+                                                                              .id
+                                                                          )
+                                                                        },
+                                                                        keydown: function(
+                                                                          $event
+                                                                        ) {
+                                                                          return _vm.formChild2.onKeydown(
+                                                                            $event
+                                                                          )
+                                                                        }
+                                                                      }
+                                                                    },
+                                                                    [
+                                                                      _c(
+                                                                        "div",
+                                                                        {
+                                                                          staticClass:
+                                                                            "form"
+                                                                        },
+                                                                        [
+                                                                          _c(
+                                                                            "div",
+                                                                            {
+                                                                              staticClass:
+                                                                                "row"
+                                                                            },
+                                                                            [
+                                                                              _c(
+                                                                                "div",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "col-5"
+                                                                                },
+                                                                                [
+                                                                                  _c(
+                                                                                    "input",
+                                                                                    {
+                                                                                      directives: [
+                                                                                        {
+                                                                                          name:
+                                                                                            "model",
+                                                                                          rawName:
+                                                                                            "v-model",
+                                                                                          value:
+                                                                                            _vm
+                                                                                              .formChild2
+                                                                                              .body,
+                                                                                          expression:
+                                                                                            "formChild2.body"
+                                                                                        }
+                                                                                      ],
+                                                                                      staticClass:
+                                                                                        "form-control half-input",
+                                                                                      staticStyle: {
+                                                                                        "margin-left":
+                                                                                          "50px"
+                                                                                      },
+                                                                                      attrs: {
+                                                                                        type:
+                                                                                          "text",
+                                                                                        id:
+                                                                                          "texto" +
+                                                                                          d
+                                                                                            .discussions
+                                                                                            .id,
+                                                                                        placeholder:
+                                                                                          "Añade un comentario"
+                                                                                      },
+                                                                                      domProps: {
+                                                                                        value:
+                                                                                          _vm
+                                                                                            .formChild2
+                                                                                            .body
+                                                                                      },
+                                                                                      on: {
+                                                                                        input: function(
+                                                                                          $event
+                                                                                        ) {
+                                                                                          if (
+                                                                                            $event
+                                                                                              .target
+                                                                                              .composing
+                                                                                          ) {
+                                                                                            return
+                                                                                          }
+                                                                                          _vm.$set(
+                                                                                            _vm.formChild2,
+                                                                                            "body",
+                                                                                            $event
+                                                                                              .target
+                                                                                              .value
+                                                                                          )
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  )
+                                                                                ]
+                                                                              ),
+                                                                              _vm._v(
+                                                                                " "
+                                                                              ),
+                                                                              _c(
+                                                                                "div",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "col-6"
+                                                                                },
+                                                                                [
+                                                                                  _c(
+                                                                                    "button",
+                                                                                    {
+                                                                                      staticClass:
+                                                                                        "btn btn-brand btn-elevate btn-circle btn-icon",
+                                                                                      attrs: {
+                                                                                        type:
+                                                                                          "button"
+                                                                                      },
+                                                                                      on: {
+                                                                                        click: function(
+                                                                                          $event
+                                                                                        ) {
+                                                                                          return _vm.sendChild2Comment(
+                                                                                            d
+                                                                                              .discussions
+                                                                                              .id
+                                                                                          )
+                                                                                        }
+                                                                                      }
+                                                                                    },
+                                                                                    [
+                                                                                      _c(
+                                                                                        "i",
+                                                                                        {
+                                                                                          staticClass:
+                                                                                            "flaticon2-paper-plane"
+                                                                                        }
+                                                                                      )
+                                                                                    ]
+                                                                                  )
+                                                                                ]
+                                                                              )
+                                                                            ]
+                                                                          )
+                                                                        ]
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                                ]
+                                                              )
+                                                            ],
+                                                            2
+                                                          )
+                                                        }
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c("br"),
+                                                      _vm._v(" "),
+                                                      _c("br"),
+                                                      _vm._v(" "),
+                                                      _c("br")
+                                                    ],
+                                                    2
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ])
+                                  ]
+                                )
+                              ])
+                            ])
+                          ]
+                        )
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ]
+          )
+        : _c("div", { staticClass: "row " }, [
+            _c("div", { staticClass: "col-4" }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-4" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { to: "/innovations" }
+                  },
+                  [_vm._v("\n\n        Go back to innovations\n      ")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-4" }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-12 mt-5" },
+              [
+                _c("center", [
+                  _c(
+                    "h4",
+                    {
+                      staticStyle: {
+                        "margin-left": "auto",
+                        "margin-right": "auto",
+                        display: "block",
+                        color: "white"
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "Sorry, it seems you don't have permission to see this idea."
+                      )
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("img", {
+                  staticClass: "mt-5 fadeImg",
+                  staticStyle: { "text-align": "center", "margin-left": "10%" },
+                  attrs: {
+                    height: "80%",
+                    width: "80%",
+                    src: _vm.baseUrl + "img/forbidden.svg",
+                    alt: ""
+                  }
+                })
+              ],
+              1
+            )
+          ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "kt-portlet__head-icon" }, [
+      _c("i", { staticClass: "flaticon-light" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "kt-widget4__pic kt-widget4__pic--pic" }, [
+      _c("img", {
+        attrs: {
+          src:
+            "https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png",
+          height: "40",
+          width: "130",
+          alt: ""
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "m-3" }, [
+      _vm._v("Nota: "),
+      _c("b", [_vm._v("Enter")]),
+      _vm._v(" para enviar nuevo comentario")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("i", { staticClass: "flaticon-reply normalFont links" })
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/IdeaViewComponent.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/IdeaViewComponent.vue ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _IdeaViewComponent_vue_vue_type_template_id_64478a74___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./IdeaViewComponent.vue?vue&type=template&id=64478a74& */ "./resources/js/components/IdeaViewComponent.vue?vue&type=template&id=64478a74&");
+/* harmony import */ var _IdeaViewComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./IdeaViewComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/IdeaViewComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _IdeaViewComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./IdeaViewComponent.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/IdeaViewComponent.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _IdeaViewComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _IdeaViewComponent_vue_vue_type_template_id_64478a74___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _IdeaViewComponent_vue_vue_type_template_id_64478a74___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/IdeaViewComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/IdeaViewComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/IdeaViewComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IdeaViewComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./IdeaViewComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/IdeaViewComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IdeaViewComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/IdeaViewComponent.vue?vue&type=style&index=0&lang=css&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/IdeaViewComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_IdeaViewComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--7-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/vue-loader/lib??vue-loader-options!./IdeaViewComponent.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/IdeaViewComponent.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_IdeaViewComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_IdeaViewComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_IdeaViewComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_IdeaViewComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_IdeaViewComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/IdeaViewComponent.vue?vue&type=template&id=64478a74&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/IdeaViewComponent.vue?vue&type=template&id=64478a74& ***!
+  \**************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IdeaViewComponent_vue_vue_type_template_id_64478a74___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./IdeaViewComponent.vue?vue&type=template&id=64478a74& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/IdeaViewComponent.vue?vue&type=template&id=64478a74&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IdeaViewComponent_vue_vue_type_template_id_64478a74___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IdeaViewComponent_vue_vue_type_template_id_64478a74___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ })
+
+}]);
