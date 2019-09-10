@@ -13,7 +13,7 @@
         <div class="col-lg-1 col-sm-6 pt-2">
 
           
-          <h2 class="kt-portlet__head-title">Users</h2>
+          <h2 class="kt-portlet__head-title">Usuarios empresariales</h2>
           <p>&nbsp; {{users.length}} Total</p>
         </div>
 
@@ -43,33 +43,33 @@
           </div>
 
           <div class="col-lg-3 col-sm-6 mt-2">
-            <vs-select
-              class="selectExample"
-              icon="arrow_downward"
-              label="Filter by Type"
-              v-model="typeFilter"
-            >
-              <vs-select-item
-                :key="index"
-                :value="item.value"
-                :text="item.text"
-                v-for="item,index in typeFilterOptions"
-              />
-            </vs-select>
+    
+             <div class="form-group">
+              <label for="exampleFormControlSelect1">Filtrar</label>
+              <select class="form-control" id="exampleFormControlSelect1" v-model="typeFilter">
+                <option value="Everyone">Todos(as)</option>
+                <option value="Collegues">Colegas</option>
+                <option value="Partners">Compañeros</option>
+                <option value="Employee">Empleados</option>
+                <option value="Other">Otros</option>
+              </select>
+            </div>
+
+
           </div>
         </div>
 
-        <div class="col-1">
+        
 
-        </div>
-
-        <div class="col-lg-3 col-sm-6 mt-2">
-          <div class="ml-5 mt-3">
+        <div class="col-lg-4 col-sm-6 mt-2">
+          <div class="ml-5 " style="margin-top:20px;">
             <div class="kt-portlet__head-wrapper align-middle" style="padding-top:5px !important;">
-              <router-link :to="{name:'create-contact'}">
-                <vs-button color="primary" type="gradient" icon="add">Add new company user</vs-button>
-                <!-- <vs-button color="primary" type="gradient" icon="add">Add new contact</vs-button> -->
-              </router-link>
+
+                     <v-btn color="#673AB7" @click="$router.push({name:'create-contact'});"   dark>
+                      <v-icon left>add</v-icon>
+                    Nuevo usuario</v-btn>
+
+
             </div>
           </div>
         </div>

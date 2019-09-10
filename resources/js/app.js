@@ -40,10 +40,6 @@ import datePicker from 'vue-bootstrap-datetimepicker';
 import Viewer from 'v-viewer'
 import 'viewerjs/dist/viewer.css'
 
-import Vuesax from 'vuesax'
-
-import 'vuesax/dist/vuesax.css' //Vuesax styles
-Vue.use(Vuesax)
 
 
 import 'vuetify-v1/dist/vuetify.min.css' // Ensure you are using css-loader
@@ -102,44 +98,58 @@ Vue.use(VueRouter)
 
 
 let routes = [
+	{ path: '/profile',name:'profile', component: () => import(/* webpackChunkName: "profileChunk" */ './components/profile.vue')},
+	{ path: '/dashboard', component: () => import(/* webpackChunkName: "dashboardChunk" */ './components/DashboardComponent.vue')},
+	{ path: '/innovations', name:'ideaList', component: () => import(/* webpackChunkName: "ideaComponentChunk" */ './components/IdeaComponent.vue') },
+	{ path: '/ideaCreation', name: 'innovations', component: () => import(/* webpackChunkName: "ideaCreationChunk" */ './components/IdeaCreationComponent.vue')},
+	{ path: '/solucion-reto/:id', name: 'solucion-reto', component: () => import(/* webpackChunkName: "solucionChunk" */ './components/Retos/SolucionReto.vue') },
+	{ path: '/innovations/:id',  name:'ver-idea',  component: () => import(/* webpackChunkName: "IdeaViewChunk" */ './components/IdeaViewComponent.vue')},
+	{ path: '/innovations/public/:id', component: () => import(/* webpackChunkName: "publicIdeaChunk" */ './components/PublicIdeaViewComponent.vue') },
+	{ path: '/innovationsEdit/:id', component: () => import(/* webpackChunkName: "ideaEditChunk" */ './components/IdeaEditComponent.vue') },
+	{ path: '/retos', name:'retos', component: () => import(/* webpackChunkName: "retosChunk" */ './components/Retos/RetosIndex.vue')},
+	{ path: '/retos/nuevo', name:'crear-reto',  component: () => import(/* webpackChunkName: "RetosChunk" */ './components/Retos/RetosNuevo.vue')},
+	{ path: '/retos/ver/:id', name:'ver-reto',  component: () => import(/* webpackChunkName: "showRetoChunk" */ './components/Retos/showReto.vue') },
+	{ path: '/retos/ver-public/:id', name:'ver-reto-publico',  component: () => import(/* webpackChunkName: "showRetoPublicoChunk" */ './components/Retos/showRetoPublico.vue') },
+	{ path: '/business', name:'business',component: () => import(/* webpackChunkName: "businessChunk" */ './components/BusinessComponent.vue')},
+	{ path: '/business/users',name:'contacts', component: () => import(/* webpackChunkName: "contactsChunk" */ './components/Business/contacts.vue') },
+	{ path: '/business/users/create-contact',name:'create-contact', component: () => import(/* webpackChunkName: "createContactChunk" */ './components/Business/create-contact.vue') },
+	{ path: '/business/user-profile/:id',name:'contact', component: () => import(/* webpackChunkName: "contactProfileChunk" */ './components/Business/contact-profile.vue') },
+	{ path: '/business/edit-user/:id',name:'edit-contact', component: () => import(/* webpackChunkName: "editContactChunk" */ './components/Business/edit-contact.vue') },
+	{ path: '/business/work-teams',name:'work-teams', component: () => import(/* webpackChunkName: "teamsChunk" */ './components/Business/work-teams-index.vue') },
+    { path: '/business/company',name:'company', component:() => import(/* webpackChunkName: "companyChunk" */ './components/Business/mycompany.vue') },
+	{ path: '/shareInnovation/:id', component: () => import(/* webpackChunkName: "shareChunk" */ './components/ShareInnovationComponent.vue') },
+	{ path: '/categories', name:'categories', component: () => import(/* webpackChunkName: "categoriesChunk" */ './components/Categories.vue') },
+	{ path: '/reportes', name:'reportes', component: () => import(/* webpackChunkName: "reportesChunk" */ './components/Reportes.vue') },
+
+
+
+	/* Componentes sin carga dinamica 
+	
 	{ path: '/profile',name:'profile', component: require('./components/profile.vue').default},
 	{ path: '/dashboard', component: require('./components/DashboardComponent.vue').default},
-
-	//{ path: '/projects', component: require('./components/ProjectComponent.vue').default },
 	{ path: '/innovations', name:'ideaList', component: require('./components/IdeaComponent.vue').default },
 	{ path: '/ideaCreation', name: 'innovations', component: require('./components/IdeaCreationComponent.vue').default},
 	{ path: '/solucion-reto/:id', name: 'solucion-reto', component: require('./components/Retos/SolucionReto.vue').default },
 	{ path: '/innovations/:id',  name:'ver-idea',  component: require('./components/IdeaViewComponent.vue').default},
 	{ path: '/innovations/public/:id', component: require('./components/PublicIdeaViewComponent.vue').default },
 	{ path: '/innovationsEdit/:id', component: require('./components/IdeaEditComponent.vue').default },
-
-	//{ path: '/projects', component: require('./components/ProjectComponent.vue').default },
-	//{ path: '/timesheets', component: require('./components/TimesheetComponent.vue').default },
-	//{ path: '/reports', component: require('./components/ReportComponent.vue').default },
-
 	{ path: '/retos', name:'retos', component: require('./components/Retos/RetosIndex.vue').default},
 	{ path: '/retos/nuevo', name:'crear-reto',  component: require('./components/Retos/RetosNuevo.vue').default},
 	{ path: '/retos/ver/:id', name:'ver-reto',  component: require('./components/Retos/showReto.vue').default },
 	{ path: '/retos/ver-public/:id', name:'ver-reto-publico',  component: require('./components/Retos/showRetoPublico.vue').default },
-
 	{ path: '/business', name:'business',component: require('./components/BusinessComponent.vue').default},
 	{ path: '/business/users',name:'contacts', component: require('./components/Business/contacts.vue').default },
 	{ path: '/business/users/create-contact',name:'create-contact', component: require('./components/Business/create-contact.vue').default },
 	{ path: '/business/user-profile/:id',name:'contact', component: require('./components/Business/contact-profile.vue').default },
 	{ path: '/business/edit-user/:id',name:'edit-contact', component: require('./components/Business/edit-contact.vue').default },
-
 	{ path: '/business/work-teams',name:'work-teams', component: require('./components/Business/work-teams-index.vue').default },
-	//{ path: '/business/retos',name:'retos', component:() => import(/* webpackChunkName: "create-contact" */ './components/Business/retos.vue').default },
     { path: '/business/company',name:'company', component:require( './components/Business/mycompany.vue').default },
-
-
 	{ path: '/shareInnovation/:id', component: require('./components/ShareInnovationComponent.vue').default },
 	{ path: '/categories', name:'categories', component: require('./components/Categories.vue').default },
-
-
 	{ path: '/reportes', name:'reportes', component: require('./components/Reportes.vue').default },
-
-
+	
+	
+	*/
 	
 
 

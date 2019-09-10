@@ -73,6 +73,11 @@ class AdminController extends Controller
             $tPublicos = DB::table('teams')->get();
             $tPrivados = DB::table('teams')->where('creator_id', $creator_id)->get();
 
+
+            
+
+
+
             return response()->json([
 
                 'iPublicas' => count($iPublicas),
@@ -83,6 +88,9 @@ class AdminController extends Controller
                 'rEmpresariales' => count($rEmpresariales),
                 'tPublicos' => count($tPublicos),
                 'tPrivados' => count($tPrivados),
+                'ideas'=>$this->ideas(),
+                'retos'=>$this->retos(),
+                'usuarios'=>'',
 
             ]);
         } else {
@@ -90,6 +98,117 @@ class AdminController extends Controller
                 'msg', 'loginRequired',
             ]);
         }
+    }
+
+    public function retos(){
+
+
+        $user= auth()->user();
+
+        $ideas = DB::table('innovations')
+        ->where('company_id',$user->company_id)->where('type','reto')->orderBy('created_at','DESC')->get();
+
+        $ideasArray = array();
+
+        foreach($ideas as $idea){
+
+              
+                $soluciones = count(DB::table('innovations')->where('reto_id',$idea->id)->get());
+                $comentarios = DB::table('discussions')->where('idea_id',$idea->id)->get();
+
+                $cuenta =0;
+
+                foreach($comentarios as $co){
+
+                    $tempCo = count(DB::table('discussions')->where('id',$co->id)->get());
+
+                    $cuenta = $cuenta + $tempCo;
+
+
+                }
+
+
+
+                $vistas = $idea->views;
+
+
+                $temp = array(
+
+                    'soluciones'=>$soluciones,
+                    'vistas'=>$vistas,
+                    'title'=>$idea->title,
+                    'id'=>$idea->id,
+                    'comentarios'=>$cuenta,
+                );
+
+                array_push($ideasArray,$temp);
+                
+
+        }
+
+        return $ideasArray;
+     
+
+
+    }
+
+
+    public function ideas(){
+
+
+        $user= auth()->user();
+
+        $ideas = DB::table('innovations')
+        ->where('company_id',$user->company_id)->where(function ($query) {
+            $query->where('type', '=', 'solucion')
+                ->orWhere('type', '=', 'idea');
+
+        })->orderBy('created_at','DESC')->get();
+
+        $ideasArray = array();
+
+        foreach($ideas as $idea){
+
+                $megusta = count(DB::table('desireds')->where('innovation_id',$idea->id)->where('type','like')->get());
+                $pulirmas = count(DB::table('desireds')->where('innovation_id',$idea->id)->where('type','dislike')->get());
+                $accion = count(DB::table('desireds')->where('innovation_id',$idea->id)->where('type','action')->get());
+                $vistas = $idea->views;
+
+                
+                $comentarios = DB::table('discussions')->where('idea_id',$idea->id)->get();
+
+                $cuenta =0;
+
+                foreach($comentarios as $co){
+
+                    $tempCo = count(DB::table('discussions')->where('id',$co->id)->get());
+
+                    $cuenta = $cuenta + $tempCo;
+
+
+                }
+
+
+                $temp = array(
+
+                    'megusta'=>$megusta,
+                    'pulirmas'=>$pulirmas,
+                    'accion'=>$accion,
+                    'vistas'=>$vistas,
+                    'title'=>$idea->title,
+                    'id'=>$idea->id,
+                    'comentarios'=>$cuenta
+                );
+
+                array_push($ideasArray,$temp);
+                
+
+        }
+
+        return $ideasArray;
+     
+
+
     }
 
     public function getData()
@@ -174,7 +293,8 @@ class AdminController extends Controller
                 'sumaSemanal'=>$sumaSemanal,
                 'usuariosSemana'=>$usuariosSemana,
                 'votosSemana'=>$votosSemana,
-                'comentariosSemana'=>$comentariosSemana
+                'comentariosSemana'=>$comentariosSemana,
+                'semana'=>$this->semana(),
 
             ]);
         } else {
@@ -182,6 +302,104 @@ class AdminController extends Controller
                 'msg', 'loginRequired',
             ]);
         }
+    }
+
+
+    public function semana(){
+
+        $actualDate= Carbon::now();
+
+        
+
+        $date1 = Carbon::now();
+        $date2 = Carbon::now();
+        $date3 = Carbon::now();
+        $date4 = Carbon::now();
+        $date5 = Carbon::now();
+        $date6 = Carbon::now();
+        $date7 = Carbon::now();
+
+      
+        
+        
+        $nD = $date1->dayOfWeekIso;
+
+      
+        if($nD==1){
+            //Lunes
+
+            $monday = $date1;
+            $tuesday = $date2->addDay();
+            $wednesday = $date3->addDays(2);
+            $thursday= $date4->addDays(3);
+            $friday= $date5->addDays(4);
+            $saturday= $date6->addDays(5);
+            $sunday= $date7->addDays(6);
+
+        }elseif(intval($nD==2)){
+            //Martes
+            $monday = $date1->subDay();
+            $tuesday = $date2;
+            $wednesday = $date3->addDay();
+            $thursday= $date4->addDays(2);
+            $friday= $date5->addDays(3);
+            $saturday= $date6->addDays(4);
+            $sunday= $date7->addDays(5);
+
+        }
+        elseif(intval($nD==3)){
+            //Miercoles
+            
+            $monday = $date1->subDays(2);
+            $tuesday = $date2->subDay();
+            $wednesday = $date3;
+            $thursday= $date4->addDay();
+            $friday= $date5->addDays(2);
+            $saturday= $date6->addDays(3);
+            $sunday= $date7->addDays(4);
+
+           
+
+        }elseif($nD==4){
+            //Jueves
+            $monday = $date1->subDays(3);
+            $tuesday = $date2->subDays(2);
+            $wednesday = $date3->subDay();
+            $thursday= $date4;
+            $friday= $date5->addDay();
+            $saturday= $date6->addDays(2);
+            $sunday= $date7->addDays(3);
+        }elseif($nD==5){
+            //Viernes
+            $monday = $date1->subDays(4);
+            $tuesday = $date2->subDays(3);
+            $wednesday = $date3->subDays(2);
+            $thursday= $date4->subDay();
+            $friday= $date5;
+            $saturday= $date6->addDay();
+            $sunday= $date7->addDays(2);
+        }elseif($nD==6){
+            //Sabado
+            $monday = $date1->subDays(5);
+            $tuesday = $date2->subDays(4);
+            $wednesday = $date3->subDays(3);
+            $thursday= $date4->subDays(2);
+            $friday= $date5->subDay();
+            $saturday= $date6;
+            $sunday= $date7->addDay();
+        }else{
+            //Domingo
+            $monday = $date1->subDays(6);
+            $tuesday = $date2->subDays(5);
+            $wednesday = $date3->subDays(4);
+            $thursday= $date4->subDays(3);
+            $friday= $date5->subDays(2);
+            $saturday= $date6->subDay();
+            $sunday= $date7;
+        }
+        
+
+        return $monday->day.' '.ucfirst($monday->locale('es')->monthName).' - '.$sunday->day.' '.ucfirst($sunday->locale('es')->monthName);
     }
 
     
@@ -315,13 +533,13 @@ class AdminController extends Controller
 
 		$usuariosSemana = array(
 
-			'Lunes '.$monday->day.' '.ucfirst($monday->locale('es')->monthName)   =>$sumaLunes,
+			'Lunes '   =>$sumaLunes,
 			'Martes'=>$sumaMartes,
 			'Miércoles'=>$sumaMiercoles,
 			'Jueves'=>$sumaJueves,
 			'Viernes'=>$sumaViernes,
 			'Sábado'=>$sumaSabado,
-			'Domingo '.$sunday->day.' '.ucfirst($sunday->locale('es')->monthName)  =>$sumaDomingo,
+			'Domingo '  =>$sumaDomingo,
 		);
 
 		return $usuariosSemana;
@@ -463,13 +681,13 @@ class AdminController extends Controller
 
 		$usuariosSemana = array(
 
-			'Lunes '.$monday->day.' '.ucfirst($monday->locale('es')->monthName)   =>$sumaLunes,
+			'Lunes '   =>$sumaLunes,
 			'Martes'=>$sumaMartes,
 			'Miércoles'=>$sumaMiercoles,
 			'Jueves'=>$sumaJueves,
 			'Viernes'=>$sumaViernes,
 			'Sábado'=>$sumaSabado,
-			'Domingo '.$sunday->day.' '.ucfirst($sunday->locale('es')->monthName)  =>$sumaDomingo,
+			'Domingo ' =>$sumaDomingo,
 		);
 
 		return $usuariosSemana;
@@ -597,13 +815,13 @@ class AdminController extends Controller
 
 		$usuariosSemana = array(
 
-			'Lunes '.$monday->day.' '.ucfirst($monday->locale('es')->monthName)   =>$sumaLunes,
+			'Lunes ' =>$sumaLunes,
 			'Martes'=>$sumaMartes,
 			'Miércoles'=>$sumaMiercoles,
 			'Jueves'=>$sumaJueves,
 			'Viernes'=>$sumaViernes,
 			'Sábado'=>$sumaSabado,
-			'Domingo '.$sunday->day.' '.ucfirst($sunday->locale('es')->monthName)  =>$sumaDomingo,
+			'Domingo '  =>$sumaDomingo,
 		);
 
 		return $usuariosSemana;
@@ -759,13 +977,13 @@ class AdminController extends Controller
 
 		$sumaSemanal = array(
 
-			'Lunes '.$monday->day.' '.ucfirst($monday->locale('es')->monthName)   =>$sumaLunes,
+			'Lunes '  =>$sumaLunes,
 			'Martes'=>$sumaMartes,
 			'Miércoles'=>$sumaMiercoles,
 			'Jueves'=>$sumaJueves,
 			'Viernes'=>$sumaViernes,
 			'Sábado'=>$sumaSabado,
-			'Domingo '.$sunday->day.' '.ucfirst($sunday->locale('es')->monthName)  =>$sumaDomingo,
+			'Domingo '  =>$sumaDomingo,
 		);
 
 		return $sumaSemanal;

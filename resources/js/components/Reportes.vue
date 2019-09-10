@@ -1,6 +1,7 @@
 <template>
   <div style="min-height:80vh;">
     <div class="container-fluid">
+
       <div class="row">
         <div class="col-lg-6 col-sm-12">
           <h4>Ideas</h4>
@@ -19,50 +20,65 @@
       </div>
 
       <br>
+
       <div class="row">
-        <div class="col-lg-12" style="background-color:white;">
-          <h4>Ideas por semana</h4>
+        <div class="col-12">
+          <center>
+             <h4>{{semana}}</h4>
+          </center>
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+
+    
+      
+        <div class="col-lg-6 col-sm-12" style="background-color:white;">
+          <h4>Ideas </h4>
           <br>
           <area-chart :data="retosSemana" :download="true" :library="{backgroundColor: '#fff'}"></area-chart>
         </div>
-      </div>
+      
 
-        <br>
+       
 
-      <div class="row">
-        <div class="col-12" style="background-color:white;">
-          <h4>Ingresos empleados por semana</h4>
+   
+        <div class="col-lg-6 col-sm-12" style="background-color:white;">
+          <h4>Ingresos usuarios </h4>
 
           <br>
           <area-chart :data="usuariosSemana" :download="true"></area-chart>
 
         </div>
+      
+
       </div>
 
       <br>
 
       <div class="row">
-        <div class="col-12" style="background-color:white;">
-          <h4>Votos por semana</h4>
+
+   
+        <div class="col-lg-6 col-sm-12" style="background-color:white;">
+          <h4>Votos </h4>
 
           <br>
           <area-chart :data="votosSemana" :download="true"></area-chart>
 
         </div>
-      </div>
+      
 
-      <br>
-
-      <div class="row">
-        <div class="col-12" style="background-color:white;">
-          <h4>Comentarios por semana</h4>
+     
+        <div class="col-lg-6 col-sm-12" style="background-color:white;">
+          <h4>Comentarios </h4>
 
           <br>
           <area-chart :data="comentariosSemana" :download="true"></area-chart>
 
         </div>
-      </div>
-
+     
+ </div>
     
 
     </div>
@@ -82,6 +98,7 @@ export default {
            usuariosSemana:{},
            comentariosSemana:{},
            votosSemana:{},
+           semana:''
           
       }
     },
@@ -96,6 +113,7 @@ export default {
                 this.usuariosSemana  = response.data.usuariosSemana
                 this.votosSemana = response.data.votosSemana
                 this.comentariosSemana = response.data.comentariosSemana
+                this.semana = response.data.semana
             }
         ).catch(error =>{
             console.log(error)
