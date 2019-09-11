@@ -88,7 +88,7 @@
                   <br>
 
                   
-                    <v-toolbar flat color="#CFD8DC">
+                    <v-toolbar flat color="#ECEFF1">
                     <v-toolbar-title>Ideas</v-toolbar-title>
                    
                   </v-toolbar>
@@ -117,9 +117,61 @@
 
         <br />
 
+              <div class="row">
+                <div class="col-12">
+
+
+                  
+                    <v-toolbar flat color="#ECEFF1">
+                    <v-toolbar-title>Soluciones</v-toolbar-title>
+                    <v-spacer></v-spacer>
+                    <v-text-field
+                      v-model="search"
+                      append-icon="search"
+                      label="Filtra por nombre de reto..."
+                      single-line
+                      hide-details
+                    ></v-text-field>
+                   
+                  </v-toolbar>
+                  <v-data-table
+                    :headers="headersSoluciones"
+                    :items="soluciones"
+                    class="elevation-1"
+                    :search="search"
+                    >
+                    <template v-slot:items="props">
+                      <td>{{ props.item.title }}</td>
+                
+                      <td class="text-xs-left">{{ props.item.megusta }}</td>
+                      <td class="text-xs-left">{{ props.item.pulirmas }}</td>
+                      <td class="text-xs-left">{{ props.item.accion }}</td>
+                      <td class="text-xs-left">{{ props.item.total }}</td>
+                      <td class="text-xs-left">{{ props.item.comentarios }}</td>
+                      <td class="text-xs-left">{{ props.item.vistas }}</td>
+                      <td class="text-xs-left">{{ props.item.retoName }}</td>
+                  
+                    </template>
+
+                     <template v-slot:no-results>
+                      <v-alert :value="true" color="error" icon="warning">
+                        No existen retos con el nombre "{{ search }}".
+                      </v-alert>
+                    </template>
+
+
+                  </v-data-table>
+                </div>
+              </div>
+    
+
+        <!-- Fin tabla retos -->
+
+        <br />
+
             <div class="row">
                 <div class="col-12">
-                  <v-toolbar flat color="#CFD8DC">
+                  <v-toolbar flat color="#ECEFF1">
                     <v-toolbar-title>Retos</v-toolbar-title>
                    
                   </v-toolbar>
@@ -147,7 +199,7 @@
 
               <div class="row">
                 <div class="col-12">
-                    <v-toolbar flat color="#CFD8DC">
+                    <v-toolbar flat color="#ECEFF1">
                     <v-toolbar-title>Usuarios</v-toolbar-title>
                    
                   </v-toolbar>
@@ -199,6 +251,7 @@ export default {
 
   data() {
     return {
+      search:'',
       innovations: "",
       contacts: "",
       workteams: "",
@@ -214,6 +267,7 @@ export default {
       userType: "",
 
       ideas: {},
+      soluciones:{},
       retos: {},
       usuarios: {},
        headersIdeas: [
@@ -229,6 +283,23 @@ export default {
            { text: 'Total votos', value: 'total' },
           { text: 'Comentarios', value: 'comentarios' },
           { text: 'Vistas', value: 'vistas' },
+        
+        ],
+
+          headersSoluciones: [
+          {
+            text: 'Nombre',
+            align: 'left',
+            sortable: false,
+            value: 'title'
+          },
+          { text: 'Me gusta', value: 'megusta' },
+          { text: 'Pulir más', value: 'pulirmas' },
+          { text: 'Acción de mejora', value: 'accion' },
+           { text: 'Total votos', value: 'total' },
+          { text: 'Comentarios', value: 'comentarios' },
+          { text: 'Vistas', value: 'vistas' },
+          { text: 'Reto aplicado', value: 'retoName' },
         
         ],
        headersRetos: [
@@ -283,6 +354,7 @@ export default {
             this.userType = response.data.userType;
 
             this.ideas = response.data.ideas;
+            this.soluciones = response.data.soluciones;
 
             this.retos = response.data.retos;
 

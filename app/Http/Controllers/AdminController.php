@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
 use Log;
+use App\Innovation;
 
 class AdminController extends Controller
 {
@@ -115,6 +116,7 @@ class AdminController extends Controller
                 'ideas'=>$this->ideas(),
                 'retos'=>$this->retos(),
                 'usuarios'=>$this->usuarios(),
+                'soluciones'=>$this->soluciones(),
                 'userType'=>$userType
 
             ]);
@@ -123,6 +125,73 @@ class AdminController extends Controller
                 'msg', 'loginRequired',
             ]);
         }
+    }
+
+    public function soluciones(){
+
+        $user= auth()->user();
+
+        $ideas = DB::table('innovations')
+        ->where('company_id',$user->company_id)->where(function ($query) {
+            $query->where('type', '=', 'solucion');
+               
+
+        })->orderBy('created_at','DESC')->get();
+
+        $ideasArray = array();
+
+        foreach($ideas as $idea){
+
+                $megusta = count(DB::table('desireds')->where('innovation_id',$idea->id)->where('type','like')->get());
+                $pulirmas = count(DB::table('desireds')->where('innovation_id',$idea->id)->where('type','dislike')->get());
+                $accion = count(DB::table('desireds')->where('innovation_id',$idea->id)->where('type','action')->get());
+                $vistas = intval($idea->views);
+
+                //$reto = Innovation::find(intval($idea->reto_id));
+                $reto = DB::table('innovations')->where('id',intval($idea->reto_id))->get();
+                //$reto = DB::table('innovations')->select(DB::raw('title as titulo'))->where('id',$reto_id)->first();
+                //$retoName = $reto->get(0)->title;
+
+                foreach($reto as $r){
+                    $retoName = $r->title;
+                }
+
+                
+                $comentarios = DB::table('discussions')->where('idea_id',$idea->id)->get();
+
+                $cuenta =count($comentarios);
+
+                foreach($comentarios as $co){
+
+                    $tempCo = count(DB::table('discussions')->where('id',$co->id)->get());
+
+                    $cuenta = $cuenta + $tempCo;
+
+
+                }
+
+                $total = intval($megusta) + intval($pulirmas) + intval($accion);
+
+
+                $temp = array(
+
+                    'megusta'=>$megusta,
+                    'pulirmas'=>$pulirmas,
+                    'accion'=>$accion,
+                    'vistas'=>$vistas,
+                    'title'=>$idea->title,
+                    'id'=>$idea->id,
+                    'comentarios'=>$cuenta,
+                    'total'=>$total,
+                    'retoName'=>$retoName
+                );
+
+                array_push($ideasArray,$temp);
+                
+
+        }
+
+        return $ideasArray;
     }
 
     public function usuarios(){
@@ -251,8 +320,8 @@ class AdminController extends Controller
 
         $ideas = DB::table('innovations')
         ->where('company_id',$user->company_id)->where(function ($query) {
-            $query->where('type', '=', 'solucion')
-                ->orWhere('type', '=', 'idea');
+            $query->where('type', '=', 'idea');
+               
 
         })->orderBy('created_at','DESC')->get();
 
