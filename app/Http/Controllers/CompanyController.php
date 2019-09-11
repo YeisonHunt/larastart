@@ -25,9 +25,9 @@ class CompanyController extends Controller
 
             $user = Auth::user();
 
-						$company = Business::find($user->company_id);
-						$name= $company->name;
-						$logo= $company->logo;
+                $company = Business::find($user->company_id);
+                $name= $company->name;
+                $logo= $company->logo;
 
             if($user->account_type=='business'){
 

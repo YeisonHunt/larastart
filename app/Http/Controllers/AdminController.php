@@ -74,7 +74,31 @@ class AdminController extends Controller
             $tPrivados = DB::table('teams')->where('creator_id', $creator_id)->get();
 
 
-            
+            $user = Auth::user();
+
+            $company = Business::find($user->company_id);
+            $name= $company->name;
+            $logo= $company->logo;
+
+            if($user->account_type=='business'){
+
+
+
+                    $userType='admin';
+             
+            }elseif($user->account_type=='personal'){
+
+
+
+                    $userType='employee';
+               
+
+            }else {
+            	
+                    $userType='employee';
+                
+            }
+
 
 
 
@@ -91,6 +115,7 @@ class AdminController extends Controller
                 'ideas'=>$this->ideas(),
                 'retos'=>$this->retos(),
                 'usuarios'=>$this->usuarios(),
+                'userType'=>$userType
 
             ]);
         } else {
