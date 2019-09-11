@@ -93,6 +93,7 @@
                <h5>Ideas</h5>
              </div>
            </div>
+           <br>
          </div>
           <div class="col-12" style="  overflow: scroll;  background-color:#F7F8FB; box-shadow: 0 5px 5px rgba(0,0,0,0.05), 0 3px 3px rgba(0,0,0,0.05);">
             <table class="table  table-striped table-hover ">
@@ -103,8 +104,9 @@
                     <th scope="col">Me gusta</th>
                     <th scope="col">Pulir más</th>
                     <th scope="col">Acción de mejora</th>
-                      <th scope="col">Comentarios</th>
+                  
                     <th scope="col">Total votos</th>
+                        <th scope="col">Comentarios</th>
                    
                     <th scope="col">Vistas</th>
                     
@@ -114,10 +116,12 @@
                   <tr v-for="(idea,index) in ideas" :key="idea.id">
                     <th scope="row" >{{(idea.id)}}</th>
                     <td>{{idea.title}}</td>
-                 
+                    <td>{{idea.megusta}}</td>
+                    <td>{{idea.pulirmas}}</td>
                     <td>{{idea.accion}}</td>
-                    <td>{{idea.comentarios}}</td>
-                    <td>{{idea.megusta + idea.pulirmas + idea.accion}}</td>
+                   
+                    <td>{{ idea.total}}</td>
+                     <td>{{idea.comentarios}}</td>
                     <td>{{idea.vistas}}</td>
                     
                   </tr>
@@ -134,6 +138,7 @@
 
         <div class="row">
           <h5>Retos</h5>
+          <br>
           <br>
            <div class="col-12" style="background-color:#F7F8FB; box-shadow: 0 5px 5px rgba(0,0,0,0.05), 0 3px 3px rgba(0,0,0,0.05);">
             <table class="table  table-striped table-hover ">
@@ -170,8 +175,9 @@
         <div class="row">
           <h5>Usuarios</h5>
           <br>
+          <br>
            <div class="col-12" style="background-color:#F7F8FB; box-shadow: 0 5px 5px rgba(0,0,0,0.05), 0 3px 3px rgba(0,0,0,0.05);">
-            <table class="table table-hover ">
+            <table class="table  table-striped table-hover  ">
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">#</th>
@@ -184,8 +190,22 @@
                     <th scope="col">Retos</th>
                   </tr>
                 </thead>
-                <tbody>
-            
+                    <tbody  style="font-size:15px; !important">
+                  <tr v-for="user in usuarios" :key="user.id">
+                    <th scope="row" >{{(user.id)}}</th>
+                    <td>{{user.nombre}}</td>
+                    <td>{{user.puntos}}</td>
+                    <td>{{user.votos}}</td>
+                    <td>{{user.comentarios}}</td>
+                    <td>{{user.ingresos}}</td>
+                    <td>{{user.ideas}}</td>
+                    <td>{{user.retos}}</td>
+
+               
+                 
+                    
+                  </tr>
+               
                 </tbody>
               </table>
               

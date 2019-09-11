@@ -90,7 +90,7 @@ class AdminController extends Controller
                 'tPrivados' => count($tPrivados),
                 'ideas'=>$this->ideas(),
                 'retos'=>$this->retos(),
-                'usuarios'=>'',
+                'usuarios'=>$this->usuarios(),
 
             ]);
         } else {
@@ -98,6 +98,72 @@ class AdminController extends Controller
                 'msg', 'loginRequired',
             ]);
         }
+    }
+
+    public function usuarios(){
+
+        
+        $user= auth()->user();
+
+        $ideas = DB::table('users')
+        ->where('company_id',$user->company_id)->orderBy('created_at','DESC')->get();
+
+        $ideasArray = array();
+
+        foreach($ideas as $idea){
+
+              
+
+                $puntos= count(DB::table('puntos')->where('user_id',$idea->id)->get());
+                $soluciones = count(DB::table('innovations')->where('reto_id',$idea->id)->get());      
+                $comentarios = DB::table('discussions')->where('user_id',$idea->id)->get();
+
+                $cuenta =count($comentarios);
+
+                foreach($comentarios as $co){
+
+                    $tempCo = count(DB::table('discussions')->where('id',$co->id)->get());
+                    $cuenta = $cuenta + $tempCo;
+
+                }
+
+            
+
+                $ideas = count(DB::table('innovations')->where(function ($query) {
+                    $query->where('innovations.type', '=', 'solucion')
+                        ->orWhere('innovations.type', '=', 'idea');
+                })->where('created_by',$idea->id)->get());  
+
+                $retos = count(DB::table('innovations')->where('type','reto')->where('created_by',$idea->id)->get());  
+                
+                
+                $votos = count(DB::table('desireds')->where('user_id',$idea->id)->get());
+
+
+
+
+                
+
+
+                $temp = array(
+
+                    'nombre'=>$idea->name,
+                    'puntos'=>$puntos,
+                    'id'=>$idea->id,
+                    'comentarios'=>$cuenta,
+                    'ingresos'=>$idea->entries,
+                    'ideas'=>$ideas,
+                    'retos'=>$retos,
+                    'votos'=>$votos
+                );
+
+                array_push($ideasArray,$temp);
+                
+
+        }
+
+        return $ideasArray;
+     
     }
 
     public function retos(){
@@ -116,7 +182,7 @@ class AdminController extends Controller
                 $soluciones = count(DB::table('innovations')->where('reto_id',$idea->id)->get());
                 $comentarios = DB::table('discussions')->where('idea_id',$idea->id)->get();
 
-                $cuenta =0;
+                $cuenta =count($comentarios);
 
                 foreach($comentarios as $co){
 
@@ -172,12 +238,12 @@ class AdminController extends Controller
                 $megusta = count(DB::table('desireds')->where('innovation_id',$idea->id)->where('type','like')->get());
                 $pulirmas = count(DB::table('desireds')->where('innovation_id',$idea->id)->where('type','dislike')->get());
                 $accion = count(DB::table('desireds')->where('innovation_id',$idea->id)->where('type','action')->get());
-                $vistas = $idea->views;
+                $vistas = intval($idea->views);
 
                 
                 $comentarios = DB::table('discussions')->where('idea_id',$idea->id)->get();
 
-                $cuenta =0;
+                $cuenta =count($comentarios);
 
                 foreach($comentarios as $co){
 
@@ -188,6 +254,8 @@ class AdminController extends Controller
 
                 }
 
+                $total = intval($megusta) + intval($pulirmas) + intval($accion);
+
 
                 $temp = array(
 
@@ -197,7 +265,8 @@ class AdminController extends Controller
                     'vistas'=>$vistas,
                     'title'=>$idea->title,
                     'id'=>$idea->id,
-                    'comentarios'=>$cuenta
+                    'comentarios'=>$cuenta,
+                    'total'=>$total,
                 );
 
                 array_push($ideasArray,$temp);

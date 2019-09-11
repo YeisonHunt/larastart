@@ -94,7 +94,7 @@ class IdeasController extends Controller
         $punto = DB::table('puntos')->where('idea_id',$idIdea)->where('user_id',$user->id)->where('tipo','creacion_idea')->delete();
       
 
-        Log::info('todo borrado correctamente');
+
 
 
 
@@ -724,7 +724,7 @@ class IdeasController extends Controller
 
 											);
 
-											Log::info($ideaCorporate);
+									
 
 											array_push($ideasAllCorporate, $ideaCorporate);
 
@@ -1166,7 +1166,7 @@ class IdeasController extends Controller
                     $env_url = substr_replace(env('APP_URL'),"", -1);
                     $imgUrl = $env_url.$url;
 
-                    Log::info('Imagen cargada');
+                  
 
                    $idea=  Innovation::create([
 
@@ -1189,7 +1189,7 @@ class IdeasController extends Controller
                     
                 } else {
                     
-                    Log::info('Imagen predeterminada');
+                   
                     
                    $idea=  Innovation::create([
 
@@ -1293,6 +1293,9 @@ class IdeasController extends Controller
 
         $vacio= array();
         $idea = Innovation::find($id);
+
+        $idea->views = $idea->views + 1;
+        $idea->save();
 
 
         if (Auth::check()) {

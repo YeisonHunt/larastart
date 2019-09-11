@@ -8,7 +8,7 @@ class Ideas extends Model
 {
     
        protected $fillable = [
-        'ideatxt', 'bugorfeaturetxt','id','img','description','views'
+        'ideatxt', 'bugorfeaturetxt','id','img','description','views',
     ];
 
 }
