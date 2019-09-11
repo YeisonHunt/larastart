@@ -86,6 +86,7 @@
 
                   <h4>Estadísticas empresariales</h4>
                   <br>
+
                   
                     <v-toolbar flat color="#CFD8DC">
                     <v-toolbar-title>Ideas</v-toolbar-title>
@@ -183,27 +184,6 @@
   height: 500px;
 }
 
-table tbody {
-  display: block;
-  max-height: 450px;
-  overflow-y: scroll;
-}
-table thead,
-table tbody tr {
-  display: table;
-  width: 100%;
-  table-layout: fixed;
-}
-
-.table-striped > tbody > tr:nth-child(2n + 1) > td,
-.table-striped > tbody > tr:nth-child(2n + 1) > th {
-  background-color: #eceff1;
-}
-
-.table-hover tbody tr:hover td,
-.table-hover tbody tr:hover th {
-  background-color: #b3e5fc;
-}
 </style>
 
 
