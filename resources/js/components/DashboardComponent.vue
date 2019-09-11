@@ -83,6 +83,10 @@
         <br />
               <div class="row">
                 <div class="col-12">
+
+                  <h4>Estadísticas empresariales</h4>
+                  <br>
+                  
                     <v-toolbar flat color="#CFD8DC">
                     <v-toolbar-title>Ideas</v-toolbar-title>
                    
