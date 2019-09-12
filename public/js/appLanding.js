@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -3074,18 +3074,210 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       tab: null,
       pricingMensual: "",
       pricingAnual: "",
-      baseUrl: window.baseUrl
+      baseUrl: window.baseUrl,
+      selection: 1,
+      loading: false,
+      rating1: 4,
+      rating2: 4.5,
+      rating3: 5,
+      c1: true,
+      c2: true,
+      item: null,
+      items: [{
+        text: 'Hasta 50 Usuarios en modo empresa',
+        icon: 'people'
+      }, {
+        text: 'Gestión de ideas',
+        icon: 'bubble_chart'
+      }, {
+        text: 'Creación de retos ',
+        icon: 'dashboard'
+      }, {
+        text: 'Retroalimentación de ideas ',
+        icon: 'feedback'
+      }],
+      itemsTeams: [{
+        text: 'Todos los beneficios del plan básico',
+        icon: 'add'
+      }, {
+        text: 'Hasta 150 Usuarios en modo empresa',
+        icon: 'people'
+      }, {
+        text: 'Correos de notificación',
+        icon: 'email'
+      }, {
+        text: 'Estadísticas ',
+        icon: 'trending_up'
+      }],
+      itemsCorporate: [{
+        text: 'Todos los beneficios del plan Equipos',
+        icon: 'add'
+      }, {
+        text: 'Usuarios ilimitados en modo empresa',
+        icon: 'people'
+      }, {
+        text: 'Permisos personalizados para clientes',
+        icon: 'build'
+      }, {
+        text: 'Modo de maduración de ideas ',
+        icon: 'done'
+      }]
     };
   },
   methods: {
     goRegister: function goRegister() {
       window.location.href = baseUrl + "register";
+    },
+    reserve: function reserve() {
+      var _this = this;
+
+      this.loading = true;
+      setTimeout(function () {
+        _this.loading = false;
+        window.location.href = baseUrl + "register";
+      }, 1000);
     }
   },
   mounted: function mounted() {
@@ -7650,7 +7842,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css":
 /*!***********************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--7-1!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vuetify/dist/vuetify.min.css ***!
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vuetify/dist/vuetify.min.css ***!
   \***********************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -7669,7 +7861,7 @@ exports.push([module.i, "@charset \"UTF-8\";\n/*!\n* Vuetify v2.0.7\n* Forged by
 
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/landing3/global-ideas.vue?vue&type=style&index=0&lang=css&":
 /*!***************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/landing3/global-ideas.vue?vue&type=style&index=0&lang=css& ***!
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/landing3/global-ideas.vue?vue&type=style&index=0&lang=css& ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -7688,7 +7880,7 @@ exports.push([module.i, "\n.lightbox {\r\n    box-shadow: 0 0 20px inset rgba(0,
 
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/landing3/pricing.vue?vue&type=style&index=0&lang=css&":
 /*!**********************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/landing3/pricing.vue?vue&type=style&index=0&lang=css& ***!
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/landing3/pricing.vue?vue&type=style&index=0&lang=css& ***!
   \**********************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -48781,13 +48973,13 @@ exports.getClusterConfig = function (clusterName) {
 
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/landing3/global-ideas.vue?vue&type=style&index=0&lang=css&":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/landing3/global-ideas.vue?vue&type=style&index=0&lang=css& ***!
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/landing3/global-ideas.vue?vue&type=style&index=0&lang=css& ***!
   \*******************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--7-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./global-ideas.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/landing3/global-ideas.vue?vue&type=style&index=0&lang=css&");
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./global-ideas.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/landing3/global-ideas.vue?vue&type=style&index=0&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -48811,13 +49003,13 @@ if(false) {}
 
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/landing3/pricing.vue?vue&type=style&index=0&lang=css&":
 /*!**************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/landing3/pricing.vue?vue&type=style&index=0&lang=css& ***!
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/landing3/pricing.vue?vue&type=style&index=0&lang=css& ***!
   \**************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--7-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./pricing.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/landing3/pricing.vue?vue&type=style&index=0&lang=css&");
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./pricing.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/landing3/pricing.vue?vue&type=style&index=0&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -51077,72 +51269,207 @@ var render = function() {
                                                   {
                                                     staticClass: "mx-auto",
                                                     attrs: {
-                                                      color:
-                                                        "blue-grey lighten-5"
+                                                      loading: _vm.loading,
+                                                      "max-width": "374"
                                                     }
                                                   },
                                                   [
+                                                    _c("v-img", {
+                                                      attrs: {
+                                                        height: "250",
+                                                        src:
+                                                          _vm.baseUrl +
+                                                          "img/pricing/personal.jpg"
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
                                                     _c("v-card-title", [
-                                                      _vm._v("Gratis")
+                                                      _vm._v("Plan Básico")
                                                     ]),
                                                     _vm._v(" "),
                                                     _c(
                                                       "v-card-text",
-                                                      {
-                                                        staticClass:
-                                                          "letraMediana"
-                                                      },
                                                       [
-                                                        _vm._v(
-                                                          "\r\n                            Hasta\r\n                            "
+                                                        _c(
+                                                          "v-row",
+                                                          {
+                                                            staticStyle: {
+                                                              "padding-left":
+                                                                "8px"
+                                                            }
+                                                          },
+                                                          [
+                                                            _c("v-rating", {
+                                                              attrs: {
+                                                                color:
+                                                                  "#FFB300",
+                                                                "half-increments":
+                                                                  "",
+                                                                dense: "",
+                                                                size: "14",
+                                                                "empty-icon":
+                                                                  "star_border",
+                                                                "half-icon":
+                                                                  "star_half",
+                                                                "full-icon":
+                                                                  "star",
+                                                                readonly: ""
+                                                              },
+                                                              model: {
+                                                                value:
+                                                                  _vm.rating1,
+                                                                callback: function(
+                                                                  $$v
+                                                                ) {
+                                                                  _vm.rating1 = $$v
+                                                                },
+                                                                expression:
+                                                                  "rating1"
+                                                              }
+                                                            })
+                                                          ],
+                                                          1
                                                         ),
-                                                        _c("b", [_vm._v("50")]),
-                                                        _vm._v(
-                                                          " contactos\r\n                            "
-                                                        ),
-                                                        _c("br"),
-                                                        _vm._v(
-                                                          "Hasta\r\n                            "
-                                                        ),
-                                                        _c("b", [
-                                                          _vm._v("200")
-                                                        ]),
-                                                        _vm._v(
-                                                          " ideas\r\n                            "
-                                                        ),
-                                                        _c("br"),
                                                         _vm._v(" "),
-                                                        _c("br"),
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "my-4 subtitle-1 black--text"
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\r\n                                  $ • Gratis, para siempre.\r\n                                "
+                                                            )
+                                                          ]
+                                                        ),
                                                         _vm._v(" "),
-                                                        _c("v-icon", [
-                                                          _vm._v(
-                                                            "mdi-square-inc-cash"
-                                                          )
-                                                        ]),
-                                                        _vm._v(
-                                                          "  Gratis de por vida\r\n                          "
+                                                        _c(
+                                                          "div",
+                                                          [
+                                                            _c(
+                                                              "v-list",
+                                                              {
+                                                                attrs: {
+                                                                  dense: ""
+                                                                }
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "v-subheader",
+                                                                  [
+                                                                    _vm._v(
+                                                                      "¿ Qué contiene este plan ?"
+                                                                    )
+                                                                  ]
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "v-list-item-group",
+                                                                  {
+                                                                    attrs: {
+                                                                      color:
+                                                                        "primary"
+                                                                    }
+                                                                  },
+                                                                  _vm._l(
+                                                                    _vm.items,
+                                                                    function(
+                                                                      item,
+                                                                      i
+                                                                    ) {
+                                                                      return _c(
+                                                                        "v-list-item",
+                                                                        {
+                                                                          key: i
+                                                                        },
+                                                                        [
+                                                                          _c(
+                                                                            "v-list-item-icon",
+                                                                            [
+                                                                              _c(
+                                                                                "v-icon",
+                                                                                {
+                                                                                  domProps: {
+                                                                                    textContent: _vm._s(
+                                                                                      item.icon
+                                                                                    )
+                                                                                  }
+                                                                                }
+                                                                              )
+                                                                            ],
+                                                                            1
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " "
+                                                                          ),
+                                                                          _c(
+                                                                            "v-list-item-content",
+                                                                            [
+                                                                              _c(
+                                                                                "v-list-item-title",
+                                                                                {
+                                                                                  domProps: {
+                                                                                    textContent: _vm._s(
+                                                                                      item.text
+                                                                                    )
+                                                                                  }
+                                                                                }
+                                                                              )
+                                                                            ],
+                                                                            1
+                                                                          )
+                                                                        ],
+                                                                        1
+                                                                      )
+                                                                    }
+                                                                  ),
+                                                                  1
+                                                                )
+                                                              ],
+                                                              1
+                                                            )
+                                                          ],
+                                                          1
                                                         )
                                                       ],
                                                       1
                                                     ),
                                                     _vm._v(" "),
+                                                    _c("v-divider", {
+                                                      staticClass: "mx-2"
+                                                    }),
+                                                    _vm._v(" "),
                                                     _c(
                                                       "v-card-actions",
+                                                      {
+                                                        staticClass:
+                                                          "justify-center"
+                                                      },
                                                       [
                                                         _c(
                                                           "v-btn",
                                                           {
-                                                            attrs: { text: "" },
+                                                            attrs: {
+                                                              color: " ",
+                                                              loading:
+                                                                _vm.loading
+                                                            },
                                                             on: {
-                                                              click:
-                                                                _vm.goRegister
+                                                              click: _vm.reserve
                                                             }
                                                           },
-                                                          [_vm._v("Comenzar")]
+                                                          [
+                                                            _vm._v(
+                                                              "\r\n                                      Registrarme ahora\r\n                                    "
+                                                            )
+                                                          ]
                                                         )
                                                       ],
                                                       1
-                                                    )
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c("br")
                                                   ],
                                                   1
                                                 )
@@ -51165,74 +51492,209 @@ var render = function() {
                                                   {
                                                     staticClass: "mx-auto",
                                                     attrs: {
-                                                      color: "primary",
-                                                      dark: ""
+                                                      loading: _vm.loading,
+                                                      "max-width": "374"
                                                     }
                                                   },
                                                   [
+                                                    _c("v-img", {
+                                                      attrs: {
+                                                        height: "250",
+                                                        src:
+                                                          _vm.baseUrl +
+                                                          "img/pricing/team.jpg"
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
                                                     _c("v-card-title", [
-                                                      _vm._v("Básico")
+                                                      _vm._v("Plan Equipos")
                                                     ]),
                                                     _vm._v(" "),
                                                     _c(
                                                       "v-card-text",
-                                                      {
-                                                        staticClass:
-                                                          "letraMediana"
-                                                      },
                                                       [
-                                                        _vm._v(
-                                                          "\r\n                            Hasta\r\n                            "
+                                                        _c(
+                                                          "v-row",
+                                                          {
+                                                            staticStyle: {
+                                                              "padding-left":
+                                                                "8px"
+                                                            }
+                                                          },
+                                                          [
+                                                            _c("v-rating", {
+                                                              attrs: {
+                                                                color:
+                                                                  "#FFB300",
+                                                                "half-increments":
+                                                                  "",
+                                                                dense: "",
+                                                                size: "14",
+                                                                "empty-icon":
+                                                                  "star_border",
+                                                                "half-icon":
+                                                                  "star_half",
+                                                                "full-icon":
+                                                                  "star",
+                                                                readonly: ""
+                                                              },
+                                                              model: {
+                                                                value:
+                                                                  _vm.rating2,
+                                                                callback: function(
+                                                                  $$v
+                                                                ) {
+                                                                  _vm.rating2 = $$v
+                                                                },
+                                                                expression:
+                                                                  "rating2"
+                                                              }
+                                                            })
+                                                          ],
+                                                          1
                                                         ),
-                                                        _c("b", [
-                                                          _vm._v("150")
-                                                        ]),
-                                                        _vm._v(
-                                                          " contactos\r\n                            "
-                                                        ),
-                                                        _c("br"),
-                                                        _vm._v(
-                                                          "Hasta\r\n                            "
-                                                        ),
-                                                        _c("b", [
-                                                          _vm._v("500")
-                                                        ]),
-                                                        _vm._v(
-                                                          " ideas\r\n                            "
-                                                        ),
-                                                        _c("br"),
                                                         _vm._v(" "),
-                                                        _c("br"),
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "my-4 subtitle-1 black--text"
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\r\n                                  $ • 1 USD / USUARIO\r\n                                "
+                                                            )
+                                                          ]
+                                                        ),
                                                         _vm._v(" "),
-                                                        _c("v-icon", [
-                                                          _vm._v(
-                                                            "mdi-square-inc-cash"
-                                                          )
-                                                        ]),
-                                                        _vm._v(
-                                                          "  3 USD / Por Usuario\r\n                          "
+                                                        _c(
+                                                          "div",
+                                                          [
+                                                            _c(
+                                                              "v-list",
+                                                              {
+                                                                attrs: {
+                                                                  dense: ""
+                                                                }
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "v-subheader",
+                                                                  [
+                                                                    _vm._v(
+                                                                      "¿ Qué contiene este plan ?"
+                                                                    )
+                                                                  ]
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "v-list-item-group",
+                                                                  {
+                                                                    attrs: {
+                                                                      color:
+                                                                        "primary"
+                                                                    }
+                                                                  },
+                                                                  _vm._l(
+                                                                    _vm.itemsTeams,
+                                                                    function(
+                                                                      item,
+                                                                      i
+                                                                    ) {
+                                                                      return _c(
+                                                                        "v-list-item",
+                                                                        {
+                                                                          key: i
+                                                                        },
+                                                                        [
+                                                                          _c(
+                                                                            "v-list-item-icon",
+                                                                            [
+                                                                              _c(
+                                                                                "v-icon",
+                                                                                {
+                                                                                  domProps: {
+                                                                                    textContent: _vm._s(
+                                                                                      item.icon
+                                                                                    )
+                                                                                  }
+                                                                                }
+                                                                              )
+                                                                            ],
+                                                                            1
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " "
+                                                                          ),
+                                                                          _c(
+                                                                            "v-list-item-content",
+                                                                            [
+                                                                              _c(
+                                                                                "v-list-item-title",
+                                                                                {
+                                                                                  domProps: {
+                                                                                    textContent: _vm._s(
+                                                                                      item.text
+                                                                                    )
+                                                                                  }
+                                                                                }
+                                                                              )
+                                                                            ],
+                                                                            1
+                                                                          )
+                                                                        ],
+                                                                        1
+                                                                      )
+                                                                    }
+                                                                  ),
+                                                                  1
+                                                                )
+                                                              ],
+                                                              1
+                                                            )
+                                                          ],
+                                                          1
                                                         )
                                                       ],
                                                       1
                                                     ),
                                                     _vm._v(" "),
+                                                    _c("v-divider", {
+                                                      staticClass: "mx-2"
+                                                    }),
+                                                    _vm._v(" "),
                                                     _c(
                                                       "v-card-actions",
+                                                      {
+                                                        staticClass:
+                                                          "justify-center"
+                                                      },
                                                       [
                                                         _c(
                                                           "v-btn",
                                                           {
-                                                            attrs: { text: "" },
+                                                            attrs: {
+                                                              color:
+                                                                "deep-purple accent-4 ",
+                                                              loading:
+                                                                _vm.loading,
+                                                              dark: ""
+                                                            },
                                                             on: {
-                                                              click:
-                                                                _vm.goRegister
+                                                              click: _vm.reserve
                                                             }
                                                           },
-                                                          [_vm._v("Comenzar")]
+                                                          [
+                                                            _vm._v(
+                                                              "\r\n                                      Registrarme ahora\r\n                                    "
+                                                            )
+                                                          ]
                                                         )
                                                       ],
                                                       1
-                                                    )
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c("br")
                                                   ],
                                                   1
                                                 )
@@ -51255,72 +51717,208 @@ var render = function() {
                                                   {
                                                     staticClass: "mx-auto",
                                                     attrs: {
-                                                      color: "amber darken-1",
-                                                      dark: ""
+                                                      loading: _vm.loading,
+                                                      "max-width": "374"
                                                     }
                                                   },
                                                   [
+                                                    _c("v-img", {
+                                                      attrs: {
+                                                        height: "250",
+                                                        src:
+                                                          _vm.baseUrl +
+                                                          "img/pricing/company.jpg"
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
                                                     _c("v-card-title", [
-                                                      _vm._v(
-                                                        "Prefesional Completo"
-                                                      )
+                                                      _vm._v("Plan Empresarial")
                                                     ]),
                                                     _vm._v(" "),
                                                     _c(
                                                       "v-card-text",
-                                                      {
-                                                        staticClass:
-                                                          "letraMediana"
-                                                      },
                                                       [
-                                                        _vm._v(
-                                                          "\r\n                            Contactos\r\n                            "
+                                                        _c(
+                                                          "v-row",
+                                                          {
+                                                            staticStyle: {
+                                                              "padding-left":
+                                                                "8px"
+                                                            }
+                                                          },
+                                                          [
+                                                            _c("v-rating", {
+                                                              attrs: {
+                                                                color:
+                                                                  "#FFB300",
+                                                                "half-increments":
+                                                                  "",
+                                                                dense: "",
+                                                                size: "14",
+                                                                "empty-icon":
+                                                                  "star_border",
+                                                                "half-icon":
+                                                                  "star_half",
+                                                                "full-icon":
+                                                                  "star",
+                                                                readonly: ""
+                                                              },
+                                                              model: {
+                                                                value:
+                                                                  _vm.rating3,
+                                                                callback: function(
+                                                                  $$v
+                                                                ) {
+                                                                  _vm.rating3 = $$v
+                                                                },
+                                                                expression:
+                                                                  "rating3"
+                                                              }
+                                                            })
+                                                          ],
+                                                          1
                                                         ),
-                                                        _c("b", [
-                                                          _vm._v("Ilimitados")
-                                                        ]),
                                                         _vm._v(" "),
-                                                        _c("br"),
-                                                        _vm._v(
-                                                          "Ideas\r\n                            "
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "my-4 subtitle-1 black--text"
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\r\n                                   $ • 3 USD / USUARIO\r\n                                "
+                                                            )
+                                                          ]
                                                         ),
-                                                        _c("b", [
-                                                          _vm._v("Ilimitadas")
-                                                        ]),
                                                         _vm._v(" "),
-                                                        _c("br"),
-                                                        _vm._v(" "),
-                                                        _c("br"),
-                                                        _vm._v(" "),
-                                                        _c("v-icon", [
-                                                          _vm._v(
-                                                            "mdi-square-inc-cash"
-                                                          )
-                                                        ]),
-                                                        _vm._v(
-                                                          " \r\n                            5 USD / Por Usuario\r\n                          "
+                                                        _c(
+                                                          "div",
+                                                          [
+                                                            _c(
+                                                              "v-list",
+                                                              {
+                                                                attrs: {
+                                                                  dense: ""
+                                                                }
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "v-subheader",
+                                                                  [
+                                                                    _vm._v(
+                                                                      "¿ Qué contiene este plan ?"
+                                                                    )
+                                                                  ]
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "v-list-item-group",
+                                                                  {
+                                                                    attrs: {
+                                                                      color:
+                                                                        "primary"
+                                                                    }
+                                                                  },
+                                                                  _vm._l(
+                                                                    _vm.itemsCorporate,
+                                                                    function(
+                                                                      item,
+                                                                      i
+                                                                    ) {
+                                                                      return _c(
+                                                                        "v-list-item",
+                                                                        {
+                                                                          key: i
+                                                                        },
+                                                                        [
+                                                                          _c(
+                                                                            "v-list-item-icon",
+                                                                            [
+                                                                              _c(
+                                                                                "v-icon",
+                                                                                {
+                                                                                  domProps: {
+                                                                                    textContent: _vm._s(
+                                                                                      item.icon
+                                                                                    )
+                                                                                  }
+                                                                                }
+                                                                              )
+                                                                            ],
+                                                                            1
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " "
+                                                                          ),
+                                                                          _c(
+                                                                            "v-list-item-content",
+                                                                            [
+                                                                              _c(
+                                                                                "v-list-item-title",
+                                                                                {
+                                                                                  domProps: {
+                                                                                    textContent: _vm._s(
+                                                                                      item.text
+                                                                                    )
+                                                                                  }
+                                                                                }
+                                                                              )
+                                                                            ],
+                                                                            1
+                                                                          )
+                                                                        ],
+                                                                        1
+                                                                      )
+                                                                    }
+                                                                  ),
+                                                                  1
+                                                                )
+                                                              ],
+                                                              1
+                                                            )
+                                                          ],
+                                                          1
                                                         )
                                                       ],
                                                       1
                                                     ),
                                                     _vm._v(" "),
+                                                    _c("v-divider", {
+                                                      staticClass: "mx-2"
+                                                    }),
+                                                    _vm._v(" "),
                                                     _c(
                                                       "v-card-actions",
+                                                      {
+                                                        staticClass:
+                                                          "justify-center"
+                                                      },
                                                       [
                                                         _c(
                                                           "v-btn",
                                                           {
-                                                            attrs: { text: "" },
+                                                            attrs: {
+                                                              color: "#FCD12A",
+                                                              loading:
+                                                                _vm.loading,
+                                                              dark: ""
+                                                            },
                                                             on: {
-                                                              click:
-                                                                _vm.goRegister
+                                                              click: _vm.reserve
                                                             }
                                                           },
-                                                          [_vm._v("Comenzar")]
+                                                          [
+                                                            _vm._v(
+                                                              "\r\n                                      Registrarme ahora\r\n                                    "
+                                                            )
+                                                          ]
                                                         )
                                                       ],
                                                       1
-                                                    )
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c("br")
                                                   ],
                                                   1
                                                 )
@@ -51352,272 +51950,6 @@ var render = function() {
                                           "v-layout",
                                           { attrs: { row: "" } },
                                           [
-                                            _c(
-                                              "v-flex",
-                                              {
-                                                attrs: {
-                                                  lg4: "",
-                                                  sm12: "",
-                                                  "pa-2": ""
-                                                }
-                                              },
-                                              [
-                                                _c(
-                                                  "v-card",
-                                                  {
-                                                    staticClass: "mx-auto",
-                                                    attrs: {
-                                                      color:
-                                                        "blue-grey lighten-5"
-                                                    }
-                                                  },
-                                                  [
-                                                    _c("v-card-title", [
-                                                      _vm._v("Gratis")
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "v-card-text",
-                                                      {
-                                                        staticClass:
-                                                          "letraMediana"
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "\r\n                            Hasta\r\n                            "
-                                                        ),
-                                                        _c("b", [_vm._v("50")]),
-                                                        _vm._v(
-                                                          " contactos\r\n                            "
-                                                        ),
-                                                        _c("br"),
-                                                        _vm._v(
-                                                          "Hasta\r\n                            "
-                                                        ),
-                                                        _c("b", [
-                                                          _vm._v("200")
-                                                        ]),
-                                                        _vm._v(
-                                                          " ideas\r\n                            "
-                                                        ),
-                                                        _c("br"),
-                                                        _vm._v(" "),
-                                                        _c("br"),
-                                                        _vm._v(" "),
-                                                        _c("v-icon", [
-                                                          _vm._v(
-                                                            "mdi-square-inc-cash"
-                                                          )
-                                                        ]),
-                                                        _vm._v(
-                                                          " Gratis de por vida\r\n                          "
-                                                        )
-                                                      ],
-                                                      1
-                                                    ),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "v-card-actions",
-                                                      [
-                                                        _c(
-                                                          "v-btn",
-                                                          {
-                                                            attrs: { text: "" },
-                                                            on: {
-                                                              click:
-                                                                _vm.goRegister
-                                                            }
-                                                          },
-                                                          [_vm._v("Comenzar")]
-                                                        )
-                                                      ],
-                                                      1
-                                                    )
-                                                  ],
-                                                  1
-                                                )
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-flex",
-                                              {
-                                                attrs: {
-                                                  lg4: "",
-                                                  sm12: "",
-                                                  "pa-2": ""
-                                                }
-                                              },
-                                              [
-                                                _c(
-                                                  "v-card",
-                                                  {
-                                                    staticClass: "mx-auto",
-                                                    attrs: {
-                                                      color: "primary",
-                                                      dark: ""
-                                                    }
-                                                  },
-                                                  [
-                                                    _c("v-card-title", [
-                                                      _vm._v("Básico")
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "v-card-text",
-                                                      {
-                                                        staticClass:
-                                                          "letraMediana"
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "\r\n                            Hasta\r\n                            "
-                                                        ),
-                                                        _c("b", [
-                                                          _vm._v("150")
-                                                        ]),
-                                                        _vm._v(
-                                                          " contactos\r\n                            "
-                                                        ),
-                                                        _c("br"),
-                                                        _vm._v(
-                                                          "Hasta\r\n                            "
-                                                        ),
-                                                        _c("b", [
-                                                          _vm._v("500")
-                                                        ]),
-                                                        _vm._v(
-                                                          " ideas\r\n                            "
-                                                        ),
-                                                        _c("br"),
-                                                        _vm._v(" "),
-                                                        _c("br"),
-                                                        _vm._v(" "),
-                                                        _c("v-icon", [
-                                                          _vm._v(
-                                                            "mdi-square-inc-cash"
-                                                          )
-                                                        ]),
-                                                        _vm._v(
-                                                          " 2 USD / Por Usuario\r\n                          "
-                                                        )
-                                                      ],
-                                                      1
-                                                    ),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "v-card-actions",
-                                                      [
-                                                        _c(
-                                                          "v-btn",
-                                                          {
-                                                            attrs: { text: "" },
-                                                            on: {
-                                                              click:
-                                                                _vm.goRegister
-                                                            }
-                                                          },
-                                                          [_vm._v("Comenzar")]
-                                                        )
-                                                      ],
-                                                      1
-                                                    )
-                                                  ],
-                                                  1
-                                                )
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-flex",
-                                              {
-                                                attrs: {
-                                                  lg4: "",
-                                                  sm12: "",
-                                                  "pa-2": ""
-                                                }
-                                              },
-                                              [
-                                                _c(
-                                                  "v-card",
-                                                  {
-                                                    staticClass: "mx-auto",
-                                                    attrs: {
-                                                      color: "amber darken-1",
-                                                      dark: ""
-                                                    }
-                                                  },
-                                                  [
-                                                    _c("v-card-title", [
-                                                      _vm._v(
-                                                        "Prefesional Completo"
-                                                      )
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "v-card-text",
-                                                      {
-                                                        staticClass:
-                                                          "letraMediana"
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "\r\n                            Contactos\r\n                            "
-                                                        ),
-                                                        _c("b", [
-                                                          _vm._v("Ilimitados")
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("br"),
-                                                        _vm._v(
-                                                          "Ideas\r\n                            "
-                                                        ),
-                                                        _c("b", [
-                                                          _vm._v("Ilimitadas")
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("br"),
-                                                        _vm._v(" "),
-                                                        _c("br"),
-                                                        _vm._v(" "),
-                                                        _c("v-icon", [
-                                                          _vm._v(
-                                                            "mdi-square-inc-cash"
-                                                          )
-                                                        ]),
-                                                        _vm._v(
-                                                          " \r\n                            4 USD / Por Usuario\r\n                          "
-                                                        )
-                                                      ],
-                                                      1
-                                                    ),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "v-card-actions",
-                                                      [
-                                                        _c(
-                                                          "v-btn",
-                                                          {
-                                                            attrs: { text: "" },
-                                                            on: {
-                                                              click:
-                                                                _vm.goRegister
-                                                            }
-                                                          },
-                                                          [_vm._v("Comenzar")]
-                                                        )
-                                                      ],
-                                                      1
-                                                    )
-                                                  ],
-                                                  1
-                                                )
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
                                             _c("br"),
                                             _vm._v(" "),
                                             _c("br"),
@@ -51636,12 +51968,13 @@ var render = function() {
                                                   "div",
                                                   {
                                                     staticStyle: {
-                                                      "text-align": "center"
+                                                      "text-align": "center",
+                                                      margin: "30px"
                                                     }
                                                   },
                                                   [
                                                     _vm._v(
-                                                      "Nota: los descuentos se aplicarán en la sección de pagos dependiendo del número de usuarios que tenga la empresa. También se puede colocar un número de usuarios tope en configuraciones de pago."
+                                                      "Nota: los descuentos se aplicarán en la sección de pagos dependiendo del número de usuarios que tenga la empresa."
                                                     )
                                                   ]
                                                 )
@@ -51700,7 +52033,7 @@ var render = function() {
                                   "div",
                                   { staticClass: "col-md-5 col-md-offset-4" },
                                   [
-                                    _c("v-icon", [_vm._v("mdi-face-agent")]),
+                                    _c("v-icon", [_vm._v("call")]),
                                     _vm._v(" "),
                                     _c("span", [
                                       _vm._v(
@@ -51708,7 +52041,7 @@ var render = function() {
                                       ),
                                       _c("br", { staticClass: "hide-mobile" }),
                                       _vm._v(
-                                        "equipo de soporte\r\n                      "
+                                        "equipo de soporte.\r\n                      "
                                       )
                                     ])
                                   ],
@@ -51720,12 +52053,12 @@ var render = function() {
                                   { staticClass: "col-md-5 col-md-offset-4" },
                                   [
                                     _c("v-icon", [
-                                      _vm._v("mdi-settings-outline")
+                                      _vm._v("settings_applications")
                                     ]),
                                     _vm._v(" "),
                                     _c("span", [
                                       _vm._v(
-                                        "Funciones personalizadas para su empresa"
+                                        "Funciones personalizadas para su empresa."
                                       )
                                     ])
                                   ],
@@ -51736,12 +52069,10 @@ var render = function() {
                                   "div",
                                   { staticClass: "col-md-5 col-md-offset-4" },
                                   [
-                                    _c("v-icon", [
-                                      _vm._v("mdi-account-group-outline")
-                                    ]),
+                                    _c("v-icon", [_vm._v("emoji_people")]),
                                     _vm._v(" "),
                                     _c("span", [
-                                      _vm._v("Gestión de Empleados (ERM)")
+                                      _vm._v("Gestión de Empleados (ERM).")
                                     ])
                                   ],
                                   1
@@ -51821,7 +52152,9 @@ var render = function() {
                 )
               ],
               1
-            )
+            ),
+            _vm._v(" "),
+            _c("br")
           ],
           1
         )
@@ -103317,7 +103650,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_vue__;
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../css-loader??ref--7-1!../../postcss-loader/src??ref--7-2!./vuetify.min.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css");
+var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./vuetify.min.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -103768,10 +104101,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_global_ideas_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--7-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./global-ideas.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/landing3/global-ideas.vue?vue&type=style&index=0&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_global_ideas_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_global_ideas_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_global_ideas_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_global_ideas_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_global_ideas_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_global_ideas_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./global-ideas.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/landing3/global-ideas.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_global_ideas_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_global_ideas_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_global_ideas_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_global_ideas_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_global_ideas_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -103993,10 +104326,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_pricing_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--7-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./pricing.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/landing3/pricing.vue?vue&type=style&index=0&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_pricing_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_pricing_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_pricing_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_pricing_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_pricing_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_pricing_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./pricing.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/landing3/pricing.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_pricing_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_pricing_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_pricing_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_pricing_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_pricing_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -104087,14 +104420,26 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 1:
-/*!******************************************!*\
-  !*** multi ./resources/js/appLanding.js ***!
-  \******************************************/
+/***/ "./resources/sass/appLanding.scss":
+/*!****************************************!*\
+  !*** ./resources/sass/appLanding.scss ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 0:
+/*!***************************************************************************!*\
+  !*** multi ./resources/js/appLanding.js ./resources/sass/appLanding.scss ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\larastart\resources\js\appLanding.js */"./resources/js/appLanding.js");
+__webpack_require__(/*! C:\xampp\htdocs\larastart\resources\js\appLanding.js */"./resources/js/appLanding.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\larastart\resources\sass\appLanding.scss */"./resources/sass/appLanding.scss");
 
 
 /***/ })
