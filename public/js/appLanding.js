@@ -3210,6 +3210,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3252,6 +3277,9 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         text: 'Estadísticas ',
         icon: 'trending_up'
+      }, {
+        text: 'Aplicación Móvil ',
+        icon: 'smartphone'
       }],
       itemsCorporate: [{
         text: 'Todos los beneficios del plan Equipos',
@@ -3265,6 +3293,9 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         text: 'Modo de maduración de ideas ',
         icon: 'done'
+      }, {
+        text: 'Aplicación Móvil ',
+        icon: 'smartphone'
       }]
     };
   },
@@ -51289,6 +51320,7 @@ var render = function() {
                                                   {
                                                     staticClass: "mx-auto",
                                                     attrs: {
+                                                      hover: "",
                                                       loading: _vm.loading1,
                                                       "max-width": "374"
                                                     }
@@ -51358,10 +51390,26 @@ var render = function() {
                                                               "my-4 subtitle-1 black--text"
                                                           },
                                                           [
-                                                            _vm._v(
-                                                              "\r\n                                  $ • GRATIS, PARA SIEMPRE.\r\n                                "
-                                                            )
-                                                          ]
+                                                            _c(
+                                                              "div",
+                                                              {
+                                                                staticClass:
+                                                                  "mt-1"
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "\r\n                                     $  1 USD / USUARIO\r\n                               "
+                                                                )
+                                                              ]
+                                                            ),
+                                                            _vm._v(" "),
+                                                            _c("v-chip", [
+                                                              _vm._v(
+                                                                "GRATIS 30 DÍAS"
+                                                              )
+                                                            ])
+                                                          ],
+                                                          1
                                                         ),
                                                         _vm._v(" "),
                                                         _c(
@@ -51456,6 +51504,12 @@ var render = function() {
                                                       1
                                                     ),
                                                     _vm._v(" "),
+                                                    _c("div", {
+                                                      staticStyle: {
+                                                        "min-height": "40px"
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
                                                     _c("v-divider", {
                                                       staticClass: "mx-2"
                                                     }),
@@ -51513,6 +51567,7 @@ var render = function() {
                                                   {
                                                     staticClass: "mx-auto",
                                                     attrs: {
+                                                      hover: "",
                                                       loading: _vm.loading2,
                                                       "max-width": "374"
                                                     }
@@ -51582,10 +51637,26 @@ var render = function() {
                                                               "my-4 subtitle-1 black--text"
                                                           },
                                                           [
-                                                            _vm._v(
-                                                              "\r\n                                  $ • 1 USD / USUARIO\r\n                                "
-                                                            )
-                                                          ]
+                                                            _c(
+                                                              "div",
+                                                              {
+                                                                staticClass:
+                                                                  "mt-1"
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "\r\n                                     $  2 USD / USUARIO\r\n                               "
+                                                                )
+                                                              ]
+                                                            ),
+                                                            _vm._v(" "),
+                                                            _c("v-chip", [
+                                                              _vm._v(
+                                                                "GRATIS 30 DÍAS"
+                                                              )
+                                                            ])
+                                                          ],
+                                                          1
                                                         ),
                                                         _vm._v(" "),
                                                         _c(
@@ -51739,6 +51810,7 @@ var render = function() {
                                                   {
                                                     staticClass: "mx-auto",
                                                     attrs: {
+                                                      hover: "",
                                                       loading: _vm.loading3,
                                                       "max-width": "374"
                                                     }
@@ -51808,10 +51880,26 @@ var render = function() {
                                                               "my-4 subtitle-1 black--text"
                                                           },
                                                           [
-                                                            _vm._v(
-                                                              "\r\n                                   $ • 3 USD / USUARIO\r\n                                "
-                                                            )
-                                                          ]
+                                                            _c(
+                                                              "div",
+                                                              {
+                                                                staticClass:
+                                                                  "mt-1"
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "\r\n                                     $  4 USD / USUARIO\r\n                               "
+                                                                )
+                                                              ]
+                                                            ),
+                                                            _vm._v(" "),
+                                                            _c("v-chip", [
+                                                              _vm._v(
+                                                                "GRATIS 30 DÍAS"
+                                                              )
+                                                            ])
+                                                          ],
+                                                          1
                                                         ),
                                                         _vm._v(" "),
                                                         _c(
@@ -51914,7 +52002,7 @@ var render = function() {
                                                       "v-card-actions",
                                                       {
                                                         staticClass:
-                                                          "justify-center"
+                                                          "justify-center "
                                                       },
                                                       [
                                                         _c(
@@ -52029,83 +52117,13 @@ var render = function() {
                 _vm._v(" "),
                 _c("br"),
                 _vm._v(" "),
+                _c("div", { staticStyle: { height: "500px" } }),
+                _vm._v(" "),
                 _c(
                   "v-layout",
                   { attrs: { row: "" } },
                   [
                     _c("v-flex", [
-                      _c("section", { attrs: { id: "plans-include" } }, [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "container animated",
-                            attrs: { "data-animation": "slideInUp" }
-                          },
-                          [
-                            _c("div", { staticClass: "row" }, [
-                              _c("div", { staticClass: "col-xs-12 content" }, [
-                                _c("h1", [
-                                  _vm._v("Todos nuestros planes incluyen:")
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "row" }, [
-                              _c("div", { staticClass: "advantages" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "col-md-5 col-md-offset-4" },
-                                  [
-                                    _c("v-icon", [_vm._v("call")]),
-                                    _vm._v(" "),
-                                    _c("span", [
-                                      _vm._v(
-                                        "\r\n                        Atención 100% personalizada de nuestro\r\n                        "
-                                      ),
-                                      _c("br", { staticClass: "hide-mobile" }),
-                                      _vm._v(
-                                        "equipo de soporte.\r\n                      "
-                                      )
-                                    ])
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "col-md-5 col-md-offset-4" },
-                                  [
-                                    _c("v-icon", [
-                                      _vm._v("settings_applications")
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("span", [
-                                      _vm._v(
-                                        "Funciones personalizadas para su empresa."
-                                      )
-                                    ])
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "col-md-5 col-md-offset-4" },
-                                  [
-                                    _c("v-icon", [_vm._v("emoji_people")]),
-                                    _vm._v(" "),
-                                    _c("span", [
-                                      _vm._v("Gestión de Empleados (ERM).")
-                                    ])
-                                  ],
-                                  1
-                                )
-                              ])
-                            ])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
                       _c("section", { attrs: { id: "start-now" } }, [
                         _c(
                           "div",
@@ -52131,7 +52149,7 @@ var render = function() {
                                     _vm._v(" "),
                                     _c("h3", [
                                       _vm._v(
-                                        "Prueba Innova Gratis por todo lo que quieras."
+                                        "Prueba Innova por 30 días y decide por tu empresa."
                                       )
                                     ]),
                                     _vm._v(" "),
@@ -104291,14 +104309,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!******************************************************!*\
   !*** ./resources/js/components/landing3/pricing.vue ***!
   \******************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pricing_vue_vue_type_template_id_201d767e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pricing.vue?vue&type=template&id=201d767e& */ "./resources/js/components/landing3/pricing.vue?vue&type=template&id=201d767e&");
 /* harmony import */ var _pricing_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pricing.vue?vue&type=script&lang=js& */ "./resources/js/components/landing3/pricing.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _pricing_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pricing.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/landing3/pricing.vue?vue&type=style&index=0&lang=css&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _pricing_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _pricing_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _pricing_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pricing.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/landing3/pricing.vue?vue&type=style&index=0&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -104330,7 +104349,7 @@ component.options.__file = "resources/js/components/landing3/pricing.vue"
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/landing3/pricing.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

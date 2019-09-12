@@ -24,7 +24,7 @@
                       <v-flex lg4 sm12 pa-2>
 
 
-                         <v-card
+                         <v-card hover
                               :loading="loading1"
                               class="mx-auto"
                               max-width="374"
@@ -53,7 +53,11 @@
                                 </v-row>
 
                                 <div class="my-4 subtitle-1 black--text">
-                                  $ • GRATIS, PARA SIEMPRE.
+                                  <div class="mt-1">
+                                     $  1 USD / USUARIO
+                               </div>
+                                 
+                                  <v-chip>GRATIS 30 DÍAS</v-chip> 
                                 </div>
 
                                 <div>
@@ -77,9 +81,12 @@
                                 </div>
                               </v-card-text>
 
-                              <v-divider class="mx-2"></v-divider>
-
                             
+
+                              <div style="min-height:40px;">
+
+                            </div>
+                              <v-divider class="mx-2"></v-divider>
                          
                               <v-card-actions class="justify-center">
 
@@ -103,7 +110,7 @@
 
                       <v-flex lg4 sm12 pa-2>
 
-                           <v-card
+                           <v-card hover
                               :loading="loading2"
                               class="mx-auto"
                               max-width="374"
@@ -132,7 +139,11 @@
                                 </v-row>
 
                                 <div class="my-4 subtitle-1 black--text">
-                                  $ • 1 USD / USUARIO
+                                   <div class="mt-1">
+                                     $  2 USD / USUARIO
+                               </div>
+                                     
+                                  <v-chip>GRATIS 30 DÍAS</v-chip> 
                                 </div>
 
                                 <div>
@@ -182,7 +193,7 @@
 
                       <v-flex lg4 sm12 pa-2>
 
-                          <v-card
+                          <v-card hover
                               :loading="loading3"
                               class="mx-auto"
                               max-width="374"
@@ -211,7 +222,13 @@
                                 </v-row>
 
                                 <div class="my-4 subtitle-1 black--text">
-                                   $ • 3 USD / USUARIO
+                               <div class="mt-1">
+                                     $  4 USD / USUARIO
+                               </div>
+
+
+                                      
+                                  <v-chip >GRATIS 30 DÍAS</v-chip> 
                                 </div>
 
                                 <div>
@@ -237,9 +254,9 @@
 
                               <v-divider class="mx-2"></v-divider>
 
-                            
+                          
                          
-                              <v-card-actions class="justify-center">
+                              <v-card-actions class="justify-center ">
 
                              
                                    <v-btn
@@ -297,9 +314,15 @@
 
         <br />
 
+        <div style="height:500px;">
+
+        </div>
+
         <v-layout row>
           <v-flex>
-            <section id="plans-include" class>
+
+
+           <!-- <section id="plans-include" class>
               <div class="container animated" data-animation="slideInUp">
                 <div class="row">
                   <div class="col-xs-12 content">
@@ -326,13 +349,15 @@
                   </div>
                 </div>
               </div>
-            </section>
+            </section>-->
+
+
             <section id="start-now">
               <div class="container scroll-animations">
                 <div class="row align-content-around d-flex justify-content-center">
                   <div class="col-md-5 animated" data-animation="slideInLeft">
                     <p>¿No sabes por dónde comenzar?</p>
-                    <h3>Prueba Innova Gratis por todo lo que quieras.</h3>
+                    <h3>Prueba Innova por 30 días y decide por tu empresa.</h3>
                     <p>
                       Sin necesidad de tarjeta de crédito,
                       <br class="hide-mobile" />puedes cancelar cuando desees.
@@ -396,6 +421,7 @@ export default {
         { text: 'Hasta 150 Usuarios en modo empresa', icon: 'people' },
         { text: 'Correos de notificación', icon: 'email' },
         { text: 'Estadísticas ', icon: 'trending_up' },
+        { text: 'Aplicación Móvil ', icon: 'smartphone' },
       ],
 
       itemsCorporate: [
@@ -404,6 +430,7 @@ export default {
         { text: 'Permisos personalizados para clientes', icon: 'build' },
        
         { text: 'Modo de maduración de ideas ', icon: 'done' },
+        { text: 'Aplicación Móvil ', icon: 'smartphone' },
       ],
     };
   },
