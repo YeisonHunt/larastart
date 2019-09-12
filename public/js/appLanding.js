@@ -3218,7 +3218,9 @@ __webpack_require__.r(__webpack_exports__);
       pricingAnual: "",
       baseUrl: window.baseUrl,
       selection: 1,
-      loading: false,
+      loading1: false,
+      loading2: false,
+      loading3: false,
       rating1: 4,
       rating2: 4.5,
       rating3: 5,
@@ -3270,12 +3272,30 @@ __webpack_require__.r(__webpack_exports__);
     goRegister: function goRegister() {
       window.location.href = baseUrl + "register";
     },
-    reserve: function reserve() {
+    reserve1: function reserve1() {
       var _this = this;
 
-      this.loading = true;
+      this.loading1 = true;
       setTimeout(function () {
-        _this.loading = false;
+        _this.loading1 = false;
+        window.location.href = baseUrl + "register";
+      }, 1000);
+    },
+    reserve2: function reserve2() {
+      var _this2 = this;
+
+      this.loading2 = true;
+      setTimeout(function () {
+        _this2.loading2 = false;
+        window.location.href = baseUrl + "register";
+      }, 1000);
+    },
+    reserve3: function reserve3() {
+      var _this3 = this;
+
+      this.loading3 = true;
+      setTimeout(function () {
+        _this3.loading3 = false;
         window.location.href = baseUrl + "register";
       }, 1000);
     }
@@ -51269,7 +51289,7 @@ var render = function() {
                                                   {
                                                     staticClass: "mx-auto",
                                                     attrs: {
-                                                      loading: _vm.loading,
+                                                      loading: _vm.loading1,
                                                       "max-width": "374"
                                                     }
                                                   },
@@ -51453,10 +51473,11 @@ var render = function() {
                                                             attrs: {
                                                               color: " ",
                                                               loading:
-                                                                _vm.loading
+                                                                _vm.loading1
                                                             },
                                                             on: {
-                                                              click: _vm.reserve
+                                                              click:
+                                                                _vm.reserve1
                                                             }
                                                           },
                                                           [
@@ -51492,7 +51513,7 @@ var render = function() {
                                                   {
                                                     staticClass: "mx-auto",
                                                     attrs: {
-                                                      loading: _vm.loading,
+                                                      loading: _vm.loading2,
                                                       "max-width": "374"
                                                     }
                                                   },
@@ -51677,11 +51698,12 @@ var render = function() {
                                                               color:
                                                                 "deep-purple accent-4 ",
                                                               loading:
-                                                                _vm.loading,
+                                                                _vm.loading2,
                                                               dark: ""
                                                             },
                                                             on: {
-                                                              click: _vm.reserve
+                                                              click:
+                                                                _vm.reserve2
                                                             }
                                                           },
                                                           [
@@ -51717,7 +51739,7 @@ var render = function() {
                                                   {
                                                     staticClass: "mx-auto",
                                                     attrs: {
-                                                      loading: _vm.loading,
+                                                      loading: _vm.loading3,
                                                       "max-width": "374"
                                                     }
                                                   },
@@ -51901,11 +51923,12 @@ var render = function() {
                                                             attrs: {
                                                               color: "#FCD12A",
                                                               loading:
-                                                                _vm.loading,
+                                                                _vm.loading3,
                                                               dark: ""
                                                             },
                                                             on: {
-                                                              click: _vm.reserve
+                                                              click:
+                                                                _vm.reserve3
                                                             }
                                                           },
                                                           [

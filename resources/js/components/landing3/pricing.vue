@@ -25,7 +25,7 @@
 
 
                          <v-card
-                              :loading="loading"
+                              :loading="loading1"
                               class="mx-auto"
                               max-width="374"
                             >
@@ -86,9 +86,9 @@
                              
                                    <v-btn
                                       color=" "
-                                       :loading="loading"
+                                       :loading="loading1"
                                       
-                                      @click="reserve"
+                                      @click="reserve1"
                                     >
                                       Registrarme ahora
                                     </v-btn>
@@ -104,7 +104,7 @@
                       <v-flex lg4 sm12 pa-2>
 
                            <v-card
-                              :loading="loading"
+                              :loading="loading2"
                               class="mx-auto"
                               max-width="374"
                             >
@@ -165,9 +165,9 @@
                              
                                    <v-btn
                                       color="deep-purple accent-4 "
-                                       :loading="loading"
+                                       :loading="loading2"
                                       dark
-                                      @click="reserve"
+                                      @click="reserve2"
                                     >
                                       Registrarme ahora
                                     </v-btn>
@@ -183,7 +183,7 @@
                       <v-flex lg4 sm12 pa-2>
 
                           <v-card
-                              :loading="loading"
+                              :loading="loading3"
                               class="mx-auto"
                               max-width="374"
                             >
@@ -244,9 +244,9 @@
                              
                                    <v-btn
                                       color="#FCD12A"
-                                       :loading="loading"
+                                       :loading="loading3"
                                       dark
-                                      @click="reserve"
+                                      @click="reserve3"
                                     >
                                       Registrarme ahora
                                     </v-btn>
@@ -375,7 +375,9 @@ export default {
       pricingAnual: "",
       baseUrl: window.baseUrl,
       selection: 1,
-      loading:false,
+      loading1:false,
+      loading2:false,
+      loading3:false,
       rating1:4,
       rating2:4.5,
       rating3:5,
@@ -410,11 +412,37 @@ export default {
     goRegister() {
       window.location.href = baseUrl + "register";
     },
-    reserve () {
-        this.loading = true
+    reserve1 () {
+        this.loading1 = true
+      
 
         setTimeout(() => {
-          this.loading = false
+          this.loading1 = false
+          
+          window.location.href = baseUrl + "register"
+        }, 1000)
+      },
+
+      reserve2 () {
+      
+        this.loading2 = true
+     
+
+        setTimeout(() => {
+       
+          this.loading2 = false
+       
+          window.location.href = baseUrl + "register"
+        }, 1000)
+      },
+
+      reserve3 () {
+      
+        this.loading3 = true
+
+        setTimeout(() => {
+        
+          this.loading3 = false
           window.location.href = baseUrl + "register"
         }, 1000)
       },
