@@ -51359,7 +51359,7 @@ var render = function() {
                                                           },
                                                           [
                                                             _vm._v(
-                                                              "\r\n                                  $ • Gratis, para siempre.\r\n                                "
+                                                              "\r\n                                  $ • GRATIS, PARA SIEMPRE.\r\n                                "
                                                             )
                                                           ]
                                                         ),

@@ -53,7 +53,7 @@
                                 </v-row>
 
                                 <div class="my-4 subtitle-1 black--text">
-                                  $ • Gratis, para siempre.
+                                  $ • GRATIS, PARA SIEMPRE.
                                 </div>
 
                                 <div>
