@@ -143,7 +143,7 @@ table p, table h1, table h2, table h3, table h4{ margin-top:0!important;margin-r
 
                             <tr><td height="11"></td></tr>
 
-                            <tr><td data-size="s2-title-size" data-color="s2-title-color" mc:edit="" style="color: #000000; font-family: 'Roboto', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 300; letter-spacing: 0.005em; line-height: 20px; text-align: left; text-decoration: none !important;"><multiline> Comentario de <b>{$comentador}}</b>: {{$comentario}}</multiline></td></tr>
+                            <tr><td data-size="s2-title-size" data-color="s2-title-color" mc:edit="" style="color: #000000; font-family: 'Roboto', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 300; letter-spacing: 0.005em; line-height: 20px; text-align: left; text-decoration: none !important;"><multiline> Comentario de <b>{{$comentador}}</b>: {{$comentario}}</multiline></td></tr>
                             <!-- ttl -->
                             <!-- mrgn -->
                          
