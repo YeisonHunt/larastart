@@ -10,6 +10,8 @@ use App\Like;
 use Log;
 use App\User;
 use App\Desired;
+use Illuminate\Support\Facades\Mail;
+
 
 class DiscussionController extends Controller
 {
@@ -212,6 +214,15 @@ class DiscussionController extends Controller
 
    }
 
+   function emailIdeaComment($dates,$email)
+   {
+       Mail::send('emails.notifications.commentIdea',$dates, function($message) use ($email) 
+       {
+          $message->subject('Alguién comentó tu idea');
+          $message->to($email);
+          $message->from('innovation-team@guardproject.com','Actividad en una de tus ideas');
+       });
+   }
 
    public function store(Request $request){
 
@@ -219,6 +230,16 @@ class DiscussionController extends Controller
     $vacio= array();
 
     $id = $request->idea_id;
+
+    $ideaMail = Innovation::find(intval($request->idea_id));
+    $creador = User::find(intval($ideaMail->created_by));
+
+    $comentador = auth()->user()->name;
+    
+    
+    $dates = array('title'=>$ideaMail->title,'comentador'=>$comentador,'creador'=>$creador->name,'comentario'=>$request->body,'idIdea'=>$request->idea_id);
+    $this->emailIdeaComment($dates,$creador->email);
+
 
 
     if($request->discussion_parent_id==0){

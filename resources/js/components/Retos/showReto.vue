@@ -1,6 +1,109 @@
 <template>
   <div :class="{'container-fluid':mobile, 'container-fluid':large}">
     <div class="row" v-if="puedoVer" style="min-height:80vh;">
+
+      <div class="modal fade bd-example-modal-lg" id="modalVotos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">  {{ megusta.length + pulirmas.length + acciondemejora.length }}  Votos</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <v-tabs
+          centered
+          color="cyan"
+          dark
+          icons-and-text
+        >
+
+        
+          <v-tabs-slider color="yellow"></v-tabs-slider>
+
+          <v-tab href="#megusta">
+          {{ megusta.length  }}  Me gusta
+            <v-icon>arrow_upward</v-icon>
+          </v-tab>
+
+          <v-tab href="#pulirmas">
+            {{ pulirmas.length  }} Pulir más
+            <v-icon>arrow_downward</v-icon>
+          </v-tab>
+
+          <v-tab href="#acciondemejora">
+            {{ acciondemejora.length  }} Acción de mejora
+            <v-icon>arrow_drop_down_circle</v-icon>
+          </v-tab>
+
+          <v-tab-item
+           
+            :value="'megusta'"
+          >
+            <v-card flat>
+              <v-card-text>
+
+             <ul class="list-group" v-for="m in megusta" :key="m.id">
+              <li class="list-group-item">{{m.name}}</li>
+             
+            </ul>
+
+              </v-card-text>
+            </v-card>
+          </v-tab-item>
+
+            <v-tab-item
+           
+            :value="'pulirmas'"
+          >
+            <v-card flat>
+              <v-card-text>
+
+             <ul class="list-group" v-for="m in pulirmas" :key="m.id">
+              <li class="list-group-item">{{m.name}}</li>
+             
+            </ul>
+
+              </v-card-text>
+            </v-card>
+          </v-tab-item>
+
+            <v-tab-item
+           
+            :value="'acciondemejora'"
+          >
+            <v-card flat>
+              <v-card-text>
+
+            <ul class="list-group" v-for="m in acciondemejora" :key="m.id">
+              <li class="list-group-item">{{m.name}}</li>
+             
+            </ul>
+
+              </v-card-text>
+            </v-card>
+          </v-tab-item>
+
+
+        </v-tabs>
+
+      <hr>
+
+        <h5>Tipos de votos</h5>
+
+        <h6> <b>Me gusta</b> : Voto positivo para la idea. </h6> 
+        <h6> <b>Pulir más</b> : Voto crítico. La idea puede mejorar. </h6>
+        <h6> <b>Acción de mejora</b> : La idea puede aplicarse directamente  sin necesidad de sobre evaluación. </h6> 
+
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
       <div class="col-lg-12 col-sm-12 col-md-12">
         <div class="kt-portlet mobilePortlet">
           <div class="kt-portlet__head">
@@ -80,17 +183,17 @@
                   <v-expansion-panel expand v-model="expandido">
                       <v-expansion-panel-content>
                            <template v-slot:header>
-                                    <div>Soluciones Actuales  {{solutions.length}}</div>
+                                    <div><h4>Soluciones Actuales  {{solutions.length}}</h4>  </div>
                                 </template>
 
                                <div class="container-fluid">
                                  <div class="row">
-                                   <div class="col-sm-6 col-lg-4 col-xl-4 col-md-3 " style="padding-top:20px;"  v-for="idea in solutions "   :key="idea.id">
+                                   <div class="col-sm-6 col-lg-4 col-xl-4 col-md-3 " style="padding:20px;"  v-for="idea in solutions "   :key="idea.id">
                                      
 
 
 
-                                              <v-card height="100%" class="mx-auto" hover>
+                                        <v-card height="100%" class="mx-auto" hover>
 
 
                                       <v-img :src=" idea.img" height="194"></v-img>
@@ -110,6 +213,15 @@
 
                                       <v-card-actions>
                                         <v-btn :to="{name:'ver-idea',params:{id:idea.id}}" dark text color="deep-purple accent-4">Leer completa</v-btn>
+
+                                     
+
+                                    
+                                        <v-spacer></v-spacer>
+
+                                             <v-btn @click="getVotes(idea.id)" v-on="on"  >{{idea.votos.length}}  Votos</v-btn>
+                                        
+                                       
 
 
                                       </v-card-actions>
@@ -710,7 +822,12 @@ export default {
 
        deleteForm: new Form({
         id:''
-      })
+      }),
+
+      total:0,
+      megusta:{},
+      pulirmas:{},
+      acciondemejora:{}
 
     };
   },
@@ -877,6 +994,30 @@ export default {
   },
 
   methods: {
+
+      getVotes(id){
+
+      $("#modalVotos").modal("show");
+
+
+        axios.get("/getVotes/"+id).then(response => {
+
+          this.megusta = response.data.megusta;
+          this.pulirmas = response.data.pulirmas;
+          this.acciondemejora = response.data.acciondemejora;
+        
+        
+          
+        })
+        .catch(error => {
+          console.log(error);
+
+          toastr.error("Oops!", "Something goes wrong");
+        });
+
+
+
+    },
 
     deleteIdea(){
 
@@ -1067,18 +1208,18 @@ export default {
       axios
         .get("/getInnovation/" + this.id)
         .then(response => {
+
           this.idea = response.data.idea;
           this.userIdea = response.data.user;
           this.discussionsFinal = response.data.discussions;
           this.likesPerIdea = response.data.desired;
           this.permissions = response.data.permissions;
-
           this.solutions= response.data.solutions;
 
             if(response.data.idea.created_by == response.data.user.id){
                 this.soyCreador=true;
             }
-          //console.log(response);
+          
         })
         .catch(error => {
           console.log(error);

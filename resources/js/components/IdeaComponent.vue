@@ -86,6 +86,15 @@
 
 
         </v-tabs>
+
+          <hr>
+
+        <h5>Tipos de votos</h5>
+
+        <h6> <b>Me gusta</b> : Voto positivo para la idea. </h6> 
+        <h6> <b>Pulir más</b> : Voto crítico. La idea puede mejorar. </h6>
+        <h6> <b>Acción de mejora</b> : La idea puede aplicarse directamente  sin necesidad de sobre evaluación. </h6> 
+
       </div>
       
     </div>

@@ -77,140 +77,86 @@
 
       <br>
 
-      <div class="row">
-        <div class="col-md-12 col-sm-12 col-lg-12">
-          <div class="kt-portlet kt-portlet--mobile">
-            <div class="kt-portlet__body kt-portlet__body--fit">
-              <!--begin: Datatable -->
-              <div
-                class="kt-datatable kt-datatable--default kt-datatable--brand kt-datatable--error kt-datatable--loaded"
-                id="ajax_data"
-              >
-                <table class="table table-hover table-responsive-sm">
-                  <thead class="thead-primary">
-                    <tr>
-                      <th class="letraGrande" style="font-weight: bold;">#</th>
-                     
-                      <th class="letraGrande" style="font-weight: bold;">Nombre Completo</th>
-                       <th class="letraGrande" style="font-weight: bold;">Foto</th>
-                      <th class="letraGrande" style="font-weight: bold;">Correo</th>
-                      <th class="letraGrande" style="font-weight: bold;">Estado</th>
-                      <th class="letraGrande" style="font-weight: bold;">Tipo</th>
-                      <th class="letraGrande" style="font-weight: bold;">Cumpleaños</th>
+      
+      <!-- end 2nd row -->
 
-                      <th class="letraGrande" style="font-weight: bold;">Compañía</th>
-                      <th class="letraGrande" style="font-weight: bold;">Acciones</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="(user,index) in visibleUsers" :key="visibleUsers.id">
-                      <th scope="row">
-                        <div class="mt-3 letraGrande">{{user.id}}</div>
-                      </th>
-                    
-                      <td>
-                        <div
-                          class="mt-3 letraGrande"
-                        >{{user.firstName + ' ' + user.lastName | uppercaseFirst }}</div>
-                      </td>
+      <!-- new Users table -->
 
-                        <td>
-                        <img
+      
+              <div class="row">
+                <div class="col-12">
+                    <v-toolbar flat color="#ECEFF1">
+                    <v-toolbar-title>Usuarios</v-toolbar-title>
+                    <v-spacer></v-spacer>
+                    <v-text-field
+                      v-model="search"
+                      append-icon="search"
+                      label="Buscar usuarios por nombre o correo..."
+                      single-line
+                      hide-details
+                    ></v-text-field>
+                   
+                  </v-toolbar>
+                  <v-data-table
+                    :headers="headers"
+                    :items="visibleUsers"
+                    class="elevation-1"
+                     :search="search"
+                    >
+                    <template v-slot:items="props">
+                      <td>{{ props.item.firstName }}</td>
+                
+                      <td class="text-xs-left"><img
                           alt="image"
-                          :src="user.avatar"
+                          :src="props.item.avatar"
                           class="rounded-circle"
                           width="50"
                           height="50"
                           data-toggle="tooltip"
                           title
                           data-original-title="Hariono Yusup"
+                        ></td>
+                      <td class="text-xs-left">{{ props.item.email }}</td>
+                      <td class="text-xs-left"> Active</td>
+                      <td class="text-xs-left">{{ props.item.type }}</td>
+                      <td class="text-xs-left">{{props.item.birthdate | cumple}}</td>
+                      <td class="text-xs-left">{{props.item.company | uppercaseFirst}}</td>
+
+                       <td class="justify-center layout px-0">
+
+                        <v-icon class="mr-2"
+                         @click="showContactModal(props.item)"
                         >
+                          remove_red_eye
+                        </v-icon>
+
+                        <v-icon
+                          
+                          
+                          class="mr-2"
+                          @click="editar(props.item.id)"
+                        >
+                          edit
+                        </v-icon>
+                        <v-icon
+                          
+                           @click="deleteContact(props.item.id)"
+                        >
+                          delete
+                        </v-icon>
                       </td>
 
-                      <td>
-                        <div class="mt-3 letraGrande">{{user.email}}</div>
-                      </td>
-                      <td>
-                        <div class="mt-3 letraGrande">
-                          <vs-chip color="primary" class="letraGrande">Active</vs-chip>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="mt-3 letraGrande">{{user.type}}</div>
-                      </td>
-                      <td>
-                        <div class="mt-3 letraGrande">{{user.birthdate | cumple}}</div>
-                      </td>
 
-                      <td>
-                        <div class="mt-3 letraGrande">{{user.company | uppercaseFirst}}</div>
-                      </td>
-                      <td>
-                        <div class="pt-3">
-                          <button
-                            style="color:#9b9b9b;"
-                            data-placement="top"
-                            title
-                            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"
-                            @click="showContactModal(user)"
-                          >
-                            <div id="tt1" class="icon material-icons">visibility</div>
-                            
-                          </button>
-
-                          <router-link
-                            :to="{name:'edit-contact',params:{id:user.id}}"
-                            data-toggle="kt-tooltip"
-                            data-placement="top"
-                            title
-                             style="color:#9b9b9b;"
-                            data-original-title="Edit"
-                            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"
-                          >
-                            <i class="material-icons">edit</i>
-                          </router-link>
-
-                          <button
-                            @click="deleteContact(user.id)"
-                            data-toggle="kt-tooltip"
-                            data-placement="top"
-                             style="color:#9b9b9b;"
-                            title
-                            data-original-title="Delete"
-                            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"
-                          >
-                            <i class="material-icons">delete</i>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                    </template>
+                  </v-data-table>
+                </div>
               </div>
 
-              <!--end: Datatable -->
-            </div>
-          </div>
+      <!-- end new users table -->
 
-          <div class="row">
-            <div class="col-lg-6 col-sm-12">
-              <vs-select class="selectExample" icon="arrow_downward" v-model="pageSize">
-                <vs-select-item
-                  :key="index"
-                  :value="item.value"
-                  :text="item.text"
-                  v-for="item,index in optionsPageSize"
-                />
-              </vs-select>
-            </div>
 
-            <div class="col-lg-6 col-sm-12">
-              <vs-pagination :total="totalPages" :max="5" v-model="currentPage"></vs-pagination>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- end 2nd row -->
+
+
     </div>
 
     <!-- Modal see user -->
@@ -343,6 +289,22 @@ export default {
   name: "SelectionExample",
   data() {
     return {
+       search:'',
+        headers: [
+          {
+            text: 'Nombre completo',
+            align: 'left',
+            value: 'name'
+          },
+          { text: 'Avatar', value: 'avatar',sortable: false, },
+          { text: 'Correo', value: 'email' },
+          { text: 'Estado', value: 'state' },
+           { text: 'Tipo', value: 'type' },
+          { text: 'Cumpleaños', value: 'birthdate' },
+          { text: 'Empresa', value: 'company' },
+          { text: 'Acciones', value: 'name', sortable: false },
+        
+        ],
       tile: false,
       user: {
         avatar: "",
@@ -539,6 +501,12 @@ export default {
   },
 
   methods: {
+
+
+    editar(id){
+
+      this.$router.push({name:'edit-contact',params:{id:id}})
+    },
 
     closeModal(){
       $("#contactModal").modal("hide");

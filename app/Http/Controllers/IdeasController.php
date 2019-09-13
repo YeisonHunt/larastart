@@ -1496,6 +1496,36 @@ class IdeasController extends Controller
         ->orderBy('innovations.created_at','DESC')
         ->get();
 
+        $newSolutions = array();
+
+        if(count($solutions)>0){
+            foreach($solutions as $sol){
+
+               
+               
+                $votos = DB::table('desireds')->where('innovation_id',$sol->id)->get();
+    
+                $temp= array (
+                    'id'=>$sol->id,
+                    'title'=>$sol->title,
+                    'description'=>$sol->description,
+                    'img'=>$sol->img,
+                    'category'=>$sol->category,
+                    'author'=>$sol->author,
+                    'privacy'=>$sol->privacy,
+                    'escrita'=>$sol->escrita,
+                    'votos'=>$votos
+                );
+    
+    
+                array_push($newSolutions,$temp);
+            }
+        }else {
+            $newSolutions = array();
+        }
+
+        
+
         /* 
           Categorias Personalizadas
         */
@@ -1526,7 +1556,7 @@ class IdeasController extends Controller
         array_push($categorias,$categoriasPredefinidas);
                 
 
-
+       
 
 
         return response()->json([
@@ -1536,7 +1566,7 @@ class IdeasController extends Controller
             'discussions'=>$discussions,
             'desired'=>$desired,
             'othersPermissions'=>$othersPermissions,
-            'solutions'=>$solutions,
+            'solutions'=>$newSolutions,
             'cats'=>$categorias
         ]);
 
