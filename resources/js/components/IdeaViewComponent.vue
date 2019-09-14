@@ -19,6 +19,43 @@
             <div class="kt-portlet__head-toolbar">
               <div class="kt-portlet__head-actions">
 
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Recomendaciones para evaluar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <ul class="list-group list-group-flush">
+
+
+
+                          <li class="list-group-item">¿Es algo nuevo y diferente que le produce valor al cliente o a la empresa?</li>
+                          <li class="list-group-item">¿Sorprende al cliente y cambia sus expectativas sobre lo que es posible?</li>
+                          <li class="list-group-item">¿Permite obtener una ventaja competitiva?</li>
+                          <li class="list-group-item">¿Le da mayor valor a la marca?</li>
+                          <li class="list-group-item">¿Aumenta la lealtad de un cliente?</li>
+                          <li class="list-group-item">¿Rompe paradigmas o cuestiona status quo?</li>
+                          <li class="list-group-item">¿Está blindado a ser copiado por la competencia?</li>
+                          <li class="list-group-item">¿Está alineado con la estrategia de la empresa?</li>
+                          <li class="list-group-item">¿Aumenta las ventas o reduce los costos de la empresa(rentabilidad)?</li>
+                          <li class="list-group-item">¿Es sostenible con el medio ambiente o tiene un impacto social positivo?</li>
+
+
+                        </ul>
+                        <hr>
+                      </div>
+                     
+                    </div>
+                  </div>
+                </div>
+                  
+
+                <button type="button" style="border:none;"  data-toggle="modal" data-target="#exampleModal"  class=" btn btn-secondary btn-icon"><i class="fa fa-info-circle"></i></button>
+
                 <button  v-if="!alreadyLiked1(idea)"   @click="likeIdea('like')"  class="btn btn-outline-primary btn-sm btn-icon pulse btn-icon-md " :class="{'largeBtn':large}">
                   <i class="flaticon2-arrow-up" ></i>
                   &nbsp; {{voteText}}
@@ -447,6 +484,7 @@
 </template>
 
 <style type="text/css">
+
 
 
 
