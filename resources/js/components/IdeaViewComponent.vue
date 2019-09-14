@@ -29,24 +29,84 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <ul class="list-group list-group-flush">
+                     
+
+                        
+                        <br>
+
+                        	<div class="kt-list-timeline">
+														<div class="kt-list-timeline__items">
+													
+														
+														
+														
+															<div class="kt-list-timeline__item">
+																<span class="kt-list-timeline__badge kt-list-timeline__badge--brand"></span>
+															  	<span class="kt-list-timeline__text">¿Es algo nuevo y diferente que le produce valor al cliente o a la empresa?
+																</span>
+															</div>
+
+                              <div class="kt-list-timeline__item">
+																<span class="kt-list-timeline__badge kt-list-timeline__badge--brand"></span>
+															  	<span class="kt-list-timeline__text">¿Sorprende al cliente y cambia sus expectativas sobre lo que es posible?
+																</span>
+															</div>
+
+                              <div class="kt-list-timeline__item">
+																<span class="kt-list-timeline__badge kt-list-timeline__badge--brand"></span>
+															  	<span class="kt-list-timeline__text">¿Permite obtener una ventaja competitiva?
+																</span>
+															</div>
+
+                              <div class="kt-list-timeline__item">
+																<span class="kt-list-timeline__badge kt-list-timeline__badge--brand"></span>
+															  	<span class="kt-list-timeline__text">¿Le da mayor valor a la marca?
+																</span>
+															</div>
+
+                              <div class="kt-list-timeline__item">
+																<span class="kt-list-timeline__badge kt-list-timeline__badge--brand"></span>
+															  	<span class="kt-list-timeline__text">¿Aumenta la lealtad de un cliente?
+																</span>
+															</div>
 
 
 
-                          <li class="list-group-item">¿Es algo nuevo y diferente que le produce valor al cliente o a la empresa?</li>
-                          <li class="list-group-item">¿Sorprende al cliente y cambia sus expectativas sobre lo que es posible?</li>
-                          <li class="list-group-item">¿Permite obtener una ventaja competitiva?</li>
-                          <li class="list-group-item">¿Le da mayor valor a la marca?</li>
-                          <li class="list-group-item">¿Aumenta la lealtad de un cliente?</li>
-                          <li class="list-group-item">¿Rompe paradigmas o cuestiona status quo?</li>
-                          <li class="list-group-item">¿Está blindado a ser copiado por la competencia?</li>
-                          <li class="list-group-item">¿Está alineado con la estrategia de la empresa?</li>
-                          <li class="list-group-item">¿Aumenta las ventas o reduce los costos de la empresa(rentabilidad)?</li>
-                          <li class="list-group-item">¿Es sostenible con el medio ambiente o tiene un impacto social positivo?</li>
+                              	<div class="kt-list-timeline__item">
+																<span class="kt-list-timeline__badge kt-list-timeline__badge--brand"></span>
+															  	<span class="kt-list-timeline__text">¿Rompe paradigmas o cuestiona status quo?
+																</span>
+															</div>
 
+                              <div class="kt-list-timeline__item">
+																<span class="kt-list-timeline__badge kt-list-timeline__badge--brand"></span>
+															  	<span class="kt-list-timeline__text">¿Está blindado a ser copiado por la competencia?
+																</span>
+															</div>
 
-                        </ul>
-                        <hr>
+                              <div class="kt-list-timeline__item">
+																<span class="kt-list-timeline__badge kt-list-timeline__badge--brand"></span>
+															  	<span class="kt-list-timeline__text">¿Está alineado con la estrategia de la empresa?
+																</span>
+															</div>
+
+                              <div class="kt-list-timeline__item">
+																<span class="kt-list-timeline__badge kt-list-timeline__badge--brand"></span>
+															  	<span class="kt-list-timeline__text">¿Le da mayor valor a la marca?
+																</span>
+															</div>
+
+                              <div class="kt-list-timeline__item">
+																<span class="kt-list-timeline__badge kt-list-timeline__badge--brand"></span>
+															  	<span class="kt-list-timeline__text">¿Es sostenible con el medio ambiente o tiene un impacto social positivo?
+																</span>
+															</div>
+														
+														
+														</div>
+													</div>
+
+                          <br>
                       </div>
                      
                     </div>
@@ -54,7 +114,7 @@
                 </div>
                   
 
-                <button type="button" style="border:none;"  data-toggle="modal" data-target="#exampleModal"  class=" btn btn-secondary btn-icon"><i class="fa fa-info-circle"></i></button>
+                <button type="button" style="border:none;" data-backdrop="true"  data-toggle="modal" data-target="#exampleModal"  class=" btn btn-secondary btn-icon"><i class="fa fa-info-circle"></i></button>
 
                 <button  v-if="!alreadyLiked1(idea)"   @click="likeIdea('like')"  class="btn btn-outline-primary btn-sm btn-icon pulse btn-icon-md " :class="{'largeBtn':large}">
                   <i class="flaticon2-arrow-up" ></i>
