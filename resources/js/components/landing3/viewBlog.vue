@@ -24,7 +24,7 @@
                                 <div class="mt-5">
                                     <div class="text-center">
                                     <v-icon :color="'#3BCBFF'">calendar_today</v-icon> Septiembre 19, 2019 &nbsp;&nbsp;
-                                    <v-icon :color="'#3BCBFF'">account_circle</v-icon> Yesid Anacona &nbsp;&nbsp;
+                                    <v-icon :color="'#3BCBFF'">account_circle</v-icon> Camilo Otalora - Yesid Anacona &nbsp;&nbsp;
                                     <v-icon :color="'#3BCBFF'">label</v-icon> innovación, creatividad, desarrollo empresarial &nbsp;&nbsp;
                                     </div>
                                 </div>
