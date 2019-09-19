@@ -11,6 +11,8 @@
               </div>
 
               <div class="mt-10">
+
+                  
                 <v-img
                   src="https://www.tripsavvy.com/thmb/oOoIxfAquiM7PBa_sDMXNdo_wtk=/2416x1600/filters:fill(auto,1)/how-to-visit-the-googleplex-google-hq-mountain-view-57e2d4515f9b586c3529ba9c.jpg"
                   lazy-src="https://picsum.photos/id/11/10/6"
