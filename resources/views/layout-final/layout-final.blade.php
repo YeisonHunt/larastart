@@ -205,7 +205,7 @@
               
             </li>
             <li><router-link to="/pricing" active-class="active">Precios</router-link></li>
-            
+            <li><router-link to="/blog" active-class="active">Blog</router-link></li>
             <li><router-link href="/blog">Blog</router-link></li>
 
             

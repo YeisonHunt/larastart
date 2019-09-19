@@ -177,6 +177,8 @@ Route::get('/products',"PublicController@publicIdeas");
 Route::get('/pricing',"PublicController@publicIdeas");
 Route::get('/blog',"PublicController@publicIdeas");
 Route::get('/global-ideas/view/{id}',"PublicController@publicIdeas");
+Route::get('/blog/como-va-latinoamerica-en-innovacion',"PublicController@viewBlog");
+Route::get('/blog/por-que-la-innovacion-es-importante-para-las-empresas',"PublicController@viewBlog");
 Route::get('/',"PublicController@publicIdeas")->name('raiz');
 
 

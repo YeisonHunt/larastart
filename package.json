@@ -30,6 +30,7 @@
     "dependencies": {
         "@amcharts/amcharts4": "^4.5.3",
         "@amcharts/amcharts4-geodata": "^4.1.6",
+        "@guillaumebriday/vue-scroll-progress-bar": "^0.2.0",
         "bootstrap-vue": "^2.0.0-rc.19",
         "chart.js": "^2.8.0",
         "chartjs-web-components": "^2.7.1",

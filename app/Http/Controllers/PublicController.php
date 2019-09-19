@@ -15,6 +15,10 @@ class PublicController extends Controller
 			return view('pricing');
 		}
 
+		public function viewBlog(){
+			return view('layout-final.layout-final');
+		}
+
 		public function publicIdeas(Request $request){
 
 			return view('layout-final.layout-final');

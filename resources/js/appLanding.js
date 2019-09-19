@@ -8,7 +8,9 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
  // Import component
 
- 
+ import VueScrollProgressBar from '@guillaumebriday/vue-scroll-progress-bar'
+
+ Vue.use(VueScrollProgressBar) 
  
 
 
@@ -34,7 +36,10 @@ let routes = [
 	{ path: '/products',name:'products', component: require('./components/landing3/products.vue').default},
 	{ path: '/pricing',name:'pricing', component: require('./components/landing3/pricing.vue').default},
 	{ path: '/blog',name:'blog', component: require('./components/landing3/blog.vue').default},
+	{ path: '/blog/como-va-latinoamerica-en-innovacion',name:'blog1', component:require('./components/landing3/viewBlog.vue').default },
+	{ path: '/blog/por-que-la-innovacion-es-importante-para-las-empresas',name:'blog2', component:require('./components/landing3/viewBlog2.vue').default },
 	{ path: '/global-ideas/view/:id',name:'view-idea', component:require('./components/landing3/idea/view.vue').default },
+
 
 
 
