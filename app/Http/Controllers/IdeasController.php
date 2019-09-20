@@ -1219,7 +1219,7 @@ class IdeasController extends Controller
         {
             $punto = Punto::create([
 
-                'numero'=>5,
+                'numero'=>20,
                 'tipo'=>'creacion_idea',
                 'user_id'=>$user->id,
                 'idea_id'=>$idea->id
@@ -1228,7 +1228,7 @@ class IdeasController extends Controller
         }elseif($request->type=='reto'){
             $punto = Punto::create([
 
-                'numero'=>10,
+                'numero'=>20,
                 'tipo'=>'creacion_reto',
                 'user_id'=>$user->id,
                 'idea_id'=>$idea->id
@@ -1237,7 +1237,7 @@ class IdeasController extends Controller
         }elseif($request->type=='solucion'){
             $punto = Punto::create([
 
-                'numero'=>5,
+                'numero'=>20,
                 'tipo'=>'creacion_solucion',
                 'user_id'=>$user->id,
                 'idea_id'=>$idea->id
