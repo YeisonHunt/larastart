@@ -446,7 +446,7 @@ export default {
         .post("/saveIdea2", formData, config)
         .then(({ data }) => { 
 		
-		  toastr.success('+ 5 puntos','Solución creada satisfactoriamente.')
+		  toastr.success('+ 20 puntos','Solución creada satisfactoriamente.')
 		  this.form.reset();
 		  this.$router.push({name:'ver-reto',params:{id:this.$route.params.id}});
         })
