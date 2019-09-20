@@ -530,7 +530,7 @@ export default {
         .post("/saveIdea2", formData, config)
         .then(({ data }) => { 
 		
-		  toastr.success('+ 10 puntos','Reto creado satisfactoriamente.')
+		  toastr.success('+ 20 puntos','Reto creado satisfactoriamente.')
 		  this.form.reset();
 		  this.$router.push({name:'retos'});
         })

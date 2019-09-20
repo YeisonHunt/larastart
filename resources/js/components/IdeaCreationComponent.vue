@@ -514,7 +514,7 @@ export default {
         .post("/saveIdea2", formData, config)
         .then(({ data }) => { 
 		
-		  toastr.success('+ 5 puntos','Idea creada satisfactoriamente.')
+		  toastr.success('+ 20 puntos','Idea creada satisfactoriamente.')
       this.form.reset();
       this.$Progress.finish();
 		  this.$router.push({name:'ideaList'});
