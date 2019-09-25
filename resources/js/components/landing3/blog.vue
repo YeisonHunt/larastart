@@ -49,7 +49,7 @@
 
              <div class="blog">
               <div class="text-center">
-                <h2>¿Por qué la innovación es importante para las empresas?</h2>
+                <h2>¿Por qué la innovación es importante para las empresas? (... Si quieren seguir con vida) </h2>
               </div>
 
               <div class="mt-10">
@@ -188,7 +188,7 @@
 
               <div class="mt-5">
                   <div class="text-center">
-                     <h4>¿Por qué la innovación es importante para las empresas?</h4>
+                     <h4>¿Por qué la innovación es importante para las empresas? (... Si quieren seguir con vida) </h4>
                   </div>
               </div>
 

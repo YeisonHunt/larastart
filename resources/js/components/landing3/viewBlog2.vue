@@ -7,7 +7,7 @@
           <v-col lg="9" sm="12" md="9">
             <div class="blog">
               <div class="text-center">
-                <h2>¿Por qué la innovación es importante para las empresas?</h2>
+                <h2>¿Por qué la innovación es importante para las empresas? (... Si quieren seguir con vida) </h2>
               </div>
 
               <div class="mt-10">
@@ -32,21 +32,23 @@
 
               <div class="mt-10">
                 <div class="text-justify" style="font-size:1.1rem;">
-                  <strong style="font-size:1.5rem;">H</strong>oy en día la innovación es demasiado importante como para descartarla en nuestros planes, se habla en casi todas las empresas y en perfiles profesionales de muchas personas. Negocios de diferentes tamaños entienden que innovar muchas veces es necesario para poder mejorar y hasta en algunos casos obligatorio para sobrevivir en el mercado. Teniendo esto en cuenta, podemos decir que la innovación es una de las claves en las estrategias tanto de país, empresa y persona para poder crecer.
+                  <strong style="font-size:1.5rem;">H</strong>oy en día la innovación es demasiado importante como para descartarla de nuestros planes,  se habla de ella en casi todas las empresas, y en muchos perfiles profesionales. Negocios de diferentes tamaños entienden que innovar muchas veces es necesario para poder mejorar, y en algunos casos es obligatorio para sobrevivir en el mercado. Teniendo esto en cuenta, podemos decir que la  innovación es una de las claves, si no la única, en las estrategias tanto de país, empresarial y personal para poder crecer.
+
                   <br />
                   <br />
-Vamos a descubrir en este artículo por qué la innovación es tan importante, pero empezamos definiendo a que se refiere cuando hablamos de la innovación?
+Vamos a descubrir en este artículo por qué la innovación es tan importante, empecemos definiendo a qué nos referimos cuando hablamos de innovación?
+
                   <br />
                   <br />
                   <h4>¿Qué es la innovación?</h4>
 
                   <br />
-Si buscas en Internet encontraremos muchas diferentes definiciones desde simplemente “nueva idea”, hasta definiciones más detalladas como “mejora en proceso, tecnología, producto y metodología”.
+Si buscas en Internet encontraremos muchas definiciones desde simplemente “nueva idea”, hasta definiciones más detalladas como “mejora en proceso, tecnología, producto y metodología”.
                   <br />
                   <br />
 
                   <a href="http://businessdictionary.com">El diccionario de negocios</a>
- define la innovación como “El proceso de traducir una idea o invención en un bien o servicio que crea valor o por el cual los clientes pagarán.”. Yo preferiría decir que innovación es algo tan normal como búsqueda de mejora contínua, y gestión de la innovación es el proceso para hacerlo de una forma más eficiente posible.
+ define la innovación como “El proceso de traducir una idea o invención en un bien o servicio que crea valor o por el cual los clientes pagarán.”. Yo preferiría decir que innovación debería ser algo tan normal como la búsqueda de mejora contínua, y gestión de la innovación es el proceso para hacerlo de la forma más eficiente posible.
                   <br />
                   <br />
 Ahora que ya sabemos la definición, volvamos a nuestro punto de inicio.
@@ -59,7 +61,8 @@ Ahora que ya sabemos la definición, volvamos a nuestro punto de inicio.
                   <a
                     href="https://www.forbes.com/sites/forbescoachescouncil/2017/05/08/why-innovation-is-crucial-to-your-organizations-long-term-success/"
                   >Americana Forbes</a>
- . describe en su artículo por qué la innovación es tan importante por tres puntos claves:
+  describe en su artículo: "Why Innovation Is Crucial To Your Organization's Long-Term Success" (Por qué la Innovación es crucial para el éxito a largo plazo en su organización) qué la innovación es importante por tres puntos claves:
+
                   <br />
                   <br />
 
@@ -80,14 +83,17 @@ Ahora que ya sabemos la definición, volvamos a nuestro punto de inicio.
                   <br />
 
                   <br />
-Los anteriores solo son datos de un par de estudios, habrán demasiados más donde se siga demostrando la importancia que tiene la innovación. Es por eso que en cada empresa se debe tomar con bastante importancia e iniciar con acciones contundentes. Una innovación bien hecha comenzará a mover la caja registradora de la empresa y tendrá tanto a empleados como dueños muy felices.
+
+Los anteriores solo son datos de un par de estudios, habrán más donde se siga demostrando la importancia que tiene la innovación. Es por eso que en cada empresa la Innovación se debe tomar con la suficiente importancia, e iniciar con acciones contundentes. Una innovación bien hecha comenzará a mover la caja registradora de la empresa, y tendrá tanto a empleados como dueños muy felices.
+
                   <br />
                   <br />
-Para resumir podemos mencionar que fuera lo que fuera su definición oficial, se trata de resolver un problema, o mejorar algún proceso o tecnología u crear algo nuevo que aún no existe – en cada caso es refiere a algo positivo en nivel de empresas.
+
+Para resumir podemos mencionar que  independientemente de la definición oficial, la Innovación debe expresarse: resolviendo un problema, mejorando algún proceso, tecnología, o creando algo nuevo – en cada caso es refiere a algo positivo para una empresa.
+
                   <br />
                   <br />
-Vivimos en un mundo global y mejor comunicado que nunca igual que en un mundo de muchas innovaciones. Parece que cada día podemos leer de algún invento nuevo y revolucionario para todo el mundo. Hace pocos años Internet en el móvil era extraordinario, ahora es obligatorio.
-                  Si no mejoras tu negocio o producto o servicio activamente aunque todo parezca funcionando por ahora perfectamente, estas destinado a perder, antes o después.
+En empresas pequeñas este proceso de "búsqueda de mejora continua" está muchas veces construido sobre la personalidad del fundador o dueño de la empresa, pero en cuanto la empresa crece la cosa cambia.
                   <br />
                   <br />
 
@@ -101,7 +107,13 @@ Vivimos en un mundo global y mejor comunicado que nunca igual que en un mundo de
 
                   <br />
                   <br />
-En las empresas ganadoras hoy en día como pueden ser por ejemplo Tesla o Google, tienen todos sus empleados involucrados en el proceso de la innovación. La cultura de la empresa es abierta e innovadora. Parece que tienen mucha hambre para crear nuevas cosas, crear mejoras, y simplemente crecer. Cada vez en noticias podemos leer de más cosas que han desarrollado o están desarrollando – desarrollos cada vez más sorprendentes.
+En empresas ganadoras, como pueden ser Tesla o Google, todos sus empleados están involucrados en el proceso de la innovación. La cultura de la empresa es abierta e innovadora. Parece que tienen mucha hambre para crear nuevas cosas, crear mejoras, y simplemente crecer. Sus noticias están cada vez más relacionadas con "cosas" que han desarrollado o están desarrollando – y dichos desarrollos son casi siempre (por no decir siempre) más sorprendentes.
+
+<br>
+<br>
+
+Es por eso que debemos preguntarnos:  <strong>¿Qué estoy esperando para que mi  empresa comience a innovar?</strong>
+
                 </div>
                 <!-- end rest -->
               </div>
