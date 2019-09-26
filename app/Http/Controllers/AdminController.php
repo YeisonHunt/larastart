@@ -208,7 +208,7 @@ class AdminController extends Controller
 
               
 
-                $puntos= count(DB::table('puntos')->where('user_id',$idea->id)->get());
+                $puntos=DB::table('puntos')->where('user_id',$idea->id)->sum('numero');
                 $soluciones = count(DB::table('innovations')->where('reto_id',$idea->id)->get());      
                 $comentarios = DB::table('discussions')->where('user_id',$idea->id)->get();
 
