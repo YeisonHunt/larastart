@@ -206,9 +206,8 @@
                                         <div v-if="idea.author=='showme'">Escrita  por: {{idea.escrita}}</div>
                                         <div v-else>Escrita por :Anónimo(a)</div>
 
-                                      {{idea.description | largeText}}
+                                      Contenido: {{idea.description | largeText}}
 
-                                        <p> <b>Categoría: </b> {{idea.category | toCategory}}</p>
                                       </v-card-text>
 
                                       <v-card-actions>

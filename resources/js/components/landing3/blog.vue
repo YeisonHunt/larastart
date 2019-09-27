@@ -6,9 +6,9 @@
           <v-col lg="8" sm="12" class="pa-2">
 
             <div class="blog">
-              <div class="text-center">
-                <h2> ¿Cómo va Latinoamérica en el tema de la Innovación? </h2>
-              </div>
+              <router-link :to="{name:'blog1'}" class="text-center ">
+                <h2 class="link"> ¿Cómo va Latinoamérica en el tema de la Innovación? </h2>
+              </router-link>
 
               <div class="mt-10">
                 <v-img
@@ -48,9 +48,9 @@
             </div>
 
              <div class="blog">
-              <div class="text-center">
-                <h2>¿Por qué la innovación es importante para las empresas? (... Si quieren seguir con vida) </h2>
-              </div>
+              <router-link :to="{name:'blog2'}" class="text-center ">
+                <h2 class="link">¿Por qué la innovación es importante para las empresas? (... Si quieren seguir con vida) </h2>
+              </router-link>
 
               <div class="mt-10">
                 <v-img
@@ -149,9 +149,9 @@
               </div>
 
               <div class="mt-5">
-                  <div class="text-center">
+                  <router-link  :to="{name:'blog1'}" class="text-center">
                      <h4>¿Cómo va Latinoamérica en el tema de la Innovación?</h4>
-                  </div>
+                  </router-link>
               </div>
 
                <div class="mt-5">
@@ -187,9 +187,9 @@
               </div>
 
               <div class="mt-5">
-                  <div class="text-center">
+                  <router-link :to="{name:'blog2'}" class="text-center link">
                      <h4>¿Por qué la innovación es importante para las empresas? (... Si quieren seguir con vida) </h4>
-                  </div>
+                  </router-link>
               </div>
 
                <div class="mt-5">
@@ -227,6 +227,10 @@
 
      box-shadow: 0 0 11px rgba(33,33,33,.2);
      cursor: pointer; 
+}
+
+.link:hover {
+  color:#3575D3 !important;
 }
 </style>
 

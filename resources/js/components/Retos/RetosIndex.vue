@@ -197,10 +197,16 @@
 													</div>
 												</div>
 												<div class="kt-widget19__text">
-													<b>Categoría: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
+
+                          
+                         <b>Fecha límite</b> : {{idea.fecha | limite}}
+                          <b>Contenido</b>  : {{idea.description | mediumText}}
+
+
+													<!--<b>Categoría: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
                            
                               <b>Fecha límite: </b>{{idea.fecha |limite}}  <br>
-                          {{idea.description | mediumText}}
+                          {{idea.description | mediumText}} -->
 
 												</div>
 											</div>
@@ -291,9 +297,15 @@
 													</div>
 												</div>
 												<div class="kt-widget19__text">
-													<b>Categoría: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
+
+                            
+                         <b>Fecha límite</b> : {{idea.fecha | limite}}
+                          <b>Contenido</b>  : {{idea.description | mediumText}}
+
+
+												<!--	<b>Categoría: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
                              <b>Fecha límite: </b>{{idea.fecha |limite}} <br/>
-                          {{idea.description | mediumText}}
+                          {{idea.description | mediumText}}-->
 
 												</div>
 											</div>
@@ -378,15 +390,20 @@
 													</div>
 												</div>
 												<div class="kt-widget19__text">
-													<b>Categoría: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
+
+                            
+                         <b>Fecha límite</b> : {{idea.fecha | limite}}
+                          <b>Contenido</b>  : {{idea.description | mediumText}}
+
+
+												<!--	<b>Categoría: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
 
 
                            <b>Fecha límite: </b>{{idea.fecha |limite}} 
                            
                            <br>
 
-
-                          {{idea.description | mediumText}}
+                          {{idea.description | mediumText}}-->
 
 												</div>
 											</div>

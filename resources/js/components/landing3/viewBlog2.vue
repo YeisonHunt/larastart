@@ -23,11 +23,32 @@
               </div>
 
               <div class="mt-5">
-                <div class="text-center">
-                  <v-icon :color="'#3BCBFF'">calendar_today</v-icon>Septiembre 19, 2019 &nbsp;&nbsp;
-                  <v-icon :color="'#3BCBFF'">account_circle</v-icon>Yeison Caicedo &nbsp;&nbsp;
-                  <v-icon :color="'#3BCBFF'">label</v-icon>innovación, empresas, modernización &nbsp;&nbsp;
+
+                <v-row>
+                  <v-col lg="9">
+                     <div >
+                  <v-icon :color="'#3BCBFF'">calendar_today</v-icon> Septiembre 19, 2019 &nbsp;&nbsp;
+                  <v-icon :color="'#3BCBFF'">account_circle</v-icon> Yeison Caicedo &nbsp;&nbsp;
+                  <v-icon :color="'#3BCBFF'">label</v-icon> innovación, empresas, modernización &nbsp;&nbsp;
                 </div>
+                  </v-col>
+
+                  <v-col lg="3">
+                     <div class=" text-right hello ">
+
+                 <facebook :url="url" scale="2"></facebook>
+                  <twitter :url="url" title="Por qué debemos innovar si no queremos morir como empresa?" scale="2"></twitter>
+                  <linkedin :url="url" scale="2"></linkedin>
+                 
+                  <whats-app :url="url" title="Por qué debemos innovar si no queremos morir como empresa?" scale="2"></whats-app>
+                 
+                  <email :url="url" subject="Por qué debemos innovar si no queremos morir como empresa?" scale="2"></email>
+               </div>
+                  </v-col>
+                </v-row>
+               
+               
+              
               </div>
 
               <div class="mt-10">
@@ -138,7 +159,32 @@ Es por eso que debemos preguntarnos:  <strong>¿Qué estoy esperando para que mi
 </template>
 
 <script>
+
+import {
+  Facebook,
+  Twitter,
+  Linkedin,
+  WhatsApp,
+  Email
+} from "vue-socialmedia-share";
+
+
 export default {
+
+  components: {
+    Facebook,
+    Twitter,
+    Linkedin,
+    WhatsApp,
+    Email
+    
+  },
+
+  data() {
+    return {
+      url: "https://guardproject.com/blog/por-que-la-innovacion-es-importante-para-las-empresas"
+    }
+  },
   mounted() {
     document.getElementById("home").style.display = "none";
     document.getElementById("inicioLink").classList.remove("active");
@@ -147,4 +193,15 @@ export default {
 </script>
 
 <style scoped>
+
+
+
+.hello > span {
+  padding-left: 0.5em;
+  cursor: pointer;
+  
+  
+}
+
+
 </style>

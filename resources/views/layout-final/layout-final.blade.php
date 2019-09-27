@@ -55,7 +55,7 @@
   gtag('config', 'UA-124651178-3');
 </script>
 
- 
+
 
 
   
@@ -803,8 +803,7 @@
       <script type="text/javascript" src="{{asset('modern-innova/home.js')}}" async></script>
 
 
-
-
+    
       <script src="{{asset('js/appLanding.js')}}"></script>
 
       <script>

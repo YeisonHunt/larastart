@@ -22,6 +22,10 @@ import VueMq from 'vue-mq'
 
 
 
+
+
+
+
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 //import SuiVue from 'semantic-ui-vue';
 
@@ -45,7 +49,7 @@ import 'viewerjs/dist/viewer.css'
 import 'vuetify-v1/dist/vuetify.min.css' // Ensure you are using css-loader
 
 
-
+Vue.use(SocialSharing);
 Vue.use(datePicker);
 Vue.use(Viewer);
   Vue.use(Vuetify, {
@@ -342,7 +346,7 @@ Vue.filter(
 		if(/\d/.test(t)){
 			//Has number
 
-			t = t.replace(/\d+/g, '');
+	
 
 			if (t == 'improvethis') {
 

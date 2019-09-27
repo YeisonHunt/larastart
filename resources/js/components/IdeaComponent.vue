@@ -271,9 +271,9 @@
 													</div>
 												</div>
 												<div class="kt-widget19__text">
-													<b>Categoría: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
-                           <b>Fecha: </b>{{idea.created_at |humanDate}} <br>
-                          {{idea.description | mediumText}}
+									
+                          Creada: {{idea.created_at |humanDate |uppercaseFirst}} <br>
+                          Contenido: {{idea.description | mediumText}}
 
                           
 
@@ -375,9 +375,14 @@
 													</div>
 												</div>
 												<div class="kt-widget19__text">
-													<b>Categoría: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
+
+                           Creada: {{idea.created_at |humanDate |uppercaseFirst}} <br>
+                          Contenido: {{idea.description | mediumText}}
+
+
+												<!--	<b>Categoría: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
                            <b>Fecha: </b>{{idea.created_at |humanDate}} <br>
-                          {{idea.description | mediumText}}
+                          {{idea.description | mediumText}}-->
 
                           
 
@@ -467,10 +472,13 @@
                                 </div>
                               </div>
                               <div class="kt-widget19__text">
+
+                                 Creada: {{idea.created_at |humanDate |uppercaseFirst}} <br>
+                                 Contenido: {{idea.description | mediumText}}
                                 
-                                <b>Category: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
+                              <!--  <b>Category: </b> {{idea.category | toCategory| mediumText |uppercaseFirst}} <br>
                                 <b>Date: </b>{{idea.created_at |humanDate}} <br>
-                                {{idea.description | mediumText}}
+                                {{idea.description | mediumText}}-->
 
                            
 
