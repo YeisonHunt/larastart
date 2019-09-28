@@ -55,7 +55,7 @@
 
 			<style>
 		
-
+					
 				body {
 				font-family: "Open Sans", "sans-serif" !important;
 				font-weight: 400 !important;
@@ -109,7 +109,9 @@
 
 						body.modal-open {
 						overflow: visible !important;
-					}				
+					}
+
+				
 
 		
 			</style>
@@ -157,7 +159,7 @@
 			<div class="kt-header-mobile__logo">
 				<router-link to="/dashboard">
 
-						<img alt="Logo" id="logoMovil" src="{{asset('modern-innova/images/features/logoWhite.png')}}" height="100%" width="50%" />
+						<img alt="Logo" class="logoMovil" id="logoMovil" src="{{asset('modern-innova/images/features/logoWhite.png')}}" height="100%" width="50%" />
 					</router-link>
 
 			</div>
@@ -288,7 +290,20 @@
                                         <router-link to="/business" class="kt-menu__link " active-class="activeSubLink" ><i  id="admin" class="kt-menu__link-icon flaticon-app"><span></span></i><span class="kt-menu__link-text">Administrador</span></router-link>
 
 
-                                    </li>
+									</li>
+									
+									<br class="smallSolo"></br>
+									<br class="smallSolo"></br>
+									<br class="smallSolo"></br>
+
+									<li class="kt-menu__item smallSolo " style="font-size:1.1rem; margin-left:25px;" >
+										<a class=" smallSolo"  href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();"   ><i   class="kt-menu__link-icon flaticon-close"><span></span>
+										</i>
+										<span class="kt-menu__link-text text-center" style="margin-left:10px; ">Cerrar sesión</span>
+									</a>
+									</li>
+
+									
 
 
                                 </ul>

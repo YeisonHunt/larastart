@@ -111,6 +111,23 @@ background-repeat: repeat !important;
   cursor:pointer;
 }
 
+.smallSolo {
+  display:none;
+}
+
+@media only screen and (max-width: 1000px){
+.smallSolo {
+  display:block !important;
+  
+}
+
+.logoMovil {
+  height: 30px !important;
+  width: 100px !important;
+}
+}
+
+
 
 
 
