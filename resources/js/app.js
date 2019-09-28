@@ -49,7 +49,6 @@ import 'viewerjs/dist/viewer.css'
 import 'vuetify-v1/dist/vuetify.min.css' // Ensure you are using css-loader
 
 
-Vue.use(SocialSharing);
 Vue.use(datePicker);
 Vue.use(Viewer);
   Vue.use(Vuetify, {
