@@ -63,6 +63,10 @@ Route::post('/addUserPermission','IdeasController@addUserPermission');
 Route::post('/deletePermissionsUser','IdeasController@deletePermissionsUser');
 Route::post('/updatePermissionPerId','IdeasController@updatePermissionPerId');
 Route::post('/saveContact','ContactController@saveContact');
+
+Route::any('/blog-interno-save','BlogController@store');
+
+
 Route::get('/getContacts','ContactController@getContacts');
 Route::get('/getContact/{id}','ContactController@getContact');
 Route::post('/updateContact','ContactController@updateContact');
@@ -166,6 +170,16 @@ Route::get('/business/company',"AdminController@users");
 Route::get('/shareInnovation/{id}',"AdminController@users");
 Route::get('/categories',"AdminController@users");
 Route::get('/reportes',"AdminController@users");
+Route::get('/blog-interno',"AdminController@users");
+Route::get('/blog-interno/create',"AdminController@users");
+Route::get('/blog-interno/edit/{id}',"AdminController@users");
+Route::get('/blog-interno/show/{id}',"AdminController@users");
+
+
+Route::get('/blog-interno/blogs','BlogController@index');
+Route::get('/blog-interno/get/{id}','BlogController@show');
+Route::post('/blog-interno/update/{id}','BlogController@update');
+Route::post('/blog-interno/delete','BlogController@delete');
 
 
 /* Rutas usadas por pagina de bienvenida */ 

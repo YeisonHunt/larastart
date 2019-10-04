@@ -48,6 +48,7 @@
         "semantic-ui-vue": "^0.8.1",
         "sweetalert": "^2.1.2",
         "sweetalert2": "^8.8.5",
+        "tiptap-vuetify": "^1.7.0",
         "v-viewer": "^1.4.2",
         "vform": "^1.0.0",
         "vue-bootstrap-datetimepicker": "^5.0.1",

@@ -385,6 +385,7 @@ export default {
     $("#dashboard").addClass("menuActivo");
     $("#innovations").removeClass("menuActivo");
     $("#retos").removeClass("menuActivo");
+    $("#blog").removeClass("menuActivo");
     $(document).attr("title", "Innova | Dashboard");
   }
 };

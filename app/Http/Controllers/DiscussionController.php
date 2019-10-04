@@ -238,7 +238,7 @@ class DiscussionController extends Controller
     
     
     $dates = array('title'=>$ideaMail->title,'comentador'=>$comentador,'creador'=>$creador->name,'comentario'=>$request->body,'idIdea'=>$request->idea_id);
-    $this->emailIdeaComment($dates,$creador->email);
+    //$this->emailIdeaComment($dates,$creador->email);
 
 
 

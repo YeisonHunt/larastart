@@ -1269,6 +1269,11 @@ class IdeasController extends Controller
         // Aquí irá lo de real time 
 
         broadcast(new InnovationCreated);
+
+        $details['email'] = 'yeisoneduardocaicedo95@gmail.com';
+  
+        //dispatch(new App\Jobs\SendIdeaMail($details));
+  
         // Primero normal y luego con encolamiento
 
 

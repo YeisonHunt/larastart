@@ -170,12 +170,13 @@
 		</div>
 
 		<!-- end:: Header Mobile -->
-		<div class="kt-grid kt-grid--hor kt-grid--root">
+		<div class="kt-grid kt-grid--hor kt-grid--root" >
 			<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
 
 				<!-- begin:: Aside -->
 				<button class="kt-aside-close " id="kt_aside_close_btn"><i class="la la-close"></i></button>
-				<div class="kt-aside  kt-aside--fixed  kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop" id="kt_aside">
+				
+				<div class="kt-aside  kt-aside--fixed  kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop" id="kt_aside" >
 
 					<!-- begin:: Aside -->
 					<div class="kt-aside__brand kt-grid__item " id="kt_aside_brand">
@@ -184,7 +185,7 @@
 							@if($logoVacio==1)
 
 							<router-link to="/dashboard">
-										<img alt="Logo" id="logoDesktop" style="margin-top:20px; padding-right:2px;" src="{{asset('modern-innova/images/features/logoWhite.png')}}" height="62%" width="100%" />
+								<img alt="Logo" id="logoDesktop" style="margin-top:20px; padding-right:2px;" src="{{asset('modern-innova/images/features/logoWhite.png')}}" height="62%" width="100%" />
 
 							</router-link>
 							@else
@@ -196,12 +197,11 @@
 							@endif
 
 
-							<br/><br/>
-							&nbsp;  | Innova
 						</div>
 						<div class="kt-aside__brand-tools">
 
-							<!--<button class="kt-aside__brand-aside-toggler" id="kt_aside_toggler">
+							<button class="kt-aside__brand-aside-toggler buttonToggle mt-4" id="kt_aside_toggler">
+
 								<span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
 										<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 											<polygon id="Shape" points="0 0 24 0 24 24 0 24" />
@@ -216,11 +216,11 @@
 											<path d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z" id="Path-94" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999) " />
 										</g>
 									</svg></span>
-							</button>-->
+							</button>
 
-							<!--
-			<button class="kt-aside__brand-aside-toggler kt-aside__brand-aside-toggler--left" id="kt_aside_toggler"><span></span></button>
-			-->
+							
+							<button class="kt-aside__brand-aside-toggler kt-aside__brand-aside-toggler--left" id="kt_aside_toggler"><span></span></button>
+			
 						</div>
 					</div>
 
@@ -287,6 +287,14 @@
 									<li class="kt-menu__item " aria-haspopup="true">
 
 
+                                        <router-link to="/blog-interno" class="kt-menu__link " active-class="activeSubLink" ><i id="blog" class="kt-menu__link-icon flaticon-speech-bubble"><span></span></i><span class="kt-menu__link-text">Blog</span></router-link>
+
+
+									</li>
+
+									<li class="kt-menu__item " aria-haspopup="true">
+
+
                                         <router-link to="/business" class="kt-menu__link " active-class="activeSubLink" ><i  id="admin" class="kt-menu__link-icon flaticon-app"><span></span></i><span class="kt-menu__link-text">Administrador</span></router-link>
 
 
@@ -317,7 +325,7 @@
 				<!-- end:: Aside -->
 				<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
 
-						<div id="kt_header" class="kt-header kt-grid__item  kt-header--fixed ">
+						<div id="kt_header" class="kt-header kt-grid__item  kt-header--fixed " >
 
 								<!-- begin:: Header Menu -->
 								<button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn"><i class="la la-close"></i></button>

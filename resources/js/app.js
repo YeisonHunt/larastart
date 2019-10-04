@@ -21,9 +21,10 @@ import vueRandomPic from 'vue-random-pic'
 import VueMq from 'vue-mq'
 
 
+// don't forget to import styles
 
 
-
+import 'tiptap-vuetify/dist/main.css'
 
 
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
@@ -152,7 +153,11 @@ let routes = [
 	{ path: '/shareInnovation/:id', component: require('./components/ShareInnovationComponent.vue').default },
 	{ path: '/categories', name:'categories', component: require('./components/Categories.vue').default },
 	{ path: '/reportes', name:'reportes', component: require('./components/Reportes.vue').default },
-	
+
+	{ path: '/blog-interno', name:'blog', component: require('./components/Blog/blog-index.vue').default },
+	{ path: '/blog-interno/create', name:'blog-create', component: require('./components/Blog/blog-create.vue').default },
+	{ path: '/blog-interno/edit/:id', name:'blog-interno-edit', props:true, component: require('./components/Blog/blog-edit.vue').default },
+	{ path: '/blog-interno/show/:id', name:'blog-interno-show', props:true, component: require('./components/Blog/blog-show.vue').default },
 	
 	
 	
@@ -310,6 +315,25 @@ Vue.filter(
 
 );
 
+Vue.filter(
+
+	'blogTitle',
+	function (text) {
+
+		let t = text.toString();
+		if (t.length > 50) {
+
+			let t2 = t.slice(0, 49).concat('...');
+			return t2;
+
+		} else {
+			return t;
+		}
+
+	}
+
+);
+
 
 
 
@@ -442,6 +466,111 @@ Vue.filter(
 
 		} else {
 			return t;
+		}
+
+	}
+
+);
+
+Vue.filter(
+
+	'titleEmpty',
+	function (title) {
+
+		if(title===''){
+			return 'Título de blog irá aquí'
+		}else {
+			return title
+		}
+
+	}
+
+);
+
+Vue.filter(
+
+	'fechaAqui',
+	function (fecha) {
+
+		if(fecha===''){
+			moment.locale('es')
+			return moment().format('LL')
+		}else {
+			return fecha
+		}
+
+	}
+
+);
+
+Vue.filter(
+
+	'formatDate',
+	function (fecha) {
+
+			moment(fecha).locale('es')
+			return moment().format('LL')
+		
+		
+
+	}
+
+);
+
+Vue.filter(
+
+	'contenidoAqui',
+	function (fecha) {
+
+		if(fecha===''){
+			
+			return `<br>
+			<br>
+			<p> *Este texto de prueba se borra apenas comiences a escribir* </p>
+			<h1>Bienvenido al editor de texto Summernote!</h1>
+			<br>
+			  <p>Este es un pequeño texto de demostración donde puedes ver las posibilidades que tienes para escribir y darle estilo a tu blog.</p>
+			  <p>Puedes escribir todo tipo de texto aquí, desde títulos, subtítulos, párrafos, listas, tablas, imágenes, videos y todo lo que quieras para poder expresarte con palabras de la manera idónea..</p>
+
+			  <p><strong>Para aprender más, puedes experimentar con las funciones en la  </strong><a href="#" title="documentation"><strong>barra de tareas</strong></a><strong></strong>.</p>
+
+			  <blockquote>
+				  <p>Es extremadamente fácil y rápido construir un blog que se visualize correctamente y que normalmente tardaría muchas horas en construirse a base de código.</p>
+			  </blockquote>
+
+			  <p style="text-align: right; margin-right:20px;"><a href="#" title="Equipo de Asakaa Innova"><strong>- Equipo de Asakaa Innova</strong></a></p>`
+		}else {
+			return fecha
+		}
+
+	}
+
+);
+
+Vue.filter(
+
+	'autoresAqui',
+	function (autor) {
+
+		if(autor===''){
+			return 'J.K Rowling, Ernest Hemingway, Edgar Allan Poe'
+		}else {
+			return autor
+		}
+
+	}
+
+);
+
+Vue.filter(
+
+	'tagsAqui',
+	function (tags) {
+
+		if(tags===''){
+			return 'Innovación, Emprendimiento, Negocios, Cultura, Energía Renovable'
+		}else {
+			return tags
 		}
 
 	}

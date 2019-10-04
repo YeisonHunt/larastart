@@ -317,6 +317,7 @@ export default {
     $("#dashboard").removeClass("menuActivo");
     $("#innovations").removeClass("menuActivo");
     $("#retos").removeClass("menuActivo");
+     $("#blog").removeClass("menuActivo");
     $(document).attr("title", "Innova | Administrador");
 
     this.getUser();

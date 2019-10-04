@@ -222,6 +222,46 @@
 
         
                                <div class="container-fluid">
+
+                                 <div class="row" v-if="cargandoIdeas">
+                                   
+                                 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                                   	<div class="skeleton-card" :style="{backgroundColor: 'white'}">
+                                        <CardHeader v-if="header" :round="round" :avatar="avatar" :isLoading="isLoading"></CardHeader>
+                                        <CardContent :round="round" :lines="lines" :media="media" :isLoading="isLoading"></CardContent>
+                                        <CardActions v-if="actions" :isLoading="isLoading"></CardActions>
+                                    </div>
+                                 </div>
+
+                                  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                                   	<div class="skeleton-card" :style="{backgroundColor: 'white'}">
+                                        <CardHeader v-if="header" :round="round" :avatar="avatar" :isLoading="isLoading"></CardHeader>
+                                        <CardContent :round="round" :lines="lines" :media="media" :isLoading="isLoading"></CardContent>
+                                        <CardActions v-if="actions" :isLoading="isLoading"></CardActions>
+                                    </div>
+                                 </div>
+
+                                  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                                    	<div class="skeleton-card" :style="{backgroundColor: 'white'}">
+                                          <CardHeader v-if="header" :round="round" :avatar="avatar" :isLoading="isLoading"></CardHeader>
+                                          <CardContent :round="round" :lines="lines" :media="media" :isLoading="isLoading"></CardContent>
+                                          <CardActions v-if="actions" :isLoading="isLoading"></CardActions>
+                                      </div>
+                                 </div>
+
+                                  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                                    	<div class="skeleton-card" :style="{backgroundColor: 'white'}">
+                                          <CardHeader v-if="header" :round="round" :avatar="avatar" :isLoading="isLoading"></CardHeader>
+                                          <CardContent :round="round" :lines="lines" :media="media" :isLoading="isLoading"></CardContent>
+                                          <CardActions v-if="actions" :isLoading="isLoading"></CardActions>
+                                      </div>
+                                 </div>
+
+
+
+                                 </div>
+
+
                                  <div class="row">
                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12"  v-for="idea in filteredEmpresarial "
       :key="ideas.id"     >
@@ -563,6 +603,43 @@
 
 <style >
 
+.skeleton-card {
+ box-sizing: border-box;
+ min-height: 300px;
+}
+
+.skeleton-card {
+
+
+		margin-bottom:10px;
+    border-radius: 2px;
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+    text-decoration: none;
+    cursor: default;
+}
+
+.loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.loading::after {
+
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.404), transparent);
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
 
 .custom-btn {
   background: linear-gradient(105deg, #151B26, #1f2c45, #253d6b, #264582, #214791, #204ea8, #1a54c7, #1153d6, #2c57ad, #264174, #253d6b, #253d6b);
@@ -855,11 +932,59 @@ body {
 </style>
 
 <script>
+
+import CardHeader from './skeleton/components/CardHeader.vue';
+import CardContent from './skeleton/components/CardContent.vue';
+import CardActions from './skeleton/components/CardActions.vue';
+
 export default {
+    props: {
+        isLoading: {
+            type: Boolean,
+            default: true
+        },
+        header: {
+            type: Boolean,
+            default: true
+        },
+        avatar: {
+            type: Boolean,
+            default: true
+        },
+        media: {
+            type: Boolean,
+            default: true
+        },
+        actions: {
+            type: Boolean,
+            default: true
+        },
+        horizontal: {
+            type: Boolean,
+            default: false
+        },
+        lines: {
+            type: Number,
+            default: 2
+        },
+        dark: {
+            type: Boolean,
+            default: false
+        },
+        round: {
+            type: Boolean,
+            default: true
+        },
+    },
+    components: {
+        CardHeader,
+        CardContent,
+        CardActions
+    },
   data() {
     return {
       
-
+      cargandoIdeas:true,
       megusta:{},
       pulirmas:{},
       acciondemejora:{},
@@ -909,6 +1034,13 @@ export default {
   },
 
   computed:{
+
+      bgcolor() {
+            if (this.dark) {
+                return '#424242';
+            }
+            return 'white';
+        },
     filteredPersonal: function() {
 
       
@@ -1161,6 +1293,8 @@ export default {
           this.companyIdeas = response.data.companyIdeas;
           this.cats = response.data.cats;
 
+          this.cargandoIdeas=false
+
           this.$Progress.finish();
 
 
@@ -1195,6 +1329,7 @@ export default {
       $("#dashboard").removeClass('menuActivo');
       $("#innovations").addClass('menuActivo');
       $("#retos").removeClass('menuActivo');
+       $("#blog").removeClass("menuActivo");
 
       $(document).attr("title", "Innova | Innovaciones");
 

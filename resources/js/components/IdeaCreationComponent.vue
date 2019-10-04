@@ -170,6 +170,7 @@
                           >El anterior editor enrriquecido de texto te permite escribir descripciones profesionales al alcance de tu mano.</span>
                         </div>
                       </div>
+                      
                       <div class="form-group row">
                         <label class="col-3 col-form-label">Imágen alusiva a la idea</label>
                         <div class="col-9">
@@ -184,7 +185,7 @@
                               accept="image/x-png, image/jpeg"
                               @change="onFilePicked"
                               name="img"
-							  :id="'imagenInnova'"
+							                 :id="'imagenInnova'"
                               class="form-control"
                               :class="{'is-invalid': form.errors.has('img')}"
                               placeholder="https://wwwmyawesomeideaimg.com/myimage.jpg"

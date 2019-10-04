@@ -19,6 +19,10 @@
             height: {
                 type: String,
                 default: '300'
+            },
+            placeholder:{
+                type:String,
+                default:'Aquí va el contenido del editor de texto.'
             }
         },
         mounted() {
@@ -31,7 +35,8 @@
 
 
             let config = {
-                height: this.height
+                height: this.height,
+                placeholder:this.placeholder
             };
             let vm = this;
             config.callbacks = {
