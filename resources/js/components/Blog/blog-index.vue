@@ -63,7 +63,7 @@
           <v-card-actions>
             <v-btn>Leer completo</v-btn>
              <v-spacer></v-spacer>
-               <div style="color:#90A4AE" >{{(blog.vistas/2)}}</div>
+               <div style="color:#90A4AE" >{{(blog.vistas)}}</div>
                   <v-btn class="mr-2" flat icon color="#90A4AE">
                     <v-icon dark>remove_red_eye</v-icon>
                   </v-btn>
