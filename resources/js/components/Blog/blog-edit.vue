@@ -340,6 +340,7 @@ export default {
         headers: { "content-type": "multipart/form-data" }
       };
 
+      let formData = new FormData();
        
 
       let random = Math.floor(Math.random() * 1000) + 1;

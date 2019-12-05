@@ -20,7 +20,7 @@
             });
 		</script>
 
-		
+
 			<link rel="stylesheet" href="{{ asset('css/animate.css') }}"> <!-- Min -->
 			<link rel="stylesheet" href="{{ asset('css/hover-min.css') }}"> <!-- Min -->
 			<link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -51,11 +51,11 @@
 			<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
 
 
-			
+
 
 			<style>
-		
-					
+
+
 				body {
 				font-family: "Open Sans", "sans-serif" !important;
 				font-weight: 400 !important;
@@ -73,9 +73,9 @@
 
 				.myFondo2 {
 					background-color: #F5F7FC !important;
-  
+
 					background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='152' height='152' viewBox='0 0 152 152'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='temple' fill='%239C92AC' fill-opacity='0.04'%3E%3Cpath d='M152 150v2H0v-2h28v-8H8v-20H0v-2h8V80h42v20h20v42H30v8h90v-8H80v-42h20V80h42v40h8V30h-8v40h-42V50H80V8h40V0h2v8h20v20h8V0h2v150zm-2 0v-28h-8v20h-20v8h28zM82 30v18h18V30H82zm20 18h20v20h18V30h-20V10H82v18h20v20zm0 2v18h18V50h-18zm20-22h18V10h-18v18zm-54 92v-18H50v18h18zm-20-18H28V82H10v38h20v20h38v-18H48v-20zm0-2V82H30v18h18zm-20 22H10v18h18v-18zm54 0v18h38v-20h20V82h-18v20h-20v20H82zm18-20H82v18h18v-18zm2-2h18V82h-18v18zm20 40v-18h18v18h-18zM30 0h-2v8H8v20H0v2h8v40h42V50h20V8H30V0zm20 48h18V30H50v18zm18-20H48v20H28v20H10V30h20V10h38v18zM30 50h18v18H30V50zm-2-40H10v18h18V10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") !important;
-					
+
 					background-repeat: repeat !important;
 				}
 
@@ -100,7 +100,7 @@
 						width:90%;
 						}
 
-						@media screen  and (min-width: 320px) and (max-width: 400px) { 
+						@media screen  and (min-width: 320px) and (max-width: 400px) {
 
 						.half-input {
 							width:30% !important;
@@ -111,9 +111,9 @@
 						overflow: visible !important;
 					}
 
-				
 
-		
+
+
 			</style>
 
 
@@ -128,7 +128,7 @@
 			</script>
 
 
-			
+
 
 
 
@@ -175,7 +175,7 @@
 
 				<!-- begin:: Aside -->
 				<button class="kt-aside-close " id="kt_aside_close_btn"><i class="la la-close"></i></button>
-				
+
 				<div class="kt-aside  kt-aside--fixed  kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop" id="kt_aside" >
 
 					<!-- begin:: Aside -->
@@ -218,9 +218,9 @@
 									</svg></span>
 							</button>
 
-							
+
 							<button class="kt-aside__brand-aside-toggler kt-aside__brand-aside-toggler--left" id="kt_aside_toggler"><span></span></button>
-			
+
 						</div>
 					</div>
 
@@ -274,7 +274,7 @@
 
 									</li>-->
 
-									 
+
 
 									<li class="kt-menu__item " aria-haspopup="true">
 
@@ -299,7 +299,7 @@
 
 
 									</li>
-									
+
 									<br class="smallSolo"></br>
 									<br class="smallSolo"></br>
 									<br class="smallSolo"></br>
@@ -311,7 +311,7 @@
 									</a>
 									</li>
 
-									
+
 
 
                                 </ul>
@@ -677,8 +677,8 @@
 
 
 						<div class="kt-content  kt-grid__item kt-grid__item--fluid myFondo2" style="
-							
-							
+
+
 							" id="kt_content">
 
 
@@ -690,7 +690,6 @@
 
 							</transition>
 
-                             <!-- set progressbar -->
 							 <vue-progress-bar></vue-progress-bar>
 
 							 <br>
@@ -737,7 +736,7 @@
 
 		// Enable pusher logging - don't include this in production
 	/*	Pusher.logToConsole = true;
-	
+
 		var pusher = new Pusher('85a84e588cd2ffdcaed1', {
 		  cluster: 'mt1',
 		  forceTLS: true
@@ -745,7 +744,7 @@
 
 
 		window.Pusher = pusher;
-	
+
 		var channel = pusher.subscribe('my-channel');
 		channel.bind('my-event', function(data) {
 		  alert(JSON.stringify(data));

@@ -12,7 +12,7 @@ window.Vue = require('vue');
 import VueRouter from 'vue-router'
 import { Form, HasError, AlertError } from 'vform'
 import moment from 'moment'
-require ('moment/locale/es.js') 
+require ('moment/locale/es.js')
 import VueProgressBar from 'vue-progressbar'
 import Swal from 'sweetalert2'
 import Permissions from './mixins/Permissions'
@@ -62,7 +62,7 @@ Vue.use(Viewer);
 	lang: {
 		locales: {
 			es,
-	
+
 		},
 		current: 'es'
 	}
@@ -103,7 +103,7 @@ Vue.use(VueRouter)
 
 let routes = [
 
-	
+
 	// { path: '/profile',name:'profile', component: () => import(/* webpackChunkName: "profileChunk" */ './components/profile.vue')},
 	// { path: '/dashboard', component: () => import(/* webpackChunkName: "dashboardChunk" */ './components/DashboardComponent.vue')},
 	// { path: '/innovations', name:'ideaList', component: () => import(/* webpackChunkName: "ideaComponentChunk" */ './components/IdeaComponent.vue') },
@@ -125,12 +125,12 @@ let routes = [
     // { path: '/business/company',name:'company', component:() => import(/* webpackChunkName: "companyChunk" */ './components/Business/mycompany.vue') },
 	// { path: '/shareInnovation/:id', component: () => import(/* webpackChunkName: "shareChunk" */ './components/ShareInnovationComponent.vue') },
 	// { path: '/categories', name:'categories', component: () => import(/* webpackChunkName: "categoriesChunk" */ './components/Categories.vue') },
-	// { path: '/reportes', name:'reportes', component: () => import(/* webpackChunkName: "reportesChunk" */ './components/Reportes.vue') }, 
+	// { path: '/reportes', name:'reportes', component: () => import(/* webpackChunkName: "reportesChunk" */ './components/Reportes.vue') },
 
 
 
 	/* Componentes sin carga dinamica */
-	
+
 	{ path: '/profile',name:'profile', component: require('./components/profile.vue').default},
 	{ path: '/dashboard', component: require('./components/DashboardComponent.vue').default},
 	{ path: '/innovations', name:'ideaList', component: require('./components/IdeaComponent.vue').default },
@@ -158,9 +158,9 @@ let routes = [
 	{ path: '/blog-interno/create', name:'blog-create', component: require('./components/Blog/blog-create.vue').default },
 	{ path: '/blog-interno/edit/:id', name:'blog-interno-edit', props:true, component: require('./components/Blog/blog-edit.vue').default },
 	{ path: '/blog-interno/show/:id', name:'blog-interno-show', props:true, component: require('./components/Blog/blog-show.vue').default },
-	
-	
-	
+
+
+
 
 
 
@@ -214,18 +214,18 @@ Vue.filter(
 		if(txtDate=='sinlimite'){
 			return 'Sin límite';
 		}else {
-			
+
 			var date = moment(txtDate,"DD/MM/YYYY");
 			var now = moment();
-			
+
 			var restantes =  date.diff(now, 'days');
-			
+
 
 			return restantes + ' días restantes.'
-	
+
 		}
 
-	
+
 	}
 
 );
@@ -255,7 +255,7 @@ Vue.filter(
 	'compartida',
 	function (privacidad) {
 
-		
+
 		if(privacidad=='personal'){
 
 			return 'Solo personal.'
@@ -369,13 +369,13 @@ Vue.filter(
 		if(/\d/.test(t)){
 			//Has number
 
-	
+
 
 			if (t == 'improvethis') {
 
 				let t2 = 'Mejorar Asakaa.com';
 				return t2;
-	
+
 			} else if (t == 'sustainability') {
 				return 'Sostenibilidad';
 			} else if (t == 'lifeandhealth') {
@@ -402,7 +402,7 @@ Vue.filter(
 			} else if (t == 'businessandconsumer') {
 				return 'Negocios';
 			}
-	
+
 			else {
 				return t;
 			}
@@ -412,7 +412,7 @@ Vue.filter(
 
 				let t2 = 'Mejorar Asakaa.com';
 				return t2;
-	
+
 			} else if (t == 'sustainability') {
 				return 'Sostenibilidad';
 			} else if (t == 'lifeandhealth') {
@@ -439,13 +439,13 @@ Vue.filter(
 			} else if (t == 'businessandconsumer') {
 				return 'Negocios';
 			}
-	
+
 			else {
 				return t;
 			}
 		}
 
-		
+
 
 	}
 
@@ -510,8 +510,8 @@ Vue.filter(
 
 			moment(fecha).locale('es')
 			return moment().format('LL')
-		
-		
+
+
 
 	}
 
@@ -523,7 +523,7 @@ Vue.filter(
 	function (fecha) {
 
 		if(fecha===''){
-			
+
 			return `<br>
 			<br>
 			<p> *Este texto de prueba se borra apenas comiences a escribir* </p>
@@ -610,24 +610,11 @@ Vue.use(VueProgressBar, options)
 window.Fire = new Vue(); // usado para emitir eventos
 
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
 
-// const files = require.context('./', true, /\.vue$/i);
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+
 
 const app = new Vue({
 	el: '#app',
@@ -635,5 +622,5 @@ const app = new Vue({
 	icons: {
 		iconfont: 'mdi', // default - only for display purposes
 	  },
-	
+
 });
