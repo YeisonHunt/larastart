@@ -1339,7 +1339,7 @@ export default {
       this.form
         .post("/addComment")
         .then(response => {
-          toastr.success("Genial!", "Gracias por dar tu opinión.");
+          toastr.success("Genial!", "Gracias por dar tu opinión. + 2 puntos");
           this.form.reset();
 
           this.discussionsFinal = response.data.discussions;

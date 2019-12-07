@@ -135,7 +135,7 @@
                     .post("/getPuntos")
                     .then(response => {
                  
-                    this.puntos = response.data.puntos;
+                    this.puntos = response.data.puntos
                     
 
                  

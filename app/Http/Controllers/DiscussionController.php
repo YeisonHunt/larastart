@@ -11,6 +11,8 @@ use Log;
 use App\User;
 use App\Desired;
 use Illuminate\Support\Facades\Mail;
+use App\Punto;
+use Auth;
 
 
 class DiscussionController extends Controller
@@ -23,12 +25,14 @@ class DiscussionController extends Controller
     $finder = DB::table('likes')->where('user_id',$request->user_id)
     ->where('comment_id',$request->comment_id)->first();
 
+    
+
     if(!empty($finder)){
 
-    $like= Like::find($finder->id);
-    $like->delete();
+        $like= Like::find($finder->id);
+        $like->delete();
 
-    }else{
+    }else {
 
         $like = new Like();
         $like->comment_id = $request->comment_id;
@@ -36,8 +40,7 @@ class DiscussionController extends Controller
         $like->save();
     }
 
-    Log::info('Comentario guardado -> Request:');
-    Log::info($request);
+    
 
 
     $id = $request->idea_id;
@@ -229,7 +232,18 @@ class DiscussionController extends Controller
     $d = new Discussion();
     $vacio= array();
 
+    $user_id = Auth::user()->id;
+
     $id = $request->idea_id;
+
+    // Creamos 2 puntos por haber comentado la idea
+    $punto = Punto::create([
+        'numero'=>2,
+        'tipo'=>'votar_idea',
+        'user_id'=>$user_id,
+        'idea_id'=>$id
+    ]);
+
 
     $ideaMail = Innovation::find(intval($request->idea_id));
     $creador = User::find(intval($ideaMail->created_by));

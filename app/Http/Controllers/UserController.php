@@ -22,10 +22,13 @@ class UserController extends Controller
         $user= Auth::user();
 
         $puntos =  DB::table('puntos')->where('user_id',$user->id)->sum('numero');
+
+         
+        $u = User::find(Auth::user()->id);
        
 
         return response()->json([
-            'puntos'=>$puntos
+            'puntos'=>$puntos + intval($u->entries)
         ]);
     }
 

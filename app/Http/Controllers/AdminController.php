@@ -235,14 +235,18 @@ class AdminController extends Controller
 
 
 
-
+                 // Cada entrada del usuario es 1 punto
+                 
+                $u = User::find(Auth::user()->id);
                 
+                        
 
 
                 $temp = array(
 
                     'nombre'=>$idea->name,
                     'puntos'=>$puntos,
+                    
                     'id'=>$idea->id,
                     'comentarios'=>$cuenta,
                     'ingresos'=>$idea->entries,
