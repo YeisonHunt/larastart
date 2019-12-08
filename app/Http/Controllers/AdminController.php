@@ -9,6 +9,7 @@ use DB;
 use Illuminate\Http\Request;
 use Log;
 use App\Innovation;
+use App\User;
 
 class AdminController extends Controller
 {
