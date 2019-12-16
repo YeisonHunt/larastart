@@ -694,18 +694,18 @@ toastr.options = {
       if (this.$mq == 'sm') {
         return '';
       } else if (this.$mq == 'md' || this.$mq == 'lg') {
-        return 'Pulir +';
+        return 'Leída';
       } else {
-        return 'Pulir +';
+        return 'Leída';
       }
     },
     likedTextN: function likedTextN() {
       if (this.$mq == 'sm') {
         return '';
       } else if (this.$mq == 'md' || this.$mq == 'lg') {
-        return 'Pulir +';
+        return 'Leída';
       } else {
-        return 'Pulir +';
+        return 'Leída';
       }
     }
   },
