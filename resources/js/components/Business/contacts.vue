@@ -14,7 +14,7 @@
 
           
           <h2 class="kt-portlet__head-title">Usuarios empresariales</h2>
-          <p>&nbsp; {{users.length}} Total</p>
+          <p>&nbsp; {{contacts.length}} Total</p>
         </div>
 
         <div class="col-lg-6 col-sm-12 form-row">
@@ -42,7 +42,7 @@
             </div>
           </div>
 
-          <div class="col-lg-3 col-sm-6 mt-2">
+          <div class="col-lg-3 col-sm-6 mt-2" style="visibility:hidden;">
     
              <div class="form-group">
               <label for="exampleFormControlSelect1">Filtrar</label>
@@ -57,6 +57,8 @@
 
 
           </div>
+
+
         </div>
 
         
@@ -99,8 +101,8 @@
                   </v-toolbar>
                   <v-data-table
                     :headers="headers"
-                    :items="visibleUsers"
-                    class="elevation-1"
+                    :items="contacts"
+                     class="elevation-1"
                      :search="search"
                     >
                     <template v-slot:items="props">
