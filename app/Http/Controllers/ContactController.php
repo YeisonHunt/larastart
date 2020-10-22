@@ -231,7 +231,7 @@ class ContactController extends Controller
              {
                 $message->subject('Bienvenido(a) a Innova!');
                 $message->to($email);
-                $message->from('innovation-team@guardproject.com','Credenciales Innova');
+                $message->from('support@asakaa.com','Credenciales Innova');
              });
          }
 

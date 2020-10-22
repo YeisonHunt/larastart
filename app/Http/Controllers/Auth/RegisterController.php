@@ -185,7 +185,7 @@ class RegisterController extends Controller
              {
                 $message->subject('Welcome to Asakaa | Innova !');
                 $message->to($email);
-                $message->from('innovation-team@guardproject.com','Activate account');
+                $message->from('support@asakaa.com','Activate account');
              });
          }
 
