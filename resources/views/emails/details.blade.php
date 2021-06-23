@@ -216,7 +216,7 @@ table p, table h1, table h2, table h3, table h4{ margin-top:0!important;margin-r
                     <th width="300" align="left" class="container-wrap" valign="top" style="vertical-align: top; width:300px;">
                         <table width="300" align="left" class="container" border="0" cellpadding="0" cellspacing="0" style="width:300px;">
                             <!-- txt -->
-                            <tr><td data-size="s21-text-size" data-color="s21-text-color" mc:edit="" style="color: #000000; font-family: 'Roboto', Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 400; line-height: 25px; text-align: left; text-decoration: none !important;"><multiline>Bogotá, Colombia<br class="disable">support@asakaa.com<br class="disable"><a href="guardproject.com" >guardproject.com</a></multiline></td></tr>
+                            <tr><td data-size="s21-text-size" data-color="s21-text-color" mc:edit="" style="color: #000000; font-family: 'Roboto', Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 400; line-height: 25px; text-align: left; text-decoration: none !important;"><multiline>Bogotá, Colombia<br class="disable">soporte@guardproject.com<br class="disable"><a href="guardproject.com" >guardproject.com</a></multiline></td></tr>
                             <!-- txt -->
                             <!-- mrgn-mob -->
                             <tr><td class="padding-top-40"></td></tr>

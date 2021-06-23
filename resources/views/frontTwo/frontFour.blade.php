@@ -671,7 +671,7 @@ content="{{asset('newDesignFour/landing/asakaa2C.JPG')}}">
                             <p class="lh-sm">
                                  Get support for Asakaa bugs or request features through the Trello board.</p>
                             <div class="mt-4 text-right">
-                                <a href="mailto:support@asakaa.com" class="link-icon">Support <i class="fas fa-chevron-right"></i></a>
+                                <a href="mailto:soporte@guardproject.com" class="link-icon">Support <i class="fas fa-chevron-right"></i></a>
                             </div>
                         </div>
                     </div>

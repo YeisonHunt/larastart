@@ -533,7 +533,7 @@
    /* (function () {
         var options = {
             whatsapp: "+573126665895", // WhatsApp number
-            email: "support@asakaa.com", // Email
+            email: "soporte@guardproject.com", // Email
             call_to_action: "Message us", // Call to action
             button_color: "#129BF4", // Color of button
             position: "right", // Position may be 'right' or 'left'
