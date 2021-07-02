@@ -719,7 +719,7 @@ class IdeasController extends Controller
 													'created_at'=>$ideaUser->created_at,
 													'likes'=>$checkLikesIdea,
                                                     'permissions'=>$permissions,
-                                                    'escrita'=>$userIdea->name
+                                                    'escrita'=>$userIdea->name ?? 'Anónimo(a)'
 
 
 											);
@@ -745,7 +745,7 @@ class IdeasController extends Controller
 													'created_at'=>$ideaUser->created_at,
 													'likes'=>array(),
                                                     'permissions'=>$permissions,
-                                                    'escrita'=>$userIdea->name
+                                                    'escrita'=>$userIdea->name ?? 'Anónimo(a)'
 
 
 											);
