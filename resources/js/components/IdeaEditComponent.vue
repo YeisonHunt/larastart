@@ -206,6 +206,50 @@
                         </div>
                       </div>
 
+                      					<div class="form-group row" v-if="form.type=='reto'">
+																	<label class="col-3 col-form-label">Fecha límite</label>
+																	<div class="col-5">
+																		<div class="kt-checkbox-inline" >
+																			<label class="kt-checkbox">
+																				<input type="radio"  value="none"    :class="{'is-invalid': form.errors.has('date')}"	 name="selected" v-model="selected" > Indefinida
+																				<span></span>
+																			</label>
+																			<label class="kt-checkbox">
+																				<input type="radio" value="date" :class="{'is-invalid': form.errors.has('date')}" name="selected" v-model="selected" >Activar fecha límite →
+																				<span></span>
+																			</label>
+																		<has-error :form="form" field="date" ></has-error>
+																		</div>
+																	</div>
+
+																	<div class="col-3">
+
+																		<div class="input-group date">
+
+																		<!--
+																			<div class="input-group date">
+
+																		<input type="text"  @change="checkFecha"  class="form-control" data-provide="datepicker" name="fecha"  placeholder="Fecha límite" id="datepicka" autocomplete="off" :disabled="selected=='none'" :required="selected=='date'" v-model="form.fecha" >		
+																	
+																		<div class="input-group-append">
+																			<span class="input-group-text">
+																				<i class="la la-clock-o"></i>
+																			</span>
+																		</div>
+																	</div> -->
+
+																	<date-picker v-model="form.fecha" :config="optionsFecha" :disabled="selected=='none'" :required="selected=='date'" ></date-picker>
+
+																		<div class="input-group-append">
+																			<span class="input-group-text">
+																				<i class="la la-clock-o"></i>
+																			</span>
+																		</div>
+																		</div>
+
+																	</div>
+																</div>
+
                       <div class="form-group form-group-last row">
                         <label class="col-3 col-form-label">Mostrar mi nombre en la idea?</label>
                         <div class="col-9">
@@ -339,7 +383,12 @@ export default {
       cats:{},
       permissions: {},
       user: window.user,
-      baseUrl: window.baseUrl,
+      baseUrl: window.baseUrl,			
+			optionsFecha: {
+				format: 'DD/MM/YYYY',
+				useCurrent: false,
+				minDate:  moment(new Date()).add(1,'days'),
+				},
       form: new Form({
         id: "",
         title: "",
@@ -436,6 +485,9 @@ export default {
           this.form.author = response.data.idea.author;
           this.form.privacy = response.data.idea.privacy;
           this.cats = response.data.cats;
+
+          this.form.type = response.data.idea.type;
+          this.form.fecha = response.data.idea.fecha;
 
           this.form.editordata = response.data.idea.body;
           this.permissions = response.data.permissions;
