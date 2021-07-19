@@ -1611,6 +1611,7 @@ class IdeasController extends Controller
         $idea->category = $request->category;
         $idea->author = $request->author;
         $idea->privacy = $request->privacy;
+        $idea->fecha = $request->fecha;
 
 
         $idea->save();

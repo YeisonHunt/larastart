@@ -238,7 +238,9 @@
 																		</div>
 																	</div> -->
 
-																	<date-picker v-model="form.fecha" :config="optionsFecha" :disabled="selected=='none'" :required="selected=='date'" ></date-picker>
+																	 <date-picker v-model="form.fecha" :config="optionsFecha" ></date-picker> 
+
+                                  <!-- <input type="date" v-model="form.fecha" placeholder="dd/mm/yyyy"  /> -->
 
 																		<div class="input-group-append">
 																			<span class="input-group-text">
@@ -389,17 +391,30 @@ export default {
 				useCurrent: false,
 				minDate:  moment(new Date()).add(1,'days'),
 				},
+        selected:'none',
       form: new Form({
         id: "",
         title: "",
         description: "",
         editordata: "",
         img: "",
+        fecha:"",
         category: "",
         language: "",
         author: "",
         privacy: ""
-      })
+      }),
+        idIdea: "",
+        title: "",
+        description: "",
+        editordata: "",
+        img: "",
+        fecha:"",
+        category: "",
+        language: "",
+        author: "",
+        privacy: ""
+      
     };
   },
 
@@ -502,17 +517,47 @@ export default {
     createUser() {
       this.$Progress.start();
       // Submit the form via a POST request
+      console.debug("this.form", {form:this.form})
 
-      //this.form.editordata =  $('#kt_summernote_1').summernote('code');
-      this.form
-        .post("/updateIdea/" + this.id)
-        .then(({ data }) => {
+      // //this.form.editordata =  $('#kt_summernote_1').summernote('code');
+      // this.form
+      //   .post("/updateIdea/" + this.id)
+      //   .then(({ data }) => {
+      //     this.$router.go(-1);
+      //     toastr.success("Awesome!", "Idea updated successfully.");
+      //     this.form.reset();
+      //   })
+      //   .catch(() => {
+      //     toastr.error("Oops!", "Something goes wrong");
+      //   });
+
+        let myData = {
+          id: this.id,
+          title: this.form.title,
+          description: this.form.description,
+          img: this.form.img,
+          category: this.form.category,
+          language: this.form.language,
+          author: this.form.author,
+          privacy: this.form.privacy,
+          fecha: this.form.fecha,
+          type: this.form.type,
+          editordata: this.form.editordata
+        };
+
+        console.debug("myData",myData)
+        
+
+         axios
+        .post("/updateIdea/" + this.id, myData)
+        .then(response => {
+
           this.$router.go(-1);
           toastr.success("Awesome!", "Idea updated successfully.");
           this.form.reset();
         })
-        .catch(() => {
-          toastr.error("Oops!", "Something goes wrong");
+        .catch(error => {
+          console.log(error);
         });
 
       //$('#userCreationModal').modal('hide');

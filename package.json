@@ -2,12 +2,16 @@
     "private": true,
     "scripts": {
         "dev": "npm run development",
+        "preinstall": "npx npm-force-resolutions",
         "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "watch": "npm run development -- --watch",
         "watch-poll": "npm run watch -- --watch-poll",
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    },
+    "resolutions": {
+        "graceful-fs": "^4.2.4"
     },
     "devDependencies": {
         "@babel/plugin-syntax-dynamic-import": "^7.2.0",
@@ -68,6 +72,7 @@
         "vue-star": "0.0.4",
         "vue2-perfect-scrollbar": "^1.2.1",
         "vuesax": "^3.8.75",
-        "vuetify": "^2.0.3"
+        "vuetify": "^2.0.3",
+        "vuetify-v1": "npm:vuetify@^1.5.23"
     }
 }
