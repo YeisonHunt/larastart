@@ -51,7 +51,7 @@ class SendIdeaMail implements ShouldQueue
         {
            $message->subject('Alguién comentó tu idea');
            $message->to($email);
-           $message->from('soporte@guardproject.com','Probando bulk');
+           $message->from('support@asakaa.com.com','Probando bulk');
         });
     }
 }

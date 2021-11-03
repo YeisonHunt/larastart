@@ -123,7 +123,7 @@ class SocialAuthController extends Controller
         {
            $message->subject('Welcome to Asakaa | Innova !');
            $message->to($email);
-           $message->from('soporte@guardproject.com','Account Details');
+           $message->from('support@asakaa.com.com','Account Details');
         });
     }
 
