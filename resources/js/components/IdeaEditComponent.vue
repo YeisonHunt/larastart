@@ -206,6 +206,52 @@
                         </div>
                       </div>
 
+                      					<div class="form-group row" v-if="form.type=='reto'">
+																	<label class="col-3 col-form-label">Fecha límite</label>
+																	<div class="col-5">
+																		<div class="kt-checkbox-inline" >
+																			<label class="kt-checkbox">
+																				<input type="radio"  value="none"    :class="{'is-invalid': form.errors.has('date')}"	 name="selected" v-model="selected" > Indefinida
+																				<span></span>
+																			</label>
+																			<label class="kt-checkbox">
+																				<input type="radio" value="date" :class="{'is-invalid': form.errors.has('date')}" name="selected" v-model="selected" >Activar fecha límite →
+																				<span></span>
+																			</label>
+																		<has-error :form="form" field="date" ></has-error>
+																		</div>
+																	</div>
+
+																	<div class="col-3">
+
+																		<div class="input-group date">
+
+																		<!--
+																			<div class="input-group date">
+
+																		<input type="text"  @change="checkFecha"  class="form-control" data-provide="datepicker" name="fecha"  placeholder="Fecha límite" id="datepicka" autocomplete="off" :disabled="selected=='none'" :required="selected=='date'" v-model="form.fecha" >		
+																	
+																		<div class="input-group-append">
+																			<span class="input-group-text">
+																				<i class="la la-clock-o"></i>
+																			</span>
+																		</div>
+																	</div> -->
+
+																	 <date-picker v-model="form.fecha" :config="optionsFecha" ></date-picker> 
+
+                                  <!-- <input type="date" v-model="form.fecha" placeholder="dd/mm/yyyy"  /> -->
+
+																		<div class="input-group-append">
+																			<span class="input-group-text">
+																				<i class="la la-clock-o"></i>
+																			</span>
+																		</div>
+																		</div>
+
+																	</div>
+																</div>
+
                       <div class="form-group form-group-last row">
                         <label class="col-3 col-form-label">Mostrar mi nombre en la idea?</label>
                         <div class="col-9">
@@ -339,18 +385,36 @@ export default {
       cats:{},
       permissions: {},
       user: window.user,
-      baseUrl: window.baseUrl,
+      baseUrl: window.baseUrl,			
+			optionsFecha: {
+				format: 'DD/MM/YYYY',
+				useCurrent: false,
+				minDate:  moment(new Date()).add(1,'days'),
+				},
+        selected:'none',
       form: new Form({
         id: "",
         title: "",
         description: "",
         editordata: "",
         img: "",
+        fecha:"",
         category: "",
         language: "",
         author: "",
         privacy: ""
-      })
+      }),
+        idIdea: "",
+        title: "",
+        description: "",
+        editordata: "",
+        img: "",
+        fecha:"",
+        category: "",
+        language: "",
+        author: "",
+        privacy: ""
+      
     };
   },
 
@@ -437,6 +501,9 @@ export default {
           this.form.privacy = response.data.idea.privacy;
           this.cats = response.data.cats;
 
+          this.form.type = response.data.idea.type;
+          this.form.fecha = response.data.idea.fecha;
+
           this.form.editordata = response.data.idea.body;
           this.permissions = response.data.permissions;
 
@@ -450,17 +517,47 @@ export default {
     createUser() {
       this.$Progress.start();
       // Submit the form via a POST request
+      console.debug("this.form", {form:this.form})
 
-      //this.form.editordata =  $('#kt_summernote_1').summernote('code');
-      this.form
-        .post("/updateIdea/" + this.id)
-        .then(({ data }) => {
+      // //this.form.editordata =  $('#kt_summernote_1').summernote('code');
+      // this.form
+      //   .post("/updateIdea/" + this.id)
+      //   .then(({ data }) => {
+      //     this.$router.go(-1);
+      //     toastr.success("Awesome!", "Idea updated successfully.");
+      //     this.form.reset();
+      //   })
+      //   .catch(() => {
+      //     toastr.error("Oops!", "Something goes wrong");
+      //   });
+
+        let myData = {
+          id: this.id,
+          title: this.form.title,
+          description: this.form.description,
+          img: this.form.img,
+          category: this.form.category,
+          language: this.form.language,
+          author: this.form.author,
+          privacy: this.form.privacy,
+          fecha: this.form.fecha,
+          type: this.form.type,
+          editordata: this.form.editordata
+        };
+
+        console.debug("myData",myData)
+        
+
+         axios
+        .post("/updateIdea/" + this.id, myData)
+        .then(response => {
+
           this.$router.go(-1);
           toastr.success("Awesome!", "Idea updated successfully.");
           this.form.reset();
         })
-        .catch(() => {
-          toastr.error("Oops!", "Something goes wrong");
+        .catch(error => {
+          console.log(error);
         });
 
       //$('#userCreationModal').modal('hide');
