@@ -287,7 +287,7 @@
                                 <h4>+57 312 6665895</h4>
                                 <p>
                                     o si prefieres por correo electrónico
-                                    <a href="mailto:support@asakaa.com.com">support@asakaa.com.com</a>
+                                    <a href="mailto:support@asakaa.com">support@asakaa.com</a>
                                 </p>
                             </div>
                         </aside>

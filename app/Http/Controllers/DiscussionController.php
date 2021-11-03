@@ -223,7 +223,7 @@ class DiscussionController extends Controller
        {
           $message->subject('Alguién comentó tu idea');
           $message->to($email);
-          $message->from('support@asakaa.com.com','Actividad en una de tus ideas');
+          $message->from('support@asakaa.com','Actividad en una de tus ideas');
        });
    }
 
