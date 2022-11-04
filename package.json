@@ -47,7 +47,7 @@
         "pusher-js": "^5.0.0",
         "quasar": "^1.0.0",
         "roboto-fontface": "^0.7.0",
-        "semantic-ui": "^2.4.2",
+        "semantic-ui": "^2.5.0",
         "semantic-ui-css": "^2.4.1",
         "semantic-ui-vue": "^0.8.1",
         "sweetalert": "^2.1.2",
